@@ -28,13 +28,26 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category="Components")
 	USceneComponent* RootScene;
 	
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UCameraComponent* CameraComp;
+
+	APlayerController* PC;
+	FVector GetCameraPanDirection();
+	void PanMoveCamera();
+
+	UPROPERTY(EditDefaultsOnly, Category="CameraPawn")
+	float Margin;
+
+	UPROPERTY(EditDefaultsOnly, Category = "CameraPawn")
+	float CamSpeed;
+
+	int32 ScreenSizeX;
+	int32 ScreenSizeY;
 
 };
