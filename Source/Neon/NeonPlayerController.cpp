@@ -22,6 +22,8 @@ void ANeonPlayerController::PlayerTick(float DeltaTime)
 	{
 		MoveToMouseCursor();
 	}
+
+	bEnableMouseOverEvents = true;
 }
 
 void ANeonPlayerController::SetupInputComponent()
