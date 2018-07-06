@@ -13,6 +13,8 @@ class ANeonGameMode : public AGameModeBase
 
 public:
 	ANeonGameMode();
+
+	virtual void BeginPlay() override;
 };
 
 

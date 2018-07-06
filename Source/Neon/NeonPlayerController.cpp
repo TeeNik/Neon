@@ -5,12 +5,14 @@
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "NeonCharacter.h"
+#include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
 
 ANeonPlayerController::ANeonPlayerController()
 {
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
+	bEnableMouseOverEvents = true;
 }
 
 void ANeonPlayerController::PlayerTick(float DeltaTime)
@@ -22,8 +24,6 @@ void ANeonPlayerController::PlayerTick(float DeltaTime)
 	{
 		MoveToMouseCursor();
 	}
-
-	bEnableMouseOverEvents = true;
 }
 
 void ANeonPlayerController::SetupInputComponent()
@@ -48,18 +48,26 @@ void ANeonPlayerController::OnResetVR()
 
 void ANeonPlayerController::MoveToMouseCursor()
 {
-	if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
+	/*GLog->Log("1");
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANeonCharacter::StaticClass(), FoundActors);
+	GLog->Log("Found: " + FoundActors.Num());
+	if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(FoundActors[0]))
 	{
-		if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(GetPawn()))
+		GLog->Log("3");
+		if (MyPawn->GetCursorToWorld())
 		{
-			if (MyPawn->GetCursorToWorld())
-			{
-				UNavigationSystem::SimpleMoveToLocation(this, MyPawn->GetCursorToWorld()->GetComponentLocation());
-			}
+			GLog->Log("4");
+			UNavigationSystem::SimpleMoveToLocation(this, MyPawn->GetCursorToWorld()->GetComponentLocation());
 		}
+	}
+	/*if (UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled())
+	{
+		
 	}
 	else
 	{
+		GLog->Log("5");
 		// Trace to see what is under the mouse cursor
 		FHitResult Hit;
 		GetHitResultUnderCursor(ECC_Visibility, false, Hit);
@@ -69,7 +77,7 @@ void ANeonPlayerController::MoveToMouseCursor()
 			// We hit something, move there
 			SetNewMoveDestination(Hit.ImpactPoint);
 		}
-	}
+	}*/
 }
 
 void ANeonPlayerController::MoveToTouchLocation(const ETouchIndex::Type FingerIndex, const FVector Location)
@@ -105,7 +113,23 @@ void ANeonPlayerController::SetNewMoveDestination(const FVector DestLocation)
 void ANeonPlayerController::OnSetDestinationPressed()
 {
 	// set flag to keep updating destination until released
-	bMoveToMouseCursor = true;
+	GLog->Log("pressed");
+	//bMoveToMouseCursor = true;
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANeonCharacter::StaticClass(), FoundActors);
+	GLog->Log("Found: " + FoundActors.Num());
+	FHitResult Hit;
+	GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, Hit);
+	FVector MoveLocation;
+	if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(FoundActors[0]))
+	{
+		GLog->Log("1");
+		if (MyPawn->GetCursorToWorld())
+		{
+			GLog->Log("2");
+			UNavigationSystem::SimpleMoveToLocation(MyPawn->GetController(), Hit.Location);
+		}
+	}
 }
 
 void ANeonPlayerController::OnSetDestinationReleased()
