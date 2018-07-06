@@ -117,16 +117,13 @@ void ANeonPlayerController::OnSetDestinationPressed()
 	//bMoveToMouseCursor = true;
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANeonCharacter::StaticClass(), FoundActors);
-	GLog->Log("Found: " + FoundActors.Num());
 	FHitResult Hit;
 	GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, Hit);
 	FVector MoveLocation;
 	if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(FoundActors[0]))
 	{
-		GLog->Log("1");
 		if (MyPawn->GetCursorToWorld())
 		{
-			GLog->Log("2");
 			UNavigationSystem::SimpleMoveToLocation(MyPawn->GetController(), Hit.Location);
 		}
 	}
