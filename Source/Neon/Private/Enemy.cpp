@@ -7,9 +7,12 @@ AEnemy::AEnemy()
 {
 	MeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComp"));
 	RootComponent = MeshComp;
-	MeshComp->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
-	MeshComp->SetCollisionObjectType(ECollisionChannel::ECC_Pawn);
-	MeshComp->OnClicked.AddDynamic(this, &AEnemy::OnClicked);
+	MeshComp->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	
+	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
+	BoxComp->SetRelativeScale3D(FVector(1,1,2));
+	BoxComp->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+	BoxComp->OnClicked.AddDynamic(this, &AEnemy::OnClicked);
 }
 
 void AEnemy::BeginPlay()
@@ -20,6 +23,8 @@ void AEnemy::BeginPlay()
 
 void AEnemy::OnClicked(UPrimitiveComponent * Component, FKey key)
 {
-	GLog->Log("keked");
+	GLog->Log("render");
+	IsSelected = !IsSelected;
+	MeshComp->SetRenderCustomDepth(IsSelected);
 }
 

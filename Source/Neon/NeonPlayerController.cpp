@@ -113,7 +113,6 @@ void ANeonPlayerController::SetNewMoveDestination(const FVector DestLocation)
 void ANeonPlayerController::OnSetDestinationPressed()
 {
 	// set flag to keep updating destination until released
-	GLog->Log("pressed");
 	//bMoveToMouseCursor = true;
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANeonCharacter::StaticClass(), FoundActors);

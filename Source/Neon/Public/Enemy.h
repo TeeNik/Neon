@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "Components/BoxComponent.h"
 #include "Enemy.generated.h"
 
 UCLASS()
@@ -20,8 +21,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	USkeletalMeshComponent* MeshComp;
 
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UBoxComponent* BoxComp;
+
 public:	
 
 	UFUNCTION()
 	void OnClicked(UPrimitiveComponent* Component, FKey key);
+
+private:
+
+	bool IsSelected;
 };
