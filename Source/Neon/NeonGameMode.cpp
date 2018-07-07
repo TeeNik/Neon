@@ -3,6 +3,7 @@
 #include "NeonGameMode.h"
 #include "NeonPlayerController.h"
 #include "NeonCharacter.h"
+#include "WorldActors/GridBase.h"
 #include "UObject/ConstructorHelpers.h"
 
 ANeonGameMode::ANeonGameMode()
@@ -21,8 +22,12 @@ ANeonGameMode::ANeonGameMode()
 
 void ANeonGameMode::BeginPlay()
 {
+	GLog->Log("Here");
 	for (int i = 0; i < 64; ++i)
 	{
-		//GetWorld()->SpawnActor()
+		FVector Location(125*(i%8), 0, 176);
+		FRotator Rotation(0.0f, 0.0f, 0.0f);
+		FActorSpawnParameters SpawnInfo;
+		GetWorld()->SpawnActor<AGridBase>(Location, Rotation, SpawnInfo);
 	}
 }
