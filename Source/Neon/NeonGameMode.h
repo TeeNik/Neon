@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "WorldActors/GridBase.h"
 #include "NeonGameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -15,6 +16,9 @@ public:
 	ANeonGameMode();
 
 	virtual void BeginPlay() override;
+
+	UPROPERTY(BlueprintReadWrite, Category="Config")
+	TSubclassOf<AGridBase> GridBaseClass;
 };
 
 

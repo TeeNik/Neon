@@ -45,7 +45,6 @@ void ACameraPawn::Tick(float DeltaTime)
 void ACameraPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 FVector ACameraPawn::GetCameraPanDirection()
