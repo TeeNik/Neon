@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "Blueprint/UserWidget.h"
 #include "NeonPlayerController.generated.h"
 
 UCLASS()
@@ -19,9 +20,15 @@ protected:
 
 	virtual void PlayerTick(float DeltaTime) override;
 	virtual void SetupInputComponent() override;
+	virtual void BeginPlay() override;
 
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
+
+	UUserWidget* ActionWidget;
 };
 
 

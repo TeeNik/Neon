@@ -28,6 +28,14 @@ void ANeonPlayerController::SetupInputComponent()
 	InputComponent->BindAction("SetDestination", IE_Released, this, &ANeonPlayerController::OnSetDestinationReleased);
 }
 
+void ANeonPlayerController::BeginPlay()
+{
+	if (ActionWidgetTemplate) {
+		ActionWidget = CreateWidget<UUserWidget>(this, ActionWidgetTemplate);
+		ActionWidget->AddToViewport();
+	}
+}
+
 void ANeonPlayerController::OnSetDestinationPressed()
 {
 	TArray<AActor*> FoundActors;
