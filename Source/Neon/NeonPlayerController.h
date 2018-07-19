@@ -28,6 +28,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Widgets")
 	UUserWidget* ActionWidget;
 };
 
