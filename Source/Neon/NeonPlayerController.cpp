@@ -39,7 +39,6 @@ void ANeonPlayerController::OnSetDestinationPressed()
 	{
 		if (MyPawn->GetCursorToWorld())
 		{
-			GLog->Log("1");
 			UNavigationSystem::SimpleMoveToActor(MyPawn->GetController(), Hit.GetActor());
 		}
 	}
