@@ -24,8 +24,10 @@ void AGridBase::BeginPlay()
 	
 }
 
-bool AGridBase::GetActionList_Implementation()
+FActionData AGridBase::GetActionList_Implementation()
 {
 	GLog->Log("Action of GridBase");
-	return true;
+	FActionData actionData;
+	actionData.SetSomeInt(44);
+	return actionData;
 }

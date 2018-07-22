@@ -28,7 +28,7 @@ protected:
 public:	
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	bool GetActionList();
-	virtual bool GetActionList_Implementation() override;
+	FActionData GetActionList();
+	virtual FActionData GetActionList_Implementation() override;
 	
 };
