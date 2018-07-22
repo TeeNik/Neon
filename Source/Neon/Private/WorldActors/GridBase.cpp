@@ -23,3 +23,9 @@ void AGridBase::BeginPlay()
 	Super::BeginPlay();
 	
 }
+
+bool AGridBase::GetActionList_Implementation()
+{
+	GLog->Log("Action of GridBase");
+	return true;
+}

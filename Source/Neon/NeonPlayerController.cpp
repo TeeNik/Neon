@@ -6,6 +6,7 @@
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "NeonCharacter.h"
 #include "Kismet/GameplayStatics.h"
+#include "Action.h"
 #include "Engine/World.h"
 
 ANeonPlayerController::ANeonPlayerController()
@@ -43,12 +44,16 @@ void ANeonPlayerController::OnSetDestinationPressed()
 	FHitResult Hit;
 	GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, Hit);
 	FVector MoveLocation;
-	if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(FoundActors[0]))
+	/*if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(FoundActors[0]))
 	{
 		if (MyPawn->GetCursorToWorld())
 		{
 			UNavigationSystem::SimpleMoveToActor(MyPawn->GetController(), Hit.GetActor());
 		}
+	}*/
+	IAction* action = Cast<IAction>(Hit.GetActor());
+	if (action) {
+		action->Execute_GetActionList(Hit.GetActor());
 	}
 }
 

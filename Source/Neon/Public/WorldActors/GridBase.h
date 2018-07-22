@@ -3,12 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Action.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "GridBase.generated.h"
 
 UCLASS()
-class NEON_API AGridBase : public AActor
+class NEON_API AGridBase : public AActor, public IAction
 {
 	GENERATED_BODY()
 	
@@ -26,6 +27,8 @@ protected:
 
 public:	
 
-	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	bool GetActionList();
+	virtual bool GetActionList_Implementation() override;
 	
 };
