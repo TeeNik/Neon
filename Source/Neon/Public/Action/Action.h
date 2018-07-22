@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include <string>
 #include "Action.generated.h"
 
 
@@ -15,8 +16,12 @@ struct FActionData
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
 	int SomeInt;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
+	FString Description;
+
 	FActionData() {
 		SomeInt = 3315;
+		Description = TEXT("None");
 	}
 
 	void SetSomeInt(const int value) {
@@ -25,6 +30,14 @@ struct FActionData
 
 	int GetSomeInt() {
 		return SomeInt;
+	}
+
+	void SetDescription(const FString& str) {
+		Description = str;
+	}
+
+	FString GetDescription() {
+		return Description;
 	}
 };
 
