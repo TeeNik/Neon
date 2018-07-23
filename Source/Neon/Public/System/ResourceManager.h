@@ -6,7 +6,7 @@
 #include "UObject/NoExportTypes.h"
 #include "ResourceManager.generated.h"
 
-UCLASS(BlueprintType)
+UCLASS(Blueprintable)
 class NEON_API UResourceManager : public UObject
 {
 	GENERATED_BODY()

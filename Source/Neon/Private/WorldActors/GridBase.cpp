@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GridBase.h"
+#include "System/ResourceManagerLibrary.h"
 
 
 // Sets default values
@@ -31,5 +32,8 @@ FActionData AGridBase::GetActionList_Implementation()
 	//actionData.SetSomeInt(44);
 	actionData.SomeInt = 25;
 	actionData.Description = FString(TEXT("Some Description"));
+
+	GLog->Log(UResourceManagerLibrary::GetData()->SolusCoreFilePath);
+
 	return actionData;
 }
