@@ -14,22 +14,26 @@ struct FActionData
 
 	//void(*ActionFunc)(void);
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
-	int SomeInt;
+	int Cost;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
 	FString Description;
 
+	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
+	void(*ActionFunction);*/
+
 	FActionData() {
-		SomeInt = 3315;
+		Cost = 0;
 		Description = TEXT("None");
+		//ActionFunction = NULL;
 	}
 
-	void SetSomeInt(const int value) {
-		SomeInt = value;
+	void SetCost(const int value) {
+		Cost = value;
 	}
 
-	int GetSomeInt() {
-		return SomeInt;
+	int GetCost() {
+		return Cost;
 	}
 
 	void SetDescription(const FString& str) {

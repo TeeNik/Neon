@@ -30,7 +30,7 @@ FActionData AGridBase::GetActionList_Implementation()
 	GLog->Log("Action of GridBase");
 	FActionData actionData;
 	//actionData.SetSomeInt(44);
-	actionData.SomeInt = 25;
+	actionData.Cost = 25;
 	actionData.Description = FString(TEXT("Some Description"));
 
 	GLog->Log(UResourceManagerLibrary::GetData()->SolusCoreFilePath);
