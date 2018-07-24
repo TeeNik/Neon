@@ -30,5 +30,8 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	FActionData GetActionList();
 	virtual FActionData GetActionList_Implementation() override;
+
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	void MoveUp();
 	
 };

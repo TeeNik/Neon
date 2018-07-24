@@ -19,13 +19,13 @@ struct FActionData
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
 	FString Description;
 
-	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ActionData")
-	void(*ActionFunction);*/
+	typedef void (FActionData::*FunctionPtrType)(void);
+	FunctionPtrType ActionFunction;
 
 	FActionData() {
 		Cost = 0;
 		Description = TEXT("None");
-		//ActionFunction = NULL;
+		ActionFunction = NULL;
 	}
 
 	void SetCost(const int value) {
@@ -58,7 +58,6 @@ class NEON_API IAction
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 		FActionData GetActionList();
-
 };
 
 
