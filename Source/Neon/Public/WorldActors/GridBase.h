@@ -8,6 +8,12 @@
 #include "GameFramework/Actor.h"
 #include "GridBase.generated.h"
 
+enum GridBaseState {
+	Down = 0,
+	Middle = 50,
+	Top = 100,
+};
+
 UCLASS()
 class NEON_API AGridBase : public AActor, public IAction
 {
@@ -32,6 +38,12 @@ public:
 	virtual FActionData GetActionList_Implementation() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-	void MoveUp();
-	
+	void MoveToMiddle();
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	void MoveToTop();
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	void MoveDown();
+
+	void Move(float value);
+	GridBaseState state;
 };
