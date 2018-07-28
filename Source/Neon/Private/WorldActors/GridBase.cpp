@@ -55,6 +55,9 @@ void AGridBase::MoveDown()
 {
 	Move(state == Top ? -Top : -Middle);
 	state = Down;
+
+
+
 }
 
 void AGridBase::Move(float value)
