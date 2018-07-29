@@ -14,6 +14,8 @@ enum GridBaseState {
 	Top = 100,
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTestDel, int, num);
+
 UCLASS()
 class NEON_API AGridBase : public AActor, public IAction
 {
@@ -46,4 +48,5 @@ public:
 
 	void Move(float value);
 	GridBaseState state;
+
 };
