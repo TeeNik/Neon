@@ -58,6 +58,9 @@ class NEON_API IAction
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 		FActionData GetActionList();
+
+	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void GetActionList();*/
 };
 
 

@@ -32,7 +32,7 @@ void ANeonPlayerController::SetupInputComponent()
 void ANeonPlayerController::BeginPlay()
 {
 	if (ActionWidgetTemplate) {
-		ActionWidget = CreateWidget<UUserWidget>(this, ActionWidgetTemplate);
+		ActionWidget = CreateWidget<UActionWidget>(this, ActionWidgetTemplate);
 		ActionWidget->AddToViewport();
 	}
 }

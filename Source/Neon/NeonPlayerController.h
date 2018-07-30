@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
+#include "UI/ActionWidget.h"
 #include "NeonPlayerController.generated.h"
 
 UCLASS()
@@ -28,8 +29,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Widgets")
-	UUserWidget* ActionWidget;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UActionWidget* ActionWidget;
 };
 
 
