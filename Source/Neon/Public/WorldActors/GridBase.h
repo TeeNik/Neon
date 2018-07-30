@@ -39,6 +39,10 @@ public:
 	FActionData GetActionList();
 	virtual FActionData GetActionList_Implementation() override;
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void SetWidgetSettings(UActionWidget* widget);
+	virtual void SetWidgetSettings_Implementation(UActionWidget* widget) override;
+
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();
 	UFUNCTION(BlueprintCallable, Category = "Action")

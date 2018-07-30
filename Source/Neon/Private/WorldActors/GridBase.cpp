@@ -39,6 +39,10 @@ FActionData AGridBase::GetActionList_Implementation()
 	return actionData;
 }
 
+void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
+	widget->Button->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+}
+
 void AGridBase::MoveToMiddle()
 {
 	Move(state == Down ? Middle : -Middle);
@@ -55,9 +59,6 @@ void AGridBase::MoveDown()
 {
 	Move(state == Top ? -Top : -Middle);
 	state = Down;
-
-
-
 }
 
 void AGridBase::Move(float value)

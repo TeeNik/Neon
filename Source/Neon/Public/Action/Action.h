@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include <string>
+#include "UI/ActionWidget.h"
 #include "Action.generated.h"
 
 
@@ -59,8 +60,8 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 		FActionData GetActionList();
 
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void GetActionList();*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void SetWidgetSettings(UActionWidget* widget);
 };
 
 
