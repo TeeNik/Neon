@@ -19,6 +19,12 @@ class NEON_API UActionWidget : public UUserWidget
 public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	UButton* Button;
+	UButton* RightButton;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UButton* UpperButton;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UButton* LeftButton;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UButton* LowerButton;
 	
 };

@@ -40,7 +40,8 @@ FActionData AGridBase::GetActionList_Implementation()
 }
 
 void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
-	widget->Button->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+	widget->UpperButton->OnClicked.Clear();
+	widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
 }
 
 void AGridBase::MoveToMiddle()
