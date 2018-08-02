@@ -26,5 +26,7 @@ public:
 	UButton* LeftButton;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	UButton* LowerButton;
+
+	void ClearButtons();
 	
 };

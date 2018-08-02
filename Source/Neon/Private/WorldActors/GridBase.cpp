@@ -40,8 +40,18 @@ FActionData AGridBase::GetActionList_Implementation()
 }
 
 void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
-	widget->UpperButton->OnClicked.Clear();
-	widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+	//widget->ClearButtons();
+	if (state == Top) {
+		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
+	}
+	else if(state == Middle){
+		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+		widget->RightButton->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
+	}
+	else {
+		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+		widget->RightButton->OnClicked.AddDynamic(this, &AGridBase::MoveToMiddle);
+	}
 }
 
 void AGridBase::MoveToMiddle()
