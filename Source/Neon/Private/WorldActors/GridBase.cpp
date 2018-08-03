@@ -40,7 +40,7 @@ FActionData AGridBase::GetActionList_Implementation()
 }
 
 void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
-	//widget->ClearButtons();
+	widget->ClearButtons();
 	if (state == Top) {
 		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
 	}

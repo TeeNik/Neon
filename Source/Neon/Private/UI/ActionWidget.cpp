@@ -2,6 +2,10 @@
 
 #include "ActionWidget.h"
 
-
-
-
+void UActionWidget::ClearButtons()
+{
+	LeftButton->OnClicked.Clear();
+	LeftButton->OnClicked.Clear();
+	LeftButton->OnClicked.Clear();
+	LeftButton->OnClicked.Clear();
+}
