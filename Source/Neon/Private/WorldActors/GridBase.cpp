@@ -25,6 +25,7 @@ AGridBase::AGridBase()
 void AGridBase::BeginPlay()
 {
 	Super::BeginPlay();
+	GLog->Log("Begin Play");
 }
 
 FActionData AGridBase::GetActionList_Implementation()
