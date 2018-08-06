@@ -34,7 +34,7 @@ FActionData AGridBase::GetActionList_Implementation()
 	FActionData actionData;
 	actionData.Cost = 25;
 	actionData.Description = FString(TEXT("Some Description"));
-//	actionData.ActionFunction = &AGridBase::MoveToTop;
+	actionData.ActionFunction = &AGridBase::MoveToTop;
 	GLog->Log(UResourceManagerLibrary::GetData()->SolusCoreFilePath);
 
 	return actionData;
