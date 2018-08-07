@@ -44,6 +44,7 @@ void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
 	widget->ClearButtons();
 	if (state == Top) {
 		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
+		//widget-> 
 	}
 	else if(state == Middle){
 		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
