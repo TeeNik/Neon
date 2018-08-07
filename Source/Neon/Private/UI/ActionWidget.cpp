@@ -5,7 +5,7 @@
 void UActionWidget::ClearButtons()
 {
 	LeftButton->OnClicked.Clear();
-	LeftButton->OnClicked.Clear();
-	LeftButton->OnClicked.Clear();
-	LeftButton->OnClicked.Clear();
+	UpperButton->OnClicked.Clear();
+	LowerButton->OnClicked.Clear();
+	RightButton->OnClicked.Clear();
 }
