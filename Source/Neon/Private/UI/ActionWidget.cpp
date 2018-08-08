@@ -2,8 +2,24 @@
 
 #include "ActionWidget.h"
 
+bool UActionWidget::Initialize()
+{
+	bool inited = Super::Initialize();
+
+	ButtonArray.Add(LowerButton);
+	ButtonArray.Add(UpperButton);
+	ButtonArray.Add(LeftButton);
+	ButtonArray.Add(RightButton);
+
+	return inited;
+}
+
 void UActionWidget::ClearButtons()
 {
+	/*for (UButton* button : ButtonArray) {
+		button->OnClicked.Clear();
+		button->SetVisibility(ESlateVisibility::Hidden);
+	}*/
 	LeftButton->OnClicked.Clear();
 	UpperButton->OnClicked.Clear();
 	LowerButton->OnClicked.Clear();
@@ -13,3 +29,5 @@ void UActionWidget::ClearButtons()
 	LowerButton->SetVisibility(ESlateVisibility::Visible);
 	RightButton->SetVisibility(ESlateVisibility::Visible);
 }
+
+

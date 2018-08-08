@@ -25,12 +25,10 @@ AGridBase::AGridBase()
 void AGridBase::BeginPlay()
 {
 	Super::BeginPlay();
-	GLog->Log("Begin Play");
 }
 
 FActionData AGridBase::GetActionList_Implementation()
 {
-	GLog->Log("Action of GridBase");
 	FActionData actionData;
 	actionData.Cost = 25;
 	actionData.Description = FString(TEXT("Some Description"));

@@ -18,6 +18,8 @@ class NEON_API UActionWidget : public UUserWidget
 	
 public:
 
+	TArray<UButton*> ButtonArray;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	UButton* RightButton;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
@@ -28,5 +30,7 @@ public:
 	UButton* LowerButton;
 
 	void ClearButtons();
+
+	bool Initialize() override;
 	
 };
