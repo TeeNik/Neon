@@ -16,18 +16,18 @@ bool UActionWidget::Initialize()
 
 void UActionWidget::ClearButtons()
 {
-	/*for (UButton* button : ButtonArray) {
+	for (UButton* button : ButtonArray) {
 		button->OnClicked.Clear();
 		button->SetVisibility(ESlateVisibility::Hidden);
-	}*/
-	LeftButton->OnClicked.Clear();
+	}
+	/*LeftButton->OnClicked.Clear();
 	UpperButton->OnClicked.Clear();
 	LowerButton->OnClicked.Clear();
 	RightButton->OnClicked.Clear();
 	LeftButton->SetVisibility(ESlateVisibility::Visible);
 	UpperButton->SetVisibility(ESlateVisibility::Visible);
 	LowerButton->SetVisibility(ESlateVisibility::Visible);
-	RightButton->SetVisibility(ESlateVisibility::Visible);
+	RightButton->SetVisibility(ESlateVisibility::Visible);*/
 }
 
 

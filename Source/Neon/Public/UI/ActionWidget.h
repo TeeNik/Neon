@@ -17,7 +17,7 @@ class NEON_API UActionWidget : public UUserWidget
 	
 	
 public:
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	TArray<UButton*> ButtonArray;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
