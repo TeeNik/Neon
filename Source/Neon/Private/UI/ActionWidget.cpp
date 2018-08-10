@@ -2,17 +2,17 @@
 
 #include "ActionWidget.h"
 
-bool UActionWidget::Initialize()
+/*bool UActionWidget::Initialize()
 {
 	bool inited = Super::Initialize();
 
-	ButtonArray.Add(LowerButton);
+	/*ButtonArray.Add(LowerButton);
 	ButtonArray.Add(UpperButton);
 	ButtonArray.Add(LeftButton);
 	ButtonArray.Add(RightButton);
 
 	return inited;
-}
+}*/
 
 void UActionWidget::ClearButtons()
 {

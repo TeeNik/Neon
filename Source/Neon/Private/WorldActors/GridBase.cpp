@@ -40,17 +40,17 @@ FActionData AGridBase::GetActionList_Implementation()
 
 void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
 	widget->ClearButtons();
+	auto buttons = widget->ButtonArray;
 	if (state == Top) {
-		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
-		//widget-> 
+		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
 	}
 	else if(state == Middle){
-		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
-		widget->RightButton->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
+		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+		buttons[Right]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
 	}
 	else {
-		widget->UpperButton->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
-		widget->RightButton->OnClicked.AddDynamic(this, &AGridBase::MoveToMiddle);
+		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
+		buttons[Right]->OnClicked.AddDynamic(this, &AGridBase::MoveToMiddle);
 	}
 }
 

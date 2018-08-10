@@ -7,9 +7,14 @@
 #include "Components/Button.h"
 #include "ActionWidget.generated.h"
 
-/**
- * 
- */
+
+enum ButtonDirection {
+	Left,
+	Upper,
+	Right,
+	Lower
+};
+
 UCLASS()
 class NEON_API UActionWidget : public UUserWidget
 {
@@ -31,6 +36,6 @@ public:
 
 	void ClearButtons();
 
-	bool Initialize() override;
+	//bool Initialize() override;
 	
 };
