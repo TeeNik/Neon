@@ -2,6 +2,7 @@
 
 #include "GridBase.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
+#include "NeonPlayerController.h"
 #include "System/ResourceManagerLibrary.h"
 
 
@@ -25,9 +26,13 @@ AGridBase::AGridBase()
 void AGridBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	BoxComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
+	BoxComp->OnEndCursorOver.AddDynamic(this, &AGridBase::OnEndCursorOver);
+	BoxComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
 }
 
-FActionData AGridBase::GetActionList_Implementation()
+/*FActionData AGridBase::GetActionList_Implementation()
 {
 	FActionData actionData;
 	actionData.Cost = 25;
@@ -36,28 +41,63 @@ FActionData AGridBase::GetActionList_Implementation()
 	GLog->Log(UResourceManagerLibrary::GetData()->SolusCoreFilePath);
 
 	return actionData;
-}
+}*/
 
-void AGridBase::SetWidgetSettings_Implementation(UActionWidget* widget) {
+void AGridBase::SetWidgetSettings(UActionWidget* widget) {
+	this->BoxComp->SetRenderCustomDepth(true);
+
 	widget->ClearButtons();
 	auto buttons = widget->ButtonArray;
 	if (state == Top) {
 		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
+		buttons[Upper]->SetVisibility(ESlateVisibility::Visible);
 	}
 	else if(state == Middle){
 		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
 		buttons[Right]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
+		buttons[Upper]->SetVisibility(ESlateVisibility::Visible);
+		buttons[Right]->SetVisibility(ESlateVisibility::Visible);
 	}
 	else {
 		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
 		buttons[Right]->OnClicked.AddDynamic(this, &AGridBase::MoveToMiddle);
+		buttons[Upper]->SetVisibility(ESlateVisibility::Visible);
+		buttons[Right]->SetVisibility(ESlateVisibility::Visible);
 	}
+}
+
+void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+{
+	MeshComp->SetRenderCustomDepth(true);
+}
+
+void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+{
+	if(isActive)
+		MeshComp->SetRenderCustomDepth(false);
+}
+
+void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+{
+	GLog->Log(ButtonPressed.GetFName().ToString());
+	if (ButtonPressed.GetFName() == "LeftMouseButton" && !isActive) {
+		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+		if (PC) {
+			PC->ClickedActor = this;
+			SetWidgetSettings(PC->ActionWidget);
+		}
+	}
+}
+
+void AGridBase::Deactivate() {
+	MeshComp->SetRenderCustomDepth(false);
 }
 
 void AGridBase::MoveToMiddle()
 {
 	Move(state == Down ? Middle : -Middle);
 	state = Middle;	
+	//ANeonPlayerController NC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController()
 }
 
 void AGridBase::MoveToTop()

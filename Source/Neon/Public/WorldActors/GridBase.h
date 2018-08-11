@@ -35,13 +35,31 @@ protected:
 
 public:	
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	FActionData GetActionList();
 	virtual FActionData GetActionList_Implementation() override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void SetWidgetSettings(UActionWidget* widget);
-	virtual void SetWidgetSettings_Implementation(UActionWidget* widget) override;
+	virtual void SetWidgetSettings_Implementation(UActionWidget* widget) override;*/
+
+	void SetWidgetSettings(UActionWidget* widget);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+	virtual void OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+	virtual void OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void Deactivate();
+	virtual void Deactivate_Implementation() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();

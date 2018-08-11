@@ -57,11 +57,26 @@ class NEON_API IAction
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-		FActionData GetActionList();
+	//static IAction* LastClickedActor;
+	bool isActive;
+
+	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	FActionData GetActionList();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void SetWidgetSettings(UActionWidget* widget);
+	void SetWidgetSettings(UActionWidget* widget);*/
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed); 
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void Deactivate();
 };
 
 
