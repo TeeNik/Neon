@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Blueprint/UserWidget.h"
 #include "UI/ActionWidget.h"
+#include "Action/Action.h"
 #include "NeonPlayerController.generated.h"
 
 UCLASS()
@@ -15,6 +16,11 @@ class ANeonPlayerController : public APlayerController
 
 public:
 	ANeonPlayerController();
+
+	IAction* ClickedActor;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
+	UActionWidget* ActionWidget;
 
 protected:
 	uint32 bMoveToMouseCursor : 1;
@@ -29,8 +35,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
-	UActionWidget* ActionWidget;
+
 };
 
 

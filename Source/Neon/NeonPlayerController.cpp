@@ -14,6 +14,7 @@ ANeonPlayerController::ANeonPlayerController()
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Crosshairs;
 	bEnableMouseOverEvents = true;
+	ClickedActor = NULL;
 }
 
 void ANeonPlayerController::PlayerTick(float DeltaTime)
@@ -52,9 +53,9 @@ void ANeonPlayerController::OnSetDestinationPressed()
 		}
 	}*/
 	IAction* action = Cast<IAction>(Hit.GetActor());
-	if (action) {
+	/*if (action) {
 		action->Execute_GetActionList(Hit.GetActor());
-	}
+	}*/
 }
 
 void ANeonPlayerController::OnSetDestinationReleased()
