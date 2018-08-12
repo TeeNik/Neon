@@ -27,7 +27,7 @@ void ANeonPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ANeonPlayerController::OnSetDestinationPressed);
-	InputComponent->BindAction("SetDestination", IE_Released, this, &ANeonPlayerController::OnSetDestinationReleased);
+	InputComponent->BindAction("RightMouseButton", IE_Released, this, &ANeonPlayerController::CloseWidget);
 }
 
 void ANeonPlayerController::BeginPlay()
@@ -63,4 +63,13 @@ void ANeonPlayerController::OnSetDestinationReleased()
 {
 	// clear flag to indicate we should stop updating the destination
 	//bMoveToMouseCursor = false;
+}
+
+void ANeonPlayerController::CloseWidget()
+{
+	if (ClickedActor != NULL) {
+		ClickedActor->Deactivate();
+		ClickedActor = NULL;
+	}
+
 }

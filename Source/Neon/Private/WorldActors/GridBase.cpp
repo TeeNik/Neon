@@ -86,6 +86,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if (PC) {
 			PC->ClickedActor = this;
+			isActive = true;
 			FVector2D screenLocation;
 			PC->ProjectWorldLocationToScreen(GetActorLocation(), screenLocation);
 			PC->ActionWidget->ShowOnPosition(screenLocation);
@@ -96,6 +97,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 
 void AGridBase::Deactivate_Implementation() {
 	MeshComp->SetRenderCustomDepth(false);
+	isActive = false;
 }
 
 void AGridBase::MoveToMiddle()

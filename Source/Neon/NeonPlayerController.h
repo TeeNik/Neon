@@ -31,6 +31,8 @@ protected:
 
 	void OnSetDestinationPressed();
 	void OnSetDestinationReleased();
+	void CloseWidget();
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
