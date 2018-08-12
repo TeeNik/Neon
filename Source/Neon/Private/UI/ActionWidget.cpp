@@ -2,17 +2,6 @@
 
 #include "ActionWidget.h"
 
-/*bool UActionWidget::Initialize()
-{
-	bool inited = Super::Initialize();
-
-	/*ButtonArray.Add(LowerButton);
-	ButtonArray.Add(UpperButton);
-	ButtonArray.Add(LeftButton);
-	ButtonArray.Add(RightButton);
-
-	return inited;
-}*/
 
 void UActionWidget::ClearButtons()
 {
@@ -20,14 +9,11 @@ void UActionWidget::ClearButtons()
 		button->OnClicked.Clear();
 		button->SetVisibility(ESlateVisibility::Hidden);
 	}
-	/*LeftButton->OnClicked.Clear();
-	UpperButton->OnClicked.Clear();
-	LowerButton->OnClicked.Clear();
-	RightButton->OnClicked.Clear();
-	LeftButton->SetVisibility(ESlateVisibility::Visible);
-	UpperButton->SetVisibility(ESlateVisibility::Visible);
-	LowerButton->SetVisibility(ESlateVisibility::Visible);
-	RightButton->SetVisibility(ESlateVisibility::Visible);*/
 }
 
+void UActionWidget::ShowOnPosition(FVector2D& actorScreenLocation)
+{
+	SetPositionInViewport(actorScreenLocation + FVector2D(50, 50), true);
+	SetVisibility(ESlateVisibility::Visible);
+}
 

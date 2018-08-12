@@ -32,6 +32,7 @@ void ANeonPlayerController::SetupInputComponent()
 
 void ANeonPlayerController::BeginPlay()
 {
+	GLog->Log("Construct");
 	if (ActionWidgetTemplate) {
 		ActionWidget = CreateWidget<UActionWidget>(this, ActionWidgetTemplate);
 		ActionWidget->AddToViewport();
