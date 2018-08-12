@@ -35,7 +35,5 @@ public:
 	UButton* LowerButton;
 
 	void ClearButtons();
-
-	//bool Initialize() override;
-	
+	void ShowOnPosition(FVector2D& actorLocation);	
 };

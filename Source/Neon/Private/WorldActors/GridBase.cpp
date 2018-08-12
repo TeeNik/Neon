@@ -47,6 +47,8 @@ void AGridBase::SetWidgetSettings(UActionWidget* widget) {
 	this->BoxComp->SetRenderCustomDepth(true);
 
 	widget->ClearButtons();
+
+	widget->SetVisibility(ESlateVisibility::Visible);
 	auto buttons = widget->ButtonArray;
 	if (state == Top) {
 		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
@@ -73,7 +75,7 @@ void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedCom
 
 void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-	if(isActive)
+	if(!isActive)
 		MeshComp->SetRenderCustomDepth(false);
 }
 
@@ -84,12 +86,15 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if (PC) {
 			PC->ClickedActor = this;
+			FVector2D screenLocation;
+			PC->ProjectWorldLocationToScreen(GetActorLocation(), screenLocation);
+			PC->ActionWidget->ShowOnPosition(screenLocation);
 			SetWidgetSettings(PC->ActionWidget);
 		}
 	}
 }
 
-void AGridBase::Deactivate() {
+void AGridBase::Deactivate_Implementation() {
 	MeshComp->SetRenderCustomDepth(false);
 }
 
