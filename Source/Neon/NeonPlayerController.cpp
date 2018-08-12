@@ -59,16 +59,10 @@ void ANeonPlayerController::OnSetDestinationPressed()
 	}*/
 }
 
-void ANeonPlayerController::OnSetDestinationReleased()
-{
-	// clear flag to indicate we should stop updating the destination
-	//bMoveToMouseCursor = false;
-}
-
 void ANeonPlayerController::CloseWidget()
 {
 	if (ClickedActor != NULL) {
-		ClickedActor->Deactivate();
+		IAction::Execute_Deactivate(ClickedActor);
 		ClickedActor = NULL;
 	}
 

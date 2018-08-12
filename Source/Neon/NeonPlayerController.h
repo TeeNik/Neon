@@ -17,7 +17,7 @@ class ANeonPlayerController : public APlayerController
 public:
 	ANeonPlayerController();
 
-	IAction* ClickedActor;
+	UObject* ClickedActor;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UActionWidget* ActionWidget;
@@ -30,7 +30,6 @@ protected:
 	virtual void BeginPlay() override;
 
 	void OnSetDestinationPressed();
-	void OnSetDestinationReleased();
 	void CloseWidget();
 
 

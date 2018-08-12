@@ -81,7 +81,6 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 
 void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
-	GLog->Log(ButtonPressed.GetFName().ToString());
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && !isActive) {
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if (PC) {
@@ -96,6 +95,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 }
 
 void AGridBase::Deactivate_Implementation() {
+	GLog->Log("RightMouseButton");
 	MeshComp->SetRenderCustomDepth(false);
 	isActive = false;
 }
