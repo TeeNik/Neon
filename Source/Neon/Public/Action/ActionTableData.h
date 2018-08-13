@@ -20,5 +20,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	int32 Cost;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
-	UTexture* Icon;
+	UTexture2D* Icon;
 };

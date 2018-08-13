@@ -17,3 +17,11 @@ void UActionWidget::ShowOnPosition(FVector2D& actorScreenLocation)
 	SetVisibility(ESlateVisibility::Visible);
 }
 
+void UActionWidget::SetButtonImage(ButtonDirection direction, UTexture2D* texture)
+{
+	auto* button = ButtonArray[direction];
+	button->WidgetStyle.Normal.SetResourceObject(texture);
+	button->WidgetStyle.Hovered.SetResourceObject(texture);
+	button->WidgetStyle.Pressed.SetResourceObject(texture);
+}
+
