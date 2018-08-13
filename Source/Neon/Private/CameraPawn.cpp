@@ -31,7 +31,7 @@ void ACameraPawn::BeginPlay()
 	Super::BeginPlay();
 	PC = Cast<APlayerController>(GetController());
 	PC->GetViewportSize(ScreenSizeX, ScreenSizeY);
-	
+	NeonPC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 }
 
 // Called every frame
@@ -80,7 +80,7 @@ FVector ACameraPawn::GetCameraPanDirection()
 void ACameraPawn::PanMoveCamera()
 {
 	const FVector dir = GetCameraPanDirection();
-	if (dir == FVector::ZeroVector) return;
+	if (dir == FVector::ZeroVector || NeonPC && NeonPC->ClickedActor != NULL) return;
 	AddActorWorldOffset(dir * CamSpeed);
 }
 

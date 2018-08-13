@@ -30,12 +30,12 @@ protected:
 	virtual void BeginPlay() override;
 
 	void OnSetDestinationPressed();
-	void CloseWidget();
-
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
 
+public:
+	void CloseWidget();
 
 };
 
