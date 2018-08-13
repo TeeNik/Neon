@@ -14,9 +14,6 @@ class ANeonCharacter : public ACharacter
 public:
 	ANeonCharacter();
 
-	// Called every frame.
-	virtual void Tick(float DeltaSeconds) override;
-
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	/** Returns CameraBoom subobject **/
@@ -36,5 +33,8 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+	void GetMovementArea();
+
 };
 

@@ -82,7 +82,7 @@ void AGridBase::SetWidgetSettings(UActionWidget* widget) {
 void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if(PC->ClickedActor == NULL)
+	//if(PC->ClickedActor == NULL)
 		MeshComp->SetRenderCustomDepth(true);
 }
 
@@ -96,7 +96,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && !isActive) {
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		if (PC && PC->ClickedActor == NULL) {
+		if (PC /*&& PC->ClickedActor == NULL*/) {
 			PC->ClickedActor = this;
 			isActive = true;
 			FVector2D screenLocation;
