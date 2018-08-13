@@ -6,6 +6,7 @@
 #include "GameFramework/Pawn.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "NeonPlayerController.h"
 #include "CameraPawn.generated.h"
 
 UCLASS()
@@ -49,5 +50,6 @@ public:
 
 	int32 ScreenSizeX;
 	int32 ScreenSizeY;
+	ANeonPlayerController* NeonPC;
 
 };

@@ -35,5 +35,6 @@ public:
 	UButton* LowerButton;
 
 	void ClearButtons();
-	void ShowOnPosition(FVector2D& actorLocation);	
+	void ShowOnPosition(FVector2D& actorLocation);
+	void SetButtonImage(ButtonDirection direction, UTexture2D* texture);
 };

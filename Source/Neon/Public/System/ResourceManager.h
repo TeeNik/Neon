@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "Engine/DataTable.h"
 #include "ResourceManager.generated.h"
 
 UCLASS(Blueprintable)
@@ -26,5 +27,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resource Manager")
 	FString SolusCoreFilePath;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resource Manager")
+	UDataTable* ActionDataTable;
 	
 };
