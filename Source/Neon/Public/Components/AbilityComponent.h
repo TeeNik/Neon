@@ -8,14 +8,19 @@
 #include "AbilityComponent.generated.h"
 
 
+class Ability {
+	FString Name;
+	float Range;
+	TSubclassOf<class Aactor> TargetClass;
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAbilityComponent : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
-	// Sets default values for this component's properties
-	UAbilityComponent();
+		UAbilityComponent();
 
 	void SetIcons();
 	UActionWidget* widget;
@@ -26,6 +31,7 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+private:
+	TArray<Ability> abilities;
 	
 };
