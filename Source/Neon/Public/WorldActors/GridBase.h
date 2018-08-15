@@ -72,4 +72,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveDown();
 
+	void Highlight();
+
 };
