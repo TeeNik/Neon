@@ -7,13 +7,18 @@ UAbilityComponent::UAbilityComponent()
 
 }
 
+void UAbilityComponent::SetIcons()
+{
+	//widget->bu
+}
+
 void UAbilityComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	/*ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		widget = PC->ActionWidget;
-	}
+	}*/
 	
 }
