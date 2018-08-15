@@ -18,9 +18,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resource Manager")
 	TArray<UClass*> SolusTreeBlueprints;
 
-	/*UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resource Manager")
-	UDataTable* ActionDataTable;*/
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Resource Manager")
 	FVector SolusEssentialVector;
 

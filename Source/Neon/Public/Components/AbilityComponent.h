@@ -5,14 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "UI/ActionWidget.h"
+#include "Action/ActionTableData.h"
 #include "AbilityComponent.generated.h"
-
-
-class Ability {
-	FString Name;
-	float Range;
-	TSubclassOf<class Aactor> TargetClass;
-};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAbilityComponent : public UActorComponent
@@ -24,14 +18,13 @@ public:
 
 	void SetIcons();
 	UActionWidget* widget;
+	TMap<FName, FActionTableData*> Actions;
+	FName* ActiveAction;
 	
-	void ShowAbilityRange();
+	void ShowAbilityRange(FName);
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-private:
-	TArray<Ability> abilities;
-	
 };

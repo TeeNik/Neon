@@ -4,13 +4,6 @@
 #include "Action/Action.h"
 #include "ActionTableData.generated.h"
 
-UENUM(BlueprintType)
-enum ActionName {
-	BlockUp,
-	BlockDown,
-	Shoot,
-};
-
 USTRUCT(BlueprintType)
 struct NEON_API FActionTableData : public FTableRowBase
 {
@@ -24,7 +17,7 @@ public:
 	};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
-	ActionName actionName;
+	FName Name;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	FString Description;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
