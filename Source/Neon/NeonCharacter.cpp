@@ -10,6 +10,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/Material.h"
+#include "WorldActors/GridBase.h"
+#include "DrawDebugHelpers.h"
 #include "Engine/World.h"
 
 ANeonCharacter::ANeonCharacter()
@@ -40,4 +42,32 @@ ANeonCharacter::ANeonCharacter()
 	TopDownCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
 	TopDownCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	TopDownCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+}
+
+void ANeonCharacter::GetMovementArea()
+{
+	TArray<FHitResult> HitResults;
+	FVector StartLocation = GetActorLocation();
+	FVector EndLocation = GetActorLocation();
+	EndLocation.Z += 0;
+
+	ECollisionChannel ECC = ECollisionChannel::ECC_WorldStatic;
+	FCollisionShape CollisionShape;
+	CollisionShape.ShapeType = ECollisionShape::Sphere;
+	CollisionShape.SetSphere(350);
+	bool bHitSomething = GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
+	if (bHitSomething)
+	{
+		for (auto It = HitResults.CreateIterator(); It; It++)
+		{
+			GLog->Log((*It).Actor->GetName());
+			AGridBase* grid = Cast<AGridBase>(It->GetActor());
+			if (grid) {
+				grid->Highlight();
+			}
+		}
+	}
+	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;
+
+	//DrawDebugSphere(GetWorld(), CenterOfSphere, CollisionShape.GetSphereRadius(), 100, FColor::Blue, true);
 }
