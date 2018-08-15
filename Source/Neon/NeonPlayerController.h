@@ -7,6 +7,7 @@
 #include "Blueprint/UserWidget.h"
 #include "UI/ActionWidget.h"
 #include "Action/Action.h"
+#include "Action/ActionTableData.h"
 #include "NeonPlayerController.generated.h"
 
 UCLASS()
@@ -21,6 +22,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UActionWidget* ActionWidget;
+	FName ActiveAction;
 
 protected:
 	uint32 bMoveToMouseCursor : 1;

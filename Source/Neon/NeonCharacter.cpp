@@ -68,6 +68,4 @@ void ANeonCharacter::GetMovementArea()
 		}
 	}
 	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;
-
-	//DrawDebugSphere(GetWorld(), CenterOfSphere, CollisionShape.GetSphereRadius(), 100, FColor::Blue, true);
 }

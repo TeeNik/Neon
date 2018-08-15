@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Components/AbilityComponent.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -14,12 +15,10 @@ class ANeonCharacter : public ACharacter
 public:
 	ANeonCharacter();
 
-	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
-	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
-	/** Returns CursorToWorld subobject **/
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
+	FORCEINLINE UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
 
 private:
 	/** Top down camera */
@@ -33,6 +32,9 @@ private:
 	/** A decal that projects to the cursor location. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponents")
+	class UAbilityComponent* AbilityComp;
 
 	UFUNCTION(BlueprintCallable, Category="Movement")
 	void GetMovementArea();
