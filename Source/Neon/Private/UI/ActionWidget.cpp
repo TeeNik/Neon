@@ -7,7 +7,6 @@ void UActionWidget::ClearButtons()
 {
 	for (UButton* button : ButtonArray) {
 		button->OnClicked.Clear();
-		button->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 
@@ -24,4 +23,10 @@ void UActionWidget::SetButtonImage(ButtonDirection direction, UTexture2D* textur
 	button->WidgetStyle.Hovered.SetResourceObject(texture);
 	button->WidgetStyle.Pressed.SetResourceObject(texture);
 }
+
+void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
+{
+	ButtonArray[0]->SetButtonData(actionDatas[0]);
+}
+
 

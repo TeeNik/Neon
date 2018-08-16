@@ -13,13 +13,13 @@ UCLASS()
 class NEON_API UActionButton : public UButton
 {
 	GENERATED_BODY()
+
+private:
 	
+	FActionTableData* Data;
 	
 public:
-
-	FName AbilityName;
-
-	void SetButtonData(FName abilityName);
+	void SetButtonData(const FActionTableData* data);
 
 	UFUNCTION()
 	void ExecuteAbility();

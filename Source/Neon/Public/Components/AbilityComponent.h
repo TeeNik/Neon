@@ -18,7 +18,7 @@ public:
 
 	void SetIcons();
 	UActionWidget* Widget;
-	TMap<FName, FActionTableData*> Actions;
+	TArray<FActionTableData*> Actions;
 	FName* ActiveAction;
 	
 	void ShowAbilityRange(FName);

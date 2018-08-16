@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Button.h"
+#include "UI/ActionButton.h"
 #include "ActionWidget.generated.h"
 
 
@@ -20,21 +21,13 @@ class NEON_API UActionWidget : public UUserWidget
 {
 	GENERATED_BODY()
 	
+private:
+	void SetButtonImage(ButtonDirection direction, UTexture2D* texture);
 	
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	TArray<UButton*> ButtonArray;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	UButton* RightButton;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	UButton* UpperButton;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	UButton* LeftButton;
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	UButton* LowerButton;
+	TArray<UActionButton*> ButtonArray;
 
 	void ClearButtons();
-	void ShowOnPosition(FVector2D& actorLocation);
-	void SetButtonImage(ButtonDirection direction, UTexture2D* texture);
+	void InitButtons(FActionTableData* actionDatas);
 };
