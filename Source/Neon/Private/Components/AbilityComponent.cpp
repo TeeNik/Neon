@@ -2,7 +2,9 @@
 
 #include "AbilityComponent.h"
 #include "System/ResourceManagerLibrary.h"
-//#include "Action/Action.h"
+#include "NeonPlayerController.h"
+#include "Action/ActionTableData.h"
+#include "Action/Action.h"
 
 UAbilityComponent::UAbilityComponent()
 {
@@ -14,18 +16,18 @@ void UAbilityComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/*ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		Widget = PC->ActionWidget;
 	}
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), Actions);
-	Widget->InitButtons(Actions);*/
+	Widget->InitButtons(Actions);
 }
 
 void UAbilityComponent::ShowAbilityRange(FName name)
 {
-	/*auto ability = Actions[0];
+	auto ability = Actions[0];
 	TArray<FHitResult> HitResults;
 	auto parent = GetOwner();
 	FVector StartLocation =  parent->GetActorLocation();
@@ -47,6 +49,6 @@ void UAbilityComponent::ShowAbilityRange(FName name)
 			}
 		}
 	}
-	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;*/
+	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;
 }
 

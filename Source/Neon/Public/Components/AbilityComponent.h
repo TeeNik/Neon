@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-//#include "UI/ActionWidget.h"
+#include "UI/ActionWidget.h"
 #include "AbilityComponent.generated.h"
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -15,9 +15,9 @@ class NEON_API UAbilityComponent : public UActorComponent
 public:	
 	UAbilityComponent();
 
-	/*UActionWidget* Widget;
+	UActionWidget* Widget;
 	TArray<FActionTableData*> Actions;
-	FName* ActiveAction;*/
+	FName* ActiveAction;
 	
 	void ShowAbilityRange(FName);
 

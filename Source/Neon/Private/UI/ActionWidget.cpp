@@ -3,7 +3,7 @@
 #include "ActionWidget.h"
 
 
-/*void UActionWidget::ClearButtons()
+void UActionWidget::ClearButtons()
 {
 	for (UButton* button : ButtonArray) {
 		button->OnClicked.Clear();
@@ -20,7 +20,7 @@ void UActionWidget::SetButtonImage(ButtonDirection direction, UTexture2D* textur
 
 void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 {
-	//ButtonArray[0]->SetButtonData(actionDatas[0]);
-}*/
+	ButtonArray[0]->SetButtonData(actionDatas[0]);
+}
 
 

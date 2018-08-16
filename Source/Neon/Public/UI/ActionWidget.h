@@ -21,12 +21,12 @@ class NEON_API UActionWidget : public UUserWidget
 	GENERATED_BODY()
 	
 private:
-	//void SetButtonImage(ButtonDirection direction, UTexture2D* texture);
+	void SetButtonImage(ButtonDirection direction, UTexture2D* texture);
 	
 public:
-	/*UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	TArray<UActionButton*> ButtonArray;
 
 	void ClearButtons();
-	void InitButtons(TArray<FActionTableData*> actionDatas);*/
+	void InitButtons(TArray<FActionTableData*> actionDatas);
 };
