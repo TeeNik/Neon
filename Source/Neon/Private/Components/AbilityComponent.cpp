@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "AbilityComponent.h"
+#include "System/ResourceManagerLibrary.h"
+#include "NeonPlayerController.h"
 #include "Action/Action.h"
 
 UAbilityComponent::UAbilityComponent()
@@ -44,9 +46,11 @@ void UAbilityComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/*ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
-		widget = PC->ActionWidget;
-	}*/
-	
+		Widget = PC->ActionWidget;
+	}
+	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), Actions);
+	Widget->InitButtons(Actions);
 }

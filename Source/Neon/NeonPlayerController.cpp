@@ -35,7 +35,6 @@ void ANeonPlayerController::BeginPlay()
 	if (ActionWidgetTemplate) {
 		ActionWidget = CreateWidget<UActionWidget>(this, ActionWidgetTemplate);
 		ActionWidget->AddToViewport();
-		ActionWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 

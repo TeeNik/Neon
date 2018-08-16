@@ -8,11 +8,10 @@
 #include "NeonCharacter.h"
 #include "Action/ActionTableData.h"
 
-void UActionButton::SetButtonData(FName abilityName)
+void UActionButton::SetButtonData(const FActionTableData* data)
 {
-	UDataTable* actionTable = UResourceManagerLibrary::GetData()->ActionDataTable;
-	FActionTableData* actionData = actionTable->FindRow<FActionTableData>(abilityName, TEXT(""));
-	WidgetStyle.Normal.SetResourceObject(actionData->Icon);
+	Data = data;
+	WidgetStyle.Normal.SetResourceObject(data->Icon);
 	
 }
 
