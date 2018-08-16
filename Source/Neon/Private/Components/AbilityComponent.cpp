@@ -2,22 +2,30 @@
 
 #include "AbilityComponent.h"
 #include "System/ResourceManagerLibrary.h"
-#include "NeonPlayerController.h"
-#include "Action/Action.h"
+//#include "Action/Action.h"
 
 UAbilityComponent::UAbilityComponent()
 {
 
 }
 
-void UAbilityComponent::SetIcons()
+
+void UAbilityComponent::BeginPlay()
 {
-	
+	Super::BeginPlay();
+
+	/*ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PC) {
+		Widget = PC->ActionWidget;
+	}
+	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), Actions);
+	Widget->InitButtons(Actions);*/
 }
 
 void UAbilityComponent::ShowAbilityRange(FName name)
 {
-	auto ability = Actions.Find(name);
+	/*auto ability = Actions[0];
 	TArray<FHitResult> HitResults;
 	auto parent = GetOwner();
 	FVector StartLocation =  parent->GetActorLocation();
@@ -39,18 +47,6 @@ void UAbilityComponent::ShowAbilityRange(FName name)
 			}
 		}
 	}
-	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;
+	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;*/
 }
 
-void UAbilityComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if (PC) {
-		Widget = PC->ActionWidget;
-	}
-	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
-	dataTable->GetAllRows<FActionTableData>(TEXT(""), Actions);
-	Widget->InitButtons(Actions);
-}

@@ -45,7 +45,7 @@ void AGridBase::BeginPlay()
 }*/
 
 void AGridBase::SetWidgetSettings(UActionWidget* widget) {
-	this->BoxComp->SetRenderCustomDepth(true);
+	/*this->BoxComp->SetRenderCustomDepth(true);
 
 	widget->ClearButtons();
 	widget->SetVisibility(ESlateVisibility::Visible);
@@ -76,7 +76,7 @@ void AGridBase::SetWidgetSettings(UActionWidget* widget) {
 		buttons[Right]->SetVisibility(ESlateVisibility::Visible);
 		widget->SetButtonImage(Upper, topData->Icon);
 		widget->SetButtonImage(Right, middleData->Icon);
-	}
+	}*/
 }
 
 void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -95,7 +95,7 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && !isActive) {
-		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+		/*ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if (PC && PC->ClickedActor == NULL) {
 			PC->ClickedActor = this;
 			isActive = true;
@@ -103,7 +103,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			PC->ProjectWorldLocationToScreen(GetActorLocation(), screenLocation);
 			PC->ActionWidget->ShowOnPosition(screenLocation);
 			SetWidgetSettings(PC->ActionWidget);
-		}
+		}*/
 	}
 }
 

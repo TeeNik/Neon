@@ -4,10 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/Button.h"
-#include "Components/AbilityComponent.h"
 #include "Action/ActionTableData.h"
 #include "ActionButton.generated.h"
-
 
 UCLASS()
 class NEON_API UActionButton : public UButton
@@ -19,7 +17,7 @@ private:
 	FActionTableData* Data;
 	
 public:
-	void SetButtonData(const FActionTableData* data);
+	void SetButtonData(FActionTableData* data);
 
 	UFUNCTION()
 	void ExecuteAbility();

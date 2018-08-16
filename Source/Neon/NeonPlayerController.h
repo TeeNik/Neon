@@ -4,10 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
-#include "Blueprint/UserWidget.h"
 #include "UI/ActionWidget.h"
 #include "Action/Action.h"
-#include "Action/ActionTableData.h"
 #include "NeonPlayerController.generated.h"
 
 UCLASS()

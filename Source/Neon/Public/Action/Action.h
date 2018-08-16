@@ -3,8 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include <string>
-#include "UI/ActionWidget.h"
 #include "Action.generated.h"
 
 UINTERFACE(BlueprintType)

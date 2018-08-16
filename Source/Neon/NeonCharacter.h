@@ -18,7 +18,7 @@ public:
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
-	FORCEINLINE UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
+	FORCEINLINE class UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
 
 private:
 	/** Top down camera */

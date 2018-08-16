@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Action.h"
+#include "UI/ActionWidget.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "GridBase.generated.h"
