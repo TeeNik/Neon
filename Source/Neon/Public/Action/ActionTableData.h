@@ -27,5 +27,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	UTexture2D* Icon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
-	TSubclassOf<class UAction>  MyClassType;
+	FName ObjectTag;
 };

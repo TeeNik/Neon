@@ -33,7 +33,7 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UDecalComponent* CursorToWorld;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponents")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UAbilityComponent* AbilityComp;
 
 	UFUNCTION(BlueprintCallable, Category="Movement")

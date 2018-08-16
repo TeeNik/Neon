@@ -17,7 +17,7 @@ public:
 		UAbilityComponent();
 
 	void SetIcons();
-	UActionWidget* widget;
+	UActionWidget* Widget;
 	TMap<FName, FActionTableData*> Actions;
 	FName* ActiveAction;
 	
