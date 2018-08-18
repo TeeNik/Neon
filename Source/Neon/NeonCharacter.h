@@ -20,6 +20,8 @@ public:
 	FORCEINLINE class UDecalComponent* GetCursorToWorld() { return CursorToWorld; }
 	FORCEINLINE class UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
 
+	void BeginPlay() override;
+
 private:
 	/** Top down camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))

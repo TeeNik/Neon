@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "NeonCharacter.h"
 #include "UI/ActionWidget.h"
 #include "Action/Action.h"
 #include "NeonPlayerController.generated.h"
@@ -35,8 +36,10 @@ protected:
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
 
 public:
+	void CreateFirstWidget();
 	void CloseWidget();
-
+	UPROPERTY(EditDefaultsOnly, Category="Neon")
+	ANeonCharacter* NeonCharacter;
 };
 
 

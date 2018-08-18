@@ -18,6 +18,7 @@ void UAbilityComponent::BeginPlay()
 
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
+		PC->CreateFirstWidget();
 		Widget = PC->ActionWidget;
 	}
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;

@@ -31,10 +31,7 @@ void ANeonPlayerController::SetupInputComponent()
 
 void ANeonPlayerController::BeginPlay()
 {
-	if (ActionWidgetTemplate) {
-		ActionWidget = CreateWidget<UActionWidget>(this, ActionWidgetTemplate);
-		ActionWidget->AddToViewport();
-	}
+
 }
 
 void ANeonPlayerController::OnSetDestinationPressed()
@@ -55,6 +52,14 @@ void ANeonPlayerController::OnSetDestinationPressed()
 	/*if (action) {
 		action->Execute_GetActionList(Hit.GetActor());
 	}*/
+}
+
+void ANeonPlayerController::CreateFirstWidget()
+{
+	if (ActionWidgetTemplate) {
+		ActionWidget = CreateWidget<UActionWidget>(this, ActionWidgetTemplate);
+		ActionWidget->AddToViewport();
+	}
 }
 
 void ANeonPlayerController::CloseWidget()
