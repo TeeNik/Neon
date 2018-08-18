@@ -46,6 +46,7 @@ void UAbilityComponent::ShowAbilityRange(FName name)
 			auto actor = It->Actor;
 			if (actor->ActorHasTag(ability->ObjectTag)) {
 				auto action = Cast<IAction>(actor);
+				IAction::Execute_Highlight(It->Actor.Get());
 			}
 		}
 	}

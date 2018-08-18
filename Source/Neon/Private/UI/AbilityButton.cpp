@@ -12,6 +12,7 @@ void UActionButton::SetButtonData(FActionTableData* data)
 	WidgetStyle.Normal.SetResourceObject(data->Icon);
 	WidgetStyle.Hovered.SetResourceObject(data->Icon);
 	WidgetStyle.Pressed.SetResourceObject(data->Icon);
+	OnClicked.AddDynamic(this, &UActionButton::ExecuteAbility);
 }
 
 void UActionButton::ExecuteAbility()
