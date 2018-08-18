@@ -130,7 +130,7 @@ void AGridBase::MoveDown()
 	state = Down;
 }
 
-void AGridBase::Highlight()
+void AGridBase::Highlight_Implementation()
 {
 	MeshComp->SetRenderCustomDepth(true);
 }

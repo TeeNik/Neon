@@ -66,13 +66,14 @@ public:
 	void Deactivate();
 	virtual void Deactivate_Implementation() override;
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void Highlight();
+	virtual void Highlight_Implementation() override;
+
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToTop();
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveDown();
-
-	void Highlight();
-
 };
