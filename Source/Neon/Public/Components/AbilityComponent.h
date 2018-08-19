@@ -17,9 +17,9 @@ public:
 
 	UActionWidget* Widget;
 	TArray<FActionTableData*> Actions;
-	FName* ActiveAction;
+	FString ActiveAction;
 	
-	void ShowAbilityRange(FName);
+	void ShowAbilityRange(FString);
 
 	virtual void BeginPlay() override;
 };

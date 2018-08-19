@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-#include "Action/Action.h"
 #include "ActionTableData.generated.h"
 
 USTRUCT(BlueprintType)
@@ -17,7 +16,7 @@ public:
 	};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
-	FName Name;
+	FString Name;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	FString Description;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")

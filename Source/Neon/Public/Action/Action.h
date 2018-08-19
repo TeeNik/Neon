@@ -16,8 +16,7 @@ class NEON_API IAction
 	GENERATED_BODY()
 
 public:
-	//static IAction* LastClickedActor;
-	bool isActive;
+	bool isInRange;
 
 	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	FActionData GetActionList();

@@ -33,7 +33,7 @@ ANeonCharacter::ANeonCharacter()
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
 
 	// Create a camera boom...
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	/*CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bAbsoluteRotation = true; // Don't want arm to rotate when character does
 	CameraBoom->TargetArmLength = 800.f;
@@ -43,7 +43,7 @@ ANeonCharacter::ANeonCharacter()
 	// Create a camera...
 	TopDownCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
 	TopDownCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-	TopDownCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+	TopDownCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm*/
 }
 
 void ANeonCharacter::BeginPlay()

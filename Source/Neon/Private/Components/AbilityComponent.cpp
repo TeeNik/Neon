@@ -26,9 +26,10 @@ void UAbilityComponent::BeginPlay()
 	Widget->InitButtons(Actions);
 }
 
-void UAbilityComponent::ShowAbilityRange(FName name)
+void UAbilityComponent::ShowAbilityRange(FString name)
 {
 	auto ability = Actions[0];
+	ActiveAction = ability->Name;
 	TArray<FHitResult> HitResults;
 	auto parent = GetOwner();
 	FVector StartLocation =  parent->GetActorLocation();
@@ -46,11 +47,9 @@ void UAbilityComponent::ShowAbilityRange(FName name)
 		{
 			auto actor = It->Actor;
 			if (actor->ActorHasTag(ability->ObjectTag)) {
-				auto action = Cast<IAction>(actor);
 				IAction::Execute_Highlight(It->Actor.Get());
 			}
 		}
 	}
-	FVector CenterOfSphere = ((EndLocation - StartLocation) / 2) + StartLocation;
 }
 

@@ -81,35 +81,39 @@ void AGridBase::SetWidgetSettings(UActionWidget* widget) {
 
 void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if(PC->ClickedActor == NULL)
-		MeshComp->SetRenderCustomDepth(true);
+	if(isInRange)
+	{
+		MeshComp->SetCustomDepthStencilValue(253);
+		//MeshComp->SetRenderCustomDepth(true);
+	}
 }
 
 void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-	if(!isActive)
-		MeshComp->SetRenderCustomDepth(false);
+	if(isInRange)
+	{
+		MeshComp->SetCustomDepthStencilValue(252);
+	}
 }
 
 void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
-	if (ButtonPressed.GetFName() == "LeftMouseButton" && !isActive) {
-		/*ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		if (PC && PC->ClickedActor == NULL) {
-			PC->ClickedActor = this;
-			isActive = true;
-			FVector2D screenLocation;
-			PC->ProjectWorldLocationToScreen(GetActorLocation(), screenLocation);
-			PC->ActionWidget->ShowOnPosition(screenLocation);
-			SetWidgetSettings(PC->ActionWidget);
-		}*/
+	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
+		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+		if (PC) {
+			FString actionName = PC->NeonCharacter->GetAbilityConponent()->ActiveAction;
+			if (actionName.Equals(TEXT("Top")))
+				MoveToTop();
+			else if (actionName.Equals(TEXT("Down")))
+				MoveDown();
+
+		}
 	}
 }
 
 void AGridBase::Deactivate_Implementation() {
 	MeshComp->SetRenderCustomDepth(false);
-	isActive = false;
+	isInRange = false;
 }
 
 void AGridBase::MoveToMiddle()
@@ -133,11 +137,13 @@ void AGridBase::MoveDown()
 void AGridBase::Highlight_Implementation()
 {
 	MeshComp->SetRenderCustomDepth(true);
+	isInRange = true;
+	GLog->Log("Highlight");
 }
 
 void AGridBase::Move(float value)
 {
-	OnSuccessClick();
+	//OnSuccessClick();
 	FLatentActionInfo LatentInfo;
 	LatentInfo.CallbackTarget = this;
 	FVector targetPos = GetActorLocation() + FVector(0, 0, value);

@@ -21,7 +21,7 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Widgets")
 	UActionWidget* ActionWidget;
-	FName ActiveAction;
+	FString ActiveAction;
 
 protected:
 	uint32 bMoveToMouseCursor : 1;
