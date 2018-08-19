@@ -21,7 +21,5 @@ public:
 	
 	void ShowAbilityRange(FName);
 
-protected:
 	virtual void BeginPlay() override;
-
 };

@@ -20,12 +20,6 @@ void UActionButton::ExecuteAbility()
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		PC->ActiveAction = Data->Name;
-		ACharacter* character = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
- 		ANeonCharacter* neonChar = Cast<ANeonCharacter>(character);
-		if (neonChar)
-		{
-			neonChar->GetAbilityConponent()->ShowAbilityRange(Data->Name);
-		}
-
+		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
 	}
 }
