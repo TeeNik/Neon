@@ -138,21 +138,14 @@ void AGridBase::Highlight_Implementation()
 {
 	MeshComp->SetRenderCustomDepth(true);
 	isInRange = true;
-	GLog->Log("Highlight");
 }
 
 void AGridBase::Move(float value)
 {
-	//OnSuccessClick();
 	FLatentActionInfo LatentInfo;
 	LatentInfo.CallbackTarget = this;
 	FVector targetPos = GetActorLocation() + FVector(0, 0, value);
 	UKismetSystemLibrary::MoveComponentTo(RootComponent, targetPos, FRotator(0.0f, 0.0f, 0.0f), false, false, 3, false, EMoveComponentAction::Type::Move, LatentInfo);
 }
 
-void AGridBase::OnSuccessClick()
-{
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	PC->CloseWidget();
-}
 

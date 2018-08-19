@@ -25,7 +25,6 @@ class NEON_API AGridBase : public AActor, public IAction
 public:	
 	AGridBase();
 
-	void OnSuccessClick();
 	void Move(float value);
 	GridBaseState state;
 
