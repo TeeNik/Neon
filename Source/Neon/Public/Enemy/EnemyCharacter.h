@@ -5,12 +5,15 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Action/Action.h"
+#include "Components/HealthComponent.h"
 #include "EnemyCharacter.generated.h"
 
 UCLASS()
 class NEON_API AEnemyCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
+
+	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
 
 public:
 	AEnemyCharacter();
@@ -37,5 +40,6 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UHealthComponent* HealthComp;
 };

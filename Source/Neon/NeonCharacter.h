@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/AbilityComponent.h"
+#include "Components/HealthComponent.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -20,6 +21,8 @@ public:
 
 private:
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UAbilityComponent* AbilityComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UAbilityComponent* AbilityComp;
 
