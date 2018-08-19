@@ -16,6 +16,7 @@ class ANeonCharacter : public ACharacter
 public:
 	ANeonCharacter();
 	FORCEINLINE class UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
+	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
 
 	void BeginPlay() override;
 
@@ -24,7 +25,7 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UAbilityComponent* AbilityComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
-	class UAbilityComponent* AbilityComp;
+	class UHealthComponent* HealthComp;
 
 	UFUNCTION(BlueprintCallable, Category="Movement")
 	void GetMovementArea();

@@ -2,6 +2,11 @@
 
 #include "HealthComponent.h"
 
+UHealthComponent::UHealthComponent()
+{
+
+}
+
 void UHealthComponent::BeginPlay()
 {
 	CurrentHealth = MaxHealth;
