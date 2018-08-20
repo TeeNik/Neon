@@ -22,4 +22,5 @@ public:
 	UFUNCTION()
 	void ExecuteAbility();
 	
+	void DisableAbility();
 };

@@ -48,8 +48,23 @@ void UAbilityComponent::ShowAbilityRange(FString name)
 			auto actor = It->Actor;
 			if (actor->ActorHasTag(ability->ObjectTag)) {
 				IAction::Execute_Highlight(It->Actor.Get());
+				HighlighedObjects.Add(*It);
 			}
 		}
 	}
+}
+
+void UAbilityComponent::HideAbilityRange()
+{
+	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PC) {
+		PC->ActiveAction = nullptr;
+		for (auto It = HighlighedObjects.CreateIterator(); It; It++)
+		{
+			IAction::Execute_Deactivate(It->Actor.Get());
+		}
+		HighlighedObjects.Empty();
+	}
+
 }
 

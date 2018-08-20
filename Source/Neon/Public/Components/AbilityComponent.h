@@ -20,6 +20,10 @@ public:
 	FString ActiveAction;
 	
 	void ShowAbilityRange(FString);
+	void HideAbilityRange();
 
 	virtual void BeginPlay() override;
+
+private:
+	TArray<FHitResult> HighlighedObjects;
 };

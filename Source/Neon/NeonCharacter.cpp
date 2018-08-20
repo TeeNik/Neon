@@ -36,11 +36,11 @@ ANeonCharacter::ANeonCharacter()
 
 void ANeonCharacter::BeginPlay()
 {
+	Super::BeginPlay();
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		PC->NeonCharacter = this;
 	}
-	AbilityComp->BeginPlay();
 }
 
 void ANeonCharacter::GetMovementArea()
