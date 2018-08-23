@@ -28,7 +28,7 @@ void UAbilityComponent::BeginPlay()
 
 void UAbilityComponent::ShowAbilityRange(FString name)
 {
-	auto ability = Actions[0];
+	auto ability = FindAbilityByName(name);
 	ActiveAction = ability->Name;
 	TArray<FHitResult> HitResults;
 	auto parent = GetOwner();
@@ -67,4 +67,15 @@ void UAbilityComponent::HideAbilityRange()
 	}
 
 }
+
+FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
+{
+	for (auto data : Actions)
+	{
+		if (data->Name == name) return data;
+	}
+	return nullptr;
+}
+
+
 

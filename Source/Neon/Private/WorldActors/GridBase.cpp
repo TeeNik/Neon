@@ -33,16 +33,6 @@ void AGridBase::BeginPlay()
 	BoxComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
 }
 
-/*FActionData AGridBase::GetActionList_Implementation()
-{
-	FActionData actionData;
-	actionData.Cost = 25;
-	actionData.Description = FString(TEXT("Some Description"));
-//	actionData.ActionFunction = &AGridBase::MoveToTop;
-	GLog->Log(UResourceManagerLibrary::GetData()->SolusCoreFilePath);
-
-	return actionData;
-}*/
 
 void AGridBase::SetWidgetSettings(UActionWidget* widget) {
 	/*this->BoxComp->SetRenderCustomDepth(true);

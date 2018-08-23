@@ -25,7 +25,7 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if(PC)
 		{
-			//PC->NeonCharacter->
+			PC->NeonCharacter->GetWeaponComponent()->Shoot(this);
 		}
 	}
 }

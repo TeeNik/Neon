@@ -26,4 +26,6 @@ public:
 
 private:
 	TArray<FHitResult> HighlighedObjects;
+
+	FActionTableData* FindAbilityByName(FString);
 };
