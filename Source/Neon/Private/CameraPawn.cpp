@@ -81,6 +81,6 @@ void ACameraPawn::PanMoveCamera()
 {
 	const FVector dir = GetCameraPanDirection();
 	if (dir == FVector::ZeroVector || NeonPC && NeonPC->ClickedActor != NULL) return;
-	AddActorWorldOffset(dir * CamSpeed);
+	//AddActorWorldOffset(dir * CamSpeed);
 }
 
