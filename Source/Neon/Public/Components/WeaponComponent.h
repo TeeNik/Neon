@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "WorldActors/Weapon.h"
+#include "Enemy/EnemyCharacter.h"
 #include "WeaponComponent.generated.h"
 
 
@@ -15,7 +17,13 @@ class NEON_API UWeaponComponent : public UActorComponent
 public:	
 	UWeaponComponent();
 
+	void Shoot(AEnemyCharacter* enemy);
+
 protected:
 	virtual void BeginPlay() override;
 	
+	UPROPERTY(EditDefaultsOnly, Category="Weapon")
+	TSubclassOf<AWeapon> WeaponClass;
+
+	AWeapon* EquipedWeapon;
 };

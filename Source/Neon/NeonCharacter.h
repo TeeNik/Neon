@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Components/AbilityComponent.h"
 #include "Components/HealthComponent.h"
+#include "Components/WeaponComponent.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -17,6 +18,7 @@ public:
 	ANeonCharacter();
 	FORCEINLINE class UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
 	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
+	FORCEINLINE class UWeaponComponent* GetWeaponComponent() { return WeaponComp; }
 
 	void BeginPlay() override;
 
@@ -26,6 +28,8 @@ private:
 	class UAbilityComponent* AbilityComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UHealthComponent* HealthComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UWeaponComponent* WeaponComp;
 
 	UFUNCTION(BlueprintCallable, Category="Movement")
 	void GetMovementArea();

@@ -20,7 +20,11 @@ void UActionWidget::SetButtonImage(ButtonDirection direction, UTexture2D* textur
 
 void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 {
-	ButtonArray[0]->SetButtonData(actionDatas[0]);
+	for(int i = 0; i < actionDatas.Num(); ++i)
+	{
+		GLog->Log(actionDatas[i]->Name);
+		ButtonArray[i]->SetButtonData(actionDatas[i]);
+	}	
 }
 
 
