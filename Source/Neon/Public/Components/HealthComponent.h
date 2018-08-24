@@ -17,11 +17,17 @@ public:
 
 	void TakeDamage(float damage);
 
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE	float GetMaxHealth() { return MaxHealth; }
+
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE	float GetCurrentHealth() { return CurrentHealth; }
+	
 protected:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, Category="Health")
-	float MaxHealth;
+	UPROPERTY(EditDefaultsOnly, Category = "Health")
+		float MaxHealth;
 
 	float CurrentHealth;
 

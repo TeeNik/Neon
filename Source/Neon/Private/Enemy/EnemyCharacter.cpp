@@ -16,6 +16,7 @@ void AEnemyCharacter::BeginPlay()
 	capsule->OnBeginCursorOver.AddDynamic(this, &AEnemyCharacter::OnBeginCursorOver);
 	capsule->OnEndCursorOver.AddDynamic(this, &AEnemyCharacter::OnEndCursorOver);
 	capsule->OnClicked.AddDynamic(this, &AEnemyCharacter::OnClicked);
+	GLog->Log(FString::FromInt(HealthComp->GetCurrentHealth()));
 }
 
 void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
