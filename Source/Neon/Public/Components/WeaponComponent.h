@@ -18,6 +18,8 @@ public:
 	UWeaponComponent();
 
 	void Shoot(AEnemyCharacter* enemy);
+	UPROPERTY(BlueprintReadWrite, Category="Weapon")
+	bool IsShooting;
 
 protected:
 	virtual void BeginPlay() override;

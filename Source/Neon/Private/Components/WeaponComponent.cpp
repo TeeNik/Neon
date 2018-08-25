@@ -28,7 +28,10 @@ void UWeaponComponent::Shoot(AEnemyCharacter* enemy)
 	FVector direction = enemy->GetActorLocation() - GetOwner()->GetActorLocation();
 	direction.Z = 0;
 	const FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
-	GetOwner()->SetActorRotation(playerRot);	
+	GetOwner()->SetActorRotation(playerRot);
+	
+	IsShooting = true;
+	enemy->GetHealthComponent()->TakeDamage(EquipedWeapon->GetDamage());
 }
 
 

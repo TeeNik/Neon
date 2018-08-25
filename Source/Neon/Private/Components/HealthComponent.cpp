@@ -10,7 +10,7 @@ UHealthComponent::UHealthComponent()
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	CurrentHealth = MaxHealth;
+	CurrentHealth = MaxHealth-40;
 }
 
 void UHealthComponent::Death()

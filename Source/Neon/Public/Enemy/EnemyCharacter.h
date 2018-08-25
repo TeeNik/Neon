@@ -13,10 +13,11 @@ class NEON_API AEnemyCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
 
-	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
-
 public:
+
 	AEnemyCharacter();
+
+	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
