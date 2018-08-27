@@ -7,6 +7,7 @@
 #include "UI/ActionWidget.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
+#include "Components/GridLocationComponent.h"
 #include "GridBase.generated.h"
 
 enum GridBaseState {
@@ -36,6 +37,9 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UBoxComponent* BoxComp;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UGridLocationComponent* GridLocationComp;
 
 public:	
 

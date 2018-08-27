@@ -20,6 +20,8 @@ AGridBase::AGridBase()
 	MeshComp->SetRelativeScale3D(FVector(1.25,1.25,0.01));
 	MeshComp->SetupAttachment(RootComponent);
 
+	GridLocationComp = CreateDefaultSubobject<UGridLocationComponent>(TEXT("GridLocationComp"));
+
 	state = Down;
 }
 
