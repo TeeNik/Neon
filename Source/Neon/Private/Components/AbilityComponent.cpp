@@ -46,7 +46,7 @@ void UAbilityComponent::ShowAbilityRange(FString name)
 		for (auto It = HitResults.CreateIterator(); It; It++)
 		{
 			auto actor = It->Actor;
-			if (actor->ActorHasTag(ability->ObjectTag)) {
+			if (actor->ActorHasTag(ability->ObjectTag) || actor->ActorHasTag("GridBase")) {
 				IAction::Execute_Highlight(It->Actor.Get());
 				HighlighedObjects.Add(*It);
 			}
