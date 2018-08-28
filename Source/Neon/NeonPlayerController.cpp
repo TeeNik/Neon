@@ -45,7 +45,7 @@ void ANeonPlayerController::OnSetDestinationPressed()
 		UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
 		if (NavSys && (Distance > 120.0f))
 		{
-			NavSys->SimpleMoveToLocation(NeonCharacter->GetController(), Hit.ImpactPoint);
+			//NavSys->SimpleMoveToLocation(NeonCharacter->GetController(), Hit.ImpactPoint);
 		}
 	}
 	
