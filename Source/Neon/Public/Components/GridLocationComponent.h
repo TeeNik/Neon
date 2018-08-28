@@ -23,8 +23,6 @@ public:
 
 	void SetStatus(GridLocationStatus);
 
-	void MoveToThis();
-
 protected:
 	virtual void BeginPlay() override;
 

@@ -36,22 +36,20 @@ void ANeonPlayerController::BeginPlay()
 
 void ANeonPlayerController::OnSetDestinationPressed()
 {
-	TArray<AActor*> FoundActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ANeonCharacter::StaticClass(), FoundActors);
 	FHitResult Hit;
-	GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, Hit);
-	FVector MoveLocation;
-	/*if (ANeonCharacter* MyPawn = Cast<ANeonCharacter>(FoundActors[0]))
+	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
+
+	if (Hit.bBlockingHit)
 	{
-		if (MyPawn->GetCursorToWorld())
+		float const Distance = FVector::Dist(Hit.ImpactPoint, NeonCharacter->GetActorLocation());
+		UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
+		if (NavSys && (Distance > 120.0f))
 		{
-			UNavigationSystem::SimpleMoveToActor(MyPawn->GetController(), Hit.GetActor());
+			NavSys->SimpleMoveToLocation(NeonCharacter->GetController(), Hit.ImpactPoint);
 		}
-	}*/
-	IAction* action = Cast<IAction>(Hit.GetActor());
-	/*if (action) {
-		action->Execute_GetActionList(Hit.GetActor());
-	}*/
+	}
+	
+	
 }
 
 void ANeonPlayerController::CreateFirstWidget()

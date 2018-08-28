@@ -24,15 +24,39 @@ ANeonCharacter::ANeonCharacter()
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
-	AbilityComp = CreateDefaultSubobject<UAbilityComponent>(TEXT("AbilityComponent"));
-	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
-	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
-
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Rotate character to moving direction
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 640.f, 0.f);
 	GetCharacterMovement()->bConstrainToPlane = true;
 	GetCharacterMovement()->bSnapToPlaneAtStart = true;
+
+	// Create a camera boom...
+	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
+	CameraBoom->SetupAttachment(RootComponent);
+	CameraBoom->bAbsoluteRotation = true; // Don't want arm to rotate when character does
+	CameraBoom->TargetArmLength = 800.f;
+	CameraBoom->RelativeRotation = FRotator(-60.f, 0.f, 0.f);
+	CameraBoom->bDoCollisionTest = false; // Don't want to pull camera in when it collides with level
+
+										  // Create a camera...
+	TopDownCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("TopDownCamera"));
+	TopDownCameraComponent->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	TopDownCameraComponent->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+
+	CursorToWorld = CreateDefaultSubobject<UDecalComponent>("CursorToWorld");
+	CursorToWorld->SetupAttachment(RootComponent);
+	static ConstructorHelpers::FObjectFinder<UMaterial> DecalMaterialAsset(TEXT("Material'/Game/TopDownCPP/Blueprints/M_Cursor_Decal.M_Cursor_Decal'"));
+	if (DecalMaterialAsset.Succeeded())
+	{
+		CursorToWorld->SetDecalMaterial(DecalMaterialAsset.Object);
+	}
+	CursorToWorld->DecalSize = FVector(16.0f, 32.0f, 32.0f);
+	CursorToWorld->SetRelativeRotation(FRotator(90.0f, 0.0f, 0.0f).Quaternion());
+
+	AbilityComp = CreateDefaultSubobject<UAbilityComponent>(TEXT("AbilityComponent"));
+	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
+	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
+	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 }
 
 void ANeonCharacter::BeginPlay()

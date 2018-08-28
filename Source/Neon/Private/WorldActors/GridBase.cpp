@@ -98,6 +98,11 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 				MoveToTop();
 			else if (actionName.Equals(TEXT("Down")))
 				MoveDown();
+			else if (actionName.Equals(TEXT("MoveTo"))) {
+				GridLocationComp->SetStatus(Player);
+				PC->NeonCharacter->GetMotionComponent()->MoveToGrid(this);
+			}
+				
 
 		}
 	}
