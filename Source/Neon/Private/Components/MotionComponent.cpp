@@ -20,6 +20,8 @@ void UMotionComponent::MoveToGrid(AGridBase* gridBase)
 	ACharacter* character = Cast<ACharacter>(GetOwner());
 	UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
 	FVector dest = FVector(-560, -150, 350);
-	NavSys->SimpleMoveToLocation(character->GetController(), gridBase->GetActorLocation());
+	AAIController* aiController = Cast<AAIController>(character->GetController());
+	aiController->MoveToLocation(gridBase->GetActorLocation());
+	//NavSys->SimpleMoveToLocation(character->GetController(), gridBase->GetActorLocation());
 }
 
