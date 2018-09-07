@@ -41,6 +41,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UGridLocationComponent* GridLocationComp;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UStaticMeshComponent* PlaneComp;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* DisableMaterial;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* ActiveMaterial;
+
 public:	
 
 	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
