@@ -115,7 +115,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 
 void AGridBase::Deactivate_Implementation() {
 	//MeshComp->SetRenderCustomDepth(false);
-	PlaneComp->Activate(false);
+	PlaneComp->SetVisibility(false);
 	isInRange = false;
 }
 
@@ -140,7 +140,7 @@ void AGridBase::MoveDown()
 void AGridBase::Highlight_Implementation()
 {
 	//MeshComp->SetRenderCustomDepth(true);
-	PlaneComp->Activate(true);
+	PlaneComp->SetVisibility(true);
 	isInRange = true;
 }
 
