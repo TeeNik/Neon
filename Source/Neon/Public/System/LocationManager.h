@@ -15,7 +15,10 @@ class NEON_API ULocationManager : public USceneComponent
 
 public:	
 	ULocationManager();
-	TArray<AGridBase*> GridArray;
+	TArray<TArray<AGridBase*>> GridArray;
+
+	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+	TSubclassOf<AGridBase> GridBaseClass;
 
 protected:
 	virtual void BeginPlay() override;
