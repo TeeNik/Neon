@@ -78,9 +78,7 @@ void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedCom
 {
 	if(isInRange)
 	{
-		//MeshComp->SetCustomDepthStencilValue(253);
 		PlaneComp->SetMaterial(0, ActiveMaterial);
-		//MeshComp->SetRenderCustomDepth(true);
 	}
 }
 
@@ -88,7 +86,6 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 {
 	if(isInRange)
 	{
-		//MeshComp->SetCustomDepthStencilValue(252);
 		PlaneComp->SetMaterial(0, DisableMaterial);
 	}
 }
@@ -114,7 +111,6 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 }
 
 void AGridBase::Deactivate_Implementation() {
-	//MeshComp->SetRenderCustomDepth(false);
 	PlaneComp->SetVisibility(false);
 	isInRange = false;
 }
@@ -139,7 +135,6 @@ void AGridBase::MoveDown()
 
 void AGridBase::Highlight_Implementation()
 {
-	//MeshComp->SetRenderCustomDepth(true);
 	PlaneComp->SetVisibility(true);
 	isInRange = true;
 }
