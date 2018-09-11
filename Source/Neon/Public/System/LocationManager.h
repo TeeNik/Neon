@@ -20,7 +20,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
 	TSubclassOf<AGridBase> GridBaseClass;
 
-	void IsUnderCover(AGridBase* gridBase);
+	bool IsUnderCover(AGridBase* gridBase);
 
 protected:
 	virtual void BeginPlay() override;
