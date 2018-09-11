@@ -88,4 +88,7 @@ public:
 	void MoveToTop();
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveDown();
+
+	int Row;
+	int Column;
 };
