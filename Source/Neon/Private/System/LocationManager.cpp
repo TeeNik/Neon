@@ -37,16 +37,16 @@ bool ULocationManager::IsUnderCover(AGridBase* gridBase)
 	int i = gridBase->Row;
 	int j = gridBase->Column;
 
-	if (i > 0 & j > 0 & IsTop(i - 1, j - 1)) { return true; }
-	if (j > 0 & IsTop(i,j-1)) { return true; }
-	if (i + 1 < GridArray.Num() & j > 0 & IsTop(i+1,j-1)) { return true; }
+	if (i > 0 && j > 0 && IsTop(i - 1, j - 1)) { return true; }
+	if (j > 0 && IsTop(i,j-1)) { return true; }
+	if (i + 1 < GridArray.Num() && j > 0 && IsTop(i+1,j-1)) { return true; }
 
-	if (i > 0 & j + 1 < GridArray[i].Num() & IsTop(i - 1, j + 1)) { return true; }
-	if (j + 1 < GridArray[i].Num() & IsTop(i, j + 1)) { return true; }
-	if (i + 1 < GridArray.Num() & j + 1 < GridArray[i].Num() & IsTop(i + 1, j + 1)) { return true; }
+	if (i > 0 && j + 1 < GridArray[i].Num() && IsTop(i - 1, j + 1)) { return true; }
+	if (j + 1 < GridArray[i].Num() && IsTop(i, j + 1)) { return true; }
+	if (i + 1 < GridArray.Num() && j + 1 < GridArray[i].Num() && IsTop(i + 1, j + 1)) { return true; }
 
-	if (i > 0 & IsTop(i - 1, j)) { return true; }
-	if (i + 1 < GridArray.Num() & IsTop(i + 1, j)) { return true; }
+	if (i > 0 && IsTop(i - 1, j)) { return true; }
+	if (i + 1 < GridArray.Num() && IsTop(i + 1, j)) { return true; }
 
 	return false;
 }

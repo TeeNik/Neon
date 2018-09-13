@@ -5,20 +5,23 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "WorldActors/GridBase.h"
+#include "System/LocationManager.h"
 #include "NeonGameMode.generated.h"
 
 UCLASS(minimalapi)
 class ANeonGameMode : public AGameModeBase
 {
-	GENERATED_BODY()
+GENERATED_BODY()
 
 public:
 	ANeonGameMode();
 
 	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadWrite, Category="Config")
-	TSubclassOf<AGridBase> GridBaseClass;
+	FORCEINLINE class ULocationManager* GetLocationManager() { return LocationManager };
+
+protected:
+	ULocationManager* LocationManager;
 };
 
 
