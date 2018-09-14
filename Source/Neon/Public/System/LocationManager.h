@@ -8,6 +8,16 @@
 #include "LocationManager.generated.h"
 
 
+USTRUCT()
+
+struct FGridBaseArray
+{
+	GENERATED_BODY()
+
+	UPROPERTY()
+	TArray<AGridBase*> Array;
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API ULocationManager : public USceneComponent
 {
@@ -15,7 +25,11 @@ class NEON_API ULocationManager : public USceneComponent
 
 public:	
 	ULocationManager();
-	TArray<TArray<AGridBase*>> GridArray;
+	UPROPERTY()
+	TArray<FGridBaseArray> GridArray;
+
+	TArray<AGridBase*> TestArray;
+	AGridBase** TestArray2;
 
 	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
 	TSubclassOf<AGridBase> GridBaseClass;

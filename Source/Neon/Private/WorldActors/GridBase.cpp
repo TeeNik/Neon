@@ -3,8 +3,7 @@
 #include "GridBase.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 #include "NeonPlayerController.h"
-#include "Action/ActionTableData.h"
-#include "System/ResourceManagerLibrary.h"
+#include "NeonGameMode.h"
 
 
 // Sets default values
@@ -103,6 +102,17 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			else if (actionName.Equals(TEXT("MoveTo"))) {
 				GridLocationComp->SetStatus(Player);
 				PC->NeonCharacter->GetMotionComponent()->MoveToGrid(this);
+			}
+			else if(actionName.Equals(TEXT("Cover")))
+			{
+				
+				 ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+				if(GM)
+				{
+					auto isCovered = GM->GetLocationManager()->IsUnderCover(this);
+					if(isCovered)
+						GLog->Log("Cover");
+				}
 			}
 				
 

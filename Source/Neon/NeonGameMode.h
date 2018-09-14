@@ -18,7 +18,7 @@ public:
 
 	virtual void BeginPlay() override;
 
-	FORCEINLINE class ULocationManager* GetLocationManager() { return LocationManager };
+	FORCEINLINE class ULocationManager* GetLocationManager() { return LocationManager; };
 
 protected:
 	ULocationManager* LocationManager;
