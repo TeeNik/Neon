@@ -21,6 +21,7 @@ public:
 	FORCEINLINE class ULocationManager* GetLocationManager() { return LocationManager; };
 
 protected:
+	UPROPERTY(EditDefaultsOnly, Category="Managers")
 	ULocationManager* LocationManager;
 };
 

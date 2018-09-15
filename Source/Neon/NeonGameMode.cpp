@@ -22,6 +22,6 @@ ANeonGameMode::ANeonGameMode()
 
 void ANeonGameMode::BeginPlay()
 {
-
+	Super::BeginPlay();
 }
  
