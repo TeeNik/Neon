@@ -34,7 +34,6 @@ bool ULocationManager::IsUnderCover(AGridBase* gridBase)
 {
 	int i = gridBase->Row;
 	int j = gridBase->Column;
-	GLog->Log("");
 	if (i > 0 && j > 0 && IsTop(i - 1, j - 1)) { return true; }
 	if (j > 0 && IsTop(i,j-1)) { return true; }
 	if (i + 1 < GridArray.Num() && j > 0 && IsTop(i+1,j-1)) { return true; }

@@ -5,7 +5,9 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Action/Action.h"
+#include "WorldActors/GridBase.h"
 #include "Components/HealthComponent.h"
+#include "MotionComponent.h"
 #include "EnemyCharacter.generated.h"
 
 UCLASS()
@@ -39,8 +41,16 @@ public:
 	void Highlight();
 	virtual void Highlight_Implementation() override;
 
+	AGridBase* Position;
+
 protected:
 	virtual void BeginPlay() override;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UHealthComponent* HealthComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UMotionComponent* MotionComp;
+
+	UFUNCTION()
+	void InitialMovement();
 };

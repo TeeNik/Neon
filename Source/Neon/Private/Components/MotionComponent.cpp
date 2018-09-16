@@ -2,7 +2,6 @@
 
 #include "MotionComponent.h"
 #include "GameFramework/Character.h"
-#include "NeonCharacter.h"
 #include "AIController.h"
 #include "AI/Navigation/NavigationSystem.h"
 
@@ -19,7 +18,9 @@ void UMotionComponent::BeginPlay()
 
 void UMotionComponent::MoveToGrid(AGridBase* gridBase)
 {
-	ANeonCharacter* character = Cast<ANeonCharacter>(GetOwner());
+	ACharacter* character = Cast<ACharacter>(GetOwner());
+	//UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
+	//FVector dest = FVector(-560, -150, 350);
 	AAIController* aiController = Cast<AAIController>(character->GetController());
 	aiController->MoveToLocation(gridBase->GetActorLocation(), -1, false);
 	//NavSys->SimpleMoveToLocation(character->GetController(), gridBase->GetActorLocation());

@@ -2,11 +2,14 @@
 
 #include "EnemyCharacter.h"
 #include "Components/CapsuleComponent.h"
+#include "LocationManager.h"
+#include "NeonGameMode.h"
 #include "NeonPlayerController.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
+	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 }
 
 void AEnemyCharacter::BeginPlay()
@@ -16,6 +19,19 @@ void AEnemyCharacter::BeginPlay()
 	capsule->OnBeginCursorOver.AddDynamic(this, &AEnemyCharacter::OnBeginCursorOver);
 	capsule->OnEndCursorOver.AddDynamic(this, &AEnemyCharacter::OnEndCursorOver);
 	capsule->OnClicked.AddDynamic(this, &AEnemyCharacter::OnClicked);
+
+	FTimerHandle timer;
+	GetWorld()->GetTimerManager().SetTimer(timer, this, &AEnemyCharacter::InitialMovement, 3, false);
+
+	
+}
+
+void AEnemyCharacter::InitialMovement()
+{
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	ULocationManager* locationMan = GM->GetLocationManager();
+	MotionComp->MoveToGrid(locationMan->GridArray[2].Array[2]);
+	Position = locationMan->GridArray[2].Array[2];
 }
 
 void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
