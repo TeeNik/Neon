@@ -24,6 +24,8 @@ public:
 
 	void BeginPlay() override;
 
+	AGridBase* Position;
+
 private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))

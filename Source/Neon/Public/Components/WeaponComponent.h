@@ -6,8 +6,17 @@
 #include "Components/ActorComponent.h"
 #include "WorldActors/Weapon.h"
 #include "Enemy/EnemyCharacter.h"
+#include "WorldActors/GridBase.h"
 #include "WeaponComponent.generated.h"
 
+
+struct Direction
+{
+	bool Left;
+	bool Up;
+	bool Right;
+	bool Down;
+};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UWeaponComponent : public UActorComponent
@@ -28,4 +37,10 @@ protected:
 	TSubclassOf<AWeapon> WeaponClass;
 
 	AWeapon* EquipedWeapon;
+
+private:
+	Direction CheckDirection(AGridBase* self, AGridBase* target);
 };
+
+//88002508275
+//795923844
