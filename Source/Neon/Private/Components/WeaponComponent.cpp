@@ -30,24 +30,24 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 	int rowTop = self->Row + x;
 	int rowBot = self->Row - x;
 
-	if (target->Column > self->Column && self->Column < rowTop && self->Column > rowBot)
+	if (target->Column > self->Column && target->Column <= rowTop && target->Column >= rowBot)
 	{
 		GLog->Log("Right");
 	}
-	if (target->Column < self->Column && self->Column < rowTop && self->Column > rowBot)
+	if (target->Column < self->Column && target->Column <= rowTop && target->Column >= rowBot)
 	{
 		GLog->Log("Left");
 	}
 
 	int y = FMath::Abs(target->Row - self->Row);
-	int colRight = self->Column + x;
-	int colLeft = self->Column - x;
+	int colRight = self->Column + y;
+	int colLeft = self->Column - y;
 
-	if (target->Row > self->Row && self->Row < colRight && self->Row > colLeft)
+	if (target->Row > self->Row && target->Row <= colRight && target->Row >= colLeft)
 	{
 		GLog->Log("Top");
 	}
-	if (target->Row < self->Row && self->Row < colRight && self->Row > colLeft)
+	if (target->Row < self->Row && target->Row <= colRight && target->Row >= colLeft)
 	{
 		GLog->Log("Bottom");
 	}
@@ -57,6 +57,8 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 
 void UWeaponComponent::Shoot(AEnemyCharacter* enemy)
 {
+	ANeonCharacter* character = Cast<ANeonCharacter>(GetOwner());
+	CheckDirection(character->Position, enemy->Position);
 	FVector direction = enemy->GetActorLocation() - GetOwner()->GetActorLocation();
 	direction.Z = 0;
 	const FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
