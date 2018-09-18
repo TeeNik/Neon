@@ -30,21 +30,22 @@ bool ULocationManager::IsTop(int i, int j)
 	return GridArray[i].Array[j]->state == Top;
 }
 
-bool ULocationManager::IsUnderCover(AGridBase* gridBase)
+Direction ULocationManager::GetCoverInfo(AGridBase* gridBase)
 {
+	Direction dir;
 	int i = gridBase->Row;
 	int j = gridBase->Column;
-	if (i > 0 && j > 0 && IsTop(i - 1, j - 1)) { return true; }
-	if (j > 0 && IsTop(i,j-1)) { return true; }
-	if (i + 1 < GridArray.Num() && j > 0 && IsTop(i+1,j-1)) { return true; }
+	if (i > 0 && j > 0 && IsTop(i - 1, j - 1)) { dir.Right = true; dir.Up = true; GLog->Log("R U"); }
+	if (j > 0 && IsTop(i, j - 1)) { dir.Right = true; GLog->Log("R"); }
+	if (i + 1 < GridArray.Num() && j > 0 && IsTop(i + 1, j - 1)) { dir.Right = true; dir.Down = true; GLog->Log("R D"); }
 
-	if (i > 0 && j + 1 < GridArray[i].Array.Num() && IsTop(i - 1, j + 1)) { return true; }
-	if (j + 1 < GridArray[i].Array.Num() && IsTop(i, j + 1)) { return true; }
-	if (i + 1 < GridArray.Num() && j + 1 < GridArray[i].Array.Num() && IsTop(i + 1, j + 1)) { return true; }
+	if (i > 0 && j + 1 < GridArray[i].Array.Num() && IsTop(i - 1, j + 1)) { dir.Left = true; dir.Up = true; GLog->Log("L U"); }
+	if (j + 1 < GridArray[i].Array.Num() && IsTop(i, j + 1)) { dir.Left = true; GLog->Log("L"); }
+	if (i + 1 < GridArray.Num() && j + 1 < GridArray[i].Array.Num() && IsTop(i + 1, j + 1)) { dir.Left = true; dir.Down = true; GLog->Log("L D"); }
 
-	if (i > 0 && IsTop(i - 1, j)) { return true; }
-	if (i + 1 < GridArray.Num() && IsTop(i + 1, j)) { return true; }
+	if (i > 0 && IsTop(i - 1, j)) { dir.Up = true; GLog->Log("U"); }
+	if (i + 1 < GridArray.Num() && IsTop(i + 1, j)) { dir.Down = true; GLog->Log("D"); }
 
-	return false;
+	return dir;
 }
 

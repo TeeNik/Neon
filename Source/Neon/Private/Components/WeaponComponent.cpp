@@ -32,10 +32,12 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 
 	if (target->Column > self->Column && target->Column <= rowTop && target->Column >= rowBot)
 	{
+		dir.Right = true;
 		GLog->Log("Right");
 	}
 	if (target->Column < self->Column && target->Column <= rowTop && target->Column >= rowBot)
 	{
+		dir.Left = true;
 		GLog->Log("Left");
 	}
 
@@ -45,10 +47,12 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 
 	if (target->Row > self->Row && target->Row <= colRight && target->Row >= colLeft)
 	{
+		dir.Up = true;
 		GLog->Log("Top");
 	}
 	if (target->Row < self->Row && target->Row <= colRight && target->Row >= colLeft)
 	{
+		dir.Down = true;
 		GLog->Log("Bottom");
 	}
 

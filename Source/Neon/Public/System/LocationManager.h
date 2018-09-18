@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
 #include "WorldActors/GridBase.h"
+#include "Components/WeaponComponent.h"
 #include "LocationManager.generated.h"
 
 
@@ -31,7 +32,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
 	TSubclassOf<AGridBase> GridBaseClass;
 
-	bool IsUnderCover(AGridBase* gridBase);
+	Direction GetCoverInfo(AGridBase* gridBase);
 
 protected:
 	virtual void BeginPlay() override;
