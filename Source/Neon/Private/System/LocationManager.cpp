@@ -30,7 +30,7 @@ bool ULocationManager::IsTop(int i, int j)
 	return GridArray[i].Array[j]->state == Top;
 }
 
-Direction ULocationManager::GetCoverInfo(AGridBase* gridBase)
+Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
 {
 	Direction dir;
 	int i = gridBase->Row;

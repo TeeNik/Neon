@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+struct Direction;
 
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UHealthComponent : public UActorComponent
@@ -22,13 +23,14 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE	float GetCurrentHealth() { return CurrentHealth; }
+
+	Direction GetDefenceValue();
 	
 protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Health")
-		float MaxHealth;
-
+	float MaxHealth;
 	float CurrentHealth;
 
 	void Death();

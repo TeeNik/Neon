@@ -94,6 +94,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if (PC) {
+			PC->CloseWidget();
 			FString actionName = PC->NeonCharacter->GetAbilityConponent()->ActiveAction;
 			if (actionName.Equals(TEXT("Top")))
 				MoveToTop();
@@ -110,13 +111,11 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 				 ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 				if(GM)
 				{
-					auto isCovered = GM->GetLocationManager()->IsUnderCover(this);
-					if(isCovered)
-						GLog->Log("Cover");
+					auto cover = GM->GetLocationManager()->GetCoverInfo(this);
 				}
 			}
-				
-
+			
+			
 		}
 	}
 }

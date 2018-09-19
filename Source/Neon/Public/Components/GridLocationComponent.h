@@ -21,8 +21,9 @@ class NEON_API UGridLocationComponent : public UActorComponent
 public:	
 	UGridLocationComponent();
 
-	void SetStatus(GridLocationStatus);
-
+	FORCEINLINE void SetStatus(GridLocationStatus newStatus) { status = newStatus; }
+	FORCEINLINE const GridLocationStatus& GetStatus() const { return status; };
+	
 protected:
 	virtual void BeginPlay() override;
 
