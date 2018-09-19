@@ -32,7 +32,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
 	TSubclassOf<AGridBase> GridBaseClass;
 
-	Direction GetCoverInfo(AGridBase* gridBase);
+	Direction GetCoverInfo(const AGridBase* gridBase);
 
 protected:
 	virtual void BeginPlay() override;
