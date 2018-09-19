@@ -1,10 +1,25 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "HealthComponent.h"
+#include "Components/PositionComponent.h"
+#include "Components/WeaponComponent.h"
+#include "NeonGameMode.h"
 
 UHealthComponent::UHealthComponent()
 {
 
+}
+
+Direction UHealthComponent::GetDefenceValue()
+{
+	auto positionComp = Cast<UPositionComponent>(GetOwner()->GetComponentByClass(UPositionComponent::StaticClass()));
+	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	if(positionComp && GM)
+	{
+		auto pos = positionComp->GetPosition();
+		return GM->GetLocationManager()->GetCoverInfo(pos);
+	}
+	return Direction();
 }
 
 void UHealthComponent::BeginPlay()

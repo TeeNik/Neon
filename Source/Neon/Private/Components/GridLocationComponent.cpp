@@ -10,8 +10,3 @@ void UGridLocationComponent::BeginPlay()
 {
 	Super::BeginPlay();
 }
-
-void UGridLocationComponent::SetStatus(GridLocationStatus newStatus)
-{
-	status = newStatus;
-}
