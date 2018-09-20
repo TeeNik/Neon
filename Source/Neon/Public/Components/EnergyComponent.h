@@ -15,6 +15,17 @@ class NEON_API UEnergyComponent : public UActorComponent
 public:	
 	UEnergyComponent();
 
+	FORCEINLINE int32& GetCurrentEnergy() { return CurrentEnergy; }
+	FORCEINLINE int32& GetMaxEnergy() { return MaxEnergy; }
+	void SpendEnergy(int32& value);
+	void SendEndTurn();
+
 protected:
 	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category="Energy")
+	int32 MaxEnergy;
+
+	int32 CurrentEnergy;
 };
