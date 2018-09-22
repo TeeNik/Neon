@@ -32,4 +32,13 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 	}	
 }
 
+void UActionWidget::InitEnergy(int32& num)
+{
+	auto world = GetWorld();
+	for (int i = 0; i < num; ++i)
+	{
+		UEnergyImage* image = CreateWidget<UEnergyImage>(world, EnergyImageBP);
+		EnergyBox->AddChildToHorizontalBox(image);
+	}
+}
 

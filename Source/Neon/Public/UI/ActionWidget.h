@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "UI/ActionButton.h"
+#include "UI/EnergyImage.h"
+#include "Components/HorizontalBox.h"
 #include "ActionWidget.generated.h"
 
 
@@ -27,6 +29,16 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	TArray<UActionButton*> ButtonArray;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	TArray<UEnergyImage*> EnergyImages;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UHorizontalBox* EnergyBox;
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UEnergyImage> EnergyImageBP;
+
 	void ClearButtons();
 	void InitButtons(TArray<FActionTableData*> actionDatas);
+	void InitEnergy(int32& num);
 };
