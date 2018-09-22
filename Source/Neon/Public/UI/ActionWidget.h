@@ -35,8 +35,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	UHorizontalBox* EnergyBox;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UHorizontalBox* ActionBox;
+
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UEnergyImage> EnergyImageBP;
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UActionButton> ActionButtonBP;
 
 	void ClearButtons();
 	void InitButtons(TArray<FActionTableData*> actionDatas);
