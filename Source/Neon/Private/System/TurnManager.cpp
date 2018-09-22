@@ -7,10 +7,13 @@ UTurnManager::UTurnManager()
 	
 }
 
-
 void UTurnManager::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void UTurnManager::EndTurn()
+{
 }
 
 

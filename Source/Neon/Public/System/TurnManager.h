@@ -22,6 +22,8 @@ public:
 	FORCEINLINE void AddToQueue(int32 g) { Queue.Add(g); }
 	FORCEINLINE void RemoveFromQueue(int32 g) { Queue.Remove(g); }
 
+	void EndTurn();
+
 protected:
 	virtual void BeginPlay() override;
 	

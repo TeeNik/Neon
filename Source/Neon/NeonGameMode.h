@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "WorldActors/GridBase.h"
 #include "System/LocationManager.h"
+#include "System/TurnManager.h"
 #include "NeonGameMode.generated.h"
 
 UCLASS(minimalapi)
@@ -18,11 +18,15 @@ public:
 
 	virtual void BeginPlay() override;
 
-	FORCEINLINE class ULocationManager* GetLocationManager() { return LocationManager; };
+	FORCEINLINE class ULocationManager* GetLocationManager() { return LocationManager; }
+	FORCEINLINE class UTurnManager* GetTurnManager() { return TurnManager; }
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category="Managers")
 	ULocationManager* LocationManager;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Managers")
+	UTurnManager* TurnManager;
 };
 
 

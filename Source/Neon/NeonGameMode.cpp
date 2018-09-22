@@ -18,6 +18,7 @@ ANeonGameMode::ANeonGameMode()
 	}
 
 	LocationManager = CreateDefaultSubobject<ULocationManager>(TEXT("LocationManager"));
+	TurnManager = CreateDefaultSubobject<UTurnManager>(TEXT("TurnManager"));
 }
 
 void ANeonGameMode::BeginPlay()
