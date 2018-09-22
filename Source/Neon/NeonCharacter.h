@@ -8,6 +8,7 @@
 #include "Components/HealthComponent.h"
 #include "Components/WeaponComponent.h"
 #include "Components/MotionComponent.h"
+#include "Components/EnergyComponent.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -21,6 +22,7 @@ public:
 	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
 	FORCEINLINE class UWeaponComponent* GetWeaponComponent() { return WeaponComp; }
 	FORCEINLINE class UMotionComponent* GetMotionComponent() { return MotionComp; }
+	FORCEINLINE class UEnergyComponent* GetEnergyComponent() { return EnergyComp; }
 
 	void BeginPlay() override;
 
@@ -36,6 +38,8 @@ private:
 	class UWeaponComponent* WeaponComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UMotionComponent* MotionComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UEnergyComponent* EnergyComp;
 
 };
 

@@ -2,16 +2,10 @@
 
 #include "NeonCharacter.h"
 #include "UObject/ConstructorHelpers.h"
-#include "Camera/CameraComponent.h"
-#include "Components/DecalComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "NeonPlayerController.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "Materials/Material.h"
-#include "WorldActors/GridBase.h"
-#include "DrawDebugHelpers.h"
 #include "Engine/World.h"
 
 ANeonCharacter::ANeonCharacter()
@@ -31,6 +25,7 @@ ANeonCharacter::ANeonCharacter()
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
+	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
 }
 
 void ANeonCharacter::BeginPlay()
