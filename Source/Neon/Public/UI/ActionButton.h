@@ -14,9 +14,13 @@ class NEON_API UActionButton : public UButton
 
 private:
 	
-	FActionTableData* Data;
+	FActionTableData Data;
 	
 public:
+
+	UFUNCTION(BlueprintCallable)
+	FActionTableData GetData() { return Data; }
+
 	void SetButtonData(FActionTableData* data);
 
 	UFUNCTION()

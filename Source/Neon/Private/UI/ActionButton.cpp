@@ -8,7 +8,7 @@
 
 void UActionButton::SetButtonData(FActionTableData* data)
 {
-	Data = data;
+	Data = *data;
 	WidgetStyle.Normal.SetResourceObject(data->Icon);
 	WidgetStyle.Hovered.SetResourceObject(data->Icon);
 	WidgetStyle.Pressed.SetResourceObject(data->Icon);
@@ -19,7 +19,7 @@ void UActionButton::ExecuteAbility()
 {
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
-		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
+		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data.Name);
 	}
 }
 
@@ -29,6 +29,6 @@ void UActionButton::DisableAbility()
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		PC->ActiveAction = nullptr;
-		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
+		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data.Name);
 	}
 }
