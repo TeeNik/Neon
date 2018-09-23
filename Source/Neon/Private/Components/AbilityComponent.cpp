@@ -21,12 +21,13 @@ void UAbilityComponent::BeginPlay()
 		PC->CreateFirstWidget();
 		Widget = PC->ActionWidget;
 	}
+	TArray<FActionTableData> array;
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), Actions);
 	Widget->InitButtons(Actions);
 }
 
-void UAbilityComponent::ShowAbilityRange(FString name)
+void UAbilityComponent::ShowAbilityRange(FString& name)
 {
 	auto ability = FindAbilityByName(name);
 	ActiveAction = ability->Name;

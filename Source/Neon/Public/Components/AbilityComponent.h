@@ -19,7 +19,7 @@ public:
 	TArray<FActionTableData*> Actions;
 	FString ActiveAction;
 	
-	void ShowAbilityRange(FString);
+	void ShowAbilityRange(FString&);
 	void HideAbilityRange();
 
 	virtual void BeginPlay() override;
