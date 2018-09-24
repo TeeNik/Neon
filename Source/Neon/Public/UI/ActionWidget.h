@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "UI/ActionButton.h"
 #include "UI/EnergyImage.h"
+#include "UI/ActionTooltip.h"
 #include "Components/HorizontalBox.h"
 #include "ActionWidget.generated.h"
 
@@ -21,21 +22,28 @@ UCLASS()
 class NEON_API UActionWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
-private:
-	void SetButtonImage(ButtonDirection direction, UTexture2D* texture);
-	
+
 public:
+	void ClearButtons();
+	void InitButtons(TArray<FActionTableData*> actionDatas);
+	void InitEnergy(int32& num);
+	void InitToolTip();
+
+	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
+
+protected:
+	UActionTooltip * ActionTooltip;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	TArray<UActionButton*> ButtonArray;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	TArray<UEnergyImage*> EnergyImages;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UPROPERTY(BlueprintReadWrite, BlueprintReadWrite, Category = "UI")
 	UHorizontalBox* EnergyBox;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+	UPROPERTY(BlueprintReadWrite, BlueprintReadWrite, Category = "UI")
 	UHorizontalBox* ActionBox;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
@@ -44,7 +52,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionButton> ActionButtonBP;
 
-	void ClearButtons();
-	void InitButtons(TArray<FActionTableData*> actionDatas);
-	void InitEnergy(int32& num);
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UActionTooltip> ActionTooltipBP;
+
+
 };

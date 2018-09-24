@@ -3,7 +3,6 @@
 #include "NeonPlayerController.h"
 #include "AI/Navigation/NavigationSystem.h"
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
 #include "NeonCharacter.h"
 #include "Kismet/GameplayStatics.h"
 #include "Engine/World.h"
@@ -57,6 +56,7 @@ void ANeonPlayerController::CreateFirstWidget()
 	if (ActionWidgetTemplate) {
 		ActionWidget = CreateWidget<UActionWidget>(this, ActionWidgetTemplate);
 		ActionWidget->AddToViewport();
+		ActionWidget->InitToolTip();
 	}
 }
 

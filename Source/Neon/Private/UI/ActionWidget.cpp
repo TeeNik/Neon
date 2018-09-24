@@ -32,6 +32,7 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 		child = ActionBox->AddChildToHorizontalBox(button);
 		child->SetPadding(padding);
 		button->SetButtonData(actionDatas[i]);
+		button->SetToolTip(ActionTooltip);
 		ButtonArray.Add(button);
 	}	
 	child = ActionBox->AddChildToHorizontalBox(spacer2);
@@ -44,6 +45,14 @@ void UActionWidget::InitEnergy(int32& num)
 	{
 		UEnergyImage* image = WidgetTree->ConstructWidget<UEnergyImage>(EnergyImageBP);
 		EnergyBox->AddChildToHorizontalBox(image);
+	}
+}
+
+void UActionWidget::InitToolTip()
+{
+	if(ActionTooltipBP)
+	{
+		ActionTooltip = CreateWidget<UActionTooltip>(GetWorld()->GetFirstPlayerController(), ActionTooltipBP);
 	}
 }
 
