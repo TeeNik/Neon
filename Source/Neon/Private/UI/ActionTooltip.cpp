@@ -4,11 +4,11 @@
 #include "CanvasPanelSlot.h"
 
 
-void UActionTooltip::SetData(FText title, FText desc, FText cost, int32 energy)
+void UActionTooltip::SetData(FText title, FText desc, FText cooldown, int32 energy)
 {
 	Title->SetText(title);
 	Description->SetText(desc);
-	Cost->SetText(cost);
+	Cooldown->SetText(cooldown);
 	auto slot = Cast<UCanvasPanelSlot>(Energy);
 	if(slot)
 	{

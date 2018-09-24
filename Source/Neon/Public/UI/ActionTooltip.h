@@ -15,16 +15,16 @@ class NEON_API UActionTooltip : public UUserWidget
 	
 public:
 	UFUNCTION(BlueprintCallable)
-	void SetData(FText title, FText desc, FText cost, int32 energy);
+	void SetData(FText title, FText desc, FText cooldown, int32 energy);
 
-private:
-	UPROPERTY(VisibleAnywhere, Category="UI")
+protected:
+	UPROPERTY(BlueprintReadWrite, Category="UI")
 	UTextBlock* Title;
-	UPROPERTY(VisibleAnywhere, Category = "UI")
+	UPROPERTY(BlueprintReadWrite, Category = "UI")
 	UTextBlock* Description;
-	UPROPERTY(VisibleAnywhere, Category = "UI")
-	UTextBlock* Cost;
-	UPROPERTY(VisibleAnywhere, Category = "UI")
+	UPROPERTY(BlueprintReadWrite, Category = "UI")
+	UTextBlock* Cooldown;
+	UPROPERTY(BlueprintReadWrite, Category = "UI")
 	UImage* Energy;
 	
 };
