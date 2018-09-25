@@ -41,10 +41,13 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 
 void UActionWidget::InitEnergy(int32& num)
 {
-	for (int i = 0; i < num; ++i)
+	if(EnergyImageBP)
 	{
-		UEnergyImage* image = WidgetTree->ConstructWidget<UEnergyImage>(EnergyImageBP);
-		EnergyBox->AddChildToHorizontalBox(image);
+		for (int i = 0; i < num; ++i)
+		{
+			UEnergyImage* image = WidgetTree->ConstructWidget<UEnergyImage>(EnergyImageBP);
+			EnergyBox->AddChildToHorizontalBox(image);
+		}
 	}
 }
 

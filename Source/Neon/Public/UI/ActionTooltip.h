@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
+#include "Action/ActionTableData.h"
 #include "ActionTooltip.generated.h"
 
 UCLASS()
@@ -15,7 +16,7 @@ class NEON_API UActionTooltip : public UUserWidget
 	
 public:
 	UFUNCTION(BlueprintCallable)
-	void SetData(FText title, FText desc, FText cooldown, int32 energy);
+	void SetData(FActionTableData& data);
 
 protected:
 	UPROPERTY(BlueprintReadWrite, Category="UI")

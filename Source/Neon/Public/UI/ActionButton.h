@@ -27,4 +27,7 @@ public:
 	void ExecuteAbility();
 	
 	void DisableAbility();
+
+	UFUNCTION()
+	void OnButtonHover();
 };

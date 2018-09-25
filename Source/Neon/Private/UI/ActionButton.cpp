@@ -13,6 +13,7 @@ void UActionButton::SetButtonData(FActionTableData* data)
 	WidgetStyle.Hovered.SetResourceObject(data->Icon);
 	WidgetStyle.Pressed.SetResourceObject(data->Icon);
 	OnClicked.AddDynamic(this, &UActionButton::ExecuteAbility);
+	OnHovered.AddDynamic(this, &UActionButton::OnButtonHover);
 }
 
 void UActionButton::ExecuteAbility()
@@ -30,5 +31,13 @@ void UActionButton::DisableAbility()
 	if (PC) {
 		PC->ActiveAction = nullptr;
 		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data.Name);
+	}
+}
+
+void UActionButton::OnButtonHover()
+{
+	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PC) {
+		PC->ActionWidget->GetActionTooltip()->SetData(Data);
 	}
 }

@@ -32,6 +32,7 @@ public:
 	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
 
 protected:
+	UPROPERTY(BlueprintReadWrite)
 	UActionTooltip * ActionTooltip;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
@@ -54,6 +55,4 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionTooltip> ActionTooltipBP;
-
-
 };
