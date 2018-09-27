@@ -31,6 +31,9 @@ public:
 
 	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
 
+	void ShowEnergyCost(const int32& current, const int32& cost);
+	void HideEnergyCost(const int32& current);
+
 protected:
 	UPROPERTY(BlueprintReadWrite)
 	UActionTooltip * ActionTooltip;
@@ -55,4 +58,5 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionTooltip> ActionTooltipBP;
+
 };

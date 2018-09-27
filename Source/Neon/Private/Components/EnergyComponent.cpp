@@ -14,8 +14,8 @@ void UEnergyComponent::BeginPlay()
 	Super::BeginPlay();
 	auto PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
-		int energy = 10;
-		PC->ActionWidget->InitEnergy(energy);
+		CurrentEnergy = MaxEnergy;
+		PC->ActionWidget->InitEnergy(CurrentEnergy);
 	}
 }
 

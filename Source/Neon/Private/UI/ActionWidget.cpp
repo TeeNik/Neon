@@ -47,6 +47,7 @@ void UActionWidget::InitEnergy(int32& num)
 		{
 			UEnergyImage* image = WidgetTree->ConstructWidget<UEnergyImage>(EnergyImageBP);
 			EnergyBox->AddChildToHorizontalBox(image);
+			EnergyImages.Add(image);
 		}
 	}
 }
@@ -56,6 +57,21 @@ void UActionWidget::InitToolTip()
 	if(ActionTooltipBP)
 	{
 		ActionTooltip = CreateWidget<UActionTooltip>(GetWorld()->GetFirstPlayerController(), ActionTooltipBP);
+	}
+}
+
+void UActionWidget::ShowEnergyCost(const int32& current,const int32& cost)
+{
+	int start = current - 1;
+	for (int i = start; i > start - cost; --i) {
+		EnergyImages[i]->SetHighlighted();
+	}
+}
+
+void UActionWidget::HideEnergyCost(const int32& current)
+{
+	for (int i = 0; i < current; ++i) {
+		EnergyImages[i]->SetActive();
 	}
 }
 

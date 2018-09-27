@@ -16,9 +16,9 @@ class NEON_API UEnergyImage : public UImage
 	
 public:
 
-	FORCEINLINE void SetActive() { ColorAndOpacity = ActiveColor; }
-	FORCEINLINE void SetDisable() { ColorAndOpacity = DisableColor;	}
-	FORCEINLINE void SetHighlighted() { ColorAndOpacity = HighlightedColor; }
+	FORCEINLINE void SetActive() { SetColorAndOpacity(ActiveColor); }
+	FORCEINLINE void SetDisable() { SetColorAndOpacity(DisableColor);	}
+	FORCEINLINE void SetHighlighted() { SetColorAndOpacity(HighlightedColor); }
 
 private:
 

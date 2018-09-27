@@ -29,5 +29,7 @@ public:
 	void DisableAbility();
 
 	UFUNCTION()
-	void OnButtonHover();
+	void OnButtonHoverBegin();
+	UFUNCTION()
+	void OnButtonHoverEnd();
 };

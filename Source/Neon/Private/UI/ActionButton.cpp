@@ -4,7 +4,6 @@
 #include "NeonPlayerController.h"
 #include "Kismet/GameplayStatics.h"
 #include "NeonCharacter.h"
-//include "Components/AbilityComponent.h"
 
 void UActionButton::SetButtonData(FActionTableData* data)
 {
@@ -13,7 +12,8 @@ void UActionButton::SetButtonData(FActionTableData* data)
 	WidgetStyle.Hovered.SetResourceObject(data->Icon);
 	WidgetStyle.Pressed.SetResourceObject(data->Icon);
 	OnClicked.AddDynamic(this, &UActionButton::ExecuteAbility);
-	OnHovered.AddDynamic(this, &UActionButton::OnButtonHover);
+	OnHovered.AddDynamic(this, &UActionButton::OnButtonHoverBegin);
+	OnUnhovered.AddDynamic(this, &UActionButton::OnButtonHoverEnd);
 }
 
 void UActionButton::ExecuteAbility()
@@ -34,10 +34,22 @@ void UActionButton::DisableAbility()
 	}
 }
 
-void UActionButton::OnButtonHover()
+void UActionButton::OnButtonHoverBegin()
 {
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
+		int32 current = PC->NeonCharacter->GetEnergyComponent()->GetCurrentEnergy();
+		PC->ActionWidget->GetActionTooltip()->SetData(Data);
+		PC->ActionWidget->ShowEnergyCost(current, Data.Cost);
+	}
+}
+
+void UActionButton::OnButtonHoverEnd()
+{
+	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PC) {
+		int32 current = PC->NeonCharacter->GetEnergyComponent()->GetCurrentEnergy();
+		PC->ActionWidget->HideEnergyCost(current);
 		PC->ActionWidget->GetActionTooltip()->SetData(Data);
 	}
 }
