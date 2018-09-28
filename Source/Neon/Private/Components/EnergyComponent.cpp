@@ -5,6 +5,8 @@
 #include "NeonPlayerController.h"
 #include "System/TurnManager.h"
 
+
+
 UEnergyComponent::UEnergyComponent()
 {
 }
@@ -22,6 +24,15 @@ void UEnergyComponent::BeginPlay()
 void UEnergyComponent::SpendEnergy(int32& value)
 {
 	CurrentEnergy -= value;
+	if (CurrentEnergy == 0)
+		SendEndTurn();
+	else
+		OnSpendEnergy.Broadcast();
+}
+
+void UEnergyComponent::StartTurn()
+{
+	OnStartTurn.Broadcast();
 }
 
 void UEnergyComponent::SendEndTurn()

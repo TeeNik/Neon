@@ -3,6 +3,7 @@
 #include "GridBase.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 #include "NeonPlayerController.h"
+#include "Components/EnergyComponent.h"
 #include "NeonGameMode.h"
 
 
@@ -93,6 +94,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+		//UEnergyComponent* EC = 
 		if (PC) {
 			PC->CloseWidget();
 			FString actionName = PC->NeonCharacter->GetAbilityConponent()->ActiveAction;
@@ -106,8 +108,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 				PC->NeonCharacter->Position = this;
 			}
 			else if(actionName.Equals(TEXT("Cover")))
-			{
-				
+			{			
 				 ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 				if(GM)
 				{

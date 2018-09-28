@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
+#include "Components/EnergyComponent.h"
 #include "TurnManager.generated.h"
 
-DECLARE_MULTICAST_DELEGATE_OneParam(OnNextTurnDelegate, int32)
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UTurnManager : public USceneComponent
@@ -17,10 +17,13 @@ class NEON_API UTurnManager : public USceneComponent
 public:	
 	UTurnManager();
 
-	OnNextTurnDelegate OnNextTurn;
+	
+	//OnNextTurnDelegate OnNextTurn;
 
 	FORCEINLINE void AddToQueue(int32 g) { Queue.Add(g); }
 	FORCEINLINE void RemoveFromQueue(int32 g) { Queue.Remove(g); }
+	FORCEINLINE UEnergyComponent* GetCurrentEC() { return Queue[CurrentPlace]; }
+
 
 	void EndTurn();
 
@@ -28,5 +31,6 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	TArray<int32> Queue;
+	TArray<UEnergyComponent*> Queue;
+	int CurrentPlace;
 };

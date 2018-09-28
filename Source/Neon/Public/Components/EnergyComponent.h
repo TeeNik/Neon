@@ -6,6 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "EnergyComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE(OnStartTurnDelegate)
+DECLARE_MULTICAST_DELEGATE(OnSpendEnergyDelegate)
+
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UEnergyComponent : public UActorComponent
@@ -18,7 +21,12 @@ public:
 	FORCEINLINE int32& GetCurrentEnergy() { return CurrentEnergy; }
 	FORCEINLINE int32& GetMaxEnergy() { return MaxEnergy; }
 	void SpendEnergy(int32& value);
+
+	void StartTurn();
 	void SendEndTurn();
+
+	OnStartTurnDelegate OnStartTurn;
+	OnSpendEnergyDelegate OnSpendEnergy;
 
 protected:
 	virtual void BeginPlay() override;
