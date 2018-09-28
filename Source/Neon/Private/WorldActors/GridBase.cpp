@@ -122,6 +122,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 
 void AGridBase::Deactivate_Implementation() {
 	PlaneComp->SetVisibility(false);
+	PlaneComp->SetMaterial(0, DisableMaterial);
 	isInRange = false;
 }
 

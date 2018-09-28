@@ -16,7 +16,7 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 {
 	if(ActionButtonBP == NULL)
 	{
-		GLog->Log(("Init Buttons Error!!! ActionButtonBP is null"));
+		GLog->Log("Init Buttons Error!!! ActionButtonBP is null");
 		return;
 	}
 	const auto spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
