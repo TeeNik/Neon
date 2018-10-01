@@ -4,6 +4,8 @@
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 #include "NeonPlayerController.h"
 #include "Components/EnergyComponent.h"
+#include "Components/AbilityComponent.h"
+#include "Components/MotionComponent.h"
 #include "NeonGameMode.h"
 
 
@@ -94,10 +96,12 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		//UEnergyComponent* EC = 
+		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
 		if (PC) {
 			PC->CloseWidget();
-			FString actionName = PC->NeonCharacter->GetAbilityConponent()->ActiveAction;
+			UAbilityComponent* actionComp = Cast<UAbilityComponent>(EC->GetOwner()->GetComponentByClass(UAbilityComponent::StaticClass()));
+			FString actionName = actionComp->ActiveAction;
 			if (actionName.Equals(TEXT("Top")))
 				MoveToTop();
 			else if (actionName.Equals(TEXT("Down")))
