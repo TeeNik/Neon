@@ -3,6 +3,7 @@
 #include "EnergyComponent.h"
 #include "NeonGameMode.h"
 #include "NeonPlayerController.h"
+#include "System/UtilsLibrary.h"
 #include "System/TurnManager.h"
 
 
@@ -19,6 +20,7 @@ void UEnergyComponent::BeginPlay()
 		CurrentEnergy = MaxEnergy;
 		PC->ActionWidget->InitEnergy(CurrentEnergy);
 	}
+	//UUtilsLibrary::StaticTest("scrscrscr");
 }
 
 void UEnergyComponent::SpendEnergy(int32& value)
@@ -46,3 +48,5 @@ void UEnergyComponent::SendEndTurn()
 
 
 
+//4261012587614729
+//1650
