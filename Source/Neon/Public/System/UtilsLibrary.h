@@ -15,6 +15,8 @@ class NEON_API UUtilsLibrary : public UObject
 {
 	GENERATED_BODY()
 
+
+
 public:
 	template<class T>
 	FORCEINLINE T* GetRelativeComponent(TSubclassOf<UActorComponent> comp, UClass* cls)
