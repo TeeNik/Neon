@@ -7,7 +7,7 @@
 #include "EnergyComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(OnStartTurnDelegate)
-DECLARE_MULTICAST_DELEGATE(OnSpendEnergyDelegate)
+DECLARE_MULTICAST_DELEGATE_OneParam(OnSpendEnergyDelegate, int32)
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

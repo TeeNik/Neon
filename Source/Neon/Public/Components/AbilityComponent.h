@@ -16,8 +16,8 @@ public:
 	UAbilityComponent();
 
 	UActionWidget* Widget;
-	TArray<FActionTableData*> Actions;
-	FString ActiveAction;
+	TArray<FActionTableData*> Abilities;
+	FActionTableData* ActiveAction;
 	
 	void ShowAbilityRange(FString&);
 	void HideAbilityRange();

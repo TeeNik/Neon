@@ -6,6 +6,7 @@
 #include "Components/EnergyComponent.h"
 #include "Components/AbilityComponent.h"
 #include "Components/MotionComponent.h"
+#include "System/UtilsLibrary.h"
 #include "NeonGameMode.h"
 
 
@@ -100,8 +101,9 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
 		if (PC) {
 			PC->CloseWidget();
-			UAbilityComponent* actionComp = Cast<UAbilityComponent>(EC->GetOwner()->GetComponentByClass(UAbilityComponent::StaticClass()));
-			FString actionName = actionComp->ActiveAction;
+			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
+			FString actionName = actionComp->ActiveAction->Name;
+			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 			if (actionName.Equals(TEXT("Top")))
 				MoveToTop();
 			else if (actionName.Equals(TEXT("Down")))
@@ -119,8 +121,6 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 					auto cover = GM->GetLocationManager()->GetCoverInfo(this);
 				}
 			}
-			
-			
 		}
 	}
 }
