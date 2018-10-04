@@ -39,7 +39,7 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 	child->SetSize(size);
 }
 
-void UActionWidget::InitEnergy(int32& num)
+void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy)
 {
 	if(EnergyImageBP)
 	{
@@ -49,6 +49,7 @@ void UActionWidget::InitEnergy(int32& num)
 			EnergyBox->AddChildToHorizontalBox(image);
 			EnergyImages.Add(image);
 		}
+		onSpendEnergy.AddUFunction(this, FName("DisableButtons"));
 	}
 }
 
@@ -73,5 +74,24 @@ void UActionWidget::HideEnergyCost(const int32& current)
 	for (int i = 0; i < current; ++i) {
 		EnergyImages[i]->SetActive();
 	}
+}
+
+void UActionWidget::SetEnergyButtonStatus(int value, bool isActive)
+{
+	/*for (int i = EnergyImages.Num(); i >= 0; ++i)
+	{
+		if(EnergyImages[i]->)
+	}*/
+}
+
+void UActionWidget::DisableButtons(int value)
+{
+	SetEnergyButtonStatus(value, false);
+	GLog->Log("SpendEnergy");
+}
+
+void UActionWidget::EnableButtons(int value)
+{
+	SetEnergyButtonStatus(value, true);
 }
 

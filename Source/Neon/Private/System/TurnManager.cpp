@@ -10,6 +10,7 @@ UTurnManager::UTurnManager()
 void UTurnManager::BeginPlay()
 {
 	Super::BeginPlay();
+	CurrentPlace = 0;
 }
 
 void UTurnManager::EndTurn()

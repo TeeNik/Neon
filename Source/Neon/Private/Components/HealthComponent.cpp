@@ -2,6 +2,7 @@
 
 #include "HealthComponent.h"
 #include "Components/PositionComponent.h"
+#include "System/UtilsLibrary.h"
 #include "Components/WeaponComponent.h"
 #include "NeonGameMode.h"
 
@@ -12,7 +13,7 @@ UHealthComponent::UHealthComponent()
 
 Direction UHealthComponent::GetDefenceValue()
 {
-	auto positionComp = Cast<UPositionComponent>(GetOwner()->GetComponentByClass(UPositionComponent::StaticClass()));
+	auto positionComp = UUtilsLibrary::GetRelativeComponent<UPositionComponent>(this);
 	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	if(positionComp && GM)
 	{
