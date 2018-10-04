@@ -8,6 +8,7 @@
 #include "UI/EnergyImage.h"
 #include "UI/ActionTooltip.h"
 #include "Components/HorizontalBox.h"
+#include "Components/EnergyComponent.h"
 #include "ActionWidget.generated.h"
 
 
@@ -26,7 +27,7 @@ class NEON_API UActionWidget : public UUserWidget
 public:
 	void ClearButtons();
 	void InitButtons(TArray<FActionTableData*> actionDatas);
-	void InitEnergy(int32& num);
+	void InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy);
 	void InitToolTip();
 
 	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
@@ -58,5 +59,13 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionTooltip> ActionTooltipBP;
+
+private:
+
+	void SetEnergyButtonStatus(int value, bool isActive);
+	UFUNCTION()
+	void DisableButtons(int value);
+	UFUNCTION()
+	void EnableButtons(int value);
 
 };
