@@ -18,7 +18,7 @@ void UEnergyComponent::BeginPlay()
 	auto PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		CurrentEnergy = MaxEnergy;
-		PC->ActionWidget->InitEnergy(CurrentEnergy, OnSpendEnergy);
+		PC->ActionWidget->InitEnergy(CurrentEnergy, OnSpendEnergy, OnStartTurn, OnEndTurn);
 	}
 
 	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
@@ -41,6 +41,7 @@ void UEnergyComponent::SpendEnergy(int32& value)
 
 void UEnergyComponent::StartTurn()
 {
+	OnEndTurn.Broadcast();
 	OnStartTurn.Broadcast();
 }
 
@@ -50,6 +51,11 @@ void UEnergyComponent::SendEndTurn()
 	if(GM)
 	{
 		GM->GetTurnManager()->EndTurn();
+	}
+	auto PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	if(PC)
+	{
+		PC->ActionWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
 

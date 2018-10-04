@@ -27,7 +27,7 @@ class NEON_API UActionWidget : public UUserWidget
 public:
 	void ClearButtons();
 	void InitButtons(TArray<FActionTableData*> actionDatas);
-	void InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy);
+	void InitEnergy(int32& num, OnSpendEnergyDelegate&, OnStartTurnDelegate& , OnEndTurnDelegate&);
 	void InitToolTip();
 
 	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
@@ -61,8 +61,6 @@ protected:
 	TSubclassOf<UActionTooltip> ActionTooltipBP;
 
 private:
-
-	void SetEnergyButtonStatus(int value, bool isActive);
 	UFUNCTION()
 	void DisableButtons(int value);
 	UFUNCTION()

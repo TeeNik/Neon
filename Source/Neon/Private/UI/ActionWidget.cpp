@@ -39,7 +39,7 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 	child->SetSize(size);
 }
 
-void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy)
+void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy, OnStartTurnDelegate& onStartTurn, OnEndTurnDelegate& onEndTurn)
 {
 	if(EnergyImageBP)
 	{
@@ -50,6 +50,14 @@ void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy)
 			EnergyImages.Add(image);
 		}
 		onSpendEnergy.AddUFunction(this, FName("DisableButtons"));
+		onStartTurn.AddLambda([&]()
+		{
+			SetVisibility(ESlateVisibility::Visible);
+		});
+		onEndTurn.AddLambda([&]()
+		{
+			SetVisibility(ESlateVisibility::Hidden);
+		});
 	}
 }
 
@@ -63,6 +71,7 @@ void UActionWidget::InitToolTip()
 
 void UActionWidget::ShowEnergyCost(const int32& current,const int32& cost)
 {
+	if (current < cost) return;
 	int start = current - 1;
 	for (int i = start; i > start - cost; --i) {
 		EnergyImages[i]->SetHighlighted();
@@ -76,22 +85,31 @@ void UActionWidget::HideEnergyCost(const int32& current)
 	}
 }
 
-void UActionWidget::SetEnergyButtonStatus(int value, bool isActive)
-{
-	/*for (int i = EnergyImages.Num(); i >= 0; ++i)
-	{
-		if(EnergyImages[i]->)
-	}*/
-}
-
 void UActionWidget::DisableButtons(int value)
 {
-	SetEnergyButtonStatus(value, false);
-	GLog->Log("SpendEnergy");
+	int count = 0;
+	for (int i = EnergyImages.Num()-1; i >= 0; --i)
+	{
+		if (EnergyImages[i]->GetStatus() == Active)
+		{
+			EnergyImages[i]->SetDisable();
+			++count;
+			if (count == value) return;
+		}
+	}
 }
 
 void UActionWidget::EnableButtons(int value)
 {
-	SetEnergyButtonStatus(value, true);
+	int count = 0;
+	for (int i = 0; i < EnergyImages.Num(); ++i)
+	{
+		if (EnergyImages[i]->GetStatus() == Disable)
+		{
+			EnergyImages[i]->SetActive();
+			++count;
+			if (count == value) return;
+		}
+	}
 }
 

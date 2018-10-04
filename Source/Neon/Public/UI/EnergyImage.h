@@ -6,9 +6,13 @@
 #include "Components/Image.h"
 #include "EnergyImage.generated.h"
 
-/**
- * 
- */
+enum EnergyImageStatus
+{
+	Active, 
+	Disable,
+	Highlighted
+};
+
 UCLASS()
 class NEON_API UEnergyImage : public UImage
 {
@@ -16,11 +20,13 @@ class NEON_API UEnergyImage : public UImage
 	
 public:
 
-	FORCEINLINE void SetActive() { SetColorAndOpacity(ActiveColor); }
-	FORCEINLINE void SetDisable() { SetColorAndOpacity(DisableColor);	}
-	FORCEINLINE void SetHighlighted() { SetColorAndOpacity(HighlightedColor); }
+	FORCEINLINE void SetActive() { SetColorAndOpacity(ActiveColor); Status = Active; }
+	FORCEINLINE void SetDisable() {	SetColorAndOpacity(DisableColor); Status = Disable;	}
+	FORCEINLINE void SetHighlighted() {	SetColorAndOpacity(HighlightedColor); Status = Highlighted; }
+	FORCEINLINE EnergyImageStatus& GetStatus() { return Status; }
 
 private:
+	EnergyImageStatus Status;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Energy")
 	FLinearColor ActiveColor;

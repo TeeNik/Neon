@@ -7,6 +7,7 @@
 #include "EnergyComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(OnStartTurnDelegate)
+DECLARE_MULTICAST_DELEGATE(OnEndTurnDelegate)
 DECLARE_MULTICAST_DELEGATE_OneParam(OnSpendEnergyDelegate, int32)
 
 
@@ -26,6 +27,7 @@ public:
 	void SendEndTurn();
 
 	OnStartTurnDelegate OnStartTurn;
+	OnEndTurnDelegate OnEndTurn;
 	OnSpendEnergyDelegate OnSpendEnergy;
 
 protected:

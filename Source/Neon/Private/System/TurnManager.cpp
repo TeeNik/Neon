@@ -15,6 +15,7 @@ void UTurnManager::BeginPlay()
 
 void UTurnManager::EndTurn()
 {
+	GLog->Log("EndTurn");
 }
 
 
