@@ -18,8 +18,15 @@ void UEnergyComponent::BeginPlay()
 	auto PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		CurrentEnergy = MaxEnergy;
-		PC->ActionWidget->InitEnergy(CurrentEnergy);
+		PC->ActionWidget->InitEnergy(CurrentEnergy, OnSpendEnergy);
 	}
+
+	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	if(GM)
+	{
+		GM->GetTurnManager()->AddToQueue(this);
+	}
+
 	//UUtilsLibrary::StaticTest("scrscrscr");
 }
 
@@ -29,7 +36,7 @@ void UEnergyComponent::SpendEnergy(int32& value)
 	if (CurrentEnergy == 0)
 		SendEndTurn();
 	else
-		OnSpendEnergy.Broadcast();
+		OnSpendEnergy.Broadcast(value);
 }
 
 void UEnergyComponent::StartTurn()

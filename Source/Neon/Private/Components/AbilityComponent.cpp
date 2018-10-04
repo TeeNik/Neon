@@ -23,14 +23,13 @@ void UAbilityComponent::BeginPlay()
 	}
 	TArray<FActionTableData> array;
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
-	dataTable->GetAllRows<FActionTableData>(TEXT(""), Actions);
-	Widget->InitButtons(Actions);
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), Abilities);
+	Widget->InitButtons(Abilities);
 }
 
 void UAbilityComponent::ShowAbilityRange(FString& name)
 {
-	auto ability = FindAbilityByName(name);
-	ActiveAction = ability->Name;
+	ActiveAction = FindAbilityByName(name);
 	TArray<FHitResult> HitResults;
 	auto parent = GetOwner();
 	FVector StartLocation =  parent->GetActorLocation();
@@ -47,7 +46,7 @@ void UAbilityComponent::ShowAbilityRange(FString& name)
 		for (auto It = HitResults.CreateIterator(); It; It++)
 		{
 			auto actor = It->Actor;
-			if (actor->ActorHasTag(ability->ObjectTag) || actor->ActorHasTag("GridBase")) {
+			if (actor->ActorHasTag(ActiveAction->ObjectTag) || actor->ActorHasTag("GridBase")) {
 				IAction::Execute_Highlight(It->Actor.Get());
 				HighlighedObjects.Add(*It);
 			}
@@ -71,7 +70,7 @@ void UAbilityComponent::HideAbilityRange()
 
 FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
 {
-	for (auto data : Actions)
+	for (auto data : Abilities)
 	{
 		if (data->Name == name) return data;
 	}
