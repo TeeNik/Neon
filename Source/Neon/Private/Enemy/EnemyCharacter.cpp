@@ -10,6 +10,7 @@ AEnemyCharacter::AEnemyCharacter()
 {
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
+	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
 }
 
 void AEnemyCharacter::BeginPlay()
@@ -23,7 +24,10 @@ void AEnemyCharacter::BeginPlay()
 	FTimerHandle timer;
 	GetWorld()->GetTimerManager().SetTimer(timer, this, &AEnemyCharacter::InitialMovement, 3, false);
 
-	
+	EnergyComp->OnStartTurn.AddLambda([&]()
+	{
+		EnergyComp->SendEndTurn();
+	});
 }
 
 void AEnemyCharacter::InitialMovement()

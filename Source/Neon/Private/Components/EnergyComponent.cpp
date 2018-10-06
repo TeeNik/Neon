@@ -26,8 +26,6 @@ void UEnergyComponent::BeginPlay()
 	{
 		GM->GetTurnManager()->AddToQueue(this);
 	}
-
-	//UUtilsLibrary::StaticTest("scrscrscr");
 }
 
 void UEnergyComponent::SpendEnergy(int32& value)
@@ -58,8 +56,3 @@ void UEnergyComponent::SendEndTurn()
 		PC->ActionWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
-
-
-
-//4261012587614729
-//1650

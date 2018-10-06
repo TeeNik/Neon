@@ -7,6 +7,7 @@
 #include "Action/Action.h"
 #include "WorldActors/GridBase.h"
 #include "Components/HealthComponent.h"
+#include "Components/EnergyComponent.h"
 #include "MotionComponent.h"
 #include "EnemyCharacter.generated.h"
 
@@ -50,6 +51,8 @@ protected:
 	class UHealthComponent* HealthComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UMotionComponent* MotionComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UEnergyComponent* EnergyComp;
 
 	UFUNCTION()
 	void InitialMovement();
