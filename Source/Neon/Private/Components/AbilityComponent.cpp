@@ -15,16 +15,9 @@ UAbilityComponent::UAbilityComponent()
 void UAbilityComponent::BeginPlay()
 {
 	Super::BeginPlay();
-
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if (PC) {
-		PC->CreateFirstWidget();
-		Widget = PC->ActionWidget;
-	}
 	TArray<FActionTableData> array;
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), Abilities);
-	Widget->InitButtons(Abilities);
 }
 
 void UAbilityComponent::ShowAbilityRange(FString& name)

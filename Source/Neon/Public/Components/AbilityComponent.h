@@ -15,7 +15,6 @@ class NEON_API UAbilityComponent : public UActorComponent
 public:	
 	UAbilityComponent();
 
-	UActionWidget* Widget;
 	TArray<FActionTableData*> Abilities;
 	FActionTableData* ActiveAction;
 	

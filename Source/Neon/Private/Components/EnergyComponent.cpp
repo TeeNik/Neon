@@ -15,12 +15,7 @@ UEnergyComponent::UEnergyComponent()
 void UEnergyComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	auto PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if (PC) {
-		CurrentEnergy = MaxEnergy;
-		PC->ActionWidget->InitEnergy(CurrentEnergy, OnSpendEnergy, OnStartTurn, OnEndTurn);
-	}
-
+	CurrentEnergy = MaxEnergy;
 	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	if(GM)
 	{

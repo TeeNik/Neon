@@ -35,4 +35,7 @@ void ANeonCharacter::BeginPlay()
 	if (PC) {
 		PC->NeonCharacter = this;
 	}
+	PC->CreateFirstWidget();
+	PC->ActionWidget->InitButtons(AbilityComp->Abilities);
+	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
 }
