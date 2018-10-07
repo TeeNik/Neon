@@ -35,6 +35,8 @@ void UEnergyComponent::SpendEnergy(int32& value)
 void UEnergyComponent::StartTurn()
 {
 	//OnEndTurn.Broadcast();
+	GLog->Log("start turn");
+	CurrentEnergy = MaxEnergy;
 	OnStartTurn.Broadcast();
 }
 
@@ -45,10 +47,5 @@ void UEnergyComponent::EndTurn()
 	if(GM)
 	{
 		GM->GetTurnManager()->EndTurn();
-	}
-	auto PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if(PC)
-	{
-		PC->ActionWidget->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
