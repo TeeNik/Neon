@@ -16,6 +16,9 @@ void UTurnManager::BeginPlay()
 void UTurnManager::EndTurn()
 {
 	GLog->Log("EndTurn");
+	CurrentPlace++;
+	if (CurrentPlace == Queue.Num()) CurrentPlace = 0;
+	Queue[CurrentPlace]->StartTurn();
 }
 
 

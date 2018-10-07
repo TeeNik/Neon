@@ -26,7 +26,7 @@ void AEnemyCharacter::BeginPlay()
 
 	EnergyComp->OnStartTurn.AddLambda([&]()
 	{
-		EnergyComp->SendEndTurn();
+		EnergyComp->EndTurn();
 	});
 }
 

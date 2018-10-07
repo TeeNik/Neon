@@ -32,19 +32,20 @@ void UEnergyComponent::SpendEnergy(int32& value)
 {
 	CurrentEnergy -= value;
 	if (CurrentEnergy == 0)
-		SendEndTurn();
+		EndTurn();
 	else
 		OnSpendEnergy.Broadcast(value);
 }
 
 void UEnergyComponent::StartTurn()
 {
-	OnEndTurn.Broadcast();
+	//OnEndTurn.Broadcast();
 	OnStartTurn.Broadcast();
 }
 
-void UEnergyComponent::SendEndTurn()
+void UEnergyComponent::EndTurn()
 {
+	OnEndTurn.Broadcast();
 	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	if(GM)
 	{

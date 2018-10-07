@@ -24,7 +24,7 @@ public:
 	void SpendEnergy(int32& value);
 
 	void StartTurn();
-	void SendEndTurn();
+	void EndTurn();
 
 	OnStartTurnDelegate OnStartTurn;
 	OnEndTurnDelegate OnEndTurn;
