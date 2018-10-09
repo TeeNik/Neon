@@ -103,7 +103,6 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			PC->CloseWidget();
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
-			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 			if (actionName.Equals(TEXT("Top")))
 				MoveToTop();
 			else if (actionName.Equals(TEXT("Down")))
@@ -121,6 +120,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 					auto cover = GM->GetLocationManager()->GetCoverInfo(this);
 				}
 			}
+			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}
 	}
 }

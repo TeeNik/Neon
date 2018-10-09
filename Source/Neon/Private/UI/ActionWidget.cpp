@@ -49,14 +49,17 @@ void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy,
 			EnergyBox->AddChildToHorizontalBox(image);
 			EnergyImages.Add(image);
 		}
-		onSpendEnergy.AddUFunction(this, FName("DisableButtons"));
+		onSpendEnergy.AddUFunction(this, FName("DisableEnergyImages"));
+		onSpendEnergy.AddUFunction(this, FName("UpdateAbilityPanel"));
 		onStartTurn.AddLambda([&]()
 		{
-			SetVisibility(ESlateVisibility::Visible);
+			
+			//SetVisibility(ESlateVisibility::Visible);;
+			EnableEnergyImages(EnergyImages.Num());
 		});
 		onEndTurn.AddLambda([&]()
 		{
-			SetVisibility(ESlateVisibility::Hidden);
+			//SetVisibility(ESlateVisibility::Hidden);
 		});
 	}
 }
@@ -85,7 +88,7 @@ void UActionWidget::HideEnergyCost(const int32& current)
 	}
 }
 
-void UActionWidget::DisableButtons(int value)
+void UActionWidget::DisableEnergyImages(int current, int value)
 {
 	int count = 0;
 	for (int i = EnergyImages.Num()-1; i >= 0; --i)
@@ -99,7 +102,7 @@ void UActionWidget::DisableButtons(int value)
 	}
 }
 
-void UActionWidget::EnableButtons(int value)
+void UActionWidget::EnableEnergyImages(int value)
 {
 	int count = 0;
 	for (int i = 0; i < EnergyImages.Num(); ++i)
@@ -110,6 +113,14 @@ void UActionWidget::EnableButtons(int value)
 			++count;
 			if (count == value) return;
 		}
+	}
+}
+
+void UActionWidget::UpdateAbilityPanel(int current, int value)
+{
+	for (UActionButton* button : ButtonArray)
+	{
+		button->SetIsEnabled(current >= button->GetData().Cost);
 	}
 }
 

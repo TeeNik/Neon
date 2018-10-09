@@ -11,6 +11,7 @@ void UActionButton::SetButtonData(FActionTableData* data)
 	WidgetStyle.Normal.SetResourceObject(data->Icon);
 	WidgetStyle.Hovered.SetResourceObject(data->Icon);
 	WidgetStyle.Pressed.SetResourceObject(data->Icon);
+	WidgetStyle.Disabled.SetResourceObject(data->Icon);
 	OnClicked.AddDynamic(this, &UActionButton::ExecuteAbility);
 	OnHovered.AddDynamic(this, &UActionButton::OnButtonHoverBegin);
 	OnUnhovered.AddDynamic(this, &UActionButton::OnButtonHoverEnd);

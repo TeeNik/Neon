@@ -8,7 +8,7 @@
 
 DECLARE_MULTICAST_DELEGATE(OnStartTurnDelegate)
 DECLARE_MULTICAST_DELEGATE(OnEndTurnDelegate)
-DECLARE_MULTICAST_DELEGATE_OneParam(OnSpendEnergyDelegate, int32)
+DECLARE_MULTICAST_DELEGATE_TwoParams(OnSpendEnergyDelegate, int32, int32)
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )

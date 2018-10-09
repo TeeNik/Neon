@@ -62,8 +62,10 @@ protected:
 
 private:
 	UFUNCTION()
-	void DisableButtons(int value);
+	void DisableEnergyImages(int current, int value);
 	UFUNCTION()
-	void EnableButtons(int value);
+	void EnableEnergyImages(int value);
+	UFUNCTION()
+	void UpdateAbilityPanel(int current, int value);
 
 };
