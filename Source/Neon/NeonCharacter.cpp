@@ -39,7 +39,7 @@ void ANeonCharacter::BeginPlay()
 	PC->ActionWidget->InitButtons(AbilityComp->Abilities);
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
 	
-	EnergyComp->OnStartTurn.AddLambda([&]()
+	/*EnergyComp->OnStartTurn.AddLambda([&]()
 	{
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		if (PC) {
@@ -52,5 +52,5 @@ void ANeonCharacter::BeginPlay()
 		if (PC) {
 			PC->ActionWidget->SetVisibility(ESlateVisibility::Hidden);
 		}		
-	});
+	});*/
 }

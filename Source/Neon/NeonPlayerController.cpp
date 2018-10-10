@@ -63,10 +63,4 @@ void ANeonPlayerController::CreateFirstWidget()
 void ANeonPlayerController::CloseWidget()
 {
 	NeonCharacter->GetAbilityConponent()->HideAbilityRange();
-	/*if (ClickedActor != NULL) {
-		IAction::Execute_Deactivate(ClickedActor);
-		ClickedActor = NULL;
-		ActionWidget->SetVisibility(ESlateVisibility::Hidden);
-	}*/
-
 }

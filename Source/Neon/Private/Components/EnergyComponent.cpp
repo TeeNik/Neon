@@ -29,12 +29,11 @@ void UEnergyComponent::SpendEnergy(int32& value)
 	if (CurrentEnergy == 0)
 		EndTurn();
 	else
-		OnSpendEnergy.Broadcast(value);
+		OnSpendEnergy.Broadcast(CurrentEnergy, value);
 }
 
 void UEnergyComponent::StartTurn()
 {
-	//OnEndTurn.Broadcast();
 	GLog->Log("start turn");
 	CurrentEnergy = MaxEnergy;
 	OnStartTurn.Broadcast();
