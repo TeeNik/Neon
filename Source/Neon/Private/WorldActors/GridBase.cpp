@@ -114,11 +114,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			}
 			else if(actionName.Equals(TEXT("Cover")))
 			{			
-				 ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
-				if(GM)
-				{
-					auto cover = GM->GetLocationManager()->GetCoverInfo(this);
-				}
+				auto cover = GM->GetLocationManager()->GetCoverInfo(this);
 			}
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}

@@ -12,7 +12,7 @@
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
-class ANeonCharacter : public ACharacter
+class ANeonCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
 
@@ -27,6 +27,26 @@ public:
 	void BeginPlay() override;
 
 	AGridBase* Position;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+	virtual void OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+	virtual void OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void Deactivate();
+	virtual void Deactivate_Implementation() override;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void Highlight();
+	virtual void Highlight_Implementation() override;
 
 private:
 

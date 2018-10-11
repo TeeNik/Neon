@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "NeonPlayerController.h"
+#include "NeonGameMode.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
 
@@ -38,19 +39,43 @@ void ANeonCharacter::BeginPlay()
 	PC->CreateFirstWidget();
 	PC->ActionWidget->InitButtons(AbilityComp->Abilities);
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
-	
-	/*EnergyComp->OnStartTurn.AddLambda([&]()
+}
+
+void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+{
+
+}
+
+void ANeonCharacter::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+{
+
+}
+
+void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+{
+	GLog->Log("PlayerClick");
+	if (ButtonPressed.GetFName() == "LeftMouseButton" &&isInRange)
 	{
 		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		if (PC) {
-			PC->ActionWidget->SetVisibility(ESlateVisibility::Visible);
+		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
+		if (EC) {
+			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
+			FString actionName = actionComp->ActiveAction->Name;
+			if (actionName.Equals(TEXT("DamageBust"))) {
+				WeaponComp->
+			}
 		}
-	});
-	EnergyComp->OnEndTurn.AddLambda([&]()
-	{
-		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		if (PC) {
-			PC->ActionWidget->SetVisibility(ESlateVisibility::Hidden);
-		}		
-	});*/
+	}
+}
+
+void ANeonCharacter::Deactivate_Implementation()
+{
+
+}
+
+void ANeonCharacter::Highlight_Implementation()
+{
+	GetMesh()->SetRenderCustomDepth(true);
+	isInRange = true;
 }
