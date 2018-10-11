@@ -20,7 +20,7 @@ public:
 	
 	//OnNextTurnDelegate OnNextTurn;
 
-	FORCEINLINE void AddToQueue(UEnergyComponent* g) { Queue.Add(g); }
+	void AddToQueue(UEnergyComponent* g);
 	FORCEINLINE void RemoveFromQueue(UEnergyComponent* g) { Queue.Remove(g); }
 	FORCEINLINE UEnergyComponent* GetCurrentEC() { return Queue[CurrentPlace]; }
 

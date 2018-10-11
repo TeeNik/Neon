@@ -30,6 +30,9 @@ public:
 	OnEndTurnDelegate OnEndTurn;
 	OnSpendEnergyDelegate OnSpendEnergy;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Energy")
+	int32 Initiative;
+
 protected:
 	virtual void BeginPlay() override;
 

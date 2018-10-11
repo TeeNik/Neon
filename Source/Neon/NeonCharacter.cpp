@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "NeonPlayerController.h"
+#include "System/UtilsLibrary.h"
 #include "NeonGameMode.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
@@ -39,6 +40,7 @@ void ANeonCharacter::BeginPlay()
 	PC->CreateFirstWidget();
 	PC->ActionWidget->InitButtons(AbilityComp->Abilities);
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
+	EnergyComp->Initiative = 10;
 }
 
 void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -63,7 +65,7 @@ void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompon
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
 			if (actionName.Equals(TEXT("DamageBust"))) {
-				WeaponComp->
+				//WeaponComp->
 			}
 		}
 	}

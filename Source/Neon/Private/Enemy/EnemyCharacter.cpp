@@ -28,6 +28,7 @@ void AEnemyCharacter::BeginPlay()
 	{
 		EnergyComp->EndTurn();
 	});
+	EnergyComp->Initiative = 3;
 }
 
 void AEnemyCharacter::InitialMovement()

@@ -30,6 +30,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category="Weapon")
 	bool IsShooting;
 
+	void FactorDamage(float factor);
+
 protected:
 	virtual void BeginPlay() override;
 	
@@ -41,6 +43,3 @@ protected:
 private:
 	Direction CheckDirection(AGridBase* self, AGridBase* target);
 };
-
-//88002508275
-//795923844
