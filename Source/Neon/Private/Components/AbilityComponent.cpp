@@ -32,7 +32,7 @@ void UAbilityComponent::ShowAbilityRange(FString& name)
 	ECollisionChannel ECC = ECollisionChannel::ECC_WorldStatic;
 	FCollisionShape CollisionShape;
 	CollisionShape.ShapeType = ECollisionShape::Sphere;
-	CollisionShape.SetSphere(350);
+	CollisionShape.SetSphere(ActiveAction->Range);
 	bool bHitSomething = GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
 	if (bHitSomething)
 	{

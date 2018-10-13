@@ -9,6 +9,7 @@
 #include "Components/WeaponComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/EnergyComponent.h"
+#include "Components/PositionComponent.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
@@ -26,7 +27,6 @@ public:
 
 	void BeginPlay() override;
 
-	AGridBase* Position;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
@@ -60,6 +60,5 @@ private:
 	class UMotionComponent* MotionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
-
 };
 
