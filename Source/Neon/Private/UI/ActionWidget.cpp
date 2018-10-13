@@ -53,9 +53,10 @@ void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy,
 		onSpendEnergy.AddUFunction(this, FName("UpdateAbilityPanel"));
 		onStartTurn.AddLambda([&]()
 		{
-			
+			int maxEnergy = EnergyImages.Num();
+			UpdateAbilityPanel(maxEnergy, maxEnergy);
 			//SetVisibility(ESlateVisibility::Visible);;
-			EnableEnergyImages(EnergyImages.Num());
+			EnableEnergyImages(maxEnergy);
 		});
 		onEndTurn.AddLambda([&]()
 		{

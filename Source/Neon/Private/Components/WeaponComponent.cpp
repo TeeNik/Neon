@@ -2,6 +2,8 @@
 
 #include "WeaponComponent.h"
 #include "NeonCharacter.h"
+#include "System/UtilsLibrary.h"
+
 UWeaponComponent::UWeaponComponent()
 {
 }
@@ -59,17 +61,19 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 	return dir;
 }
 
-void UWeaponComponent::Shoot(AEnemyCharacter* enemy)
+void UWeaponComponent::Shoot(UMotionComponent* enemy)
 {
 	ANeonCharacter* character = Cast<ANeonCharacter>(GetOwner());
-	CheckDirection(character->Position, enemy->Position);
-	FVector direction = enemy->GetActorLocation() - GetOwner()->GetActorLocation();
+	UMotionComponent* self = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(this);
+	CheckDirection(self->GetPosition(), enemy->GetPosition());
+	FVector direction = enemy->GetOwner()->GetActorLocation() - GetOwner()->GetActorLocation();
 	direction.Z = 0;
 	const FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
 	GetOwner()->SetActorRotation(playerRot);
 	
 	IsShooting = true;
-	enemy->GetHealthComponent()->TakeDamage(EquipedWeapon->GetDamage());
+	UHealthComponent* health = UUtilsLibrary::GetRelativeComponent<UHealthComponent>(enemy);
+	health->TakeDamage(EquipedWeapon->GetDamage());
 }
 
 

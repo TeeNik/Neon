@@ -16,9 +16,13 @@ class NEON_API UMotionComponent : public UActorComponent
 public:	
 	UMotionComponent();
 
+	FORCEINLINE AGridBase* GetPosition() { return Position; }
 	void MoveToGrid(AGridBase* gridBase);
 
 protected:
 	virtual void BeginPlay() override;	
+
+private:
+	AGridBase * Position;
 	
 };

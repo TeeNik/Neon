@@ -36,7 +36,6 @@ void AEnemyCharacter::InitialMovement()
 	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	ULocationManager* locationMan = GM->GetLocationManager();
 	MotionComp->MoveToGrid(locationMan->GridArray[2].Array[2]);
-	Position = locationMan->GridArray[2].Array[2];
 }
 
 void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -58,7 +57,7 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 		if(PC)
 		{
 			PC->CloseWidget();
-			PC->NeonCharacter->GetWeaponComponent()->Shoot(this);
+			PC->NeonCharacter->GetWeaponComponent()->Shoot(MotionComp);
 		}
 	}
 }

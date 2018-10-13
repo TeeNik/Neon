@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
 #include "WorldActors/Weapon.h"
-#include "Enemy/EnemyCharacter.h"
 #include "WorldActors/GridBase.h"
+#include "Components/MotionComponent.h"
 #include "WeaponComponent.generated.h"
 
 
@@ -26,7 +26,7 @@ class NEON_API UWeaponComponent : public UActorComponent
 public:	
 	UWeaponComponent();
 
-	void Shoot(AEnemyCharacter* enemy);
+	void Shoot(UMotionComponent* enemy);
 	UPROPERTY(BlueprintReadWrite, Category="Weapon")
 	bool IsShooting;
 

@@ -108,9 +108,10 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			else if (actionName.Equals(TEXT("Down")))
 				MoveDown();
 			else if (actionName.Equals(TEXT("MoveTo"))) {
+				//TODO
 				GridLocationComp->SetStatus(Player);
-				PC->NeonCharacter->GetMotionComponent()->MoveToGrid(this);
-				PC->NeonCharacter->Position = this;
+				UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(EC);
+				motion->MoveToGrid(this);
 			}
 			else if(actionName.Equals(TEXT("Cover")))
 			{			
