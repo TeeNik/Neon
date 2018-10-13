@@ -42,8 +42,6 @@ public:
 	void Highlight();
 	virtual void Highlight_Implementation() override;
 
-	AGridBase* Position;
-
 protected:
 	virtual void BeginPlay() override;
 
