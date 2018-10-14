@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "HealthComponent.h"
-#include "Components/PositionComponent.h"
 #include "System/UtilsLibrary.h"
+#include "Components/MotionComponent.h"
 #include "Components/WeaponComponent.h"
 #include "NeonGameMode.h"
 
@@ -13,11 +13,11 @@ UHealthComponent::UHealthComponent()
 
 Direction UHealthComponent::GetDefenceValue()
 {
-	auto positionComp = UUtilsLibrary::GetRelativeComponent<UPositionComponent>(this);
+	UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(this);
 	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
-	if(positionComp && GM)
+	if(motion && GM)
 	{
-		auto pos = positionComp->GetPosition();
+		auto pos = motion->GetPosition();
 		return GM->GetLocationManager()->GetCoverInfo(pos);
 	}
 	return Direction();

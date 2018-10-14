@@ -14,7 +14,8 @@ class NEON_API AWeapon : public AActor
 public:	
 	AWeapon();
 
-	float GetDamage() { return Damage; }
+	FORCEINLINE int8 GetDamage() { return Damage; }
+	FORCEINLINE int8 GetAccuracy() { return Accuracy; }
 
 protected:
 	virtual void BeginPlay() override;
@@ -23,6 +24,8 @@ protected:
 	UStaticMeshComponent* MeshComp;
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-	float Damage;
+	int8 Damage;
 	
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	int8 Accuracy;
 };

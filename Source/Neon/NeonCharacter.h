@@ -9,7 +9,6 @@
 #include "Components/WeaponComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/EnergyComponent.h"
-#include "Components/PositionComponent.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)

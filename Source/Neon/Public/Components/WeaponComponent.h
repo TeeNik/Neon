@@ -12,6 +12,7 @@
 
 struct Direction
 {
+	Direction() : Left(false), Up(false), Right(false), Down(false) {}
 	bool Left;
 	bool Up;
 	bool Right;
@@ -42,4 +43,6 @@ protected:
 
 private:
 	Direction CheckDirection(AGridBase* self, AGridBase* target);
+
+	int8 CalculateCover(Direction& shootDir, Direction& enemyDef);
 };

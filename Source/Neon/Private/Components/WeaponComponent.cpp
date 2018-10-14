@@ -65,16 +65,56 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 {
 	ANeonCharacter* character = Cast<ANeonCharacter>(GetOwner());
 	UMotionComponent* self = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(this);
-	CheckDirection(self->GetPosition(), enemy->GetPosition());
+	Direction shootDir = CheckDirection(self->GetPosition(), enemy->GetPosition());
 	FVector direction = enemy->GetOwner()->GetActorLocation() - GetOwner()->GetActorLocation();
 	direction.Z = 0;
 	const FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
 	GetOwner()->SetActorRotation(playerRot);
-	
 	IsShooting = true;
 	UHealthComponent* health = UUtilsLibrary::GetRelativeComponent<UHealthComponent>(enemy);
-	health->TakeDamage(EquipedWeapon->GetDamage());
+
+	Direction enemyCover = health->GetDefenceValue();
+	int8 accuracy = EquipedWeapon->GetAccuracy();
+	accuracy -= CalculateCover(shootDir, enemyCover);
+
+	int8 chance = FMath::RandRange(0, 100);
+	GLog->Log(FString::FromInt(chance));
+	GLog->Log(FString::FromInt(accuracy));
+	if (chance <= accuracy) {
+		GLog->Log("Success");
+		health->TakeDamage(EquipedWeapon->GetDamage());
+	}
+	else {
+		GLog->Log("Miss");
+	}
 }
+
+int8 UWeaponComponent::CalculateCover(Direction& shootDir, Direction& enemyDef)
+{
+	int8 def = 30;
+
+	if (shootDir.Left == true) {
+		if (enemyDef.Left == false) {
+			return 0;
+		}
+	}
+	if (shootDir.Up == true) {
+		if (enemyDef.Up == false)
+			return 0;
+	}
+	if (shootDir.Right == true) {
+		if (enemyDef.Right == false)
+			return 0;
+	}
+	if (shootDir.Down == true) {
+		if (enemyDef.Down == false)
+			return 0;
+	}
+
+	return def;
+}
+
+
 
 
 
