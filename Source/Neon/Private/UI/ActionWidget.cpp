@@ -3,6 +3,7 @@
 #include "ActionWidget.h"
 #include "Runtime/UMG/Public/Blueprint/WidgetTree.h"
 #include "Runtime/UMG/Public/Components/Spacer.h"
+#include "NeonGameMode.h"
 #include "Components/HorizontalBoxSlot.h"
 
 void UActionWidget::ClearButtons()
@@ -37,6 +38,8 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 	}	
 	child = ActionBox->AddChildToHorizontalBox(spacer2);
 	child->SetSize(size);
+
+	SkipButton->OnClicked.AddDynamic(this, &UActionWidget::SkipTurn);
 }
 
 void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy, OnStartTurnDelegate& onStartTurn, OnEndTurnDelegate& onEndTurn)
@@ -122,6 +125,14 @@ void UActionWidget::UpdateAbilityPanel(int current, int value)
 	for (UActionButton* button : ButtonArray)
 	{
 		button->SetIsEnabled(current >= button->GetData().Cost);
+	}
+}
+
+void UActionWidget::SkipTurn()
+{
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	if (GM) {
+		GM->GetTurnManager()->GetCurrentEC()->EndTurn();
 	}
 }
 

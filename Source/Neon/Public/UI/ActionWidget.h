@@ -51,6 +51,9 @@ protected:
 	UPROPERTY(BlueprintReadWrite, BlueprintReadWrite, Category = "UI")
 	UHorizontalBox* ActionBox;
 
+	UPROPERTY(BlueprintReadWrite, BlueprintReadWrite, Category = "UI")
+	UButton* SkipButton;
+
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UEnergyImage> EnergyImageBP;
 
@@ -67,5 +70,7 @@ private:
 	void EnableEnergyImages(int value);
 	UFUNCTION()
 	void UpdateAbilityPanel(int current, int value);
+	UFUNCTION()
+	void SkipTurn();
 
 };
