@@ -37,7 +37,7 @@ public:
 	void Deactivate();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void Highlight();
+	bool Highlight();
 };
 
 

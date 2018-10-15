@@ -67,10 +67,11 @@ void AEnemyCharacter::Deactivate_Implementation()
 
 }
 
-void AEnemyCharacter::Highlight_Implementation()
+bool AEnemyCharacter::Highlight_Implementation()
 {
 	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;
+	return true;
 }
 
 

@@ -76,8 +76,9 @@ void ANeonCharacter::Deactivate_Implementation()
 
 }
 
-void ANeonCharacter::Highlight_Implementation()
+bool ANeonCharacter::Highlight_Implementation()
 {
 	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;
+	return true;
 }

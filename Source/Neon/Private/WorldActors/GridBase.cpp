@@ -96,11 +96,9 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
-		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		if (PC) {
-			PC->CloseWidget();
+		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
 			if (actionName.Equals(TEXT("Top")))
@@ -146,10 +144,11 @@ void AGridBase::MoveDown()
 	state = Down;
 }
 
-void AGridBase::Highlight_Implementation()
+bool AGridBase::Highlight_Implementation()
 {
 	PlaneComp->SetVisibility(true);
 	isInRange = true;
+	return true;
 }
 
 void AGridBase::Move(float value)

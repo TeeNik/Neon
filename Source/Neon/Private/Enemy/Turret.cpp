@@ -43,7 +43,8 @@ void ATurret::Deactivate_Implementation()
 
 }
 
-void ATurret::Highlight_Implementation()
+bool ATurret::Highlight_Implementation()
 {
 	isInRange = true;
+	return true;
 }
