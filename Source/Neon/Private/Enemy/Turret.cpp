@@ -43,7 +43,7 @@ void ATurret::Deactivate_Implementation()
 
 }
 
-bool ATurret::Highlight_Implementation()
+bool ATurret::Highlight_Implementation(FString& AbilityName)
 {
 	isInRange = true;
 	return true;

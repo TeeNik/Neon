@@ -67,7 +67,7 @@ void AEnemyCharacter::Deactivate_Implementation()
 
 }
 
-bool AEnemyCharacter::Highlight_Implementation()
+bool AEnemyCharacter::Highlight_Implementation(FString& AbilityName)
 {
 	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;

@@ -37,7 +37,7 @@ public:
 	void Deactivate();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	bool Highlight();
+	bool Highlight(FString& AbilityName);
 };
 
 

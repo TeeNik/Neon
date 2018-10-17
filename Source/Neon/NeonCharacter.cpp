@@ -76,7 +76,7 @@ void ANeonCharacter::Deactivate_Implementation()
 
 }
 
-bool ANeonCharacter::Highlight_Implementation()
+bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
 {
 	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;

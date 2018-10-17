@@ -79,8 +79,8 @@ public:
 	virtual void Deactivate_Implementation() override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	bool Highlight();
-	virtual bool Highlight_Implementation() override;
+	bool Highlight(FString& AbilityName);
+	virtual bool Highlight_Implementation(FString& AbilityName) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();

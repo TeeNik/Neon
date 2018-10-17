@@ -40,7 +40,7 @@ void UAbilityComponent::ShowAbilityRange(FString& name)
 		{
 			auto actor = It->Actor;
 			if (actor->ActorHasTag(ActiveAction->ObjectTag) || actor->ActorHasTag("GridBase")) {
-				if (IAction::Execute_Highlight(It->Actor.Get()))
+				if (IAction::Execute_Highlight(It->Actor.Get(), ActiveAction->Name))
 				{
 					HighlighedObjects.Add(*It);
 				}

@@ -144,7 +144,7 @@ void AGridBase::MoveDown()
 	state = Down;
 }
 
-bool AGridBase::Highlight_Implementation()
+bool AGridBase::Highlight_Implementation(FString& AbilityName)
 {
 	PlaneComp->SetVisibility(true);
 	isInRange = true;
