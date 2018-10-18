@@ -59,5 +59,8 @@ private:
 	class UMotionComponent* MotionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
+
+	UFUNCTION()
+	void OnSpendEnergy(int current, int value);
 };
 

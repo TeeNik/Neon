@@ -41,6 +41,7 @@ void ANeonCharacter::BeginPlay()
 	PC->ActionWidget->InitButtons(AbilityComp->Abilities);
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
 	EnergyComp->Initiative = 10;
+	EnergyComp->OnSpendEnergy.AddUFunction(this, "OnSpendEnergy");
 }
 
 void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -81,4 +82,12 @@ bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
 	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
+}
+
+void ANeonCharacter::OnSpendEnergy(int current, int value)
+{
+	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
+	if (PC) {
+		PC->CloseWidget();
+	}
 }
