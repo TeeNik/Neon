@@ -8,9 +8,9 @@
 #include "Components/WeaponComponent.h"
 #include "LocationManager.generated.h"
 
+DECLARE_MULTICAST_DELEGATE(OnSceneLoadedDelegate)
 
 USTRUCT()
-
 struct FGridBaseArray
 {
 	GENERATED_BODY()
@@ -33,6 +33,10 @@ public:
 	TSubclassOf<AGridBase> GridBaseClass;
 
 	Direction GetCoverInfo(const AGridBase* gridBase);
+	OnSceneLoadedDelegate OnSceneLoaded;
+
+	UFUNCTION()
+	void SceneLoaded();
 
 protected:
 	virtual void BeginPlay() override;

@@ -23,6 +23,10 @@ void ULocationManager::BeginPlay()
 			GridArray[i].Array.Add(gridBase);
 		}
 	}
+
+	FTimerHandle timer;
+	GetWorld()->GetTimerManager().SetTimer(timer, this, &ULocationManager::SceneLoaded, 1, false);
+	
 }
 
 bool ULocationManager::IsTop(int i, int j)
@@ -47,5 +51,10 @@ Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
 	if (i + 1 < GridArray.Num() && IsTop(i + 1, j)) { dir.Down = true; GLog->Log("D"); }
 
 	return dir;
+}
+
+void ULocationManager::SceneLoaded()
+{
+	OnSceneLoaded.Broadcast();
 }
 

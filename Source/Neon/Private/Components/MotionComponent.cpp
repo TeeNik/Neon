@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "AIController.h"
 #include "AI/Navigation/NavigationSystem.h"
+#include "NeonGameMode.h"
 
 UMotionComponent::UMotionComponent()
 {
@@ -14,6 +15,19 @@ UMotionComponent::UMotionComponent()
 void UMotionComponent::BeginPlay()
 {
 	Super::BeginPlay();
+
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	ULocationManager* LocationManager = GM->GetLocationManager();
+	LocationManager->OnSceneLoaded.AddUFunction(this, "SetupInitialPosition");
+}
+
+void UMotionComponent::SetupInitialPosition()
+{
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	ULocationManager* LocationManager = GM->GetLocationManager();
+	FVector gridLocation = LocationManager->GridArray[Row].Array[Column]->GetActorLocation();
+	gridLocation.Z += 70;
+	GetOwner()->SetActorLocation(gridLocation);
 }
 
 void UMotionComponent::MoveToGrid(AGridBase* gridBase)
