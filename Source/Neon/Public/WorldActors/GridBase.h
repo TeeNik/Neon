@@ -26,8 +26,12 @@ class NEON_API AGridBase : public AActor, public IAction
 public:	
 	AGridBase();
 
+	const FString TopAbility = TEXT("Top");
+	const FString DownAbility = TEXT("Down");
+	const FString MoveAbility = TEXT("MoveTo");
+
 	void Move(float value);
-	GridBaseState state;
+	GridBaseState State;
 
 protected:
 	virtual void BeginPlay() override;
@@ -59,8 +63,6 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void SetWidgetSettings(UActionWidget* widget);
 	virtual void SetWidgetSettings_Implementation(UActionWidget* widget) override;*/
-
-	void SetWidgetSettings(UActionWidget* widget);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);

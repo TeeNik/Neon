@@ -28,7 +28,7 @@ AGridBase::AGridBase()
 
 	GridLocationComp = CreateDefaultSubobject<UGridLocationComponent>(TEXT("GridLocationComp"));
 
-	state = Down;
+	State = Down;
 }
 
 // Called when the game starts or when spawned
@@ -39,42 +39,6 @@ void AGridBase::BeginPlay()
 	BoxComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
 	BoxComp->OnEndCursorOver.AddDynamic(this, &AGridBase::OnEndCursorOver);
 	BoxComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
-}
-
-
-void AGridBase::SetWidgetSettings(UActionWidget* widget) {
-	/*this->BoxComp->SetRenderCustomDepth(true);
-
-	widget->ClearButtons();
-	widget->SetVisibility(ESlateVisibility::Visible);
-
-	UDataTable* actionTable = UResourceManagerLibrary::GetData()->ActionDataTable;
-	FActionTableData* topData = actionTable->FindRow<FActionTableData>(TEXT("Top"), TEXT(""));
-	FActionTableData* middleData = actionTable->FindRow<FActionTableData>(TEXT("Middle"), TEXT(""));
-	FActionTableData* downData = actionTable->FindRow<FActionTableData>(TEXT("Down"), TEXT(""));
-
-	auto buttons = widget->ButtonArray;
-	if (state == Top) {
-		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
-		buttons[Upper]->SetVisibility(ESlateVisibility::Visible);
-		widget->SetButtonImage(Upper, downData->Icon);;
-	}
-	else if(state == Middle){
-		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
-		buttons[Right]->OnClicked.AddDynamic(this, &AGridBase::MoveDown);
-		buttons[Upper]->SetVisibility(ESlateVisibility::Visible);
-		buttons[Right]->SetVisibility(ESlateVisibility::Visible);
-		widget->SetButtonImage(Upper, topData->Icon);
-		widget->SetButtonImage(Right, downData->Icon);
-	}
-	else {
-		buttons[Upper]->OnClicked.AddDynamic(this, &AGridBase::MoveToTop);
-		buttons[Right]->OnClicked.AddDynamic(this, &AGridBase::MoveToMiddle);
-		buttons[Upper]->SetVisibility(ESlateVisibility::Visible);
-		buttons[Right]->SetVisibility(ESlateVisibility::Visible);
-		widget->SetButtonImage(Upper, topData->Icon);
-		widget->SetButtonImage(Right, middleData->Icon);
-	}*/
 }
 
 void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -101,12 +65,11 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
-			if (actionName.Equals(TEXT("Top")))
+			if (actionName == TopAbility)
 				MoveToTop();
-			else if (actionName.Equals(TEXT("Down")))
+			else if (actionName == DownAbility)
 				MoveDown();
-			else if (actionName.Equals(TEXT("MoveTo"))) {
-				//TODO
+			else if (actionName == MoveAbility) {
 				GridLocationComp->SetStatus(Player);
 				UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(EC);
 				motion->MoveToGrid(this);
@@ -128,24 +91,27 @@ void AGridBase::Deactivate_Implementation() {
 
 void AGridBase::MoveToMiddle()
 {
-	Move(state == Down ? Middle : -Middle);
-	state = Middle;	
+	Move(State == Down ? Middle : -Middle);
+	State = Middle;	
 }
 
 void AGridBase::MoveToTop()
 {
-	Move(state == Down ? Top : Middle);
-	state = Top;
+	Move(State == Down ? Top : Middle);
+	State = Top;
 }
 
 void AGridBase::MoveDown()
 {
-	Move(state == Top ? -Top : -Middle);
-	state = Down;
+	Move(State == Top ? -Top : -Middle);
+	State = Down;
 }
 
-bool AGridBase::Highlight_Implementation(FString& AbilityName)
+bool AGridBase::Highlight_Implementation(FString& abilityName)
 {
+	if (abilityName == TopAbility && State == Top || abilityName == DownAbility && State == Down)
+		return false;
+	
 	PlaneComp->SetVisibility(true);
 	isInRange = true;
 	return true;

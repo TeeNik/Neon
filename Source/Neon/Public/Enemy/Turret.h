@@ -11,6 +11,12 @@
 #include "Components/EnergyComponent.h"
 #include "Turret.generated.h"
 
+enum TurretStatus {
+	DisableTurret,
+	PlayerTurret,
+	EnemyTurret
+};
+
 UCLASS()
 class NEON_API ATurret : public APawn, public IAction
 {
@@ -18,6 +24,8 @@ class NEON_API ATurret : public APawn, public IAction
 
 public:
 	ATurret();
+
+	const FString ActivateAbility = "ActivateTurret";
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
@@ -55,5 +63,5 @@ protected:
 	class UEnergyComponent* EnergyComp;
 
 public:	
-	
+	TurretStatus Status = DisableTurret;
 };

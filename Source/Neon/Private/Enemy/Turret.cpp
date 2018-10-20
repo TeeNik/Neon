@@ -32,7 +32,6 @@ void ATurret::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompone
 
 void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
-	GLog->Log("PlayerClick");
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange)
 	{
 	}
@@ -45,6 +44,9 @@ void ATurret::Deactivate_Implementation()
 
 bool ATurret::Highlight_Implementation(FString& AbilityName)
 {
+	if (AbilityName == ActivateAbility && Status != Disable)
+		return false;
+
 	isInRange = true;
 	return true;
 }
