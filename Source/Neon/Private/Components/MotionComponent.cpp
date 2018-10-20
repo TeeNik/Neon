@@ -25,9 +25,11 @@ void UMotionComponent::SetupInitialPosition()
 {
 	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	ULocationManager* LocationManager = GM->GetLocationManager();
-	FVector gridLocation = LocationManager->GridArray[Row].Array[Column]->GetActorLocation();
+	AGridBase* gridBase = LocationManager->GridArray[Row].Array[Column];
+	FVector gridLocation = gridBase->GetActorLocation();
 	gridLocation.Z += 70;
 	GetOwner()->SetActorLocation(gridLocation);
+	Position = gridBase;
 }
 
 void UMotionComponent::MoveToGrid(AGridBase* gridBase)
