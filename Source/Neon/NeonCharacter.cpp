@@ -42,6 +42,7 @@ void ANeonCharacter::BeginPlay()
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
 	EnergyComp->Initiative = 10;
 	EnergyComp->OnSpendEnergy.AddUFunction(this, "OnSpendEnergy");
+	Crouch();
 }
 
 void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)

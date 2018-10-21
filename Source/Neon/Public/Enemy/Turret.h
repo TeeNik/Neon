@@ -11,7 +11,7 @@
 #include "Components/EnergyComponent.h"
 #include "Turret.generated.h"
 
-enum TurretStatus {
+enum class TurretStatus {
 	DisableTurret,
 	PlayerTurret,
 	EnemyTurret
@@ -25,7 +25,9 @@ class NEON_API ATurret : public APawn, public IAction
 public:
 	ATurret();
 
-	const FString ActivateAbility = "ActivateTurret";
+	const FString ActivateAbility = TEXT("ActivateTurret");
+	
+	TurretStatus Status;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
@@ -52,7 +54,6 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* MeshComp;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UHealthComponent* HealthComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
@@ -62,6 +63,16 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
 
-public:	
-	TurretStatus Status = DisableTurret;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* DisableMaterial;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* PlayerMaterial;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* EnemyMaterial;
+
+private:
+	void ActivateByPlayer();
+	void ActivateByEnemy();
+	
 };
