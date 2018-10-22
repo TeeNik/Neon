@@ -72,5 +72,24 @@ FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
 	return nullptr;
 }
 
+void UAbilityComponent::InitAbilities()
+{
 
+}
+
+void UAbilityComponent::GetActorsInRange(FString& name)
+{
+	ActiveAction = FindAbilityByName(name);
+	TArray<FHitResult> HitResults;
+	auto parent = GetOwner();
+	FVector StartLocation = parent->GetActorLocation();
+	FVector EndLocation = parent->GetActorLocation();
+	EndLocation.Z += 0;
+
+	ECollisionChannel ECC = ECollisionChannel::ECC_WorldStatic;
+	FCollisionShape CollisionShape;
+	CollisionShape.ShapeType = ECollisionShape::Sphere;
+	CollisionShape.SetSphere(ActiveAction->Range);
+	GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
+}
 

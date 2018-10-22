@@ -74,5 +74,8 @@ protected:
 private:
 	void ActivateByPlayer();
 	void ActivateByEnemy();
+	UFUNCTION()
+	void ExecuteTurn();
+	void Shoot();
 	
 };

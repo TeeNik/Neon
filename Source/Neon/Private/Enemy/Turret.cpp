@@ -87,7 +87,9 @@ void ATurret::ActivateByEnemy()
 
 void ATurret::ExecuteTurn()
 {
-	Shoot();
+	if (Status != TurretStatus::DisableTurret) {
+		Shoot();
+	}
 }
 
 void ATurret::Shoot()
