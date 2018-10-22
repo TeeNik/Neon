@@ -23,9 +23,7 @@ void ATurret::BeginPlay()
 	Super::BeginPlay();
 	
 	MeshComp->OnClicked.AddDynamic(this, &ATurret::OnClicked);
-	EnergyComp->OnStartTurn.AddLambda([&]() {
-		GLog->Log("Energy Turn");
-	});
+	EnergyComp->OnStartTurn.AddUFunction(this, "ExecuteTurn");
 }
 
 void ATurret::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -85,4 +83,14 @@ void ATurret::ActivateByEnemy()
 	Status = TurretStatus::EnemyTurret;
 	MeshComp->SetMaterial(1, EnemyMaterial);
 	MeshComp->SetMaterial(4, EnemyMaterial);
+}
+
+void ATurret::ExecuteTurn()
+{
+	Shoot();
+}
+
+void ATurret::Shoot()
+{
+	GLog->Log("Shoot");
 }
