@@ -6,8 +6,6 @@
 #include "System/UtilsLibrary.h"
 #include "System/TurnManager.h"
 
-
-
 UEnergyComponent::UEnergyComponent()
 {
 }

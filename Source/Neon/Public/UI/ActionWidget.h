@@ -12,7 +12,7 @@
 #include "ActionWidget.generated.h"
 
 
-enum ButtonDirection {
+enum class ButtonDirection {
 	Left,
 	Upper,
 	Right,

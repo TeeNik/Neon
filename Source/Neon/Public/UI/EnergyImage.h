@@ -6,7 +6,7 @@
 #include "Components/Image.h"
 #include "EnergyImage.generated.h"
 
-enum EnergyImageStatus
+enum class EnergyImageStatus
 {
 	Active, 
 	Disable,
@@ -20,9 +20,9 @@ class NEON_API UEnergyImage : public UImage
 	
 public:
 
-	FORCEINLINE void SetActive() { SetColorAndOpacity(ActiveColor); Status = Active; }
-	FORCEINLINE void SetDisable() {	SetColorAndOpacity(DisableColor); Status = Disable;	}
-	FORCEINLINE void SetHighlighted() {	SetColorAndOpacity(HighlightedColor); Status = Highlighted; }
+	FORCEINLINE void SetActive() { SetColorAndOpacity(ActiveColor); Status =  EnergyImageStatus::Active; }
+	FORCEINLINE void SetDisable() {	SetColorAndOpacity(DisableColor); Status = EnergyImageStatus::Disable;	}
+	FORCEINLINE void SetHighlighted() {	SetColorAndOpacity(HighlightedColor); Status = EnergyImageStatus::Highlighted; }
 	FORCEINLINE EnergyImageStatus& GetStatus() { return Status; }
 
 private:

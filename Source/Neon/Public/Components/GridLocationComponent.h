@@ -6,7 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "GridLocationComponent.generated.h"
 
-enum GridLocationStatus
+enum class GridLocationStatus
 {
 	Empty,
 	Player,

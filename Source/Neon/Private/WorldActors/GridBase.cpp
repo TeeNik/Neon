@@ -70,7 +70,8 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			else if (actionName == DownAbility)
 				MoveDown();
 			else if (actionName == MoveAbility) {
-				GridLocationComp->SetStatus(Player);
+				//TODO Status
+				GridLocationComp->SetStatus(GridLocationStatus::Player);
 				UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(EC);
 				motion->MoveToGrid(this);
 			}

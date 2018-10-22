@@ -97,7 +97,7 @@ void UActionWidget::DisableEnergyImages(int current, int value)
 	int count = 0;
 	for (int i = EnergyImages.Num()-1; i >= 0; --i)
 	{
-		if (EnergyImages[i]->GetStatus() == Active)
+		if (EnergyImages[i]->GetStatus() == EnergyImageStatus::Active)
 		{
 			EnergyImages[i]->SetDisable();
 			++count;
@@ -111,7 +111,7 @@ void UActionWidget::EnableEnergyImages(int value)
 	int count = 0;
 	for (int i = 0; i < EnergyImages.Num(); ++i)
 	{
-		if (EnergyImages[i]->GetStatus() == Disable)
+		if (EnergyImages[i]->GetStatus() == EnergyImageStatus::Disable)
 		{
 			EnergyImages[i]->SetActive();
 			++count;

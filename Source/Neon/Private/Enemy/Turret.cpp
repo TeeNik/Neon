@@ -22,6 +22,10 @@ void ATurret::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	MeshComp->OnClicked.AddDynamic(this, &ATurret::OnClicked);
+	EnergyComp->OnStartTurn.AddLambda([&]() {
+		GLog->Log("Energy Turn");
+	});
 }
 
 void ATurret::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
@@ -45,8 +49,10 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 			FString actionName = actionComp->ActiveAction->Name;
 			if (actionName == ActivateAbility)
 			{
-
+				ActivateByPlayer();
 			}
+			GLog->Log("Spend");
+			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}
 	}
 }
@@ -61,7 +67,6 @@ bool ATurret::Highlight_Implementation(FString& AbilityName)
 {
 	if (AbilityName == ActivateAbility && Status != TurretStatus::DisableTurret)
 		return false;
-	GLog->Log("Test");
 
 	MeshComp->SetRenderCustomDepth(true);
 	isInRange = true;
@@ -70,12 +75,14 @@ bool ATurret::Highlight_Implementation(FString& AbilityName)
 
 void ATurret::ActivateByPlayer()
 {
+	Status = TurretStatus::PlayerTurret;
 	MeshComp->SetMaterial(1, PlayerMaterial);
 	MeshComp->SetMaterial(4, PlayerMaterial);
 }
 
 void ATurret::ActivateByEnemy()
 {
+	Status = TurretStatus::EnemyTurret;
 	MeshComp->SetMaterial(1, EnemyMaterial);
 	MeshComp->SetMaterial(4, EnemyMaterial);
 }
