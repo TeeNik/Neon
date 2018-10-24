@@ -2,6 +2,7 @@
 
 #include "Turret.h"
 #include "Components/AbilityComponent.h"
+#include "Components/MotionComponent.h"
 #include "System/UtilsLibrary.h"
 
 
@@ -14,6 +15,7 @@ ATurret::ATurret()
 	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+	AbilityComp = CreateDefaultSubobject<UAbilityComponent>(TEXT("AbilityComponent"));
 
 	Status = TurretStatus::DisableTurret;
 }
@@ -49,7 +51,6 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 			{
 				ActivateByPlayer();
 			}
-			GLog->Log("Spend");
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}
 	}
@@ -90,11 +91,21 @@ void ATurret::ExecuteTurn()
 	if (Status != TurretStatus::DisableTurret) {
 		Shoot();
 	}
+	EnergyComp->EndTurn();
 }
 
 void ATurret::Shoot()
 {
 	FString name = TEXT("Shoot");
 	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(name);
-
+	FName targetTag = Status == TurretStatus::PlayerTurret ? TEXT("Enemy") : TEXT("Player");
+	for (auto It = actors.CreateIterator(); It; It++)
+	{
+		auto actor = It->Actor;
+		if (actor->ActorHasTag(targetTag)) {
+			UMotionComponent* motionComp = Cast<UMotionComponent>(actor->GetComponentByClass(UMotionComponent::StaticClass()));
+			WeaponComp->Shoot(motionComp);
+			break;
+		}
+	}
 }

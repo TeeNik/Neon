@@ -14,15 +14,14 @@ void UWeaponComponent::BeginPlay()
 	Super::BeginPlay();
 	if(WeaponClass)
 	{
-		ANeonCharacter* owner = Cast<ANeonCharacter>(GetOwner());
-		if(owner)
+		EquipedWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponClass, GetOwner()->GetActorLocation(), GetOwner()->GetActorRotation());
+		FAttachmentTransformRules attachRules(EAttachmentRule::SnapToTarget, true);
+		ACharacter* character = Cast<ACharacter>(GetOwner());
+		if (character)
 		{
-			EquipedWeapon = GetWorld()->SpawnActor<AWeapon>(WeaponClass, owner->GetActorLocation(), owner->GetActorRotation());
-			FAttachmentTransformRules attachRules(EAttachmentRule::SnapToTarget, true);
-			EquipedWeapon->AttachToComponent(owner->GetMesh(), attachRules, "WeaponSocket");
-		}	
+			EquipedWeapon->AttachToComponent(character->GetMesh(), attachRules, "WeaponSocket");
+		}
 	}
-
 }
 
 Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
