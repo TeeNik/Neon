@@ -62,7 +62,8 @@ protected:
 	class UMotionComponent* MotionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UAbilityComponent* AbilityComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UMaterial* DisableMaterial;

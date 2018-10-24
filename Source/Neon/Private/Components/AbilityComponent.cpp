@@ -11,39 +11,22 @@ UAbilityComponent::UAbilityComponent()
 
 }
 
-
 void UAbilityComponent::BeginPlay()
 {
 	Super::BeginPlay();
-	TArray<FActionTableData> array;
-	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
-	dataTable->GetAllRows<FActionTableData>(TEXT(""), Abilities);
+	InitAbilities();
 }
 
 void UAbilityComponent::ShowAbilityRange(FString& name)
 {
-	ActiveAction = FindAbilityByName(name);
-	TArray<FHitResult> HitResults;
-	auto parent = GetOwner();
-	FVector StartLocation =  parent->GetActorLocation();
-	FVector EndLocation = parent->GetActorLocation();
-	EndLocation.Z += 0;
-
-	ECollisionChannel ECC = ECollisionChannel::ECC_WorldStatic;
-	FCollisionShape CollisionShape;
-	CollisionShape.ShapeType = ECollisionShape::Sphere;
-	CollisionShape.SetSphere(ActiveAction->Range);
-	bool bHitSomething = GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
-	if (bHitSomething)
+	TArray<FHitResult> HitResults = GetActorsInRange(name);
+	for (auto It = HitResults.CreateIterator(); It; It++)
 	{
-		for (auto It = HitResults.CreateIterator(); It; It++)
-		{
-			auto actor = It->Actor;
-			if (actor->ActorHasTag(ActiveAction->ObjectTag) || actor->ActorHasTag("GridBase")) {
-				if (IAction::Execute_Highlight(It->Actor.Get(), ActiveAction->Name))
-				{
-					HighlighedObjects.Add(*It);
-				}
+		auto actor = It->Actor;
+		if (actor->ActorHasTag(ActiveAction->ObjectTag) || actor->ActorHasTag("GridBase")) {
+			if (IAction::Execute_Highlight(It->Actor.Get(), ActiveAction->Name))
+			{
+				HighlighedObjects.Add(*It);
 			}
 		}
 	}
@@ -74,10 +57,11 @@ FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
 
 void UAbilityComponent::InitAbilities()
 {
-
+	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), Abilities);
 }
 
-void UAbilityComponent::GetActorsInRange(FString& name)
+TArray<FHitResult> UAbilityComponent::GetActorsInRange(FString& name)
 {
 	ActiveAction = FindAbilityByName(name);
 	TArray<FHitResult> HitResults;
@@ -91,5 +75,6 @@ void UAbilityComponent::GetActorsInRange(FString& name)
 	CollisionShape.ShapeType = ECollisionShape::Sphere;
 	CollisionShape.SetSphere(ActiveAction->Range);
 	GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
+	return HitResults;
 }
 

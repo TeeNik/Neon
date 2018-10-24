@@ -94,5 +94,7 @@ void ATurret::ExecuteTurn()
 
 void ATurret::Shoot()
 {
-	GLog->Log("Shoot");
+	FString name = TEXT("Shoot");
+	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(name);
+
 }

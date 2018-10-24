@@ -22,10 +22,10 @@ public:
 	void HideAbilityRange();
 
 	virtual void BeginPlay() override;
+	TArray<FHitResult> GetActorsInRange(FString& name);
 
 protected:
 	TArray<FHitResult> HighlighedObjects;
 	FActionTableData* FindAbilityByName(FString);
 	void InitAbilities();
-	void GetActorsInRange(FString& name);
 };

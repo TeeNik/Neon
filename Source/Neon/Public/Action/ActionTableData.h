@@ -28,3 +28,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	FName ObjectTag;
 };
+
+USTRUCT(BlueprintType)
+struct NEON_API FActionOwnerTableData : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
+	FString ActionName;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
+	FString OwnerTags;
+
+};
