@@ -36,9 +36,9 @@ void AGridBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	BoxComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
-	BoxComp->OnEndCursorOver.AddDynamic(this, &AGridBase::OnEndCursorOver);
-	BoxComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
+	PlaneComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
+	PlaneComp->OnEndCursorOver.AddDynamic(this, &AGridBase::OnEndCursorOver);
+	PlaneComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
 }
 
 void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
