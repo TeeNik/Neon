@@ -87,8 +87,5 @@ bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
 
 void ANeonCharacter::OnSpendEnergy(int current, int value)
 {
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	if (PC) {
-		PC->CloseWidget();
-	}
+	AbilityComp->HideAbilityRange();
 }

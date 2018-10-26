@@ -24,10 +24,10 @@ void UEnergyComponent::BeginPlay()
 void UEnergyComponent::SpendEnergy(int32& value)
 {
 	CurrentEnergy -= value;
+	OnSpendEnergy.Broadcast(CurrentEnergy, value);
+
 	if (CurrentEnergy == 0)
 		EndTurn();
-	else
-		OnSpendEnergy.Broadcast(CurrentEnergy, value);
 }
 
 void UEnergyComponent::StartTurn()
