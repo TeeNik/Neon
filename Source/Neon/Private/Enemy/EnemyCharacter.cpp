@@ -26,6 +26,8 @@ void AEnemyCharacter::BeginPlay()
 		EnergyComp->EndTurn();
 	});
 	EnergyComp->Initiative = 3;
+
+	UAbilityComponent::OnShowAbilityRange.AddUFunction(this, "HideCircle");
 }
 
 void AEnemyCharacter::InitialMovement()
@@ -54,7 +56,8 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 		if(PC)
 		{
 			PC->NeonCharacter->GetWeaponComponent()->Shoot(MotionComp);
-			PC->NeonCharacter->GetEnergyComponent()
+			auto* ability = PC->NeonCharacter->GetAbilityConponent()->ActiveAction;
+			PC->NeonCharacter->GetEnergyComponent()->SpendEnergy(ability->Cost);
 		}
 	}
 }
@@ -71,5 +74,7 @@ bool AEnemyCharacter::Highlight_Implementation(FString& AbilityName)
 	return true;
 }
 
-
-
+void AEnemyCharacter::HideCircle()
+{
+	SelectionCircle->SetVisibility(false);
+}

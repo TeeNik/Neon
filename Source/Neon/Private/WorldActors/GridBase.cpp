@@ -45,7 +45,7 @@ void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedCom
 {
 	if(isInRange)
 	{
-		PlaneComp->SetMaterial(0, ActiveMaterial);
+		//PlaneComp->SetMaterial(0, ActiveMaterial);
 	}
 }
 
@@ -53,7 +53,7 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 {
 	if(isInRange)
 	{
-		PlaneComp->SetMaterial(0, DisableMaterial);
+		//PlaneComp->SetMaterial(0, DisableMaterial);
 	}
 }
 
@@ -85,8 +85,9 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 }
 
 void AGridBase::Deactivate_Implementation() {
-	PlaneComp->SetVisibility(false);
-	PlaneComp->SetMaterial(0, DisableMaterial);
+	//PlaneComp->SetVisibility(false);
+	//PlaneComp->SetMaterial(0, DisableMaterial);
+	PlaneComp->SetRenderCustomDepth(false);
 	isInRange = false;
 }
 
@@ -113,7 +114,8 @@ bool AGridBase::Highlight_Implementation(FString& abilityName)
 	if (abilityName == TopAbility && State == Top || abilityName == DownAbility && State == Down)
 		return false;
 	
-	PlaneComp->SetVisibility(true);
+	//PlaneComp->SetVisibility(true);
+	PlaneComp->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
 }

@@ -52,6 +52,17 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UStaticMeshComponent* SelectionCircle;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* DisableMaterial;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* ActiveMaterial;
+
 	UFUNCTION()
 	void InitialMovement();
+
+private:
+	UFUNCTION()
+	void HideCircle();
 };
