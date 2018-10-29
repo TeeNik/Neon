@@ -26,7 +26,6 @@ public:
 
 	void BeginPlay() override;
 
-
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
@@ -46,6 +45,14 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
 	virtual bool Highlight_Implementation(FString& AbilityName) override;
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UStaticMeshComponent* SelectionCircle;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* DisableMaterial;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterial* ActiveMaterial;
 
 private:
 

@@ -28,6 +28,9 @@ ANeonCharacter::ANeonCharacter()
 	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+
+	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
+	SelectionCircle->SetupAttachment(RootComponent);
 }
 
 void ANeonCharacter::BeginPlay()
@@ -42,7 +45,6 @@ void ANeonCharacter::BeginPlay()
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
 	EnergyComp->Initiative = 10;
 	EnergyComp->OnSpendEnergy.AddUFunction(this, "OnSpendEnergy");
-	Crouch();
 }
 
 void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
