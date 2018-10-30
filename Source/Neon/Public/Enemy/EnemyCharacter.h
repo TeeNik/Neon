@@ -9,6 +9,7 @@
 #include "Components/HealthComponent.h"
 #include "Components/EnergyComponent.h"
 #include "MotionComponent.h"
+#include "Runtime/Engine/Classes/Materials/MaterialInstanceDynamic.h"
 #include "EnemyCharacter.generated.h"
 
 UCLASS()
@@ -55,10 +56,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UStaticMeshComponent* SelectionCircle;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UMaterial* DisableMaterial;
+	UMaterialInstance* DefaultMaterial;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UMaterial* ActiveMaterial;
-
+	UMaterialInstance* HighlightMaterial;
+	
 	UFUNCTION()
 	void InitialMovement();
 

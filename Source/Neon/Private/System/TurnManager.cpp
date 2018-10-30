@@ -23,7 +23,7 @@ void UTurnManager::EndTurn()
 void UTurnManager::AddToQueue(UEnergyComponent* g)
 {
 	Queue.Add(g);
-	Queue.Sort([](const UEnergyComponent& one, const UEnergyComponent& another) { return one.Initiative > another.Initiative; });
+	Queue.Sort([](const UEnergyComponent& one, const UEnergyComponent& another) { return one.Initiative < another.Initiative; });
 	for (UEnergyComponent* en : Queue)
 	{
 		GLog->Log(en->GetOwner()->GetName());

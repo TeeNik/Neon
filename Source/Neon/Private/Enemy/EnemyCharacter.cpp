@@ -11,6 +11,8 @@ AEnemyCharacter::AEnemyCharacter()
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
+	SelectionCircle->SetupAttachment(RootComponent);
 }
 
 void AEnemyCharacter::BeginPlay()
@@ -37,12 +39,16 @@ void AEnemyCharacter::InitialMovement()
 
 void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-
+	if (isInRange) {
+		SelectionCircle->SetMaterial(0, HighlightMaterial);
+	}
 }
 
 void AEnemyCharacter::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-
+	if (isInRange) {
+		SelectionCircle->SetMaterial(0, DefaultMaterial);
+	}
 }
 
 void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
@@ -62,12 +68,12 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 
 void AEnemyCharacter::Deactivate_Implementation()
 {
-
+	isInRange = false;
+	SelectionCircle->SetMaterial(0, DefaultMaterial);
 }
 
 bool AEnemyCharacter::Highlight_Implementation(FString& AbilityName)
 {
-	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
 }
