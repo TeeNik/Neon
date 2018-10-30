@@ -24,31 +24,12 @@ void ANeonPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
 
-	InputComponent->BindAction("SetDestination", IE_Pressed, this, &ANeonPlayerController::OnSetDestinationPressed);
 	InputComponent->BindAction("RightMouseButton", IE_Released, this, &ANeonPlayerController::CloseWidget);
 }
 
 void ANeonPlayerController::BeginPlay()
 {
 
-}
-
-void ANeonPlayerController::OnSetDestinationPressed()
-{
-	FHitResult Hit;
-	GetHitResultUnderCursor(ECC_Visibility, false, Hit);
-
-	if (Hit.bBlockingHit)
-	{
-		float const Distance = FVector::Dist(Hit.ImpactPoint, NeonCharacter->GetActorLocation());
-		UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
-		if (NavSys && (Distance > 120.0f))
-		{
-			//NavSys->SimpleMoveToLocation(NeonCharacter->GetController(), Hit.ImpactPoint);
-		}
-	}
-	
-	
 }
 
 void ANeonPlayerController::CreateFirstWidget()

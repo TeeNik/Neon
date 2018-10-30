@@ -30,8 +30,6 @@ protected:
 	virtual void SetupInputComponent() override;
 	virtual void BeginPlay() override;
 
-	void OnSetDestinationPressed();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Widgets")
 	TSubclassOf<class UUserWidget> ActionWidgetTemplate;
 

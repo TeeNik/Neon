@@ -26,8 +26,6 @@ void AEnemyCharacter::BeginPlay()
 		EnergyComp->EndTurn();
 	});
 	EnergyComp->Initiative = 3;
-
-	UAbilityComponent::OnShowAbilityRange.AddUFunction(this, "HideCircle");
 }
 
 void AEnemyCharacter::InitialMovement()

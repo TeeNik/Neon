@@ -7,7 +7,6 @@
 #include "UI/ActionWidget.h"
 #include "AbilityComponent.generated.h"
 
-DECLARE_MULTICAST_DELEGATE(OnShowAbilityRangeDelegate)
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAbilityComponent : public UActorComponent
@@ -25,8 +24,6 @@ public:
 
 	virtual void BeginPlay() override;
 	TArray<FHitResult> GetActorsInRange(FString& name);
-
-	static OnShowAbilityRangeDelegate OnShowAbilityRange;
 
 protected:
 	TArray<FHitResult> HighlighedObjects;
