@@ -9,12 +9,16 @@
 #include "Components/WeaponComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/EnergyComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "NeonCharacter.generated.h"
 
 UCLASS(Blueprintable)
 class ANeonCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
+
+	const FString DamageBustAction = TEXT("DamageBuff");
+	const FString AccuranceBustAction = TEXT("AccuranceBuff");
 
 public:
 	ANeonCharacter();
@@ -50,9 +54,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UStaticMeshComponent* SelectionCircle;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UMaterial* DisableMaterial;
+	UMaterialInstance* DefaultMaterial;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UMaterial* ActiveMaterial;
+	UMaterialInstance* HighlightMaterial;
 
 private:
 

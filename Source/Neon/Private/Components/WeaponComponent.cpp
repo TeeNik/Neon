@@ -24,6 +24,13 @@ void UWeaponComponent::BeginPlay()
 	}
 }
 
+void UWeaponComponent::Init(OnEndTurnDelegate& onTurnEnd)
+{
+	onTurnEnd.AddUFunction(this, "OnTurnEnd");
+}
+
+
+
 Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 {
 	Direction dir;
@@ -76,16 +83,26 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	int8 accuracy = EquipedWeapon->GetAccuracy();
 	accuracy -= CalculateCover(shootDir, enemyCover);
 
-	int8 chance = FMath::RandRange(0, 100);
+	int8 chance = FMath::RandRange(0, 100) + AccuracyBuff;
 	GLog->Log(FString::FromInt(chance));
 	GLog->Log(FString::FromInt(accuracy));
 	if (chance <= accuracy) {
 		GLog->Log("Success");
-		health->TakeDamage(EquipedWeapon->GetDamage());
+		health->TakeDamage(EquipedWeapon->GetDamage()*DamageBuff);
 	}
 	else {
 		GLog->Log("Miss");
 	}
+}
+
+void UWeaponComponent::BustDamage(float factor)
+{
+	DamageBuff = factor;
+}
+
+void UWeaponComponent::BustAccuracy(int8 factor)
+{
+	AccuracyBuff = factor;
 }
 
 int8 UWeaponComponent::CalculateCover(Direction& shootDir, Direction& enemyDef)
@@ -113,6 +130,11 @@ int8 UWeaponComponent::CalculateCover(Direction& shootDir, Direction& enemyDef)
 	return def;
 }
 
+void UWeaponComponent::OnTurnEnd()
+{
+	DamageBuff = 0;
+	AccuracyBuff = 0;
+}
 
 
 

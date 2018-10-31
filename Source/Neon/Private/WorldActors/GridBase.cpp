@@ -65,11 +65,20 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
+			
+			//TODO
+			if (actionComp->ActiveAction->ObjectTag != "GridBase") return;
+
 			if (actionName == TopAbility)
+			{
 				MoveToTop();
+			}
 			else if (actionName == DownAbility)
+			{
 				MoveDown();
-			else if (actionName == MoveAbility) {
+			}
+			else if (actionName == MoveAbility) 
+			{
 				//TODO Status
 				GridLocationComp->SetStatus(GridLocationStatus::Player);
 				UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(EC);

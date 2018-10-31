@@ -9,7 +9,7 @@
 #include "Components/HealthComponent.h"
 #include "Components/EnergyComponent.h"
 #include "MotionComponent.h"
-#include "Runtime/Engine/Classes/Materials/MaterialInstanceDynamic.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "EnemyCharacter.generated.h"
 
 UCLASS()

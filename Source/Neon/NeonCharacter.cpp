@@ -45,33 +45,39 @@ void ANeonCharacter::BeginPlay()
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
 	EnergyComp->Initiative = 10;
 	EnergyComp->OnSpendEnergy.AddUFunction(this, "OnSpendEnergy");
+	WeaponComp->Init(EnergyComp->OnEndTurn);
+	UCapsuleComponent* capsule = GetCapsuleComponent();
+	capsule->OnBeginCursorOver.AddDynamic(this, &ANeonCharacter::OnBeginCursorOver);
+	capsule->OnEndCursorOver.AddDynamic(this, &ANeonCharacter::OnEndCursorOver);
+	capsule->OnClicked.AddDynamic(this, &ANeonCharacter::OnClicked);
 }
 
 void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-
+	if (isInRange) {
+		SelectionCircle->SetMaterial(0, HighlightMaterial);
+	}
 }
 
 void ANeonCharacter::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-
+	if (isInRange) {
+		SelectionCircle->SetMaterial(0, DefaultMaterial);
+	}
 }
 
 void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
-	GLog->Log("PlayerClick");
 	if (ButtonPressed.GetFName() == "LeftMouseButton" &&isInRange)
 	{
-		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
-		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		if (EC) {
-			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
-			FString actionName = actionComp->ActiveAction->Name;
-			if (actionName.Equals(TEXT("DamageBust"))) {
-				//WeaponComp->
-			}
+		FString name = AbilityComp->ActiveAction->Name;
+		if (name == DamageBustAction) {
+			WeaponComp->BustDamage(1.5f);
 		}
+		else if (name == AccuranceBustAction) {
+			WeaponComp->BustAccuracy(20);
+		}
+		EnergyComp->SpendEnergy(AbilityComp->ActiveAction->Cost);
 	}
 }
 
@@ -82,7 +88,6 @@ void ANeonCharacter::Deactivate_Implementation()
 
 bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
 {
-	GetMesh()->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
 }

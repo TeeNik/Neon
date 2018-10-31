@@ -31,7 +31,9 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category="Weapon")
 	bool IsShooting;
 
-	void FactorDamage(float factor);
+	void BustDamage(float factor);
+	void BustAccuracy(int8 factor);
+	void Init(OnEndTurnDelegate& onTurnEnd);
 
 protected:
 	virtual void BeginPlay() override;
@@ -43,6 +45,9 @@ protected:
 
 private:
 	Direction CheckDirection(AGridBase* self, AGridBase* target);
-
 	int8 CalculateCover(Direction& shootDir, Direction& enemyDef);
+	int8 AccuracyBuff;
+	float DamageBuff;
+	UFUNCTION()
+	void OnTurnEnd();
 };

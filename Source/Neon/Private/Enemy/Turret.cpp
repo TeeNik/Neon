@@ -9,7 +9,9 @@
 ATurret::ATurret()
 {
 	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
-	//RootComponent = MeshComp;
+	RootComponent = MeshComp;
+	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
+	SelectionCircle->SetupAttachment(RootComponent);
 
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
@@ -25,17 +27,23 @@ void ATurret::BeginPlay()
 	Super::BeginPlay();
 	
 	MeshComp->OnClicked.AddDynamic(this, &ATurret::OnClicked);
+	MeshComp->OnBeginCursorOver.AddDynamic(this, &ATurret::OnBeginCursorOver);
+	MeshComp->OnEndCursorOver.AddDynamic(this, &ATurret::OnEndCursorOver);
 	EnergyComp->OnStartTurn.AddUFunction(this, "ExecuteTurn");
 }
 
 void ATurret::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-
+	if (isInRange) {
+		SelectionCircle->SetMaterial(0, HighlightMaterial);
+	}
 }
 
 void ATurret::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
-
+	if (isInRange) {
+		SelectionCircle->SetMaterial(0, DefaultMaterial);
+	}
 }
 
 void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
@@ -53,6 +61,7 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 			}
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}
+		SelectionCircle->SetMaterial(0, DefaultMaterial);
 	}
 }
 
@@ -75,6 +84,7 @@ bool ATurret::Highlight_Implementation(FString& AbilityName)
 void ATurret::ActivateByPlayer()
 {
 	Status = TurretStatus::PlayerTurret;
+	DefaultMaterial = GreenCircle;
 	MeshComp->SetMaterial(1, PlayerMaterial);
 	MeshComp->SetMaterial(4, PlayerMaterial);
 }
@@ -82,6 +92,7 @@ void ATurret::ActivateByPlayer()
 void ATurret::ActivateByEnemy()
 {
 	Status = TurretStatus::EnemyTurret;
+	DefaultMaterial = RedCircle;
 	MeshComp->SetMaterial(1, EnemyMaterial);
 	MeshComp->SetMaterial(4, EnemyMaterial);
 }

@@ -9,6 +9,7 @@
 #include "Components/WeaponComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/EnergyComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "Turret.generated.h"
 
 enum class TurretStatus {
@@ -71,6 +72,16 @@ protected:
 	UMaterial* PlayerMaterial;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UMaterial* EnemyMaterial;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	UStaticMeshComponent* SelectionCircle;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterialInstance* DefaultMaterial;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterialInstance* HighlightMaterial;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterialInstance* GreenCircle;
+	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UMaterialInstance* RedCircle;
 
 private:
 	void ActivateByPlayer();
