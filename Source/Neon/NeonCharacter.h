@@ -18,7 +18,7 @@ class ANeonCharacter : public ACharacter, public IAction
 	GENERATED_BODY()
 
 	const FString DamageBustAction = TEXT("DamageBuff");
-	const FString AccuranceBustAction = TEXT("AccuranceBuff");
+	const FString AccuranceBustAction = TEXT("AccuracyBuff");
 
 public:
 	ANeonCharacter();

@@ -83,10 +83,10 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	int8 accuracy = EquipedWeapon->GetAccuracy();
 	accuracy -= CalculateCover(shootDir, enemyCover);
 
-	int8 chance = FMath::RandRange(0, 100) + AccuracyBuff;
+	int8 chance = FMath::RandRange(0, 100);
 	GLog->Log(FString::FromInt(chance));
 	GLog->Log(FString::FromInt(accuracy));
-	if (chance <= accuracy) {
+	if (chance <= accuracy + AccuracyBuff) {
 		GLog->Log("Success");
 		health->TakeDamage(EquipedWeapon->GetDamage()*DamageBuff);
 	}
