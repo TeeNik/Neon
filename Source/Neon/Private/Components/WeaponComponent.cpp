@@ -6,6 +6,8 @@
 
 UWeaponComponent::UWeaponComponent()
 {
+	AccuracyBuff = 0;
+	DamageBuff = 1;
 }
 
 
@@ -74,10 +76,9 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	Direction shootDir = CheckDirection(self->GetPosition(), enemy->GetPosition());
 	FVector direction = enemy->GetOwner()->GetActorLocation() - GetOwner()->GetActorLocation();
 	direction.Z = 0;
-	const FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
+	FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
 	GetOwner()->SetActorRotation(playerRot);
 	IsShooting = true;
-	SpawnProjectile(playerRot);
 	UHealthComponent* health = UUtilsLibrary::GetRelativeComponent<UHealthComponent>(enemy);
 
 	Direction enemyCover = health->GetDefenceValue();
@@ -89,19 +90,21 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	GLog->Log(FString::FromInt(accuracy + AccuracyBuff));
 	if (chance <= accuracy + AccuracyBuff) {
 		GLog->Log("Success");
-		health->TakeDamage(EquipedWeapon->GetDamage()*DamageBuff);
+		//health->TakeDamage(EquipedWeapon->GetDamage()*DamageBuff);
 	}
 	else {
 		GLog->Log("Miss");
+		playerRot += FRotator(25, 0, 0);
 	}
+	WeaponFire(playerRot);
 }
 
-void UWeaponComponent::BustDamage(float factor)
+void UWeaponComponent::BustDamage(float& factor)
 {
 	DamageBuff = factor;
 }
 
-void UWeaponComponent::BustAccuracy(int8 factor)
+void UWeaponComponent::BustAccuracy(int8& factor)
 {
 	AccuracyBuff = factor;
 }
@@ -110,22 +113,17 @@ int8 UWeaponComponent::CalculateCover(Direction& shootDir, Direction& enemyDef)
 {
 	int8 def = 30;
 
-	if (shootDir.Left == true) {
-		if (enemyDef.Left == false) {
-			return 0;
-		}
+	if (shootDir.Left == true && enemyDef.Left == false) {
+		return 0;
 	}
-	if (shootDir.Up == true) {
-		if (enemyDef.Up == false)
-			return 0;
+	if (shootDir.Up == true && enemyDef.Up == false) {
+		return 0;
 	}
-	if (shootDir.Right == true) {
-		if (enemyDef.Right == false)
-			return 0;
+	if (shootDir.Right == true && enemyDef.Right == false) {
+		return 0;
 	}
-	if (shootDir.Down == true) {
-		if (enemyDef.Down == false)
-			return 0;
+	if (shootDir.Down == true && enemyDef.Down == false) {
+		return 0;
 	}
 
 	return def;
@@ -133,15 +131,16 @@ int8 UWeaponComponent::CalculateCover(Direction& shootDir, Direction& enemyDef)
 
 void UWeaponComponent::OnTurnEnd()
 {
-	DamageBuff = 0;
+	DamageBuff = 1;
 	AccuracyBuff = 0;
 }
 
-void UWeaponComponent::SpawnProjectile(FRotator rotation)
+void UWeaponComponent::WeaponFire(FRotator& rotation)
 {
-	FVector start = EquipedWeapon->GetMesh()->GetSocketLocation("Muzzle");
-	GetWorld()->SpawnActor<AActor>(Projectile, start, rotation/* + FRotator(25,0,0)*/);
-
+	FName targetTag = GetOwner()->ActorHasTag("Enemy") ? "Player" : "Enemy";
+	int dmg = EquipedWeapon->GetDamage()*DamageBuff;
+	GLog->Log(FString::FromInt(dmg));
+	EquipedWeapon->Shoot(rotation, targetTag, dmg);
 }
 
 

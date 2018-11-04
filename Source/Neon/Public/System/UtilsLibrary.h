@@ -29,13 +29,9 @@ public:
 		return Cast<T>(comp->GetOwner()->GetComponentByClass(T::StaticClass()));
 	}	
 
-	/*FORCEINLINE static ANeonGameMode* GetNeonGM()
+	template<class T>
+	FORCEINLINE static T* GetComponentByClass(AActor* actor)
 	{
-		return Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+		return Cast<T>(actor->GetComponentByClass(T::StaticClass()));
 	}
-
-	FORCEINLINE static ANeonPlayerController* GetNeonPC()
-	{
-		return Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-	}*/
 };

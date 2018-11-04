@@ -72,10 +72,12 @@ void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompon
 	{
 		FString name = AbilityComp->ActiveAction->Name;
 		if (name.Equals(DamageBustAction)) {
-			WeaponComp->BustDamage(1.5f);
+			float bust = 1.5f;
+			WeaponComp->BustDamage(bust);
 		}
 		else if (name.Equals(AccuranceBustAction)) {
-			WeaponComp->BustAccuracy(20);
+			int8 bonus = 20;
+			WeaponComp->BustAccuracy(bonus);
 		}
 		EnergyComp->SpendEnergy(AbilityComp->ActiveAction->Cost);
 	}

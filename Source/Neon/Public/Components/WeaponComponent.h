@@ -31,8 +31,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category="Weapon")
 	bool IsShooting;
 
-	void BustDamage(float factor);
-	void BustAccuracy(int8 factor);
+	void BustDamage(float& factor);
+	void BustAccuracy(int8& factor);
 	void Init(OnEndTurnDelegate& onTurnEnd);
 
 protected:
@@ -40,8 +40,7 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, Category="Weapon")
 	TSubclassOf<AWeapon> WeaponClass;
-	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
-	TSubclassOf<AActor> Projectile;
+	
 
 	AWeapon* EquipedWeapon;
 
@@ -52,5 +51,5 @@ private:
 	float DamageBuff;
 	UFUNCTION()
 	void OnTurnEnd();
-	void SpawnProjectile(FRotator rotation);
+	void WeaponFire(FRotator& rotation);
 };

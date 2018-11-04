@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "WorldActors/WeaponProjectile.h"
 #include "Weapon.generated.h"
 
 UCLASS()
@@ -16,7 +17,8 @@ public:
 
 	FORCEINLINE int8 GetDamage() { return Damage; }
 	FORCEINLINE int8 GetAccuracy() { return Accuracy; }
-	FORCEINLINE UStaticMeshComponent* GetMesh() { return MeshComp; }
+
+	void Shoot(FRotator& rotation, FName& targetTag, int32& dmg);
 
 protected:
 	virtual void BeginPlay() override;
@@ -29,4 +31,7 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
 	int8 Accuracy;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	TSubclassOf<AWeaponProjectile> Projectile;
 };
