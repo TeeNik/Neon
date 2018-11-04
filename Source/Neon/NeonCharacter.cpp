@@ -28,6 +28,7 @@ ANeonCharacter::ANeonCharacter()
 	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+	EnergyComp->Initiative = 10;
 
 	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
 	SelectionCircle->SetupAttachment(RootComponent);
@@ -43,7 +44,6 @@ void ANeonCharacter::BeginPlay()
 	PC->CreateFirstWidget();
 	PC->ActionWidget->InitButtons(AbilityComp->Abilities);
 	PC->ActionWidget->InitEnergy(EnergyComp->GetCurrentEnergy(), EnergyComp->OnSpendEnergy, EnergyComp->OnStartTurn, EnergyComp->OnEndTurn);
-	EnergyComp->Initiative = 10;
 	EnergyComp->OnSpendEnergy.AddUFunction(this, "OnSpendEnergy");
 	WeaponComp->Init(EnergyComp->OnEndTurn);
 	UCapsuleComponent* capsule = GetCapsuleComponent();

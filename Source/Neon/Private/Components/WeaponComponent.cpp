@@ -77,6 +77,7 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	const FRotator playerRot = FRotationMatrix::MakeFromX(direction).Rotator();
 	GetOwner()->SetActorRotation(playerRot);
 	IsShooting = true;
+	SpawnProjectile(playerRot);
 	UHealthComponent* health = UUtilsLibrary::GetRelativeComponent<UHealthComponent>(enemy);
 
 	Direction enemyCover = health->GetDefenceValue();
@@ -85,7 +86,7 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 
 	int8 chance = FMath::RandRange(0, 100);
 	GLog->Log(FString::FromInt(chance));
-	GLog->Log(FString::FromInt(accuracy));
+	GLog->Log(FString::FromInt(accuracy + AccuracyBuff));
 	if (chance <= accuracy + AccuracyBuff) {
 		GLog->Log("Success");
 		health->TakeDamage(EquipedWeapon->GetDamage()*DamageBuff);
@@ -136,6 +137,12 @@ void UWeaponComponent::OnTurnEnd()
 	AccuracyBuff = 0;
 }
 
+void UWeaponComponent::SpawnProjectile(FRotator rotation)
+{
+	FVector start = EquipedWeapon->GetMesh()->GetSocketLocation("Muzzle");
+	GetWorld()->SpawnActor<AActor>(Projectile, start, rotation/* + FRotator(25,0,0)*/);
+
+}
 
 
 

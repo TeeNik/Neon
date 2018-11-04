@@ -11,6 +11,7 @@ AEnemyCharacter::AEnemyCharacter()
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+	EnergyComp->Initiative = 3;
 	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
 	SelectionCircle->SetupAttachment(RootComponent);
 }
@@ -27,7 +28,6 @@ void AEnemyCharacter::BeginPlay()
 	{
 		EnergyComp->EndTurn();
 	});
-	EnergyComp->Initiative = 3;
 }
 
 void AEnemyCharacter::InitialMovement()

@@ -40,6 +40,8 @@ protected:
 	
 	UPROPERTY(EditDefaultsOnly, Category="Weapon")
 	TSubclassOf<AWeapon> WeaponClass;
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon")
+	TSubclassOf<AActor> Projectile;
 
 	AWeapon* EquipedWeapon;
 
@@ -50,4 +52,5 @@ private:
 	float DamageBuff;
 	UFUNCTION()
 	void OnTurnEnd();
+	void SpawnProjectile(FRotator rotation);
 };

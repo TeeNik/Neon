@@ -16,6 +16,7 @@ public:
 
 	FORCEINLINE int8 GetDamage() { return Damage; }
 	FORCEINLINE int8 GetAccuracy() { return Accuracy; }
+	FORCEINLINE UStaticMeshComponent* GetMesh() { return MeshComp; }
 
 protected:
 	virtual void BeginPlay() override;

@@ -19,10 +19,10 @@ public:
 	void TakeDamage(float damage);
 
 	UFUNCTION(BlueprintCallable)
-	FORCEINLINE	float GetMaxHealth() { return MaxHealth; }
+	FORCEINLINE	int32 GetMaxHealth() { return MaxHealth; }
 
 	UFUNCTION(BlueprintCallable)
-	FORCEINLINE	float GetCurrentHealth() { return CurrentHealth; }
+	FORCEINLINE	int32 GetCurrentHealth() { return CurrentHealth; }
 
 	Direction GetDefenceValue();
 	
@@ -30,8 +30,11 @@ protected:
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Health")
-	float MaxHealth;
-	float CurrentHealth;
+	int32 MaxHealth;
+	int32 CurrentHealth;
+	UPROPERTY(EditDefaultsOnly, Category = "Health")
+	int32 MaxShield;
+	int32 CurrentShield;
 
 	void Death();
 };
