@@ -27,6 +27,7 @@ void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	CurrentHealth = MaxHealth-40;
+	CurrentShield = MaxShield;
 }
 
 void UHealthComponent::Death()
