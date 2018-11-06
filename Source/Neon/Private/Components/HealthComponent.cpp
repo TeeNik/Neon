@@ -35,8 +35,17 @@ void UHealthComponent::Death()
 	GetOwner()->Destroy();
 }
 
-void UHealthComponent::TakeDamage(float damage)
+void UHealthComponent::TakeDamage(int& damage)
 {
+	if (damage > CurrentShield) {
+		damage -= CurrentShield;
+		CurrentShield = 0;
+	}
+	else {
+		CurrentShield -= damage;
+		return;
+	}
+
 	CurrentHealth -= damage;
 	if (CurrentHealth <= 0) Death();
 }

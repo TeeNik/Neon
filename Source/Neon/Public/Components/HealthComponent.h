@@ -16,7 +16,7 @@ class NEON_API UHealthComponent : public UActorComponent
 public:	
 	UHealthComponent();
 
-	void TakeDamage(float damage);
+	void TakeDamage(float& damage);
 
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE	int32 GetMaxHealth() { return MaxHealth; }
