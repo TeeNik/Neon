@@ -12,5 +12,5 @@ ShootCommand::~ShootCommand()
 
 void ShootCommand::Execute()
 {
-	GLog->Log("Execute shoot");
+	WeaponComp->Shoot(MotionComp);
 }

@@ -33,7 +33,7 @@ void AWeaponProjectile::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent,
 	if (OtherActor->ActorHasTag(TargetTag)) {
 		if (Damage != 0)
 		{
-			GLog->Log("Damage");
+			GLog->Log("Damage: " + FString::FromInt(Damage));
 			UHealthComponent* health = UUtilsLibrary::GetComponentByClass<UHealthComponent>(OtherActor);
 			health->TakeDamage(Damage);
 		}

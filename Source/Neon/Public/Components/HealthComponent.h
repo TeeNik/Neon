@@ -23,9 +23,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE	int32 GetCurrentHealth() { return CurrentHealth; }
 	UFUNCTION(BlueprintCallable)
-	FORCEINLINE	int32 GetMaxShield() { return MaxHealth; }
+	FORCEINLINE	int32 GetMaxShield() { return MaxShield; }
 	UFUNCTION(BlueprintCallable)
-	FORCEINLINE	int32 GetCurrentShield() { return CurrentHealth; }
+	FORCEINLINE	int32 GetCurrentShield() { return CurrentShield; }
 
 	Direction GetDefenceValue();
 	

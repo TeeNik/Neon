@@ -5,7 +5,7 @@
 #include "Components/MotionComponent.h"
 #include "CoreMinimal.h"
 
-class NEON_API ShootCommand : Command
+class NEON_API ShootCommand : public Command
 {
 public:
 	ShootCommand(UWeaponComponent* weaponComp, UMotionComponent* motionComp);

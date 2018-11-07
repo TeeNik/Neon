@@ -4,7 +4,9 @@
 #include "Components/CapsuleComponent.h"
 #include "LocationManager.h"
 #include "NeonGameMode.h"
+#include "System/UtilsLibrary.h"
 #include "NeonPlayerController.h"
+#include "Commands/ShootCommand.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -56,12 +58,20 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 
 	if(isInRange)
 	{
-		ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-		if(PC)
+		Command* command = NULL;
+		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
+		if(EC)
 		{
-			PC->NeonCharacter->GetWeaponComponent()->Shoot(MotionComp);
-			auto* ability = PC->NeonCharacter->GetAbilityConponent()->ActiveAction;
-			PC->NeonCharacter->GetEnergyComponent()->SpendEnergy(ability->Cost);
+			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
+			FString actionName = actionComp->ActiveAction->Name;
+			if (actionName == TEXT("Shoot"))
+			{
+				UWeaponComponent* weaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(EC);
+				command = new ShootCommand(weaponComp, MotionComp);
+			}
+			command->Execute();
+			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}
 	}
 }

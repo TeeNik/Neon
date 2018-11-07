@@ -7,6 +7,7 @@
 #include "NeonPlayerController.h"
 #include "System/UtilsLibrary.h"
 #include "NeonGameMode.h"
+#include "Commands/ShootCommand.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
 
