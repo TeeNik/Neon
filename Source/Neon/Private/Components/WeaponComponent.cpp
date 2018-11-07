@@ -10,7 +10,6 @@ UWeaponComponent::UWeaponComponent()
 	DamageBuff = 1;
 }
 
-
 void UWeaponComponent::BeginPlay()
 {
 	Super::BeginPlay();
@@ -30,8 +29,6 @@ void UWeaponComponent::Init(OnEndTurnDelegate& onTurnEnd)
 {
 	onTurnEnd.AddUFunction(this, "OnTurnEnd");
 }
-
-
 
 Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 {
@@ -86,8 +83,6 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	accuracy -= CalculateCover(shootDir, enemyCover);
 
 	int8 chance = FMath::RandRange(0, 100);
-	GLog->Log(FString::FromInt(chance));
-	GLog->Log(FString::FromInt(accuracy + AccuracyBuff));
 	if (chance <= accuracy + AccuracyBuff) {
 		GLog->Log("Success");
 		//health->TakeDamage(EquipedWeapon->GetDamage()*DamageBuff);
@@ -139,7 +134,6 @@ void UWeaponComponent::WeaponFire(FRotator& rotation)
 {
 	FName targetTag = GetOwner()->ActorHasTag("Enemy") ? "Player" : "Enemy";
 	int dmg = EquipedWeapon->GetDamage()*DamageBuff;
-	GLog->Log(FString::FromInt(dmg));
 	EquipedWeapon->Shoot(rotation, targetTag, dmg);
 }
 
