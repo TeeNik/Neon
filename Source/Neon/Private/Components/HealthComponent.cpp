@@ -49,3 +49,21 @@ void UHealthComponent::TakeDamage(int& damage)
 	CurrentHealth -= damage;
 	if (CurrentHealth <= 0) Death();
 }
+
+void UHealthComponent::AddShield(int& value)
+{
+	CurrentShield += value;
+	if(CurrentShield > MaxShield)
+	{
+		CurrentShield = MaxShield;
+	}
+}
+
+void UHealthComponent::DamageShield(int& value)
+{
+	CurrentShield -= value;
+	if(CurrentShield < 0)
+	{
+		CurrentShield = 0;
+	}
+}

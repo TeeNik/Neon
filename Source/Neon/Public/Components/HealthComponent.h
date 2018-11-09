@@ -17,6 +17,8 @@ public:
 	UHealthComponent();
 
 	void TakeDamage(int& damage);
+	void AddShield(int& value);
+	void DamageShield(int& value);
 
 	UFUNCTION(BlueprintCallable)
 	FORCEINLINE	int32 GetMaxHealth() { return MaxHealth; }
