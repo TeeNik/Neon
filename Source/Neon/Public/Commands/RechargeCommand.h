@@ -1,15 +1,15 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
-
+#include "Commands/Command.h"
 #include "CoreMinimal.h"
+#include "HealthComponent.h"
 
-/**
- * 
- */
-class NEON_API RechargeCommand
+class NEON_API RechargeCommand : public Command
 {
 public:
-	RechargeCommand();
+	RechargeCommand(UHealthComponent* health, int& value);
 	~RechargeCommand();
+	virtual void Execute();
+private:
+	UHealthComponent * HealthComponent;
+	int Value;
 };

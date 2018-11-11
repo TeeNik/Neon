@@ -37,12 +37,12 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 	int rowTop = self->Row + x;
 	int rowBot = self->Row - x;
 
-	if (target->Column > self->Column && target->Column <= rowTop && target->Column >= rowBot)
+	if (target->Column > self->Column && target->Row  <= rowTop && target->Row >= rowBot)
 	{
 		dir.Right = true;
 		GLog->Log("Right");
 	}
-	if (target->Column < self->Column && target->Column <= rowTop && target->Column >= rowBot)
+	if (target->Column < self->Column && target->Row <= rowTop && target->Row >= rowBot)
 	{
 		dir.Left = true;
 		GLog->Log("Left");
@@ -52,12 +52,12 @@ Direction UWeaponComponent::CheckDirection(AGridBase* self, AGridBase* target)
 	int colRight = self->Column + y;
 	int colLeft = self->Column - y;
 
-	if (target->Row > self->Row && target->Row <= colRight && target->Row >= colLeft)
+	if (target->Row > self->Row && target->Column <= colRight && target->Column >= colLeft)
 	{
 		dir.Up = true;
 		GLog->Log("Top");
 	}
-	if (target->Row < self->Row && target->Row <= colRight && target->Row >= colLeft)
+	if (target->Row < self->Row && target->Column <= colRight && target->Column >= colLeft)
 	{
 		dir.Down = true;
 		GLog->Log("Bottom");
@@ -81,7 +81,7 @@ void UWeaponComponent::Shoot(UMotionComponent* enemy)
 	Direction enemyCover = health->GetDefenceValue();
 	int8 accuracy = EquipedWeapon->GetAccuracy();
 	accuracy -= CalculateCover(shootDir, enemyCover);
-
+	GLog->Log(FString::FromInt(accuracy));
 	int8 chance = FMath::RandRange(0, 100);
 	if (chance <= accuracy + AccuracyBuff) {
 		GLog->Log("Success");
