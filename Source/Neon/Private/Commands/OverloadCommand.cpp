@@ -1,11 +1,16 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "OverloadCommand.h"
 
-OverloadCommand::OverloadCommand()
+OverloadCommand::OverloadCommand(UHealthComponent* health, int& value)
 {
+	HealthComponent = health;
+	Value = value;
 }
 
 OverloadCommand::~OverloadCommand()
 {
+}
+
+void OverloadCommand::Execute()
+{
+	HealthComponent->DamageShield(Value);
 }

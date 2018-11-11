@@ -1,15 +1,16 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
-
+#include "Commands/Command.h"
+#include "Components/HealthComponent.h"
 #include "CoreMinimal.h"
 
-/**
- * 
- */
-class NEON_API OverloadCommand
+class NEON_API OverloadCommand : public Command
 {
 public:
-	OverloadCommand();
+	OverloadCommand(UHealthComponent* health, int& value);
 	~OverloadCommand();
+	virtual void Execute();
+
+private:
+	UHealthComponent * HealthComponent;
+	int Value;
 };

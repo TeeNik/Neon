@@ -7,6 +7,7 @@
 #include "System/UtilsLibrary.h"
 #include "NeonPlayerController.h"
 #include "Commands/ShootCommand.h"
+#include "Commands/OverloadCommand.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -69,6 +70,11 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 			{
 				UWeaponComponent* weaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(EC);
 				command = new ShootCommand(weaponComp, MotionComp);
+			}
+			else if(actionName == TEXT("Overload"))
+			{
+				int value = 50;
+				command = new OverloadCommand(HealthComp, value);
 			}
 			command->Execute();
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
