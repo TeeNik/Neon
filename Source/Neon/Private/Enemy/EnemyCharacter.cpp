@@ -66,12 +66,12 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 		{
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
-			if (actionName == TEXT("Shoot"))
+			if (actionName.Equals(UUtilsLibrary::ShootAction))
 			{
 				UWeaponComponent* weaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(EC);
 				command = new ShootCommand(weaponComp, MotionComp);
 			}
-			else if(actionName == TEXT("Overload"))
+			else if(actionName.Equals(UUtilsLibrary::OverloadAction))
 			{
 				int value = 50;
 				command = new OverloadCommand(HealthComp, value);

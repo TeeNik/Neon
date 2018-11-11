@@ -72,11 +72,11 @@ void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompon
 	if (ButtonPressed.GetFName() == "LeftMouseButton" &&isInRange)
 	{
 		FString name = AbilityComp->ActiveAction->Name;
-		if (name.Equals(DamageBustAction)) {
+		if (name.Equals(UUtilsLibrary::DamageBustAction)) {
 			float bust = 1.5f;
 			WeaponComp->BustDamage(bust);
 		}
-		else if (name.Equals(AccuranceBustAction)) {
+		else if (name.Equals(UUtilsLibrary::AccuranceBustAction)) {
 			int8 bonus = 20;
 			WeaponComp->BustAccuracy(bonus);
 		}

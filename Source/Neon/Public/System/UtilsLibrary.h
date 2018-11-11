@@ -9,9 +9,6 @@
 #include "NeonPlayerController.h"
 #include "UtilsLibrary.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class NEON_API UUtilsLibrary : public UObject
 {
@@ -23,6 +20,12 @@ private:
 	ANeonGameMode* NeonGM;
 
 public:
+
+	static const FString DamageBustAction;
+	static const FString AccuranceBustAction;
+	static const FString ShootAction;
+	static const FString OverloadAction;
+
 	template<class T>
 	FORCEINLINE static T* GetRelativeComponent(UActorComponent* comp)
 	{
