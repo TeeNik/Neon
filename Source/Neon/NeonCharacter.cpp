@@ -5,11 +5,11 @@
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "NeonPlayerController.h"
-#include "System/UtilsLibrary.h"
 #include "NeonGameMode.h"
 #include "Commands/ShootCommand.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "GameStrings.h"
 
 ANeonCharacter::ANeonCharacter()
 {
@@ -72,11 +72,11 @@ void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompon
 	if (ButtonPressed.GetFName() == "LeftMouseButton" &&isInRange)
 	{
 		FString name = AbilityComp->ActiveAction->Name;
-		if (name.Equals(UUtilsLibrary::DamageBustAction)) {
+		if (name.Equals(UGameStrings::DamageBustAction)) {
 			float bust = 1.5f;
 			WeaponComp->BustDamage(bust);
 		}
-		else if (name.Equals(UUtilsLibrary::AccuranceBustAction)) {
+		else if (name.Equals(UGameStrings::AccuranceBustAction)) {
 			int8 bonus = 20;
 			WeaponComp->BustAccuracy(bonus);
 		}

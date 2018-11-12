@@ -4,6 +4,7 @@
 #include "Components/AbilityComponent.h"
 #include "Components/MotionComponent.h"
 #include "System/UtilsLibrary.h"
+#include "GameStrings.h"
 
 
 ATurret::ATurret()
@@ -55,7 +56,7 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
-			if (actionName == ActivateAbility)
+			if (actionName == UGameStrings::ActivateAction)
 			{
 				ActivateByPlayer();
 			}

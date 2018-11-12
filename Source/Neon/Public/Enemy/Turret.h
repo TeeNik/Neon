@@ -26,7 +26,6 @@ class NEON_API ATurret : public APawn, public IAction
 public:
 	ATurret();
 
-	const FString ActivateAbility = TEXT("ActivateTurret");
 	
 	TurretStatus Status;
 

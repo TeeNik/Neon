@@ -17,9 +17,6 @@ class ANeonCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
 
-	const FString DamageBustAction = TEXT("DamageBuff");
-	const FString AccuranceBustAction = TEXT("AccuracyBuff");
-
 public:
 	ANeonCharacter();
 	FORCEINLINE class UAbilityComponent* GetAbilityConponent() { return AbilityComp; }

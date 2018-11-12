@@ -21,10 +21,6 @@ private:
 
 public:
 
-	static const FString DamageBustAction;
-	static const FString AccuranceBustAction;
-	static const FString ShootAction;
-	static const FString OverloadAction;
 
 	template<class T>
 	FORCEINLINE static T* GetRelativeComponent(UActorComponent* comp)
