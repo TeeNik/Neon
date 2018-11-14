@@ -11,6 +11,7 @@ class NEON_API UGameStrings : public UObject
 {
 	GENERATED_BODY()
 
+public:
 	static const FString DamageBustAction;
 	static const FString AccuranceBustAction;
 	static const FString ShootAction;
