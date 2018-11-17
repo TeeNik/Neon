@@ -3,18 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
-#include "AIState.generated.h"
 
-/**
- * 
- */
-UCLASS()
-class NEON_API UAIState : public UObject
+class NEON_API AIState
 {
-	GENERATED_BODY()
-	
-	
-	
-	
+public:
+	AIState();
+	~AIState();
+	virtual void Execute();
 };

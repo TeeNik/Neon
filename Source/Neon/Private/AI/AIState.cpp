@@ -1,7 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "AIState.h"
 
+AIState::AIState()
+{
+}
 
+AIState::~AIState()
+{
+}
 
+void AIState::Execute()
+{
 
+}
