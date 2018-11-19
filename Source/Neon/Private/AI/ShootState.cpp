@@ -1,8 +1,9 @@
 
 #include "ShootState.h"
 
-ShootState::ShootState()
+ShootState::ShootState(UAIStateMachine* ai, FName& targetTag, UWeaponComponent* weaponComponent, UAbilityComponent* abilityComp) : AIState(ai)
 {
+
 }
 
 ShootState::~ShootState()

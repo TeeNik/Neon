@@ -7,6 +7,7 @@ class NEON_API AIState
 {
 public:
 	AIState();
+	AIState(UAIStateMachine* ai);
 	virtual ~AIState();
 	virtual void Execute();
 

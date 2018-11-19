@@ -1,10 +1,12 @@
 #include "AIState.h"
-#include "AIStateMachine.h"
 
-
+AIState::AIState(UAIStateMachine* ai) : AI(ai)
+{
+}
 
 AIState::AIState()
 {
+
 }
 
 AIState::~AIState()
