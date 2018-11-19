@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "UI/ActionWidget.h"
 #include "AbilityComponent.generated.h"
 
+struct FActionTableData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAbilityComponent : public UActorComponent
