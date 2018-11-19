@@ -13,11 +13,11 @@ class NEON_API UAIStateMachine : public UActorComponent
 public:	
 	UAIStateMachine();
 
-	void NextState(AIState& state);
+	void NextState(AIState* state);
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
-	AIState CurrentState;
+	AIState* CurrentState = NULL;
 };

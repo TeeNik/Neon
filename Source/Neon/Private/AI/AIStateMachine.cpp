@@ -10,9 +10,12 @@ void UAIStateMachine::BeginPlay()
 	Super::BeginPlay();
 }
 
-void UAIStateMachine::NextState(AIState& state)
+void UAIStateMachine::NextState(AIState* state)
 {
+	if (CurrentState != NULL) {
+		delete CurrentState;
+	}
 	CurrentState = state;
-	CurrentState.Execute();
+	CurrentState->Execute();
 }
 
