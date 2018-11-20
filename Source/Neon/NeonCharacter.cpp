@@ -13,8 +13,10 @@
 #include "Components/EnergyComponent.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/MotionComponent.h"
+#include "Components/AbilityComponent.h"
 #include "Components/HealthComponent.h"
 #include "Action/ActionTableData.h"
+#include "Materials/MaterialInstanceDynamic.h"
 
 ANeonCharacter::ANeonCharacter()
 {
@@ -53,12 +55,12 @@ void ANeonCharacter::BeginPlay()
 	EnergyComp->OnSpendEnergy.AddUFunction(this, "OnSpendEnergy");
 	WeaponComp->Init(EnergyComp->OnEndTurn);
 	UCapsuleComponent* capsule = GetCapsuleComponent();
-	capsule->OnBeginCursorOver.AddDynamic(this, &ANeonCharacter::OnBeginCursorOver);
+	/*capsule->OnBeginCursorOver.AddDynamic(this, &ANeonCharacter::OnBeginCursorOver);
 	capsule->OnEndCursorOver.AddDynamic(this, &ANeonCharacter::OnEndCursorOver);
-	capsule->OnClicked.AddDynamic(this, &ANeonCharacter::OnClicked);
+	capsule->OnClicked.AddDynamic(this, &ANeonCharacter::OnClicked);*/
 }
 
-void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+/*void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, HighlightMaterial);
@@ -98,7 +100,7 @@ bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
 {
 	isInRange = true;
 	return true;
-}
+}*/
 
 void ANeonCharacter::OnSpendEnergy(int current, int value)
 {

@@ -4,9 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Components/AbilityComponent.h"
 #include "Components/WeaponComponent.h"
-#include "Materials/MaterialInstanceDynamic.h"
+//#include "Action/Action.h
 #include "NeonCharacter.generated.h"
 
 class UEnergyComponent;
@@ -14,9 +13,11 @@ class UMotionComponent;
 class UHealthComponent;
 class UWeaponComponent;
 class UStaticMeshComponent;
+class UAbilityComponent;
+class UMaterialInstance;
 
 UCLASS(Blueprintable)
-class ANeonCharacter : public ACharacter, public IAction
+class ANeonCharacter : public ACharacter//, public IAction
 {
 	GENERATED_BODY()
 
@@ -30,7 +31,7 @@ public:
 
 	void BeginPlay() override;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
@@ -48,7 +49,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;
+	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")

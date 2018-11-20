@@ -4,6 +4,9 @@
 #include "Components/MotionComponent.h"
 #include "Components/HealthComponent.h"
 #include "WorldActors/Weapon.h"
+#include "WorldActors/GridBase.h"
+#include "Components/StaticMeshComponent.h"
+#include "Engine/World.h"
 
 UWeaponComponent::UWeaponComponent()
 {

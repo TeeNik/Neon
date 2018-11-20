@@ -1,10 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Action.h"
-#include "UI/ActionWidget.h"
+//#include "Action.h"
 #include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "Components/GridLocationComponent.h"
@@ -19,9 +16,10 @@ enum GridBaseState {
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTestDel, int, num);
 
 class UMaterial;
+class UActionWidget;
 
 UCLASS()
-class NEON_API AGridBase : public AActor, public IAction
+class NEON_API AGridBase : public AActor//, public IAction
 {
 	GENERATED_BODY()
 	
@@ -66,7 +64,7 @@ public:
 	void SetWidgetSettings(UActionWidget* widget);
 	virtual void SetWidgetSettings_Implementation(UActionWidget* widget) override;*/
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
@@ -84,7 +82,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;
+	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "GridBase.h"
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 #include "NeonPlayerController.h"
@@ -8,9 +6,10 @@
 #include "Components/MotionComponent.h"
 #include "System/UtilsLibrary.h"
 #include "NeonGameMode.h"
+#include "UI/ActionWidget.h"
+#include "Components/StaticMeshComponent.h"
+#include "Action/ActionTableData.h"
 
-
-// Sets default values
 AGridBase::AGridBase()
 {
 	BoxComp = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
@@ -31,17 +30,16 @@ AGridBase::AGridBase()
 	State = Down;
 }
 
-// Called when the game starts or when spawned
 void AGridBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PlaneComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
+	/*PlaneComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
 	PlaneComp->OnEndCursorOver.AddDynamic(this, &AGridBase::OnEndCursorOver);
-	PlaneComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
+	PlaneComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);*/
 }
 
-void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+/*void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
 	if(isInRange)
 	{
@@ -98,7 +96,7 @@ void AGridBase::Deactivate_Implementation() {
 	//PlaneComp->SetMaterial(0, DisableMaterial);
 	PlaneComp->SetRenderCustomDepth(false);
 	isInRange = false;
-}
+}*/
 
 void AGridBase::MoveToMiddle()
 {
@@ -118,7 +116,7 @@ void AGridBase::MoveDown()
 	State = Down;
 }
 
-bool AGridBase::Highlight_Implementation(FString& abilityName)
+/*bool AGridBase::Highlight_Implementation(FString& abilityName)
 {
 	if (abilityName == TopAbility && State == Top || abilityName == DownAbility && State == Down)
 		return false;
@@ -127,7 +125,7 @@ bool AGridBase::Highlight_Implementation(FString& abilityName)
 	PlaneComp->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
-}
+}*/
 
 void AGridBase::Move(float value)
 {

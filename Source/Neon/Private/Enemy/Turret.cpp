@@ -3,11 +3,14 @@
 #include "Components/HealthComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/EnergyComponent.h"
+#include "Components/WeaponComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
 #include "System/UtilsLibrary.h"
 #include "GameStrings.h"
 #include "Components/StaticMeshComponent.h"
 #include "Action/ActionTableData.h"
 #include "NeonGameMode.h"
+#include "Engine/World.h"
 
 ATurret::ATurret()
 {
@@ -29,13 +32,13 @@ void ATurret::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	MeshComp->OnClicked.AddDynamic(this, &ATurret::OnClicked);
+	/*MeshComp->OnClicked.AddDynamic(this, &ATurret::OnClicked);
 	MeshComp->OnBeginCursorOver.AddDynamic(this, &ATurret::OnBeginCursorOver);
-	MeshComp->OnEndCursorOver.AddDynamic(this, &ATurret::OnEndCursorOver);
+	MeshComp->OnEndCursorOver.AddDynamic(this, &ATurret::OnEndCursorOver);*/
 	EnergyComp->OnStartTurn.AddUFunction(this, "ExecuteTurn");
 }
 
-void ATurret::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+/*void ATurret::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, HighlightMaterial);
@@ -82,7 +85,7 @@ bool ATurret::Highlight_Implementation(FString& AbilityName)
 	MeshComp->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
-}
+}*/
 
 void ATurret::ActivateByPlayer()
 {

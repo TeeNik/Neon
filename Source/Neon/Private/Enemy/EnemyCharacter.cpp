@@ -9,6 +9,7 @@
 #include "NeonPlayerController.h"
 #include "Commands/ShootCommand.h"
 #include "Commands/OverloadCommand.h"
+#include "Components/StaticMeshComponent.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -24,9 +25,9 @@ void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	UCapsuleComponent* capsule = GetCapsuleComponent();
-	capsule->OnBeginCursorOver.AddDynamic(this, &AEnemyCharacter::OnBeginCursorOver);
+	/*capsule->OnBeginCursorOver.AddDynamic(this, &AEnemyCharacter::OnBeginCursorOver);
 	capsule->OnEndCursorOver.AddDynamic(this, &AEnemyCharacter::OnEndCursorOver);
-	capsule->OnClicked.AddDynamic(this, &AEnemyCharacter::OnClicked);
+	capsule->OnClicked.AddDynamic(this, &AEnemyCharacter::OnClicked);*/
 
 	EnergyComp->OnStartTurn.AddLambda([&]()
 	{
@@ -41,7 +42,7 @@ void AEnemyCharacter::InitialMovement()
 	ULocationManager* locationMan = GM->GetLocationManager();
 }
 
-void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+/*void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, HighlightMaterial);
@@ -93,7 +94,7 @@ bool AEnemyCharacter::Highlight_Implementation(FString& AbilityName)
 {
 	isInRange = true;
 	return true;
-}
+}*/
 
 void AEnemyCharacter::HideCircle()
 {

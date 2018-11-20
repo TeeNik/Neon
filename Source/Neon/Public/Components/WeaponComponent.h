@@ -2,11 +2,12 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "WorldActors/GridBase.h"
 #include "WeaponComponent.generated.h"
 
 class UMotionComponent;
 class AWeapon;
+class AGridBase;
+typedef TMulticastDelegate<void> OnEndTurnDelegate;
 
 struct Direction
 {

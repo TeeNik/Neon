@@ -4,6 +4,7 @@
 #include "Runtime/Engine/Classes/Components/DecalComponent.h"
 #include "NeonCharacter.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/AbilityComponent.h"
 #include "Engine/World.h"
 
 ANeonPlayerController::ANeonPlayerController()
