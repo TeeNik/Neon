@@ -2,8 +2,9 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
-#include "Components/ActorComponent.h"
 #include "UtilsLibrary.generated.h"
+
+class UActorComponent;
 
 UCLASS()
 class NEON_API UUtilsLibrary : public UObject

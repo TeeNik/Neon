@@ -1,10 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "AbilityComponent.h"
 #include "System/ResourceManagerLibrary.h"
 #include "NeonPlayerController.h"
 #include "Action/ActionTableData.h"
 #include "Action/Action.h"
+#include "System/ResourceManager.h"
 
 UAbilityComponent::UAbilityComponent()
 {

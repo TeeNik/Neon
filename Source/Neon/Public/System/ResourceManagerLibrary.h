@@ -4,12 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
-#include "System/ResourceManager.h"
 #include "ResourceManagerLibrary.generated.h"
 
-/**
- * 
- */
+class UResourceManager;
+
 UCLASS()
 class NEON_API UResourceManagerLibrary : public UBlueprintFunctionLibrary
 {

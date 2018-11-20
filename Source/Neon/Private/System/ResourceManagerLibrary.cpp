@@ -1,9 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "ResourceManagerLibrary.h"
-
-
-
+#include "System/ResourceManager.h"
+#include "Engine.h"
 
 UResourceManagerLibrary::UResourceManagerLibrary(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
