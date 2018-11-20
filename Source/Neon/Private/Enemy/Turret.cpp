@@ -1,11 +1,13 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "Turret.h"
 #include "Components/AbilityComponent.h"
+#include "Components/HealthComponent.h"
 #include "Components/MotionComponent.h"
+#include "Components/EnergyComponent.h"
 #include "System/UtilsLibrary.h"
 #include "GameStrings.h"
-
+#include "Components/StaticMeshComponent.h"
+#include "Action/ActionTableData.h"
+#include "NeonGameMode.h"
 
 ATurret::ATurret()
 {

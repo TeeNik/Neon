@@ -1,14 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Components/StaticMeshComponent.h"
-#include "Components/HealthComponent.h"
 #include "Components/WeaponComponent.h"
-#include "Components/MotionComponent.h"
-#include "Components/EnergyComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Turret.generated.h"
 
@@ -17,6 +11,11 @@ enum class TurretStatus {
 	PlayerTurret,
 	EnemyTurret
 };
+
+class UStaticMeshComponent;
+class UHealthComponent;
+class UEnergyComponent;
+class UMotionComponent;
 
 UCLASS()
 class NEON_API ATurret : public APawn, public IAction
