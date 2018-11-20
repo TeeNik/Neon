@@ -1,4 +1,7 @@
 #include "LocationManager.h"
+#include "WorldActors/GridBase.h"
+#include "Components/WeaponComponent.h"
+#include "Engine/Public/TimerManager.h"
 
 ULocationManager::ULocationManager()
 {

@@ -1,14 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "WorldActors/GridBase.h"
-#include "Components/WeaponComponent.h"
 #include "LocationManager.generated.h"
 
 DECLARE_MULTICAST_DELEGATE(OnSceneLoadedDelegate)
+
+class AGridBase;
+class UWeaponComponent;
+struct Direction;
 
 USTRUCT()
 struct FGridBaseArray
