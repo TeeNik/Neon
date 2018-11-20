@@ -1,6 +1,6 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "TurnManager.h"
+#include "Components/EnergyComponent.h"
+#include "GameFramework/Actor.h"
 
 UTurnManager::UTurnManager()
 {

@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/SceneComponent.h"
-#include "Components/EnergyComponent.h"
 #include "TurnManager.generated.h"
 
+class UEnergyComponent;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UTurnManager : public USceneComponent
@@ -17,13 +17,9 @@ class NEON_API UTurnManager : public USceneComponent
 public:	
 	UTurnManager();
 
-	
-	//OnNextTurnDelegate OnNextTurn;
-
 	void AddToQueue(UEnergyComponent* g);
 	FORCEINLINE void RemoveFromQueue(UEnergyComponent* g) { Queue.Remove(g); }
 	FORCEINLINE UEnergyComponent* GetCurrentEC() { return Queue[CurrentPlace]; }
-
 
 	void EndTurn();
 

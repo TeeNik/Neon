@@ -3,7 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "InputCore/Classes/InputCoreTypes.h"
 #include "Action.generated.h"
+
+class UPrimitiveComponent;
 
 UINTERFACE(BlueprintType)
 class NEON_API UAction : public UInterface
@@ -17,12 +20,6 @@ class NEON_API IAction
 
 public:
 	bool isInRange;
-
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	FActionData GetActionList();
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void SetWidgetSettings(UActionWidget* widget);*/
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);

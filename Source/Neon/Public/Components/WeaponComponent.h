@@ -2,7 +2,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "WorldActors/Weapon.h"
 #include "WorldActors/GridBase.h"
 #include "WeaponComponent.generated.h"
 
