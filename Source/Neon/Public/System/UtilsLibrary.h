@@ -5,19 +5,12 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "Components/ActorComponent.h"
-#include "NeonGameMode.h"
-#include "NeonPlayerController.h"
 #include "UtilsLibrary.generated.h"
 
 UCLASS()
 class NEON_API UUtilsLibrary : public UObject
 {
 	GENERATED_BODY()
-
-private:
-
-	ANeonPlayerController * NeonPC;
-	ANeonGameMode* NeonGM;
 
 public:
 

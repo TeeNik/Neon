@@ -6,8 +6,9 @@
 #include "Components/ActorComponent.h"
 #include "WorldActors/Weapon.h"
 #include "WorldActors/GridBase.h"
-#include "Components/MotionComponent.h"
 #include "WeaponComponent.generated.h"
+
+class UMotionComponent;
 
 
 struct Direction

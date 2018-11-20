@@ -5,14 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Components/AbilityComponent.h"
-#include "Components/HealthComponent.h"
 #include "Components/WeaponComponent.h"
-#include "Components/MotionComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "NeonCharacter.generated.h"
 
 class UEnergyComponent;
 class UMotionComponent;
+class UHealthComponent;
 class UStaticMeshComponent;
 
 UCLASS(Blueprintable)

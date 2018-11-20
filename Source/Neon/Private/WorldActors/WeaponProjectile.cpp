@@ -1,6 +1,9 @@
 #include "WeaponProjectile.h"
 #include "Components/HealthComponent.h"
 #include "System/UtilsLibrary.h"
+#include "Components/CapsuleComponent.h"
+#include "Particles/ParticleSystemComponent.h"
+#include "GameFramework/ProjectileMovementComponent.h"
 
 AWeaponProjectile::AWeaponProjectile()
 {

@@ -1,8 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "WeaponComponent.h"
 #include "NeonCharacter.h"
 #include "System/UtilsLibrary.h"
+#include "Components/MotionComponent.h"
+#include "Components/HealthComponent.h"
 
 UWeaponComponent::UWeaponComponent()
 {
@@ -20,7 +20,8 @@ void UWeaponComponent::BeginPlay()
 		ACharacter* character = Cast<ACharacter>(GetOwner());
 		if (character)
 		{
-			EquipedWeapon->AttachToComponent(character->GetMesh(), attachRules, "WeaponSocket");
+			//TODO
+			//EquipedWeapon->AttachToComponent(character->GetMesh(), attachRules, "WeaponSocket");
 		}
 	}
 }

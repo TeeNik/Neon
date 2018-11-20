@@ -12,6 +12,8 @@
 #include "GameStrings.h"
 #include "Components/EnergyComponent.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/MotionComponent.h"
+#include "Components/HealthComponent.h"
 
 ANeonCharacter::ANeonCharacter()
 {
