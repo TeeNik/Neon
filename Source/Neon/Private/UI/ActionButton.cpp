@@ -7,6 +7,7 @@
 #include "Action/ActionTableData.h"
 #include "Engine/Texture2D.h"
 #include "NeonCharacter.h"
+#include "UI/ActionTooltip.h"
 
 void UActionButton::SetButtonData(FActionTableData* data)
 {

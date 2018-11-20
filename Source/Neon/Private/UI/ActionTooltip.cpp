@@ -1,9 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "ActionTooltip.h"
 #include "CanvasPanelSlot.h"
 #include "Components/TextBlock.h"
 #include "Components/Image.h"
+#include "Action/ActionTableData.h"
 
 void UActionTooltip::SetData(FActionTableData* data)
 {

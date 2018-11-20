@@ -14,6 +14,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/HealthComponent.h"
+#include "Action/ActionTableData.h"
 
 ANeonCharacter::ANeonCharacter()
 {

@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "ActionWidget.h"
 #include "Runtime/UMG/Public/Blueprint/WidgetTree.h"
 #include "Runtime/UMG/Public/Components/Spacer.h"
@@ -7,7 +5,9 @@
 #include "Components/HorizontalBoxSlot.h"
 #include "UI/ActionButton.h"
 #include "UI/EnergyImage.h"
-
+#include "UI/ActionTooltip.h"
+#include "Action/ActionTableData.h"
+#include "Components/HorizontalBox.h"
 
 void UActionWidget::ClearButtons()
 {

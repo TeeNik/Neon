@@ -4,12 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "Action/ActionTableData.h"
 #include "ActionTooltip.generated.h"
 
 class UImage;
 class UTextBlock;
 class UUserWidget;
+struct FActionTableData;
 
 UCLASS()
 class NEON_API UActionTooltip : public UUserWidget
