@@ -7,6 +7,8 @@
 #include "Action/ActionTableData.h"
 #include "ActionButton.generated.h"
 
+struct FActionTableData;
+
 UCLASS()
 class NEON_API UActionButton : public UButton
 {

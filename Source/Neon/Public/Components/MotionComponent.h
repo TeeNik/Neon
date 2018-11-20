@@ -4,9 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "WorldActors/GridBase.h"
 #include "MotionComponent.generated.h"
 
+class AGridBase;
 
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UMotionComponent : public UActorComponent

@@ -10,6 +10,8 @@
 #include "Materials/Material.h"
 #include "Engine/World.h"
 #include "GameStrings.h"
+#include "Components/EnergyComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 ANeonCharacter::ANeonCharacter()
 {

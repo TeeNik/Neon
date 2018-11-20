@@ -5,6 +5,8 @@
 #include "AIController.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "NeonGameMode.h"
+#include "WorldActors/GridBase.h"
+
 
 UMotionComponent::UMotionComponent()
 {

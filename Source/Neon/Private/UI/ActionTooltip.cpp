@@ -2,7 +2,8 @@
 
 #include "ActionTooltip.h"
 #include "CanvasPanelSlot.h"
-
+#include "Components/TextBlock.h"
+#include "Components/Image.h"
 
 void UActionTooltip::SetData(FActionTableData& data)
 {
