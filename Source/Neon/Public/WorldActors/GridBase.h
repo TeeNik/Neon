@@ -18,6 +18,8 @@ enum GridBaseState {
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTestDel, int, num);
 
+class UMaterial;
+
 UCLASS()
 class NEON_API AGridBase : public AActor, public IAction
 {

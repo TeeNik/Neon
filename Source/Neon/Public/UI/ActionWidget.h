@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
-#include "UI/ActionButton.h"
-#include "UI/EnergyImage.h"
 #include "UI/ActionTooltip.h"
 #include "Components/HorizontalBox.h"
-#include "Components/EnergyComponent.h"
 #include "ActionWidget.generated.h"
 
+class UEnergyImage;
+typedef TMulticastDelegate<void, int32, int32> OnSpendEnergyDelegate;
+typedef TMulticastDelegate<void> OnStartTurnDelegate;
+typedef TMulticastDelegate<void> OnEndTurnDelegate;
 
 enum class ButtonDirection {
 	Left,
@@ -18,6 +19,9 @@ enum class ButtonDirection {
 	Right,
 	Lower
 };
+
+class UActionButton;
+class UButton;
 
 UCLASS()
 class NEON_API UActionWidget : public UUserWidget

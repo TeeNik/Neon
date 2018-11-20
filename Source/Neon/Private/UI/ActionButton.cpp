@@ -3,11 +3,14 @@
 #include "ActionButton.h"
 #include "NeonPlayerController.h"
 #include "Kismet/GameplayStatics.h"
+#include "Components/EnergyComponent.h"
+#include "Action/ActionTableData.h"
+#include "Engine/Texture2D.h"
 #include "NeonCharacter.h"
 
 void UActionButton::SetButtonData(FActionTableData* data)
 {
-	Data = *data;
+	Data = data;
 	WidgetStyle.Normal.SetResourceObject(data->Icon);
 	WidgetStyle.Hovered.SetResourceObject(data->Icon);
 	WidgetStyle.Pressed.SetResourceObject(data->Icon);
@@ -21,7 +24,7 @@ void UActionButton::ExecuteAbility()
 {
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
-		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data.Name);
+		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
 	}
 }
 
@@ -31,7 +34,7 @@ void UActionButton::DisableAbility()
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		PC->ActiveAction = nullptr;
-		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data.Name);
+		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
 	}
 }
 
@@ -41,7 +44,7 @@ void UActionButton::OnButtonHoverBegin()
 	if (PC) {
 		int32 current = PC->NeonCharacter->GetEnergyComponent()->GetCurrentEnergy();
 		PC->ActionWidget->GetActionTooltip()->SetData(Data);
-		PC->ActionWidget->ShowEnergyCost(current, Data.Cost);
+		PC->ActionWidget->ShowEnergyCost(current, Data->Cost);
 	}
 }
 

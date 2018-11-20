@@ -12,6 +12,7 @@
 class UEnergyComponent;
 class UMotionComponent;
 class UHealthComponent;
+class UWeaponComponent;
 class UStaticMeshComponent;
 
 UCLASS(Blueprintable)

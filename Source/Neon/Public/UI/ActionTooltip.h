@@ -17,8 +17,8 @@ class NEON_API UActionTooltip : public UUserWidget
 	GENERATED_BODY()
 	
 public:
-	UFUNCTION(BlueprintCallable)
-	void SetData(FActionTableData& data);
+	//UFUNCTION(BlueprintCallable)
+	void SetData(FActionTableData* data);
 
 protected:
 	UPROPERTY(BlueprintReadWrite, Category="UI")

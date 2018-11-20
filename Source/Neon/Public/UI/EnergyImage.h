@@ -6,6 +6,7 @@
 #include "Components/Image.h"
 #include "EnergyImage.generated.h"
 
+
 enum class EnergyImageStatus
 {
 	Active, 

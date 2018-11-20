@@ -1,6 +1,7 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "Weapon.h"
+#include "WorldActors/WeaponProjectile.h"
+#include "Components/StaticMeshComponent.h"
+#include "Engine/World.h"
 
 AWeapon::AWeapon()
 {

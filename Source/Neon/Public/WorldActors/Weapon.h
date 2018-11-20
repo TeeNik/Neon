@@ -4,8 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "WorldActors/WeaponProjectile.h"
 #include "Weapon.generated.h"
+
+class AWeaponProjectile;
+class UStaticMeshComponent;
 
 UCLASS()
 class NEON_API AWeapon : public AActor

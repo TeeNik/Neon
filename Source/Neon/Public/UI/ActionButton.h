@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Components/Button.h"
-#include "Action/ActionTableData.h"
 #include "ActionButton.generated.h"
 
 struct FActionTableData;
@@ -16,12 +15,11 @@ class NEON_API UActionButton : public UButton
 
 private:
 	
-	FActionTableData Data;
+	FActionTableData* Data;
 	
 public:
 
-	UFUNCTION(BlueprintCallable)
-	FActionTableData GetData() { return Data; }
+	FActionTableData* GetData() { return Data; }
 
 	void SetButtonData(FActionTableData* data);
 

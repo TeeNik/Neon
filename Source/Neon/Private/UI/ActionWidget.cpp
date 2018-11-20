@@ -5,6 +5,8 @@
 #include "Runtime/UMG/Public/Components/Spacer.h"
 #include "NeonGameMode.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "UI/ActionButton.h"
+#include "UI/EnergyImage.h"
 
 
 void UActionWidget::ClearButtons()
@@ -125,7 +127,7 @@ void UActionWidget::UpdateAbilityPanel(int current, int value)
 {
 	for (UActionButton* button : ButtonArray)
 	{
-		button->SetIsEnabled(current >= button->GetData().Cost);
+		button->SetIsEnabled(current >= button->GetData()->Cost);
 	}
 }
 
