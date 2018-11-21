@@ -1,10 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-//#include "Action/Action.h"
+#include "Action/Action.h"
 #include "EnemyCharacter.generated.h"
 
 class UMotionComponent;
@@ -13,7 +11,7 @@ class UHealthComponent;
 class UEnergyComponent;
 
 UCLASS()
-class NEON_API AEnemyCharacter : public ACharacter//, public IAction
+class NEON_API AEnemyCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
 
@@ -23,7 +21,7 @@ public:
 
 	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
 
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
@@ -41,7 +39,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
+	virtual bool Highlight_Implementation(FString& AbilityName) override;
 
 protected:
 	virtual void BeginPlay() override;

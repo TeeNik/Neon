@@ -1,10 +1,8 @@
-// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-//#include "Action/Action.h"
+#include "Action/Action.h"
 #include "NeonCharacter.generated.h"
 
 class UEnergyComponent;
@@ -16,7 +14,7 @@ class UAbilityComponent;
 class UMaterialInstance;
 
 UCLASS(Blueprintable)
-class ANeonCharacter : public ACharacter//, public IAction
+class ANeonCharacter : public ACharacter, public IAction
 {
 	GENERATED_BODY()
 
@@ -30,7 +28,7 @@ public:
 
 	void BeginPlay() override;
 
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
@@ -48,7 +46,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
+	virtual bool Highlight_Implementation(FString& AbilityName) override;
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")

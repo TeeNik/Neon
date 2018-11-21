@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-//#include "Action/Action.h"
+#include "Action/Action.h"
 #include "Turret.generated.h"
 
 enum class TurretStatus {
@@ -20,7 +20,7 @@ class UMaterial;
 class UMaterialInstance;
 
 UCLASS()
-class NEON_API ATurret : public APawn//, public IAction
+class NEON_API ATurret : public APawn, public IAction
 {
 	GENERATED_BODY()
 
@@ -31,7 +31,7 @@ public:
 	
 	TurretStatus Status;
 
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
@@ -49,7 +49,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
+	virtual bool Highlight_Implementation(FString& AbilityName) override;
 
 protected:
 	virtual void BeginPlay() override;
