@@ -1,10 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-//#include "Action.h"
-#include "Components/BoxComponent.h"
+//#include "Action/Action.h"
 #include "GameFramework/Actor.h"
-#include "Components/GridLocationComponent.h"
 #include "GridBase.generated.h"
 
 enum GridBaseState {
@@ -13,10 +11,10 @@ enum GridBaseState {
 	Top = 100,
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTestDel, int, num);
-
 class UMaterial;
 class UActionWidget;
+class UGridLocationComponent;
+class UBoxComponent;
 
 UCLASS()
 class NEON_API AGridBase : public AActor//, public IAction
@@ -57,31 +55,23 @@ protected:
 public:	
 
 	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	FActionData GetActionList();
-	virtual FActionData GetActionList_Implementation() override;
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void SetWidgetSettings(UActionWidget* widget);
-	virtual void SetWidgetSettings_Implementation(UActionWidget* widget) override;*/
-
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+		void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+		void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+		void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
 	virtual void OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void Deactivate();
+		void Deactivate();
 	virtual void Deactivate_Implementation() override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	bool Highlight(FString& AbilityName);
+		bool Highlight(FString& AbilityName);
 	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
 
 	UFUNCTION(BlueprintCallable, Category = "Action")

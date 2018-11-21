@@ -1,11 +1,11 @@
 #pragma once
 
-#include "AI/AIState.h"
 #include "CoreMinimal.h"
+#include "AI/AIState.h"
 
-class AIState;
 class UWeaponComponent;
 class UAbilityComponent;
+class UAIStateMachine;
 
 class NEON_API ShootState : AIState
 {

@@ -4,11 +4,14 @@
 #include "Components/EnergyComponent.h"
 #include "Components/AbilityComponent.h"
 #include "Components/MotionComponent.h"
+#include "Components/WeaponComponent.h"
 #include "System/UtilsLibrary.h"
 #include "NeonGameMode.h"
 #include "UI/ActionWidget.h"
 #include "Components/StaticMeshComponent.h"
 #include "Action/ActionTableData.h"
+#include "Components/BoxComponent.h"
+#include "Components/GridLocationComponent.h"
 
 AGridBase::AGridBase()
 {
@@ -96,6 +99,18 @@ void AGridBase::Deactivate_Implementation() {
 	//PlaneComp->SetMaterial(0, DisableMaterial);
 	PlaneComp->SetRenderCustomDepth(false);
 	isInRange = false;
+}
+
+
+bool AGridBase::Highlight_Implementation(FString& abilityName)
+{
+	if (abilityName == TopAbility && State == Top || abilityName == DownAbility && State == Down)
+	return false;
+
+	//PlaneComp->SetVisibility(true);
+	PlaneComp->SetRenderCustomDepth(true);
+	isInRange = true;
+	return true;
 }*/
 
 void AGridBase::MoveToMiddle()
@@ -115,17 +130,6 @@ void AGridBase::MoveDown()
 	Move(State == Top ? -Top : -Middle);
 	State = Down;
 }
-
-/*bool AGridBase::Highlight_Implementation(FString& abilityName)
-{
-	if (abilityName == TopAbility && State == Top || abilityName == DownAbility && State == Down)
-		return false;
-	
-	//PlaneComp->SetVisibility(true);
-	PlaneComp->SetRenderCustomDepth(true);
-	isInRange = true;
-	return true;
-}*/
 
 void AGridBase::Move(float value)
 {

@@ -4,7 +4,9 @@
 #include "System/UtilsLibrary.h"
 #include "Components/MotionComponent.h"
 #include "Components/WeaponComponent.h"
+#include "System/LocationManager.h"
 #include "NeonGameMode.h"
+#include "Engine/World.h"
 
 UHealthComponent::UHealthComponent()
 {

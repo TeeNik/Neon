@@ -1,12 +1,11 @@
-// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "System/LocationManager.h"
-#include "System/TurnManager.h"
 #include "NeonGameMode.generated.h"
+
+class ULocationManager;
+class UTurnManager;
 
 UCLASS(minimalapi)
 class ANeonGameMode : public AGameModeBase

@@ -4,8 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "Components/WeaponComponent.h"
-//#include "Action/Action.h
+//#include "Action/Action.h"
 #include "NeonCharacter.generated.h"
 
 class UEnergyComponent;

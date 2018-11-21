@@ -5,12 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 //#include "Action/Action.h"
-#include "WorldActors/GridBase.h"
-#include "Components/HealthComponent.h"
-#include "Components/EnergyComponent.h"
-#include "MotionComponent.h"
-#include "Materials/MaterialInstanceDynamic.h"
 #include "EnemyCharacter.generated.h"
+
+class UMotionComponent;
+class UMaterialInstance;
+class UHealthComponent;
+class UEnergyComponent;
 
 UCLASS()
 class NEON_API AEnemyCharacter : public ACharacter//, public IAction

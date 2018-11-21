@@ -1,4 +1,5 @@
 #include "OverloadCommand.h"
+#include "Components/HealthComponent.h"
 
 OverloadCommand::OverloadCommand(UHealthComponent* health, int& value)
 {

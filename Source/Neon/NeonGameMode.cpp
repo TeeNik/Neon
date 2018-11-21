@@ -3,6 +3,8 @@
 #include "NeonGameMode.h"
 #include "NeonPlayerController.h"
 #include "NeonCharacter.h"
+#include "System/LocationManager.h"
+#include "System/TurnManager.h"
 #include "UObject/ConstructorHelpers.h"
 
 ANeonGameMode::ANeonGameMode()

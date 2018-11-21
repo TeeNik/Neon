@@ -1,4 +1,5 @@
 #include "RechargeCommand.h"
+#include "HealthComponent.h"
 
 RechargeCommand::RechargeCommand(UHealthComponent* health, int& value)
 {

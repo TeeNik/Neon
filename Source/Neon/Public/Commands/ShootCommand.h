@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Commands/Command.h"
-#include "Components/WeaponComponent.h"
-#include "Components/MotionComponent.h"
 #include "CoreMinimal.h"
+
+class UMotionComponent;
+class UWeaponComponent;
 
 class NEON_API ShootCommand : public Command
 {

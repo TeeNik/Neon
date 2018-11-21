@@ -15,8 +15,10 @@
 #include "Components/MotionComponent.h"
 #include "Components/AbilityComponent.h"
 #include "Components/HealthComponent.h"
+#include "Components/WeaponComponent.h"
 #include "Action/ActionTableData.h"
 #include "Materials/MaterialInstanceDynamic.h"
+#include "UI/ActionWidget.h"
 
 ANeonCharacter::ANeonCharacter()
 {

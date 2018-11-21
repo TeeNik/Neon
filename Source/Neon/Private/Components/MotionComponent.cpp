@@ -1,12 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "MotionComponent.h"
 #include "GameFramework/Character.h"
 #include "AIController.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "NeonGameMode.h"
 #include "WorldActors/GridBase.h"
-
+#include "System/LocationManager.h"
+#include "Engine/World.h"
 
 UMotionComponent::UMotionComponent()
 {

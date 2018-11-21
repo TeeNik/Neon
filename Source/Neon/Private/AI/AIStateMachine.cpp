@@ -1,4 +1,5 @@
 #include "AIStateMachine.h"
+#include "AIState.h"
 
 UAIStateMachine::UAIStateMachine()
 {

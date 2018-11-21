@@ -1,7 +1,8 @@
 #pragma once
 #include "Commands/Command.h"
-#include "Components/HealthComponent.h"
 #include "CoreMinimal.h"
+
+class UHealthComponent;
 
 class NEON_API OverloadCommand : public Command
 {

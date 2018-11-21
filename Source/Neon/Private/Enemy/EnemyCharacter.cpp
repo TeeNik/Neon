@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "EnemyCharacter.h"
 #include "Components/CapsuleComponent.h"
 #include "LocationManager.h"
@@ -10,6 +8,15 @@
 #include "Commands/ShootCommand.h"
 #include "Commands/OverloadCommand.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/MotionComponent.h"
+#include "Materials/MaterialInstanceDynamic.h"
+#include "Components/HealthComponent.h"
+#include "Components/EnergyComponent.h"
+#include "Components/AbilityComponent.h"
+#include "Components/WeaponComponent.h"
+#include "WorldActors/GridBase.h"
+#include "Action/ActionTableData.h"
+#include "Engine/World.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {

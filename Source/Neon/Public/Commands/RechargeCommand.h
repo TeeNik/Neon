@@ -1,7 +1,8 @@
 #pragma once
 #include "Commands/Command.h"
 #include "CoreMinimal.h"
-#include "HealthComponent.h"
+
+class UHealthComponent;
 
 class NEON_API RechargeCommand : public Command
 {
