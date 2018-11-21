@@ -12,6 +12,8 @@
 #include "Action/ActionTableData.h"
 #include "Components/BoxComponent.h"
 #include "Components/GridLocationComponent.h"
+#include "System/TurnManager.h"
+#include "System/LocationManager.h"
 
 AGridBase::AGridBase()
 {
@@ -37,12 +39,12 @@ void AGridBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	/*PlaneComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
+	PlaneComp->OnBeginCursorOver.AddDynamic(this, &AGridBase::OnBeginCursorOver);
 	PlaneComp->OnEndCursorOver.AddDynamic(this, &AGridBase::OnEndCursorOver);
-	PlaneComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);*/
+	PlaneComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
 }
 
-/*void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
 {
 	if(isInRange)
 	{
@@ -111,7 +113,7 @@ bool AGridBase::Highlight_Implementation(FString& abilityName)
 	PlaneComp->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
-}*/
+}
 
 void AGridBase::MoveToMiddle()
 {

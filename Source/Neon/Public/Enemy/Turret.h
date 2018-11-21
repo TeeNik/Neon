@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "Action/Action.h"
+//#include "Action/Action.h"
 #include "Turret.generated.h"
 
 enum class TurretStatus {
@@ -20,7 +20,7 @@ class UMaterial;
 class UMaterialInstance;
 
 UCLASS()
-class NEON_API ATurret : public APawn, public IAction
+class NEON_API ATurret : public APawn//, public IAction
 {
 	GENERATED_BODY()
 

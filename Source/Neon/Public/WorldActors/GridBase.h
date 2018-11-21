@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-//#include "Action/Action.h"
+#include "Action/Action.h"
 #include "GameFramework/Actor.h"
 #include "GridBase.generated.h"
 
@@ -17,7 +17,7 @@ class UGridLocationComponent;
 class UBoxComponent;
 
 UCLASS()
-class NEON_API AGridBase : public AActor//, public IAction
+class NEON_API AGridBase : public AActor, public IAction
 {
 	GENERATED_BODY()
 	
@@ -54,25 +54,25 @@ protected:
 
 public:	
 
-	/*UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-		void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
+	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-		void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
 	virtual void OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-		void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
 	virtual void OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-		void Deactivate();
+	void Deactivate();
 	virtual void Deactivate_Implementation() override;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-		bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;*/
+	bool Highlight(FString& AbilityName);
+	virtual bool Highlight_Implementation(FString& AbilityName) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();

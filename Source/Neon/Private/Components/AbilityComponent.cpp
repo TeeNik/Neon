@@ -2,8 +2,9 @@
 #include "System/ResourceManagerLibrary.h"
 #include "NeonPlayerController.h"
 #include "Action/ActionTableData.h"
-#include "Action/Action.h"
+//#include "Action/Action.h"
 #include "System/ResourceManager.h"
+#include "Engine/World.h"
 
 UAbilityComponent::UAbilityComponent()
 {
@@ -23,10 +24,10 @@ void UAbilityComponent::ShowAbilityRange(FString& name)
 	{
 		auto actor = It->Actor;
 		if (actor->ActorHasTag(ActiveAction->ObjectTag) || actor->ActorHasTag("GridBase")) {
-			if (IAction::Execute_Highlight(It->Actor.Get(), ActiveAction->Name))
+			/*if (IAction::Execute_Highlight(It->Actor.Get(), ActiveAction->Name))
 			{
 				HighlighedObjects.Add(*It);
-			}
+			}*/
 		}
 	}
 }
@@ -38,7 +39,7 @@ void UAbilityComponent::HideAbilityRange()
 		PC->ActiveAction = nullptr;
 		for (auto It = HighlighedObjects.CreateIterator(); It; It++)
 		{
-			IAction::Execute_Deactivate(It->Actor.Get());
+			//IAction::Execute_Deactivate(It->Actor.Get());
 		}
 		HighlighedObjects.Empty();
 	}
