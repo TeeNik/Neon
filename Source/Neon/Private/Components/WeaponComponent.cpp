@@ -6,6 +6,7 @@
 #include "WorldActors/Weapon.h"
 #include "WorldActors/GridBase.h"
 #include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Engine/World.h"
 
 UWeaponComponent::UWeaponComponent()
@@ -25,7 +26,7 @@ void UWeaponComponent::BeginPlay()
 		if (character)
 		{
 			//TODO
-			//EquipedWeapon->AttachToComponent(character->GetMesh(), attachRules, "WeaponSocket");
+			EquipedWeapon->AttachToComponent(character->GetMesh(), attachRules, "WeaponSocket");
 		}
 	}
 }

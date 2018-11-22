@@ -12,6 +12,7 @@
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Components/HealthComponent.h"
 #include "Components/EnergyComponent.h"
+#include "AI/AIStateMachine.h"
 #include "Components/AbilityComponent.h"
 #include "Components/WeaponComponent.h"
 #include "WorldActors/GridBase.h"
@@ -24,6 +25,7 @@ AEnemyCharacter::AEnemyCharacter()
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+	AI = CreateDefaultSubobject<UAIStateMachine>(TEXT("AIStateMachine"));
 	EnergyComp->Initiative = 3;
 	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
 	SelectionCircle->SetupAttachment(RootComponent);

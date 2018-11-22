@@ -9,6 +9,7 @@ class UMotionComponent;
 class UMaterialInstance;
 class UHealthComponent;
 class UEnergyComponent;
+class UAIStateMachine;
 
 UCLASS()
 class NEON_API AEnemyCharacter : public ACharacter, public IAction
@@ -50,6 +51,8 @@ protected:
 	class UMotionComponent* MotionComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UAIStateMachine* AI;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UStaticMeshComponent* SelectionCircle;
@@ -64,4 +67,6 @@ protected:
 private:
 	UFUNCTION()
 	void HideCircle();
+	UFUNCTION()
+	void OnStartTurn();
 };
