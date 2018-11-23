@@ -10,6 +10,7 @@ class UMaterialInstance;
 class UHealthComponent;
 class UEnergyComponent;
 class UAIStateMachine;
+class UWeaponComponent;
 
 UCLASS()
 class NEON_API AEnemyCharacter : public ACharacter, public IAction
@@ -53,7 +54,10 @@ protected:
 	class UEnergyComponent* EnergyComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UAIStateMachine* AI;
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UWeaponComponent* WeaponComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UAbilityComponent* AbilityComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	UStaticMeshComponent* SelectionCircle;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")

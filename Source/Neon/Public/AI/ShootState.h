@@ -7,7 +7,7 @@ class UWeaponComponent;
 class UAbilityComponent;
 class UAIStateMachine;
 
-class NEON_API ShootState : AIState
+class NEON_API ShootState : public AIState
 {
 public:
 	ShootState(UAIStateMachine* ai, FName& targetTag, UWeaponComponent* weaponComponent, UAbilityComponent* abilityComp);
