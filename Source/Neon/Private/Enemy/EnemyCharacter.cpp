@@ -9,6 +9,7 @@
 #include "Commands/OverloadCommand.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/MotionComponent.h"
+#include "Components/WeaponComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Components/HealthComponent.h"
 #include "Components/EnergyComponent.h"
@@ -19,12 +20,15 @@
 #include "Action/ActionTableData.h"
 #include "Engine/World.h"
 #include "System/TurnManager.h"
+#include "AI/ShootState.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
+	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
+	AbilityComp = CreateDefaultSubobject<UAbilityComponent>(TEXT("AbilityComponent"));
 	AI = CreateDefaultSubobject<UAIStateMachine>(TEXT("AIStateMachine"));
 	EnergyComp->Initiative = 3;
 	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
@@ -39,10 +43,7 @@ void AEnemyCharacter::BeginPlay()
 	capsule->OnEndCursorOver.AddDynamic(this, &AEnemyCharacter::OnEndCursorOver);
 	capsule->OnClicked.AddDynamic(this, &AEnemyCharacter::OnClicked);
 
-	EnergyComp->OnStartTurn.AddLambda([&]()
-	{
-		EnergyComp->EndTurn();
-	});
+	EnergyComp->OnStartTurn.AddUFunction(this, "OnStartTurn");
 }
 
 void AEnemyCharacter::InitialMovement()
@@ -109,4 +110,11 @@ bool AEnemyCharacter::Highlight_Implementation(FString& AbilityName)
 void AEnemyCharacter::HideCircle()
 {
 	SelectionCircle->SetVisibility(false);
+}
+
+void AEnemyCharacter::OnStartTurn()
+{
+	FName tag = TEXT("Player");
+	AIState* state = new ShootState(AI, tag, WeaponComp, AbilityComp);
+	AI->NextState(state);
 }
