@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "ActionButton.h"
 #include "NeonPlayerController.h"
 #include "Kismet/GameplayStatics.h"

@@ -23,6 +23,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	float  Range;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
+	int32 Cooldown;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	UTexture2D* Icon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action Data")
 	FName ObjectTag;
