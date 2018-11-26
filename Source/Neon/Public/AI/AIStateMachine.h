@@ -15,6 +15,7 @@ public:
 	UAIStateMachine();
 
 	void NextState(AIState* state);
+	void EndTurn();
 
 protected:
 	virtual void BeginPlay() override;
