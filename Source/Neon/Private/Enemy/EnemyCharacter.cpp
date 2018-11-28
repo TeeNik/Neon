@@ -115,6 +115,6 @@ void AEnemyCharacter::HideCircle()
 void AEnemyCharacter::OnStartTurn()
 {
 	FName tag = TEXT("Player");
-	AIState* state = new ShootState(AI, tag, WeaponComp, AbilityComp);
+	AIState* state = new ShootState(AI, tag);
 	AI->NextState(state);
 }

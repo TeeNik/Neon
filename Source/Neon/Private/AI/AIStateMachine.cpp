@@ -27,5 +27,8 @@ void UAIStateMachine::EndTurn()
 {
 	UEnergyComponent* energyComp = UUtilsLibrary::GetRelativeComponent<UEnergyComponent>(this);
 	energyComp->EndTurn();
+	if (CurrentState != NULL) {
+		delete CurrentState;
+	}
 }
 
