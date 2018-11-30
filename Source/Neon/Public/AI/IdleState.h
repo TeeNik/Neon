@@ -5,10 +5,10 @@
 class UAIStateMachine;
 class UAbilityComponent;
 
-class NEON_API IdleState : AIState
+class NEON_API IdleState : public AIState
 {
 public:
-	IdleState(UAIStateMachine*, UAbilityComponent*);
+	IdleState(UAIStateMachine*);
 	virtual ~IdleState();
 	virtual void Execute();
 

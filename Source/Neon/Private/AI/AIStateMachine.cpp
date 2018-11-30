@@ -3,15 +3,30 @@
 #include "UtilsLibrary.h"
 #include "EnergyComponent.h"
 #include "GameFramework/Actor.h"
+#include "IdleState.h"
+#include "ShootState.h"
 
 UAIStateMachine::UAIStateMachine()
 {
-
+	isAwake = false;
 }
 
 void UAIStateMachine::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void UAIStateMachine::StartTurn()
+{
+	AIState* state;
+	if (isAwake) {
+		FName tag = TEXT("Player");
+		state = new ShootState(this, tag);
+	}
+	else {
+		state = new IdleState(this);
+	}
+	
 }
 
 void UAIStateMachine::NextState(AIState* state)
@@ -32,3 +47,7 @@ void UAIStateMachine::EndTurn()
 	}
 }
 
+void UAIStateMachine::SetAwake(bool value)
+{
+	isAwake = value;
+}

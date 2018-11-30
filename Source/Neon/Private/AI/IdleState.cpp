@@ -2,10 +2,10 @@
 #include "AIStateMachine.h"
 #include "AbilityComponent.h"
 #include "GameFramework/Actor.h"
+#include "UtilsLibrary.h"
 
-IdleState::IdleState(UAIStateMachine* ai, UAbilityComponent* abilityComp) : AIState(ai)
+IdleState::IdleState(UAIStateMachine* ai) : AIState(ai)
 {
-	AbilityComp = abilityComp;
 }
 
 IdleState::~IdleState()
@@ -15,7 +15,8 @@ IdleState::~IdleState()
 void IdleState::Execute()
 {
 	FString name = TEXT("Shoot");
-	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(name);
+	UAbilityComponent* abilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);
+	TArray<FHitResult> actors = abilityComp->GetActorsInRange(name);
 	bool hasPlayerInRange = false;
 	for (auto It = actors.CreateIterator(); It; It++)
 	{
@@ -25,5 +26,10 @@ void IdleState::Execute()
 			break;
 		}
 	}
-	AI->EndTurn();
+	if (hasPlayerInRange) {
+
+	}
+	else {
+		AI->EndTurn();
+	}
 }
