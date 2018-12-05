@@ -18,6 +18,7 @@ void UAIStateMachine::BeginPlay()
 
 void UAIStateMachine::StartTurn()
 {
+	GLog->Log("AI Start");
 	AIState* state;
 	if (isAwake) {
 		FName tag = TEXT("Player");
@@ -26,7 +27,7 @@ void UAIStateMachine::StartTurn()
 	else {
 		state = new IdleState(this);
 	}
-	
+	NextState(state);
 }
 
 void UAIStateMachine::NextState(AIState* state)
@@ -44,6 +45,7 @@ void UAIStateMachine::EndTurn()
 	energyComp->EndTurn();
 	if (CurrentState != NULL) {
 		delete CurrentState;
+		CurrentState = NULL;
 	}
 }
 

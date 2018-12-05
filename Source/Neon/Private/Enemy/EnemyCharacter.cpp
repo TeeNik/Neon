@@ -4,7 +4,6 @@
 #include "NeonGameMode.h"
 #include "System/UtilsLibrary.h"
 #include "System/GameStrings.h"
-#include "NeonPlayerController.h"
 #include "Commands/ShootCommand.h"
 #include "Commands/OverloadCommand.h"
 #include "Components/StaticMeshComponent.h"
@@ -15,12 +14,10 @@
 #include "Components/EnergyComponent.h"
 #include "AI/AIStateMachine.h"
 #include "Components/AbilityComponent.h"
-#include "Components/WeaponComponent.h"
 #include "WorldActors/GridBase.h"
 #include "Action/ActionTableData.h"
 #include "Engine/World.h"
 #include "System/TurnManager.h"
-#include "AI/ShootState.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -114,7 +111,5 @@ void AEnemyCharacter::HideCircle()
 
 void AEnemyCharacter::OnStartTurn()
 {
-	FName tag = TEXT("Player");
-	AIState* state = new ShootState(AI, tag);
-	AI->NextState(state);
+	AI->StartTurn();
 }

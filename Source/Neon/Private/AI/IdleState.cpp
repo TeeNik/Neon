@@ -3,6 +3,7 @@
 #include "AbilityComponent.h"
 #include "GameFramework/Actor.h"
 #include "UtilsLibrary.h"
+#include "ShootState.h"
 
 IdleState::IdleState(UAIStateMachine* ai) : AIState(ai)
 {
@@ -27,9 +28,14 @@ void IdleState::Execute()
 		}
 	}
 	if (hasPlayerInRange) {
-
+		AI->SetAwake(true);
+		FName tag = TEXT("Player");
+		AI->NextState(new ShootState(AI, tag));
+		GLog->Log("Awake");
 	}
 	else {
 		AI->EndTurn();
+		GLog->Log("Idling");
+
 	}
 }
