@@ -10,6 +10,7 @@
 ShootState::ShootState(UAIStateMachine* ai, FName& targetTag) : AIState(ai)
 {
 	TargetTag = targetTag;
+	Name = "ShootState";
 }
 
 ShootState::~ShootState()

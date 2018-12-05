@@ -36,6 +36,7 @@ void UAIStateMachine::NextState(AIState* state)
 		delete CurrentState;
 	}
 	CurrentState = state;
+	GLog->Log(state->Name);
 	CurrentState->Execute();
 }
 

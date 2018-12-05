@@ -7,6 +7,7 @@
 
 IdleState::IdleState(UAIStateMachine* ai) : AIState(ai)
 {
+	Name = "IdleState";
 }
 
 IdleState::~IdleState()
@@ -31,11 +32,8 @@ void IdleState::Execute()
 		AI->SetAwake(true);
 		FName tag = TEXT("Player");
 		AI->NextState(new ShootState(AI, tag));
-		GLog->Log("Awake");
 	}
 	else {
 		AI->EndTurn();
-		GLog->Log("Idling");
-
 	}
 }

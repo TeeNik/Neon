@@ -8,5 +8,8 @@ class NEON_API MovementState : AIState
 {
 public:
 	MovementState(UAIStateMachine*);
-	~MovementState();
+	virtual ~MovementState();
+	virtual void Execute();
+
+
 };

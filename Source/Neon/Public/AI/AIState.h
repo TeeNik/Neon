@@ -9,5 +9,6 @@ public:
 	AIState(UAIStateMachine* ai);
 	virtual ~AIState();
 	virtual void Execute();
+	FString Name;
 	UAIStateMachine * AI;
 };
