@@ -6,19 +6,22 @@
 #include "UI/ActionButton.h"
 #include "UI/EnergyImage.h"
 #include "UI/ActionTooltip.h"
+#include "UI/ActionButtonWidget.h"
 #include "Action/ActionTableData.h"
+#include "System/TurnManager.h"
 #include "Components/HorizontalBox.h"
+#include "Components/EnergyComponent.h"
 
 void UActionWidget::ClearButtons()
 {
-	for (UButton* button : ButtonArray) {
-		button->OnClicked.Clear();
+	for (UActionButtonWidget* button : ButtonArray) {
+		button->ActionButton->OnClicked.Clear();
 	}
 }
 
 void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 {
-	if(ActionButtonBP == NULL)
+	if(AbilityButton == NULL)
 	{
 		GLog->Log("Init Buttons Error!!! ActionButtonBP is null");
 		return;
@@ -32,10 +35,10 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 	child->SetSize(size);
 	for(int i = 0; i < actionDatas.Num(); ++i)
 	{
-		UActionButton* button = WidgetTree->ConstructWidget<UActionButton>(ActionButtonBP);
+		UActionButtonWidget* button = WidgetTree->ConstructWidget<UActionButtonWidget>(AbilityButton);
 		child = ActionBox->AddChildToHorizontalBox(button);
 		child->SetPadding(padding);
-		button->SetButtonData(actionDatas[i]);
+		button->ActionButton->SetButtonData(actionDatas[i]);
 		button->SetToolTip(ActionTooltip);
 		ButtonArray.Add(button);
 	}	
@@ -125,9 +128,9 @@ void UActionWidget::EnableEnergyImages(int value)
 
 void UActionWidget::UpdateAbilityPanel(int current, int value)
 {
-	for (UActionButton* button : ButtonArray)
+	for (UActionButtonWidget* button : ButtonArray)
 	{
-		button->SetIsEnabled(current >= button->GetData()->Cost);
+		button->SetIsEnabled(current >= button->ActionButton->GetData()->Cost);
 	}
 }
 

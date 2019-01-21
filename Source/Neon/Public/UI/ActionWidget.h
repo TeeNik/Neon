@@ -17,7 +17,7 @@ enum class ButtonDirection {
 	Lower
 };
 
-class UActionButton;
+class UActionButtonWidget;
 class UButton;
 struct FActionTableData;
 class UEnergyImage;
@@ -45,7 +45,7 @@ protected:
 	UActionTooltip * ActionTooltip;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
-	TArray<UActionButton*> ButtonArray;
+	TArray<UActionButtonWidget*> ButtonArray;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
 	TArray<UEnergyImage*> EnergyImages;
@@ -63,7 +63,7 @@ protected:
 	TSubclassOf<UEnergyImage> EnergyImageBP;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
-	TSubclassOf<UActionButton> ActionButtonBP;
+	TSubclassOf<UActionButtonWidget> AbilityButton;
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionTooltip> ActionTooltipBP;

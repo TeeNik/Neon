@@ -1,10 +1,12 @@
 #include "AbilityComponent.h"
 #include "System/ResourceManagerLibrary.h"
 #include "NeonPlayerController.h"
-#include "Action/ActionTableData.h"
+#include "Ability/Ability.h"
 #include "Action/Action.h"
+#include "Action/ActionTableData.h"
 #include "System/ResourceManager.h"
 #include "Engine/World.h"
+#include "Commands/ShootCommand.h"
 
 UAbilityComponent::UAbilityComponent()
 {
@@ -46,11 +48,11 @@ void UAbilityComponent::HideAbilityRange()
 
 }
 
-FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
+Ability* UAbilityComponent::FindAbilityByName(FString name)
 {
-	for (auto data : Abilities)
+	for (auto ability : Abilities)
 	{
-		if (data->Name == name) return data;
+		if (ability->Data->Name == name) return ability;
 	}
 	return nullptr;
 }
@@ -58,7 +60,21 @@ FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
 void UAbilityComponent::InitAbilities()
 {
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
-	dataTable->GetAllRows<FActionTableData>(TEXT(""), Abilities);
+	TArray<FActionTableData*> abilityDatas;
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
+	for(int i = 0; i < abilityDatas.Num(); ++i)
+	{
+		Ability* ability = new Ability();
+		ability->Data = abilityDatas[i];
+		//ability->Command
+	}
+}
+
+Command* UAbilityComponent::GenerateCommandByName(FString name)
+{
+	if (name.Equals(TEXT("Shoot"))) {
+		return new ShootCommand();
+	}
 }
 
 TArray<FHitResult> UAbilityComponent::GetActorsInRange(FString& name)

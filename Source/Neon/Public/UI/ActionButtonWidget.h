@@ -6,7 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "ActionButtonWidget.generated.h"
 
-class UButton;
+class UActionButton;
 class UTextBlock;
 
 UCLASS()
@@ -16,7 +16,7 @@ class NEON_API UActionButtonWidget : public UUserWidget
 	
 public:
 	UPROPERTY(meta = (BindWidget))
-	UButton* MyButton;
+	UActionButton* ActionButton;
 	
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* MyText;
