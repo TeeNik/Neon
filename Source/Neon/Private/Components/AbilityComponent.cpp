@@ -48,11 +48,11 @@ void UAbilityComponent::HideAbilityRange()
 
 }
 
-Ability* UAbilityComponent::FindAbilityByName(FString name)
+FActionTableData* UAbilityComponent::FindAbilityByName(FString name)
 {
 	for (auto ability : Abilities)
 	{
-		if (ability->Data->Name == name) return ability;
+		if (ability->Name == name) return ability;
 	}
 	return nullptr;
 }
@@ -61,20 +61,13 @@ void UAbilityComponent::InitAbilities()
 {
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	TArray<FActionTableData*> abilityDatas;
-	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
-	for(int i = 0; i < abilityDatas.Num(); ++i)
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), Abilities);
+	/*for(int i = 0; i < abilityDatas.Num(); ++i)
 	{
 		Ability* ability = new Ability();
 		ability->Data = abilityDatas[i];
 		//ability->Command
-	}
-}
-
-Command* UAbilityComponent::GenerateCommandByName(FString name)
-{
-	if (name.Equals(TEXT("Shoot"))) {
-		return new ShootCommand();
-	}
+	}*/
 }
 
 TArray<FHitResult> UAbilityComponent::GetActorsInRange(FString& name)

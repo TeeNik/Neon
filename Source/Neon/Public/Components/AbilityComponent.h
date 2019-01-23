@@ -7,8 +7,6 @@
 #include "AbilityComponent.generated.h"
 
 struct FActionTableData;
-class Ability;
-class Command;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAbilityComponent : public UActorComponent
@@ -18,8 +16,8 @@ class NEON_API UAbilityComponent : public UActorComponent
 public:	
 	UAbilityComponent();
 
-	TArray<Ability*> Abilities;
-	Ability* ActiveAction;
+	TArray<FActionTableData*> Abilities;
+	FActionTableData* ActiveAction;
 	
 	void ShowAbilityRange(FString&);
 	void HideAbilityRange();
@@ -29,9 +27,6 @@ public:
 
 protected:
 	TArray<FHitResult> HighlighedObjects;
-	Ability* FindAbilityByName(FString);
+	FActionTableData* FindAbilityByName(FString);
 	void InitAbilities();
-
-private:
-	Command * GenerateCommandByName(FString name);
 };
