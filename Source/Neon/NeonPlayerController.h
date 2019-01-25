@@ -7,6 +7,8 @@
 class UActionWidget;
 class ANeonCharacter;
 
+DECLARE_DELEGATE_OneParam(OnPlayerAbilityDelegate, AActor*);
+
 UCLASS()
 class ANeonPlayerController : public APlayerController
 {
@@ -36,6 +38,7 @@ public:
 	void CloseWidget();
 	UPROPERTY(BlueprintReadOnly, Category="Neon")
 	ANeonCharacter* NeonCharacter;
+	OnPlayerAbilityDelegate OnPlayerAbilityCall;
 };
 
 

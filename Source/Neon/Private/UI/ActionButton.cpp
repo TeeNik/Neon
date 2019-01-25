@@ -25,7 +25,7 @@ void UActionButton::ExecuteAbility()
 {
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
-		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
+		PC->NeonCharacter->GetAbilityComponent()->ShowAbilityRange(Data->Name);
 	}
 }
 
@@ -35,7 +35,7 @@ void UActionButton::DisableAbility()
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		PC->ActiveAction = nullptr;
-		PC->NeonCharacter->GetAbilityConponent()->ShowAbilityRange(Data->Name);
+		PC->NeonCharacter->GetAbilityComponent()->ShowAbilityRange(Data->Name);
 	}
 }
 

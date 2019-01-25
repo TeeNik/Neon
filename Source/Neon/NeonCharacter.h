@@ -20,7 +20,7 @@ class ANeonCharacter : public ACharacter, public IAction
 
 public:
 	ANeonCharacter();
-	FORCEINLINE class UAbilityComponent* GetAbilityConponent() { return AbilityComp; }
+	FORCEINLINE class UAbilityComponent* GetAbilityComponent() { return AbilityComp; }
 	FORCEINLINE class UHealthComponent* GetHealthComponent() { return HealthComp; }
 	FORCEINLINE class UWeaponComponent* GetWeaponComponent() { return WeaponComp; }
 	FORCEINLINE class UMotionComponent* GetMotionComponent() { return MotionComp; }
@@ -47,6 +47,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
 	bool Highlight(FString& AbilityName);
 	virtual bool Highlight_Implementation(FString& AbilityName) override;
+
+	UFUNCTION()
+	void OnPlayerActionCall(AActor* target);
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")

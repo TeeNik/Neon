@@ -43,5 +43,5 @@ void ANeonPlayerController::CreateFirstWidget()
 
 void ANeonPlayerController::CloseWidget()
 {
-	NeonCharacter->GetAbilityConponent()->HideAbilityRange();
+	NeonCharacter->GetAbilityComponent()->HideAbilityRange();
 }

@@ -7,6 +7,7 @@
 #include "Commands/ShootCommand.h"
 #include "Materials/Material.h"
 #include "Engine/World.h"
+#include "Ability/Ability.h"
 #include "GameStrings.h"
 #include "Components/EnergyComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -100,6 +101,11 @@ bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
 {
 	isInRange = true;
 	return true;
+}
+
+void ANeonCharacter::OnPlayerActionCall(AActor* target)
+{
+	AbilityComp->ActiveAction->Execute(this, target);
 }
 
 void ANeonCharacter::OnSpendEnergy(int current, int value)

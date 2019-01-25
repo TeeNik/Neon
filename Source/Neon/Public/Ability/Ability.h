@@ -2,14 +2,15 @@
 
 #include "CoreMinimal.h"
 
-class Command;
+class AActor;
 struct FActionTableData;
 
 class NEON_API Ability
 {
 public:
 	Ability();
-	~Ability();
+	virtual ~Ability();
+	virtual void Execute(AActor*, AActor*);
 
 	int32 Cooldown;
 	FActionTableData* Data;

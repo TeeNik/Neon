@@ -1,10 +1,9 @@
-// Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
-
 #include "NeonGameMode.h"
 #include "NeonPlayerController.h"
 #include "NeonCharacter.h"
 #include "System/LocationManager.h"
 #include "System/TurnManager.h"
+#include "System/AbilityManager.h"
 #include "UObject/ConstructorHelpers.h"
 
 ANeonGameMode::ANeonGameMode()
@@ -21,6 +20,7 @@ ANeonGameMode::ANeonGameMode()
 
 	LocationManager = CreateDefaultSubobject<ULocationManager>(TEXT("LocationManager"));
 	TurnManager = CreateDefaultSubobject<UTurnManager>(TEXT("TurnManager"));
+	AbilityManager = CreateDefaultSubobject<UAbilityManager>(TEXT("AbilityManager"));
 }
 
 void ANeonGameMode::BeginPlay()

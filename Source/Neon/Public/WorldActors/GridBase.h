@@ -28,6 +28,8 @@ public:
 	const FString DownAbility = TEXT("Down");
 	const FString MoveAbility = TEXT("MoveTo");
 
+	FORCEINLINE class UGridLocationComponent* GetLocationComponent() { return GridLocationComp; }
+
 	void Move(float value);
 	GridBaseState State;
 
