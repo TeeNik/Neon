@@ -11,7 +11,6 @@ public:
 	Ability();
 	~Ability();
 
-	Command* Command;
 	int32 Cooldown;
 	FActionTableData* Data;
 };

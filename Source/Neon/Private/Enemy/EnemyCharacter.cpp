@@ -72,7 +72,7 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 		Command* command = NULL;
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		if(EC)
+		/*if(EC)
 		{
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
@@ -88,7 +88,7 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 			}
 			command->Execute();
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
-		}
+		}*/
 	}
 }
 

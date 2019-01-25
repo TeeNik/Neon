@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,6 +5,7 @@
 #include "AbilityComponent.generated.h"
 
 struct FActionTableData;
+class Ability;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAbilityComponent : public UActorComponent
@@ -16,8 +15,8 @@ class NEON_API UAbilityComponent : public UActorComponent
 public:	
 	UAbilityComponent();
 
-	TArray<FActionTableData*> Abilities;
-	FActionTableData* ActiveAction;
+	TArray<Ability*> Abilities;
+	Ability* ActiveAction;
 	
 	void ShowAbilityRange(FString&);
 	void HideAbilityRange();
@@ -27,6 +26,6 @@ public:
 
 protected:
 	TArray<FHitResult> HighlighedObjects;
-	FActionTableData* FindAbilityByName(FString);
+	Ability* FindAbilityByName(FString);
 	void InitAbilities();
 };

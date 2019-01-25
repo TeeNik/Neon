@@ -65,7 +65,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		if (EC) {
+		/*if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
 			
@@ -92,7 +92,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 				auto cover = GM->GetLocationManager()->GetCoverInfo(this);
 			}
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
-		}
+		}*/
 	}
 }
 

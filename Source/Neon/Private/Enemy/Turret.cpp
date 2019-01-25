@@ -59,7 +59,7 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 	{
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		if (EC) {
+		/*if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
 			FString actionName = actionComp->ActiveAction->Name;
 			if (actionName == UGameStrings::ActivateAction)
@@ -68,7 +68,7 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 			}
 			EC->SpendEnergy(actionComp->ActiveAction->Cost);
 		}
-		SelectionCircle->SetMaterial(0, DefaultMaterial);
+		SelectionCircle->SetMaterial(0, DefaultMaterial);*/
 	}
 }
 

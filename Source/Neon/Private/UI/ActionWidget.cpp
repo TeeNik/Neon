@@ -4,6 +4,7 @@
 #include "NeonGameMode.h"
 #include "Components/HorizontalBoxSlot.h"
 #include "UI/ActionButton.h"
+#include "Ability/Ability.h"
 #include "UI/EnergyImage.h"
 #include "UI/ActionTooltip.h"
 #include "UI/ActionButtonWidget.h"
@@ -19,7 +20,7 @@ void UActionWidget::ClearButtons()
 	}
 }
 
-void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
+void UActionWidget::InitButtons(TArray<Ability*> actionDatas)
 {
 	if(AbilityButton == NULL)
 	{
@@ -38,7 +39,7 @@ void UActionWidget::InitButtons(TArray<FActionTableData*> actionDatas)
 		UActionButtonWidget* button = WidgetTree->ConstructWidget<UActionButtonWidget>(AbilityButton);
 		child = ActionBox->AddChildToHorizontalBox(button);
 		child->SetPadding(padding);
-		button->ActionButton->SetButtonData(actionDatas[i]);
+		button->ActionButton->SetButtonData(actionDatas[i]->Data);
 		button->SetToolTip(ActionTooltip);
 		ButtonArray.Add(button);
 	}	
