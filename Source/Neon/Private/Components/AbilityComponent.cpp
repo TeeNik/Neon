@@ -6,6 +6,7 @@
 #include "Action/ActionTableData.h"
 #include "System/ResourceManager.h"
 #include "Engine/World.h"
+#include "NeonGameMode.h"
 #include "Commands/ShootCommand.h"
 
 UAbilityComponent::UAbilityComponent()
@@ -62,9 +63,13 @@ void UAbilityComponent::InitAbilities()
 	auto dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	TArray<FActionTableData*> abilityDatas;
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	UAbilityManager* AM = GM->GetAbilityManager();
 	for(int i = 0; i < abilityDatas.Num(); ++i)
 	{
-		Ability* ability = new Ability();
+		Ability* base = AM->GetAbility(abilityDatas[i]->Name);
+		if (base == nullptr) continue;
+		Ability* ability = new Ability(*base);
 		ability->Data = abilityDatas[i];
 		Abilities.Add(ability);
 	}

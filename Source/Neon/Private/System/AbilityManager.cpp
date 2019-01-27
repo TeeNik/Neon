@@ -1,13 +1,20 @@
 #include "AbilityManager.h"
 #include "Ability/Ability.h"
+#include "Ability/MoveAbility.h"
 
 UAbilityManager::UAbilityManager()
 {
 
 }
 
-Ability * UAbilityManager::GetAbility()
+Ability * UAbilityManager::GetAbility(FString name)
 {
+	for (int i = 0; i < abilities.Num(); ++i) {
+		GLog->Log(abilities[i]->Data->Name);
+		if (abilities[i]->Data->Name.Equals(name)) {
+			return abilities[i];
+		}
+	}
 	return nullptr;
 }
 
@@ -22,4 +29,6 @@ void UAbilityManager::BeginDestroy()
 void UAbilityManager::BeginPlay()
 {
 	Super::BeginPlay();
+
+	abilities.Add(new MoveAbility());
 }

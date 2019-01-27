@@ -7,7 +7,7 @@
 class Ability;
 class AActor;
 
-class NEON_API MoveAbility : Ability
+class NEON_API MoveAbility : public Ability
 {
 public:
 	MoveAbility();

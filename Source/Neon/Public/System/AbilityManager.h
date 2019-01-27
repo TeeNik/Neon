@@ -14,7 +14,7 @@ class NEON_API UAbilityManager : public USceneComponent
 public:	
 	UAbilityManager();
 
-	Ability* GetAbility();
+	Ability* GetAbility(FString name);
 
 	virtual void BeginDestroy();
 
