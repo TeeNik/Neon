@@ -7,7 +7,6 @@
 #include "System/ResourceManager.h"
 #include "Engine/World.h"
 #include "NeonGameMode.h"
-#include "Commands/ShootCommand.h"
 
 UAbilityComponent::UAbilityComponent()
 {
@@ -67,11 +66,11 @@ void UAbilityComponent::InitAbilities()
 	UAbilityManager* AM = GM->GetAbilityManager();
 	for(int i = 0; i < abilityDatas.Num(); ++i)
 	{
-		Ability* base = AM->GetAbility(abilityDatas[i]->Name);
+		/*Ability* base = AM->GetAbility(abilityDatas[i]->Name);
 		if (base == nullptr) continue;
 		Ability* ability = new Ability(*base);
 		ability->Data = abilityDatas[i];
-		Abilities.Add(ability);
+		Abilities.Add(ability);*/
 	}
 }
 

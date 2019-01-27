@@ -2,6 +2,8 @@
 #include "Engine/DataTable.h"
 #include "ActionTableData.generated.h"
 
+class UTexture2D;
+
 USTRUCT(BlueprintType)
 struct NEON_API FActionTableData : public FTableRowBase
 {

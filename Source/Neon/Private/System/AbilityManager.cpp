@@ -1,10 +1,25 @@
 #include "AbilityManager.h"
+#include "Action/ActionTableData.h"
 #include "Ability/Ability.h"
-#include "Ability/MoveAbility.h"
+#include "System/ResourceManagerLibrary.h"
+#include "System/ResourceManager.h"
+#include "Engine/DataTable.h"
 
 UAbilityManager::UAbilityManager()
 {
 
+}
+
+
+void UAbilityManager::BeginPlay()
+{
+	Super::BeginPlay();
+
+	UDataTable* dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
+	TArray<FActionTableData*> abilityDatas;
+	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
+
+	//abilities.Add(new MoveAbility());
 }
 
 Ability * UAbilityManager::GetAbility(FString name)
@@ -24,11 +39,4 @@ void UAbilityManager::BeginDestroy()
 	for (int i = 0; i < abilities.Num(); ++i) {
 		delete abilities[i];
 	}
-}
-
-void UAbilityManager::BeginPlay()
-{
-	Super::BeginPlay();
-
-	abilities.Add(new MoveAbility());
 }
