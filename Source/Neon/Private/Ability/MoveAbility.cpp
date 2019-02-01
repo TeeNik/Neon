@@ -1,21 +1,13 @@
 #include "MoveAbility.h"
-#include "WorldActors/GridBase.h"
-#include "System/UtilsLibrary.h"
 #include "Components/GridLocationComponent.h"
 #include "Components/MotionComponent.h"
+#include "GameFramework/Actor.h"
+#include "System/UtilsLibrary.h"
 
-MoveAbility::MoveAbility()
+void UMoveAbility::Execute(AActor * owner, AActor * target)
 {
-}
-
-MoveAbility::~MoveAbility()
-{
-}
-
-void MoveAbility::Execute(AActor* owner, AActor* target)
-{
-	AGridBase* grid = Cast<AGridBase>(target);
-	grid->GetLocationComponent()->SetStatus(GridLocationStatus::Player);
+	UGridLocationComponent* grid = UUtilsLibrary::GetComponentByClass<UGridLocationComponent>(target);
+	grid->SetStatus(GridLocationStatus::Player);
 	UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(owner);
-	motion->MoveToGrid(grid);
+	motion->MoveToGrid(owner);
 }

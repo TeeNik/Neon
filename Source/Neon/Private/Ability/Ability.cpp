@@ -1,12 +1,17 @@
 #include "Ability.h"
 
-Ability::Ability()
+UAbility::UAbility()
 {
 }
 
-Ability::~Ability()
+UAbility::~UAbility()
 {
 	//TODO
 	//delete Data;
+}
+
+void UAbility::Execute(AActor*, AActor*)
+{
+
 }
 

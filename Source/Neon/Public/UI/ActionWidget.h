@@ -20,7 +20,7 @@ enum class ButtonDirection {
 class UActionButtonWidget;
 class UButton;
 class UEnergyImage;
-class Ability;
+class UAbility;
 class UActionTooltip;
 class UHorizontalBox;
 
@@ -31,7 +31,7 @@ class NEON_API UActionWidget : public UUserWidget
 
 public:
 	void ClearButtons();
-	void InitButtons(TArray<Ability*> actionDatas);
+	void InitButtons(TArray<UAbility*> actionDatas);
 	void InitEnergy(int32& num, OnSpendEnergyDelegate&, OnStartTurnDelegate& , OnEndTurnDelegate&);
 	void InitToolTip();
 

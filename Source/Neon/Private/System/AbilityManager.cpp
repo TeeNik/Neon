@@ -19,22 +19,22 @@ void UAbilityManager::BeginPlay()
 	UDataTable* dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
 
-	InitAbility(new MoveAbility(), "MoveTo");
+	//InitAbility(new MoveAbility(), "MoveTo");
 	//abilities.Add(new MoveAbility());
 }
 
-Ability * UAbilityManager::GetAbility(FString name)
+UAbility * UAbilityManager::GetAbility(FString name)
 {
-	for (int i = 0; i < abilities.Num(); ++i) {
-		GLog->Log(abilities[i]->Data->Name);
-		if (abilities[i]->Data->Name.Equals(name)) {
-			return abilities[i];
-		}
+	UAbility* ability;
+
+	if (name.Equals("MoveTo")) {
+		ability = NewObject<UMoveAbility>();
 	}
-	return nullptr;
+	InitAbility(ability, name);
+	return ability;
 }
 
-void UAbilityManager::InitAbility(Ability* ability, FString name)
+void UAbilityManager::InitAbility(UAbility* ability, FString name)
 {
 	for (int i = 0; i < abilityDatas.Num(); ++i)
 	{

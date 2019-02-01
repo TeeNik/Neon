@@ -33,13 +33,14 @@ void UMotionComponent::SetupInitialPosition()
 	Position = gridBase;
 }
 
-void UMotionComponent::MoveToGrid(AGridBase* gridBase)
+void UMotionComponent::MoveToGrid(AActor* gridBase)
 {
 	ACharacter* character = Cast<ACharacter>(GetOwner());
+	AGridBase* grid = Cast<AGridBase>(gridBase);
 	//UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
 	AAIController* aiController = Cast<AAIController>(character->GetController());
 	//aiController->MoveToLocation(gridBase->GetActorLocation(), -1, false);
-	Position = gridBase;
+	Position = grid;
 	UAIBlueprintHelperLibrary::SimpleMoveToLocation(aiController, gridBase->GetActorLocation());
 }
 

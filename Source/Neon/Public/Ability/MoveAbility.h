@@ -1,14 +1,16 @@
+
 #pragma once
-#include "Ability/Ability.h"
+
 #include "CoreMinimal.h"
+#include "Ability/Ability.h"
+#include "MoveAbility.generated.h"
 
-class Ability;
-class AActor;
-
-class NEON_API MoveAbility : public Ability
+UCLASS()
+class NEON_API UMoveAbility : public UAbility
 {
-public:
-	MoveAbility();
-	~MoveAbility();
+	GENERATED_BODY()
+	
 	virtual void Execute(AActor*, AActor*);
+	
+	
 };

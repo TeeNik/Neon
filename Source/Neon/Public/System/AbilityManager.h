@@ -4,7 +4,7 @@
 #include "Components/SceneComponent.h"
 #include "AbilityManager.generated.h"
 
-class Ability;
+class UAbility;
 struct FActionTableData;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -15,15 +15,15 @@ class NEON_API UAbilityManager : public USceneComponent
 public:	
 	UAbilityManager();
 
-	Ability* GetAbility(FString name);
+	UAbility* GetAbility(FString name);
 
 	virtual void BeginDestroy();
 
 protected:
 	virtual void BeginPlay() override;
-	TArray<Ability*> abilities;
+	TArray<UAbility*> abilities;
 	TArray<FActionTableData*> abilityDatas;
 
-	void InitAbility(Ability* ability, FString name);
+	void InitAbility(UAbility* ability, FString name);
 
 };

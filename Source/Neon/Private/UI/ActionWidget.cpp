@@ -20,7 +20,7 @@ void UActionWidget::ClearButtons()
 	}
 }
 
-void UActionWidget::InitButtons(TArray<Ability*> actionDatas)
+void UActionWidget::InitButtons(TArray<UAbility*> actionDatas)
 {
 	if(AbilityButton == NULL)
 	{

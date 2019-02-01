@@ -5,6 +5,7 @@
 #include "UtilsLibrary.generated.h"
 
 class UActorComponent;
+class AActor;
 
 UCLASS()
 class NEON_API UUtilsLibrary : public UObject

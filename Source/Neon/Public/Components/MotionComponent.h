@@ -15,7 +15,7 @@ public:
 	UMotionComponent();
 
 	AGridBase* GetPosition() { return Position; }
-	void MoveToGrid(AGridBase* gridBase);
+	void MoveToGrid(AActor* gridBase);
 
 protected:
 	virtual void BeginPlay() override;	

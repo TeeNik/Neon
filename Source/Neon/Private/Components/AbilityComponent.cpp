@@ -48,7 +48,7 @@ void UAbilityComponent::HideAbilityRange()
 
 }
 
-Ability* UAbilityComponent::FindAbilityByName(FString name)
+UAbility* UAbilityComponent::FindAbilityByName(FString name)
 {
 	for (auto ability : Abilities)
 	{
