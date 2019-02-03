@@ -33,7 +33,7 @@ AGridBase::AGridBase()
 
 	GridLocationComp = CreateDefaultSubobject<UGridLocationComponent>(TEXT("GridLocationComp"));
 
-	State = Down;
+	GridLocationComp->State = Down;
 }
 
 void AGridBase::BeginPlay()
@@ -45,7 +45,7 @@ void AGridBase::BeginPlay()
 	PlaneComp->OnClicked.AddDynamic(this, &AGridBase::OnClicked);
 }
 
-void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void AGridBase::OnBeginCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if(isInRange)
 	{
@@ -53,7 +53,7 @@ void AGridBase::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedCom
 	}
 }
 
-void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void AGridBase::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if(isInRange)
 	{
@@ -61,7 +61,7 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 	}
 }
 
-void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+void AGridBase::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 	GLog->Log("Click");
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
@@ -100,7 +100,7 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 	}
 }
 
-void AGridBase::Deactivate_Implementation() {
+void AGridBase::Deactivate() {
 	//PlaneComp->SetVisibility(false);
 	//PlaneComp->SetMaterial(0, DisableMaterial);
 	PlaneComp->SetRenderCustomDepth(false);
@@ -108,9 +108,9 @@ void AGridBase::Deactivate_Implementation() {
 }
 
 
-bool AGridBase::Highlight_Implementation(FString& abilityName)
+bool AGridBase::Highlight(FString& abilityName)
 {
-	if (abilityName == TopAbility && State == Top || abilityName == DownAbility && State == Down)
+	if (abilityName == TopAbility && GridLocationComp->State == Top || abilityName == DownAbility && GridLocationComp->State == Down)
 	return false;
 
 	//PlaneComp->SetVisibility(true);
@@ -121,20 +121,20 @@ bool AGridBase::Highlight_Implementation(FString& abilityName)
 
 void AGridBase::MoveToMiddle()
 {
-	Move(State == Down ? Middle : -Middle);
-	State = Middle;	
+	Move(GridLocationComp->State == Down ? Middle : -Middle);
+	GridLocationComp->State = Middle;
 }
 
 void AGridBase::MoveToTop()
 {
-	Move(State == Down ? Top : Middle);
-	State = Top;
+	Move(GridLocationComp->State == Down ? Top : Middle);
+	GridLocationComp->State = Top;
 }
 
 void AGridBase::MoveDown()
 {
-	Move(State == Top ? -Top : -Middle);
-	State = Down;
+	Move(GridLocationComp->State == Top ? -Top : -Middle);
+	GridLocationComp->State = Down;
 }
 
 void AGridBase::Move(float value)

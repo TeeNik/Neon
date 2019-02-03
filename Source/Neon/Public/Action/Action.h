@@ -6,33 +6,28 @@
 
 class UPrimitiveComponent;
 
-UINTERFACE(BlueprintType)
-class NEON_API UAction : public UInterface
+UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
+class UAction : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class NEON_API IAction
+class IAction
 {
 	GENERATED_BODY()
 
 public:
 	bool isInRange;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+	virtual void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent) {}
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+	virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) {}
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed); 
+	virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) {}
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void Deactivate();
+	virtual void Deactivate() {}
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	bool Highlight(FString& AbilityName);
+	virtual bool Highlight(FString& AbilityName) { return false; }
 };
 
 

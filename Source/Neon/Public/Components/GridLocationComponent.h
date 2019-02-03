@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -13,6 +11,12 @@ enum class GridLocationStatus
 	Enemy
 };
 
+enum GridBaseState {
+	Down = 0,
+	Middle = 50,
+	Top = 100,
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UGridLocationComponent : public UActorComponent
 {
@@ -23,7 +27,9 @@ public:
 
 	FORCEINLINE void SetStatus(GridLocationStatus newStatus) { status = newStatus; }
 	FORCEINLINE const GridLocationStatus& GetStatus() const { return status; };
-	
+
+	GridBaseState State;
+
 protected:
 	virtual void BeginPlay() override;
 

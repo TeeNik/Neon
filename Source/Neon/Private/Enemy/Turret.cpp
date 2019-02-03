@@ -39,21 +39,21 @@ void ATurret::BeginPlay()
 	EnergyComp->OnStartTurn.AddUFunction(this, "ExecuteTurn");
 }
 
-void ATurret::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void ATurret::OnBeginCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, HighlightMaterial);
 	}
 }
 
-void ATurret::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void ATurret::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, DefaultMaterial);
 	}
 }
 
-void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+void ATurret::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange)
 	{
@@ -72,13 +72,13 @@ void ATurret::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FK
 	}
 }
 
-void ATurret::Deactivate_Implementation()
+void ATurret::Deactivate()
 {
 	MeshComp->SetRenderCustomDepth(false);
 	isInRange = false;
 }
 
-bool ATurret::Highlight_Implementation(FString& AbilityName)
+bool ATurret::Highlight(FString& AbilityName)
 {
 	if (AbilityName == ActivateAbility && Status != TurretStatus::DisableTurret)
 		return false;

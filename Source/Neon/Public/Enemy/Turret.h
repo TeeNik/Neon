@@ -31,25 +31,20 @@ public:
 	
 	TurretStatus Status;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
-	virtual void OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		virtual void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent) override;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
-	virtual void OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent) override;
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) override;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
-	virtual void OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	void Deactivate();
-	virtual void Deactivate_Implementation() override;
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		virtual void Deactivate() override;
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Action")
-	bool Highlight(FString& AbilityName);
-	virtual bool Highlight_Implementation(FString& AbilityName) override;
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		virtual bool Highlight(FString& AbilityName) override;
 
 protected:
 	virtual void BeginPlay() override;

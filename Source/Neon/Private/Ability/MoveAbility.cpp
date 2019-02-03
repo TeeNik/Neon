@@ -9,5 +9,5 @@ void UMoveAbility::Execute(AActor * owner, AActor * target)
 	UGridLocationComponent* grid = UUtilsLibrary::GetComponentByClass<UGridLocationComponent>(target);
 	grid->SetStatus(GridLocationStatus::Player);
 	UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(owner);
-	motion->MoveToGrid(owner);
+	motion->MoveToGrid(target);
 }

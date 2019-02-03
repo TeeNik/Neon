@@ -63,21 +63,21 @@ void ANeonCharacter::BeginPlay()
 	GM->OnPlayerAbilityCall.AddUFunction(this, "OnPlayerActionCall");
 }
 
-void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void ANeonCharacter::OnBeginCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, HighlightMaterial);
 	}
 }
 
-void ANeonCharacter::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void ANeonCharacter::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, DefaultMaterial);
 	}
 }
 
-void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+void ANeonCharacter::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 	if (ButtonPressed.GetFName() == "LeftMouseButton" &&isInRange)
 	{
@@ -94,12 +94,12 @@ void ANeonCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompon
 	}
 }
 
-void ANeonCharacter::Deactivate_Implementation()
+void ANeonCharacter::Deactivate()
 {
 
 }
 
-bool ANeonCharacter::Highlight_Implementation(FString& AbilityName)
+bool ANeonCharacter::Highlight(FString& AbilityName)
 {
 	isInRange = true;
 	return true;

@@ -1,7 +1,10 @@
 #include "LocationManager.h"
+#include "InputCoreTypes.h"
 #include "WorldActors/GridBase.h"
 #include "Components/WeaponComponent.h"
+#include "Components/GridLocationComponent.h"
 #include "Engine/Public/TimerManager.h"
+#include "Engine/World.h"
 
 ULocationManager::ULocationManager()
 {
@@ -34,7 +37,7 @@ void ULocationManager::BeginPlay()
 
 bool ULocationManager::IsTop(int i, int j)
 {
-	return GridArray[i].Array[j]->State == Top;
+	return GridArray[i].Array[j]->GetLocationComponent()->State == Top;
 }
 
 Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)

@@ -50,21 +50,21 @@ void AEnemyCharacter::InitialMovement()
 	ULocationManager* locationMan = GM->GetLocationManager();
 }
 
-void AEnemyCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void AEnemyCharacter::OnBeginCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, HighlightMaterial);
 	}
 }
 
-void AEnemyCharacter::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)
+void AEnemyCharacter::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 {
 	if (isInRange) {
 		SelectionCircle->SetMaterial(0, DefaultMaterial);
 	}
 }
 
-void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+void AEnemyCharacter::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
 
 	if(isInRange)
@@ -92,13 +92,13 @@ void AEnemyCharacter::OnClicked_Implementation(UPrimitiveComponent* TouchedCompo
 	}
 }
 
-void AEnemyCharacter::Deactivate_Implementation()
+void AEnemyCharacter::Deactivate()
 {
 	isInRange = false;
 	SelectionCircle->SetMaterial(0, DefaultMaterial);
 }
 
-bool AEnemyCharacter::Highlight_Implementation(FString& AbilityName)
+bool AEnemyCharacter::Highlight(FString& AbilityName)
 {
 	isInRange = true;
 	return true;
