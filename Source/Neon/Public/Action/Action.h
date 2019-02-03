@@ -23,7 +23,7 @@ public:
 
 	virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) {}
 
-	virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) {}
+	virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) {};
 
 	virtual void Deactivate() {}
 

@@ -27,10 +27,10 @@ void UAbilityComponent::ShowAbilityRange(FString& name)
 	{
 		auto actor = It->Actor;
 		if (actor->ActorHasTag(ActiveAction->Data->ObjectTag) || actor->ActorHasTag("GridBase")) {
-			/*IAction* action = Cast<IAction>(It->GetActor());
-			if (action != NULL) {
+			IAction* action = Cast<IAction>(It->GetActor());
+			if (action != NULL && action->Highlight(name)) {
 				HighlighedObjects.Add(*It);
-			}*/
+			}
 		}
 	}
 }
@@ -42,10 +42,10 @@ void UAbilityComponent::HideAbilityRange()
 		PC->ActiveAction = nullptr;
 		for (auto It = HighlighedObjects.CreateIterator(); It; It++)
 		{
-			/*IAction* action = Cast<IAction>(It->GetActor());
+			IAction* action = Cast<IAction>(It->GetActor());
 			if (action != NULL) {
-				HighlighedObjects.Add(*It);
-			}*/
+				action->Deactivate();
+			}
 		}
 		HighlighedObjects.Empty();
 	}
