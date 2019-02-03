@@ -8,6 +8,8 @@ class ULocationManager;
 class UTurnManager;
 class UAbilityManager;
 
+DECLARE_MULTICAST_DELEGATE_OneParam(OnPlayerAbilityDelegate, AActor*);
+
 UCLASS(minimalapi)
 class ANeonGameMode : public AGameModeBase
 {
@@ -22,6 +24,8 @@ public:
 	FORCEINLINE class UTurnManager* GetTurnManager() { return TurnManager; }
 	FORCEINLINE class UAbilityManager* GetAbilityManager() { return AbilityManager; }
 
+	OnPlayerAbilityDelegate OnPlayerAbilityCall;
+
 protected:
 	UPROPERTY(EditDefaultsOnly, Category="Managers")
 	ULocationManager* LocationManager;
@@ -31,6 +35,7 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Managers")
 	UAbilityManager* AbilityManager;
+
 };
 
 

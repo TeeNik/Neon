@@ -18,18 +18,16 @@ void UAbilityManager::BeginPlay()
 
 	UDataTable* dataTable = UResourceManagerLibrary::GetData()->ActionDataTable;
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
-
-	//InitAbility(new MoveAbility(), "MoveTo");
-	//abilities.Add(new MoveAbility());
 }
 
 UAbility * UAbilityManager::GetAbility(FString name)
 {
-	UAbility* ability;
+	UAbility* ability = NULL;
 
 	if (name.Equals("MoveTo")) {
 		ability = NewObject<UMoveAbility>();
 	}
+	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);
 	return ability;
 }

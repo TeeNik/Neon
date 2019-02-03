@@ -10,6 +10,7 @@
 #include "UI/ActionWidget.h"
 #include "Components/StaticMeshComponent.h"
 #include "Action/ActionTableData.h"
+#include "Ability/Ability.h"
 #include "Components/BoxComponent.h"
 #include "Components/GridLocationComponent.h"
 #include "System/TurnManager.h"
@@ -62,15 +63,17 @@ void AGridBase::OnEndCursorOver_Implementation(UPrimitiveComponent* TouchedCompo
 
 void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
+	GLog->Log("Click");
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		/*if (EC) {
+		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
-			FString actionName = actionComp->ActiveAction->Name;
+			FString actionName = actionComp->ActiveAction->Data->Name;
 			
 			//TODO
-			if (actionComp->ActiveAction->ObjectTag != "GridBase") return;
+			if (actionComp->ActiveAction->Data->ObjectTag != "GridBase") return;
+			/*actionComp->
 
 			if (actionName == TopAbility)
 			{
@@ -90,9 +93,10 @@ void AGridBase::OnClicked_Implementation(UPrimitiveComponent* TouchedComponent, 
 			else if(actionName.Equals(TEXT("Cover")))
 			{			
 				auto cover = GM->GetLocationManager()->GetCoverInfo(this);
-			}
-			EC->SpendEnergy(actionComp->ActiveAction->Cost);
-		}*/
+			}*/
+			GM->OnPlayerAbilityCall.Broadcast(this);
+			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
+		}
 	}
 }
 

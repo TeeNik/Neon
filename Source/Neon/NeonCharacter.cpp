@@ -59,6 +59,8 @@ void ANeonCharacter::BeginPlay()
 	capsule->OnBeginCursorOver.AddDynamic(this, &ANeonCharacter::OnBeginCursorOver);
 	capsule->OnEndCursorOver.AddDynamic(this, &ANeonCharacter::OnEndCursorOver);
 	capsule->OnClicked.AddDynamic(this, &ANeonCharacter::OnClicked);
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	GM->OnPlayerAbilityCall.AddUFunction(this, "OnPlayerActionCall");
 }
 
 void ANeonCharacter::OnBeginCursorOver_Implementation(UPrimitiveComponent* TouchedComponent)

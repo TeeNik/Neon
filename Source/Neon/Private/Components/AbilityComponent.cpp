@@ -2,6 +2,7 @@
 #include "System/ResourceManagerLibrary.h"
 #include "NeonPlayerController.h"
 #include "Ability/Ability.h"
+#include "System/AbilityManager.h"
 #include "Action/Action.h"
 #include "Action/ActionTableData.h"
 #include "System/ResourceManager.h"
@@ -66,11 +67,9 @@ void UAbilityComponent::InitAbilities()
 	UAbilityManager* AM = GM->GetAbilityManager();
 	for(int i = 0; i < abilityDatas.Num(); ++i)
 	{
-		/*Ability* base = AM->GetAbility(abilityDatas[i]->Name);
+		UAbility* base = AM->GetAbility(abilityDatas[i]->Name);
 		if (base == nullptr) continue;
-		Ability* ability = new Ability(*base);
-		ability->Data = abilityDatas[i];
-		Abilities.Add(ability);*/
+		Abilities.Add(base);
 	}
 }
 

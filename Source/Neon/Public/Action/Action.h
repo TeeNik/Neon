@@ -1,7 +1,7 @@
 #pragma once
-
 #include "CoreMinimal.h"
 #include "InputCore/Classes/InputCoreTypes.h"
+#include "UObject/Interface.h"
 #include "Action.generated.h"
 
 class UPrimitiveComponent;
