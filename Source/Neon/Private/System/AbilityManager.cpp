@@ -2,6 +2,7 @@
 #include "Action/ActionTableData.h"
 #include "Ability/Ability.h"
 #include "Ability/MoveAbility.h"
+#include "Ability/ShootAbility.h"
 #include "System/ResourceManagerLibrary.h"
 #include "System/ResourceManager.h"
 #include "Engine/DataTable.h"
@@ -26,6 +27,9 @@ UAbility * UAbilityManager::GetAbility(FString name)
 
 	if (name.Equals("MoveTo")) {
 		ability = NewObject<UMoveAbility>();
+	}
+	else if (name.Equals("Shoot")) {
+		ability = NewObject<UShootAbility>();
 	}
 	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);

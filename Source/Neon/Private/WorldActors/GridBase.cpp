@@ -73,27 +73,6 @@ void AGridBase::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPres
 			
 			//TODO
 			if (actionComp->ActiveAction->Data->ObjectTag != "GridBase") return;
-			/*actionComp->
-
-			if (actionName == TopAbility)
-			{
-				MoveToTop();
-			}
-			else if (actionName == DownAbility)
-			{
-				MoveDown();
-			}
-			else if (actionName == MoveAbility) 
-			{
-				//TODO Status
-				GridLocationComp->SetStatus(GridLocationStatus::Player);
-				UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(EC);
-				motion->MoveToGrid(this);
-			}
-			else if(actionName.Equals(TEXT("Cover")))
-			{			
-				auto cover = GM->GetLocationManager()->GetCoverInfo(this);
-			}*/
 			GM->OnPlayerAbilityCall.Broadcast(this);
 			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
 		}

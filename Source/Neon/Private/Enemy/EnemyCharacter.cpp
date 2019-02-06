@@ -4,6 +4,7 @@
 #include "NeonGameMode.h"
 #include "System/UtilsLibrary.h"
 #include "System/GameStrings.h"
+#include "Ability/Ability.h"
 #include "Commands/ShootCommand.h"
 #include "Commands/OverloadCommand.h"
 #include "Components/StaticMeshComponent.h"
@@ -72,23 +73,15 @@ void AEnemyCharacter::OnClicked(UPrimitiveComponent* TouchedComponent, FKey Butt
 		Command* command = NULL;
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		/*if(EC)
-		{
+		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
-			FString actionName = actionComp->ActiveAction->Name;
-			if (actionName.Equals(UGameStrings::ShootAction))
-			{
-				UWeaponComponent* weaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(EC);
-				command = new ShootCommand(weaponComp, MotionComp);
-			}
-			else if(actionName.Equals(UGameStrings::OverloadAction))
-			{
-				int value = 50;
-				command = new OverloadCommand(HealthComp, value);
-			}
-			command->Execute();
-			EC->SpendEnergy(actionComp->ActiveAction->Cost);
-		}*/
+			FString actionName = actionComp->ActiveAction->Data->Name;
+
+			//TODO
+			if (actionComp->ActiveAction->Data->ObjectTag != "Enemy") return;
+			GM->OnPlayerAbilityCall.Broadcast(this);
+			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
+		}
 	}
 }
 
