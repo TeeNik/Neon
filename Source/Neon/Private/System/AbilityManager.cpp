@@ -26,10 +26,10 @@ UAbility * UAbilityManager::GetAbility(FString name)
 	UAbility* ability = NULL;
 
 	if (name.Equals("MoveTo")) {
-		ability = NewObject<UMoveAbility>();
+		ability = NewObject<UMoveAbility>(this, UMoveAbility::StaticClass());
 	}
 	else if (name.Equals("Shoot")) {
-		ability = NewObject<UShootAbility>();
+		ability = NewObject<UShootAbility>(this, UShootAbility::StaticClass());
 	}
 	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);

@@ -63,7 +63,6 @@ void AGridBase::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 
 void AGridBase::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
-	GLog->Log("Click");
 	if (ButtonPressed.GetFName() == "LeftMouseButton" && isInRange) {
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();

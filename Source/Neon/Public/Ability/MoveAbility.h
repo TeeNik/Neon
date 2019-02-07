@@ -10,7 +10,8 @@ class NEON_API UMoveAbility : public UAbility
 {
 	GENERATED_BODY()
 	
-	virtual void Execute(AActor*, AActor*);
+public:
+	virtual void Execute(AActor*, AActor*) override;
 	
 	
 };

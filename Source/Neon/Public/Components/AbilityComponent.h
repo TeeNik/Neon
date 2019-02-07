@@ -15,7 +15,9 @@ class NEON_API UAbilityComponent : public UActorComponent
 public:	
 	UAbilityComponent();
 
+	UPROPERTY()
 	TArray<UAbility*> Abilities;
+	UPROPERTY()
 	UAbility* ActiveAction;
 	
 	void ShowAbilityRange(FString&);
