@@ -4,6 +4,7 @@
 #include "Components/WeaponComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/AbilityComponent.h"
+#include "Ability/Ability.h"
 #include "GameFramework/Actor.h"
 #include "UtilsLibrary.h"
 
@@ -25,10 +26,9 @@ void ShootState::Execute()
 	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(name);
 	for (auto It = actors.CreateIterator(); It; It++)
 	{
-		auto actor = It->Actor;
+		AActor* actor = It->GetActor();
 		if (actor->ActorHasTag(TargetTag)) {
-			UMotionComponent* motionComp = Cast<UMotionComponent>(actor->GetComponentByClass(UMotionComponent::StaticClass()));
-			WeaponComp->Shoot(motionComp);
+			AbilityComp->ActiveAction->Execute(AbilityComp->GetOwner(), actor);
 			break;
 		}
 	}
