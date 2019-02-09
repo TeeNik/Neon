@@ -5,8 +5,6 @@
 #include "System/UtilsLibrary.h"
 #include "System/GameStrings.h"
 #include "Ability/Ability.h"
-#include "Commands/ShootCommand.h"
-#include "Commands/OverloadCommand.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/MotionComponent.h"
 #include "Components/WeaponComponent.h"
@@ -70,7 +68,6 @@ void AEnemyCharacter::OnClicked(UPrimitiveComponent* TouchedComponent, FKey Butt
 
 	if(isInRange)
 	{
-		Command* command = NULL;
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
 		if (EC) {
