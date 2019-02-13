@@ -12,6 +12,7 @@
 #include "NeonGameMode.h"
 #include "Engine/World.h"
 #include "System/TurnManager.h"
+#include "Ability/Ability.h"
 
 ATurret::ATurret()
 {
@@ -59,16 +60,14 @@ void ATurret::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPresse
 	{
 		ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 		UEnergyComponent* EC = GM->GetTurnManager()->GetCurrentEC();
-		/*if (EC) {
+		if (EC) {
 			UAbilityComponent* actionComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(EC);
-			FString actionName = actionComp->ActiveAction->Name;
-			if (actionName == UGameStrings::ActivateAction)
-			{
-				ActivateByPlayer();
-			}
-			EC->SpendEnergy(actionComp->ActiveAction->Cost);
+			FString actionName = actionComp->ActiveAction->Data->Name;
+			if (actionComp->ActiveAction->Data->ObjectTag != "Turret") return;
+			GM->OnPlayerAbilityCall.Broadcast(this);
+			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
 		}
-		SelectionCircle->SetMaterial(0, DefaultMaterial);*/
+		SelectionCircle->SetMaterial(0, DefaultMaterial);
 	}
 }
 

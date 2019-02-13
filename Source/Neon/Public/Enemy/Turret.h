@@ -32,19 +32,22 @@ public:
 	TurretStatus Status;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent) override;
+	virtual void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) override;
+	virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
+	virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void Deactivate() override;
+	virtual void Deactivate() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual bool Highlight(FString& AbilityName) override;
+	virtual bool Highlight(FString& AbilityName) override;
+
+	void ActivateByPlayer();
+	void ActivateByEnemy();
 
 protected:
 	virtual void BeginPlay() override;
@@ -80,8 +83,7 @@ protected:
 	UMaterialInstance* RedCircle;
 
 private:
-	void ActivateByPlayer();
-	void ActivateByEnemy();
+
 	UFUNCTION()
 	void ExecuteTurn();
 	void Shoot();

@@ -3,6 +3,7 @@
 #include "Ability/Ability.h"
 #include "Ability/MoveAbility.h"
 #include "Ability/ShootAbility.h"
+#include "Ability/ActivateTurretAbility.h"
 #include "System/ResourceManagerLibrary.h"
 #include "System/ResourceManager.h"
 #include "Engine/DataTable.h"
@@ -31,6 +32,9 @@ UAbility * UAbilityManager::GetAbility(FString name)
 	else if (name.Equals("Shoot")) {
 		ability = NewObject<UShootAbility>(this, UShootAbility::StaticClass());
 	}
+	else if (name.Equals("ActivateTurret")) {
+		ability = NewObject<UActivateTurretAbility>(this, UActivateTurretAbility::StaticClass());
+	}
 	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);
 	return ability;
@@ -45,13 +49,5 @@ void UAbilityManager::InitAbility(UAbility* ability, FString name)
 			abilities.Add(ability);
 			return;
 		}
-	}
-}
-
-void UAbilityManager::BeginDestroy()
-{
-	Super::BeginDestroy();
-	for (int i = 0; i < abilities.Num(); ++i) {
-		delete abilities[i];
 	}
 }
