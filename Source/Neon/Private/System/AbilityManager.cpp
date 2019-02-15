@@ -13,7 +13,6 @@ UAbilityManager::UAbilityManager()
 
 }
 
-
 void UAbilityManager::BeginPlay()
 {
 	Super::BeginPlay();

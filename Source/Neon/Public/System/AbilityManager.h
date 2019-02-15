@@ -17,8 +17,6 @@ public:
 
 	UAbility* GetAbility(FString name);
 
-	virtual void BeginDestroy();
-
 protected:
 	virtual void BeginPlay() override;
 	TArray<UAbility*> abilities;
