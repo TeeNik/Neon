@@ -35,7 +35,7 @@ protected:
 public:
 	void CreateFirstWidget();
 	void CloseWidget();
-	UPROPERTY(BlueprintReadOnly, Category="Neon")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Neon")
 	ANeonCharacter* NeonCharacter;
 };
 
