@@ -39,7 +39,7 @@ void UActionWidget::InitButtons(TArray<UAbility*> actionDatas)
 		UActionButtonWidget* button = WidgetTree->ConstructWidget<UActionButtonWidget>(AbilityButton);
 		child = ActionBox->AddChildToHorizontalBox(button);
 		child->SetPadding(padding);
-		button->ActionButton->SetButtonData(actionDatas[i]->Data);
+		button->SetWidgetData(actionDatas[i]->Data);
 		button->SetToolTip(ActionTooltip);
 		ButtonArray.Add(button);
 	}	
