@@ -5,6 +5,9 @@
 #include "GameFramework/Actor.h"
 #include "IdleState.h"
 #include "ShootState.h"
+#include "Engine/EngineTypes.h"
+#include "TimerManager.h"
+
 
 UAIStateMachine::UAIStateMachine()
 {
@@ -19,6 +22,7 @@ void UAIStateMachine::BeginPlay()
 void UAIStateMachine::StartTurn()
 {
 	GLog->Log("AI Start");
+	GetWorld()->GetTimerManager().ClearTimer(Timer);
 	AIState* state;
 	if (isAwake) {
 		FName tag = TEXT("Player");

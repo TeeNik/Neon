@@ -68,10 +68,10 @@ void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy,
 			//SetVisibility(ESlateVisibility::Visible);;
 			EnableEnergyImages(maxEnergy);
 		});
-		/*onEndTurn.AddLambda([&]()
+		onEndTurn.AddLambda([&]()
 		{
-			SetVisibility(ESlateVisibility::Hidden);
-		});*/
+			//SetVisibility(ESlateVisibility::Hidden);
+		});
 	}
 }
 

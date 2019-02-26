@@ -5,6 +5,7 @@
 #include "AIStateMachine.generated.h"
 
 class AIState;
+struct FTimerHandle;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UAIStateMachine : public UActorComponent
@@ -18,6 +19,7 @@ public:
 	void EndTurn();
 	void StartTurn();
 	void SetAwake(bool value);
+	FTimerHandle Timer;
 
 protected:
 	virtual void BeginPlay() override;
