@@ -27,4 +27,6 @@ protected:
 private:
 	AIState* CurrentState = NULL;
 	bool isAwake;
+	UFUNCTION()
+	void EndTurnImpl();
 };

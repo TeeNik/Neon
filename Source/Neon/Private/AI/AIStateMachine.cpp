@@ -7,7 +7,7 @@
 #include "ShootState.h"
 #include "Engine/EngineTypes.h"
 #include "TimerManager.h"
-
+#include "Engine/World.h"
 
 UAIStateMachine::UAIStateMachine()
 {
@@ -46,6 +46,11 @@ void UAIStateMachine::NextState(AIState* state)
 
 void UAIStateMachine::EndTurn()
 {
+	GetWorld()->GetTimerManager().SetTimer(Timer, this, &UAIStateMachine::EndTurnImpl, 5, false);
+}
+
+void UAIStateMachine::EndTurnImpl()
+{
 	UEnergyComponent* energyComp = UUtilsLibrary::GetRelativeComponent<UEnergyComponent>(this);
 	energyComp->EndTurn();
 	if (CurrentState != NULL) {
@@ -53,6 +58,7 @@ void UAIStateMachine::EndTurn()
 		CurrentState = NULL;
 	}
 }
+
 
 void UAIStateMachine::SetAwake(bool value)
 {
