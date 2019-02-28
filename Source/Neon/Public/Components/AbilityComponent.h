@@ -24,10 +24,11 @@ public:
 	void HideAbilityRange();
 
 	virtual void BeginPlay() override;
-	TArray<FHitResult> GetActorsInRange(FString& name);
+	TArray<FHitResult> GetActorsInRange(float radius);
+	void SetActiveAction(FString&);
+	UAbility* FindAbilityByName(FString&);
 
 protected:
 	TArray<FHitResult> HighlighedObjects;
-	UAbility* FindAbilityByName(FString);
 	void InitAbilities();
 };

@@ -1,6 +1,8 @@
 #include "IdleState.h"
 #include "AIStateMachine.h"
 #include "AbilityComponent.h"
+#include "Ability.h"
+#include "Action/ActionTableData.h"
 #include "GameFramework/Actor.h"
 #include "UtilsLibrary.h"
 #include "ShootState.h"
@@ -18,7 +20,8 @@ void IdleState::Execute()
 {
 	FString name = TEXT("Shoot");
 	UAbilityComponent* abilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);
-	TArray<FHitResult> actors = abilityComp->GetActorsInRange(name);
+	UAbility* shootAbility = abilityComp->FindAbilityByName(name);
+	TArray<FHitResult> actors = abilityComp->GetActorsInRange(shootAbility->Data->Range);
 	bool hasPlayerInRange = false;
 	for (auto It = actors.CreateIterator(); It; It++)
 	{

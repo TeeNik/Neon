@@ -22,7 +22,8 @@ void UAbilityComponent::BeginPlay()
 
 void UAbilityComponent::ShowAbilityRange(FString& name)
 {
-	TArray<FHitResult> HitResults = GetActorsInRange(name);
+	SetActiveAction(name);
+	TArray<FHitResult> HitResults = GetActorsInRange(ActiveAction->Data->Range);
 	for (auto It = HitResults.CreateIterator(); It; It++)
 	{
 		auto actor = It->Actor;
@@ -52,7 +53,7 @@ void UAbilityComponent::HideAbilityRange()
 
 }
 
-UAbility* UAbilityComponent::FindAbilityByName(FString name)
+UAbility* UAbilityComponent::FindAbilityByName(FString& name)
 {
 	for (auto ability : Abilities)
 	{
@@ -76,9 +77,8 @@ void UAbilityComponent::InitAbilities()
 	}
 }
 
-TArray<FHitResult> UAbilityComponent::GetActorsInRange(FString& name)
+TArray<FHitResult> UAbilityComponent::GetActorsInRange(float radius)
 {
-	ActiveAction = FindAbilityByName(name);
 	TArray<FHitResult> HitResults;
 	auto parent = GetOwner();
 	FVector StartLocation = parent->GetActorLocation();
@@ -88,9 +88,13 @@ TArray<FHitResult> UAbilityComponent::GetActorsInRange(FString& name)
 	ECollisionChannel ECC = ECollisionChannel::ECC_WorldStatic;
 	FCollisionShape CollisionShape;
 	CollisionShape.ShapeType = ECollisionShape::Sphere;
-	CollisionShape.SetSphere(ActiveAction->Data->Range);
+	CollisionShape.SetSphere(radius);
 	GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
 	return HitResults;
 }
 
+void UAbilityComponent::SetActiveAction(FString& name)
+{
+	ActiveAction = FindAbilityByName(name);
+}
 

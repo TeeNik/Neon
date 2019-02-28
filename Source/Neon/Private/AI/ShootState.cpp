@@ -6,6 +6,7 @@
 #include "Components/AbilityComponent.h"
 #include "Ability/Ability.h"
 #include "GameFramework/Actor.h"
+#include "Action/ActionTableData.h"
 #include "UtilsLibrary.h"
 
 ShootState::ShootState(UAIStateMachine* ai, FName& targetTag) : AIState(ai)
@@ -23,7 +24,8 @@ void ShootState::Execute()
 	UWeaponComponent* WeaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(AI);
 	UAbilityComponent* AbilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);
 	FString name = TEXT("Shoot");
-	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(name);
+	AbilityComp->SetActiveAction(name);
+	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(AbilityComp->ActiveAction->Data->Range);
 	for (auto It = actors.CreateIterator(); It; It++)
 	{
 		AActor* actor = It->GetActor();

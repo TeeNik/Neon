@@ -114,14 +114,14 @@ void ATurret::ExecuteTurn()
 void ATurret::Shoot()
 {
 	FString name = TEXT("Shoot");
-	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(name);
+	AbilityComp->SetActiveAction(name);
+	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(AbilityComp->ActiveAction->Data->Range);
 	FName targetTag = Status == TurretStatus::PlayerTurret ? TEXT("Enemy") : TEXT("Player");
 	for (auto It = actors.CreateIterator(); It; It++)
 	{
-		auto actor = It->Actor;
+		AActor* actor = It->GetActor();
 		if (actor->ActorHasTag(targetTag)) {
-			UMotionComponent* motionComp = Cast<UMotionComponent>(actor->GetComponentByClass(UMotionComponent::StaticClass()));
-			WeaponComp->Shoot(motionComp);
+			AbilityComp->ActiveAction->Execute(this, actor);
 			break;
 		}
 	}
