@@ -9,4 +9,5 @@ void UShootAbility::Execute(AActor* owner, AActor* target)
 	UWeaponComponent* weapon = UUtilsLibrary::GetComponentByClass<UWeaponComponent>(owner);
 	UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(target);
 	weapon->Shoot(motion);
+	Super::Execute(owner, target);
 }
