@@ -65,7 +65,6 @@ void ATurret::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPresse
 			FString actionName = actionComp->ActiveAction->Data->Name;
 			if (actionComp->ActiveAction->Data->ObjectTag != "Turret") return;
 			GM->OnPlayerAbilityCall.Broadcast(this);
-			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
 		}
 		SelectionCircle->SetMaterial(0, DefaultMaterial);
 	}

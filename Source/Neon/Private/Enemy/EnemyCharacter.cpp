@@ -77,7 +77,6 @@ void AEnemyCharacter::OnClicked(UPrimitiveComponent* TouchedComponent, FKey Butt
 			//TODO
 			if (actionComp->ActiveAction->Data->ObjectTag != "Enemy") return;
 			GM->OnPlayerAbilityCall.Broadcast(this);
-			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
 		}
 	}
 }

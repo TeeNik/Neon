@@ -73,7 +73,6 @@ void AGridBase::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPres
 			//TODO
 			if (actionComp->ActiveAction->Data->ObjectTag != "GridBase") return;
 			GM->OnPlayerAbilityCall.Broadcast(this);
-			EC->SpendEnergy(actionComp->ActiveAction->Data->Cost);
 		}
 	}
 }
