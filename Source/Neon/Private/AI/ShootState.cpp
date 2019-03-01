@@ -34,5 +34,6 @@ void ShootState::Execute()
 			break;
 		}
 	}
+
 	AI->EndTurn();
 }
