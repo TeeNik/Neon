@@ -4,7 +4,7 @@
 
 class UAIStateMachine;
 
-class NEON_API MovementState : AIState
+class NEON_API MovementState : public AIState
 {
 public:
 	MovementState(UAIStateMachine*);
