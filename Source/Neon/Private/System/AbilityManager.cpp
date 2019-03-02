@@ -3,6 +3,7 @@
 #include "Ability/Ability.h"
 #include "Ability/MoveAbility.h"
 #include "Ability/ShootAbility.h"
+#include "Ability/OverloadAbility.h"
 #include "Ability/ActivateTurretAbility.h"
 #include "System/ResourceManagerLibrary.h"
 #include "System/ResourceManager.h"
@@ -33,6 +34,9 @@ UAbility * UAbilityManager::GetAbility(FString name)
 	}
 	else if (name.Equals("ActivateTurret")) {
 		ability = NewObject<UActivateTurretAbility>(this, UActivateTurretAbility::StaticClass());
+	}
+	else if (name.Equals("Overload")) {
+		ability = NewObject<UOverloadAbility>(this, UOverloadAbility::StaticClass());
 	}
 	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);

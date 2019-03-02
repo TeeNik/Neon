@@ -5,6 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "IdleState.h"
 #include "ShootState.h"
+#include "MovementState.h"
 #include "Engine/EngineTypes.h"
 #include "TimerManager.h"
 #include "Engine/World.h"
@@ -26,7 +27,7 @@ void UAIStateMachine::StartTurn()
 	AIState* state;
 	if (isAwake) {
 		FName tag = TEXT("Player");
-		state = new ShootState(this, tag);
+		state = new MovementState(this);
 	}
 	else {
 		state = new IdleState(this);
