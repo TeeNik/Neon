@@ -7,16 +7,21 @@
 #include "UtilsLibrary.h"
 #include "ShootState.h"
 
-IdleState::IdleState(UAIStateMachine* ai) : AIState(ai)
+UIdleState::UIdleState(UAIStateMachine* ai) : UAIState(ai)
 {
 	Name = "IdleState";
 }
 
-IdleState::~IdleState()
+UIdleState::UIdleState()
+{
+
+}
+
+UIdleState::~UIdleState()
 {
 }
 
-void IdleState::Execute()
+void UIdleState::Execute()
 {
 	FString name = TEXT("Shoot");
 	UAbilityComponent* abilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);

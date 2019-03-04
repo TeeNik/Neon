@@ -1,4 +1,3 @@
-
 #include "ShootState.h"
 #include "AI/AIStateMachine.h"
 #include "Components/WeaponComponent.h"
@@ -9,17 +8,22 @@
 #include "Action/ActionTableData.h"
 #include "UtilsLibrary.h"
 
-ShootState::ShootState(UAIStateMachine* ai, FName& targetTag) : AIState(ai)
+UShootState::UShootState()
+{
+
+}
+
+UShootState::UShootState(UAIStateMachine* ai, FName& targetTag) : UAIState(ai)
 {
 	TargetTag = targetTag;
 	Name = "ShootState";
 }
 
-ShootState::~ShootState()
+UShootState::~UShootState()
 {
 }
 
-void ShootState::Execute()
+void UShootState::Execute()
 {
 	UWeaponComponent* WeaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(AI);
 	UAbilityComponent* AbilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);

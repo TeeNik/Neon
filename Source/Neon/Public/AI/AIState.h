@@ -1,14 +1,20 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "AIState.generated.h"
 
 class UAIStateMachine;
 
-class NEON_API AIState
+UCLASS()
+class NEON_API UAIState : public UObject
 {
+	GENERATED_BODY()
+
 public:
-	AIState(UAIStateMachine* ai);
-	virtual ~AIState();
+	UAIState();
+	UAIState(UAIStateMachine* ai);
+	virtual ~UAIState();
 	virtual void Execute();
+
 	FString Name;
 	UAIStateMachine * AI;
 };

@@ -4,7 +4,7 @@
 #include "Components/ActorComponent.h"
 #include "AIStateMachine.generated.h"
 
-class AIState;
+class UAIState;
 struct FTimerHandle;
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -15,7 +15,7 @@ class NEON_API UAIStateMachine : public UActorComponent
 public:	
 	UAIStateMachine();
 
-	void NextState(AIState* state);
+	void NextState(UAIState* state);
 	void EndTurn();
 	void StartTurn();
 	void SetAwake(bool value);
@@ -25,7 +25,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	AIState* CurrentState = NULL;
+	UAIState* CurrentState = NULL;
 	bool isAwake;
 	UFUNCTION()
 	void EndTurnImpl();

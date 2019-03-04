@@ -1,14 +1,19 @@
 #pragma once
-#include "AIState.h"
 #include "CoreMinimal.h"
+#include "AIState.h"
+#include "MovementState.generated.h"
 
 class UAIStateMachine;
 
-class NEON_API MovementState : public AIState
+UCLASS()
+class NEON_API UMovementState : public UAIState
 {
+	GENERATED_BODY()
+
 public:
-	MovementState(UAIStateMachine*);
-	virtual ~MovementState();
+	UMovementState();
+	UMovementState(UAIStateMachine*);
+	virtual ~UMovementState();
 	virtual void Execute();
 
 

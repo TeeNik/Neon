@@ -24,7 +24,7 @@ void UAIStateMachine::StartTurn()
 {
 	GLog->Log("AI Start");
 	GetWorld()->GetTimerManager().ClearTimer(Timer);
-	AIState* state;
+	UAIState* state;
 	if (isAwake) {
 		FName tag = TEXT("Player");
 		state = new MovementState(this);
@@ -35,7 +35,7 @@ void UAIStateMachine::StartTurn()
 	NextState(state);
 }
 
-void UAIStateMachine::NextState(AIState* state)
+void UAIStateMachine::NextState(UAIState* state)
 {
 	if (CurrentState != NULL) {
 		delete CurrentState;

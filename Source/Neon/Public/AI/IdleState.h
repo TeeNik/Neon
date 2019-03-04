@@ -1,17 +1,19 @@
 #pragma once
 #include "AIState.h"
 #include "CoreMinimal.h"
+#include "IdleState.generated.h"
 
 class UAIStateMachine;
 class UAbilityComponent;
 
-class NEON_API IdleState : public AIState
+UCLASS()
+class NEON_API UIdleState : public UAIState
 {
-public:
-	IdleState(UAIStateMachine*);
-	virtual ~IdleState();
-	virtual void Execute();
+	GENERATED_BODY()
 
-private:
-	UAbilityComponent * AbilityComp;
+public:
+	UIdleState();
+	UIdleState(UAIStateMachine*);
+	virtual ~UIdleState();
+	virtual void Execute();
 };

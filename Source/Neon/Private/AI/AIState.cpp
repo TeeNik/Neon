@@ -1,15 +1,15 @@
 #include "AIState.h"
 
-AIState::AIState(UAIStateMachine* ai) : AI(ai)
+UAIState::UAIState(UAIStateMachine* ai) : AI(ai)
 {
 }
 
 
-AIState::~AIState()
+UAIState::~UAIState()
 {
 }
 
-void AIState::Execute()
+void UAIState::Execute()
 {
 
 }

@@ -11,17 +11,24 @@
 #include "Engine/World.h"
 #include "GameFramework/Actor.h"
 #include "GridLocationComponent.h"
+#include "ActionTableData.h"
 
-MovementState::MovementState(UAIStateMachine* ai) : AIState(ai)
+UMovementState::UMovementState(UAIStateMachine* ai) : UAIState(ai)
 {
 	Name = "MovementState";
 }
 
-MovementState::~MovementState()
+
+UMovementState::UMovementState()
+{
+
+}
+
+UMovementState::~UMovementState()
 {
 }
 
-void MovementState::Execute()
+void UMovementState::Execute()
 {
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(AI->GetWorld()->GetFirstPlayerController());
 	ANeonCharacter* player = PC->NeonCharacter;

@@ -2,14 +2,19 @@
 
 #include "CoreMinimal.h"
 #include "AI/AIState.h"
+#include "ShootState.generated.h"
 
 class UAIStateMachine;
 
-class NEON_API ShootState : public AIState
+UCLASS()
+class NEON_API UShootState : public UAIState
 {
+	GENERATED_BODY()
+
 public:
-	ShootState(UAIStateMachine* ai, FName& targetTag);
-	virtual ~ShootState();
+	UShootState();
+	UShootState(UAIStateMachine* ai, FName& targetTag);
+	virtual ~UShootState();
 	virtual void Execute();
 private:
 	FName TargetTag;

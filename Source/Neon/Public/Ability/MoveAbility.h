@@ -1,6 +1,4 @@
-
 #pragma once
-
 #include "CoreMinimal.h"
 #include "Ability/Ability.h"
 #include "MoveAbility.generated.h"
