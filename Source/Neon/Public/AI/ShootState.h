@@ -13,7 +13,6 @@ class NEON_API UShootState : public UAIState
 
 public:
 	UShootState();
-	UShootState(UAIStateMachine* ai, FName& targetTag);
 	virtual ~UShootState();
 	virtual void Execute();
 private:

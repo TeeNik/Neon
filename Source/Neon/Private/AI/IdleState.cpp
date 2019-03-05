@@ -7,11 +7,6 @@
 #include "UtilsLibrary.h"
 #include "ShootState.h"
 
-UIdleState::UIdleState(UAIStateMachine* ai) : UAIState(ai)
-{
-	Name = "IdleState";
-}
-
 UIdleState::UIdleState()
 {
 
@@ -39,7 +34,10 @@ void UIdleState::Execute()
 	if (hasPlayerInRange) {
 		AI->SetAwake(true);
 		FName tag = TEXT("Player");
-		AI->NextState(new ShootState(AI, tag));
+		UAIState* state = NewObject<UShootState>(this, UShootState::StaticClass());
+		FString stateName = "ShootState";
+		state->Init(AI, stateName);
+		AI->NextState(state);
 	}
 	else {
 		AI->EndTurn();

@@ -13,12 +13,6 @@ UShootState::UShootState()
 
 }
 
-UShootState::UShootState(UAIStateMachine* ai, FName& targetTag) : UAIState(ai)
-{
-	TargetTag = targetTag;
-	Name = "ShootState";
-}
-
 UShootState::~UShootState()
 {
 }

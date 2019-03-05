@@ -11,10 +11,9 @@ class NEON_API UAIState : public UObject
 
 public:
 	UAIState();
-	UAIState(UAIStateMachine* ai);
 	virtual ~UAIState();
 	virtual void Execute();
-
+	void Init(UAIStateMachine* ai);
 	FString Name;
 	UAIStateMachine * AI;
 };

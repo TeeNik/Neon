@@ -1,10 +1,5 @@
 #include "AIState.h"
 
-UAIState::UAIState(UAIStateMachine* ai) : AI(ai)
-{
-}
-
-
 UAIState::~UAIState()
 {
 }
@@ -12,4 +7,9 @@ UAIState::~UAIState()
 void UAIState::Execute()
 {
 
+}
+
+void UAIState::Init(UAIStateMachine* ai)
+{
+	AI = ai;
 }

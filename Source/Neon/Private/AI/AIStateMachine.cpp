@@ -25,13 +25,14 @@ void UAIStateMachine::StartTurn()
 	GLog->Log("AI Start");
 	GetWorld()->GetTimerManager().ClearTimer(Timer);
 	UAIState* state;
+	FString stateName;
 	if (isAwake) {
-		FName tag = TEXT("Player");
-		state = new MovementState(this);
+		state = NewObject<UMovementState>(this, UMovementState::StaticClass());
 	}
 	else {
-		state = new IdleState(this);
+		state = NewObject<UIdleState>(this, UIdleState::StaticClass());
 	}
+	state->Init(this)
 	NextState(state);
 }
 

@@ -13,7 +13,6 @@ class NEON_API UIdleState : public UAIState
 
 public:
 	UIdleState();
-	UIdleState(UAIStateMachine*);
 	virtual ~UIdleState();
 	virtual void Execute();
 };
