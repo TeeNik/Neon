@@ -10,11 +10,7 @@
 
 UShootState::UShootState()
 {
-
-}
-
-UShootState::~UShootState()
-{
+	Name = "ShootState";
 }
 
 void UShootState::Execute()

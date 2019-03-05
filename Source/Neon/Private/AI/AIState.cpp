@@ -1,5 +1,10 @@
 #include "AIState.h"
 
+UAIState::UAIState()
+{
+
+}
+
 UAIState::~UAIState()
 {
 }

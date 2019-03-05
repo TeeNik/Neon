@@ -13,19 +13,9 @@
 #include "GridLocationComponent.h"
 #include "ActionTableData.h"
 
-UMovementState::UMovementState(UAIStateMachine* ai) : UAIState(ai)
-{
-	Name = "MovementState";
-}
-
-
 UMovementState::UMovementState()
 {
-
-}
-
-UMovementState::~UMovementState()
-{
+	Name = "MovementState";
 }
 
 void UMovementState::Execute()

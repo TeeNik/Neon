@@ -32,7 +32,7 @@ void UAIStateMachine::StartTurn()
 	else {
 		state = NewObject<UIdleState>(this, UIdleState::StaticClass());
 	}
-	state->Init(this)
+	state->Init(this);
 	NextState(state);
 }
 

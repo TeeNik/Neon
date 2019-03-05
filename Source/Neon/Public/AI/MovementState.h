@@ -3,8 +3,6 @@
 #include "AIState.h"
 #include "MovementState.generated.h"
 
-class UAIStateMachine;
-
 UCLASS()
 class NEON_API UMovementState : public UAIState
 {
@@ -12,9 +10,7 @@ class NEON_API UMovementState : public UAIState
 
 public:
 	UMovementState();
-	UMovementState(UAIStateMachine*);
-	virtual ~UMovementState();
-	virtual void Execute();
+	virtual void Execute() override;
 
 
 };

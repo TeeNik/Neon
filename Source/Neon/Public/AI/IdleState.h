@@ -3,9 +3,6 @@
 #include "CoreMinimal.h"
 #include "IdleState.generated.h"
 
-class UAIStateMachine;
-class UAbilityComponent;
-
 UCLASS()
 class NEON_API UIdleState : public UAIState
 {
@@ -13,6 +10,5 @@ class NEON_API UIdleState : public UAIState
 
 public:
 	UIdleState();
-	virtual ~UIdleState();
-	virtual void Execute();
+	virtual void Execute() override;
 };

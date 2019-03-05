@@ -9,11 +9,7 @@
 
 UIdleState::UIdleState()
 {
-
-}
-
-UIdleState::~UIdleState()
-{
+	Name = "IdleState";
 }
 
 void UIdleState::Execute()
@@ -35,8 +31,7 @@ void UIdleState::Execute()
 		AI->SetAwake(true);
 		FName tag = TEXT("Player");
 		UAIState* state = NewObject<UShootState>(this, UShootState::StaticClass());
-		FString stateName = "ShootState";
-		state->Init(AI, stateName);
+		state->Init(AI);
 		AI->NextState(state);
 	}
 	else {

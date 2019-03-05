@@ -4,8 +4,6 @@
 #include "AI/AIState.h"
 #include "ShootState.generated.h"
 
-class UAIStateMachine;
-
 UCLASS()
 class NEON_API UShootState : public UAIState
 {
@@ -13,8 +11,7 @@ class NEON_API UShootState : public UAIState
 
 public:
 	UShootState();
-	virtual ~UShootState();
-	virtual void Execute();
+	virtual void Execute() override;
 private:
 	FName TargetTag;
 };
