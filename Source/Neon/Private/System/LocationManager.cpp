@@ -22,7 +22,7 @@ void ULocationManager::BeginPlay()
 	for (int i = 0; i < 8; ++i) {
 		for (int j = 0; j < 10; ++j)
 		{
-			FVector location(-320-size*i,-500+size*j,200);
+			FVector location(-320-size*i,-440+size*j,200);
 			auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0,0,0), spawnParams);
 			gridBase->Row = i;
 			gridBase->Column = j;

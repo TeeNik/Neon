@@ -4,6 +4,8 @@
 #include "Ability/MoveAbility.h"
 #include "Ability/ShootAbility.h"
 #include "Ability/OverloadAbility.h"
+#include "Ability/LiftGridAbility.h"
+#include "Ability/LowerGridAbility.h"
 #include "Ability/ActivateTurretAbility.h"
 #include "System/ResourceManagerLibrary.h"
 #include "System/ResourceManager.h"
@@ -38,6 +40,12 @@ UAbility * UAbilityManager::GetAbility(FString name)
 	else if (name.Equals("Overload")) {
 		ability = NewObject<UOverloadAbility>(this, UOverloadAbility::StaticClass());
 	}
+    else if (name.Equals("Lift")) {
+        ability = NewObject<ULiftGridAbility>(this, ULiftGridAbility::StaticClass());
+    }
+    else if (name.Equals("Lower")) {
+        ability = NewObject<ULowerGridAbility>(this, ULowerGridAbility::StaticClass());
+    }
 	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);
 	return ability;

@@ -15,37 +15,36 @@
 
 UMovementState::UMovementState()
 {
-	Name = "MovementState";
+    Name = "MovementState";
 }
 
 void UMovementState::Execute()
 {
-	ANeonPlayerController* PC = Cast<ANeonPlayerController>(AI->GetWorld()->GetFirstPlayerController());
-	ANeonCharacter* player = PC->NeonCharacter;
-	UWeaponComponent* weaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(AI);
-	UAbilityComponent* abilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);
-	UMotionComponent* motionComp = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(AI);
-	FString shoot = "Shoot";
-	FString move = "MoveTo";
-	UAbility* shootAbility = abilityComp->FindAbilityByName(shoot);
-	UAbility* moveAbility = abilityComp->FindAbilityByName(move);
-	float range = shootAbility->Data->Range;
-	float dist = FVector::Dist(player->GetActorLocation(), AI->GetOwner()->GetActorLocation());
-	if (dist > range)
-	{
-		TArray<FHitResult> hitResults = player->GetAbilityComponent()->GetActorsInRange(range);
-		for (auto It = hitResults.CreateIterator(); It; It++)
-		{
-			AActor* actor = It->GetActor();
-			if (actor->ActorHasTag(moveAbility->Data->ObjectTag)) {
-				AGridBase* grid = Cast<AGridBase>(actor);
-				if (grid != NULL && grid->GetLocationComponent()->GetStatus() == GridLocationStatus::Empty) {
-					motionComp->MoveToGrid(actor);
-					break;
-				}
-			}
-		}
-		AI->EndTurn();
-	}
-
+    ANeonPlayerController* PC = Cast<ANeonPlayerController>(AI->GetWorld()->GetFirstPlayerController());
+    ANeonCharacter* player = PC->NeonCharacter;
+    UWeaponComponent* weaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(AI);
+    UAbilityComponent* abilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);
+    UMotionComponent* motionComp = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(AI);
+    FString shoot = "Shoot";
+    FString move = "MoveTo";
+    UAbility* shootAbility = abilityComp->FindAbilityByName(shoot);
+    UAbility* moveAbility = abilityComp->FindAbilityByName(move);
+    float range = shootAbility->Data->Range;
+    float dist = FVector::Dist(player->GetActorLocation(), AI->GetOwner()->GetActorLocation());
+    if (dist > range)
+    {
+        TArray<FHitResult> hitResults = player->GetAbilityComponent()->GetActorsInRange(range);
+        for (auto It = hitResults.CreateIterator(); It; It++)
+        {
+            AActor* actor = It->GetActor();
+            if (actor->ActorHasTag(moveAbility->Data->ObjectTag)) {
+                AGridBase* grid = Cast<AGridBase>(actor);
+                if (grid != NULL && grid->GetLocationComponent()->GetStatus() == GridLocationStatus::Empty) {
+                    motionComp->MoveToGrid(actor);
+                    break;
+                }
+            }
+        }
+        AI->EndTurn();
+    }
 }

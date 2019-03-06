@@ -6,9 +6,9 @@
 UCLASS()
 class NEON_API UIdleState : public UAIState
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
 
 public:
-	UIdleState();
-	virtual void Execute() override;
+    UIdleState();
+    virtual void Execute() override;
 };
