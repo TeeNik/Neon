@@ -14,6 +14,7 @@
 #include "Components/BoxComponent.h"
 #include "Components/GridLocationComponent.h"
 #include "System/TurnManager.h"
+#include "Materials/MaterialInstance.h"
 #include "System/LocationManager.h"
 
 AGridBase::AGridBase()
@@ -78,9 +79,9 @@ void AGridBase::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPres
 }
 
 void AGridBase::Deactivate() {
-	//PlaneComp->SetVisibility(false);
-	//PlaneComp->SetMaterial(0, DisableMaterial);
-	PlaneComp->SetRenderCustomDepth(false);
+	PlaneComp->SetVisibility(false);
+	PlaneComp->SetMaterial(0, DisableMaterial);
+	//PlaneComp->SetRenderCustomDepth(false);
 	isInRange = false;
 }
 
@@ -90,8 +91,10 @@ bool AGridBase::Highlight(FString& abilityName)
 	if (abilityName == TopAbility && GridLocationComp->State == Top || abilityName == DownAbility && GridLocationComp->State == Down)
 	return false;
 
-	//PlaneComp->SetVisibility(true);
-	PlaneComp->SetRenderCustomDepth(true);
+	PlaneComp->SetVisibility(true);
+    PlaneComp->SetMaterial(0, ActiveMaterial);
+
+	//PlaneComp->SetRenderCustomDepth(true);
 	isInRange = true;
 	return true;
 }

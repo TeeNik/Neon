@@ -5,7 +5,7 @@
 #include "GameFramework/Actor.h"
 #include "GridBase.generated.h"
 
-class UMaterial;
+class UMaterialInstance;
 class UActionWidget;
 class UGridLocationComponent;
 class UBoxComponent;
@@ -42,10 +42,10 @@ protected:
 	UStaticMeshComponent* PlaneComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UMaterial* DisableMaterial;
+	UMaterialInstance* DisableMaterial;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
-	UMaterial* ActiveMaterial;
+    UMaterialInstance* ActiveMaterial;
 
 public:	
 
