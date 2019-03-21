@@ -8,4 +8,6 @@ void ADBQuestActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+
+
 }
