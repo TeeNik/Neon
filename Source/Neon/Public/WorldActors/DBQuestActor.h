@@ -15,6 +15,10 @@ class NEON_API ADBQuestActor : public AActor
 public:	
 	ADBQuestActor();
 
+    void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent);
+    void OnEndCursorOver(UPrimitiveComponent* TouchedComponent);
+    void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed);
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -26,4 +30,7 @@ protected:
     UMaterialInstance* HighlightMaterial;
     UPROPERTY(EditDefaultsOnly, Category = "Components")
     UBoxComponent* BoxComponent;
+
+private:
+    //bool HasPlayerInRange
 };

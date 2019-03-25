@@ -8,10 +8,26 @@ ADBQuestActor::ADBQuestActor()
 
 void ADBQuestActor::BeginPlay()
 {
-	Super::BeginPlay();
-	
+    Super::BeginPlay();
+
     BoxComponent->OnBeginCursorOver.AddDynamic(this, &ADBQuestActor::OnBeginCursorOver);
     BoxComponent->OnEndCursorOver.AddDynamic(this, &ADBQuestActor::OnEndCursorOver);
     BoxComponent->OnClicked.AddDynamic(this, &ADBQuestActor::OnClicked);
 
 }
+
+void ADBQuestActor::OnBeginCursorOver(UPrimitiveComponent* TouchedComponent)
+{
+
+}
+
+void ADBQuestActor::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
+{
+
+}
+
+void ADBQuestActor::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
+{
+
+}
+

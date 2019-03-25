@@ -50,19 +50,19 @@ protected:
 public:	
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent) override;
+	virtual void OnBeginCursorOver(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) override;
+	virtual void OnEndCursorOver(UPrimitiveComponent* TouchedComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
+	virtual void OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual void Deactivate() override;
+	virtual void Deactivate() override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		virtual bool Highlight(FString& AbilityName) override;
+	virtual bool Highlight(FString& AbilityName) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void MoveToMiddle();
