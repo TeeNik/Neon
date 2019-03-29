@@ -1,6 +1,6 @@
 #include "DBQuestActor.h"
 #include "Components/BoxComponent.h"
-#include "NeonPlayerController.h"
+#include "NeonGameMode.h"
 #include "NeonCharacter.h"
 #include "Components/StaticMeshComponent.h"
 #include "Materials/MaterialInstance.h"
@@ -22,16 +22,36 @@ void ADBQuestActor::BeginPlay()
 
 void ADBQuestActor::OnBeginCursorOver(UPrimitiveComponent* TouchedComponent)
 {
-    SelectionCircle->SetMaterial(0, HighlightMaterial);
+    if (isInRange) {
+        SelectionCircle->SetMaterial(0, HighlightMaterial);
+    }
 }
 
 void ADBQuestActor::OnEndCursorOver(UPrimitiveComponent* TouchedComponent)
 {
+    if (isInRange) {
+        SelectionCircle->SetMaterial(0, DefaultMaterial);
+    }
+}
+
+void ADBQuestActor::Deactivate()
+{
+    isInRange = false;
     SelectionCircle->SetMaterial(0, DefaultMaterial);
+}
+
+bool ADBQuestActor::Highlight(FString& AbilityName)
+{
+    isInRange = true;
+    return true;
 }
 
 void ADBQuestActor::OnClicked(UPrimitiveComponent* TouchedComponent, FKey ButtonPressed)
 {
+    if (isInRange) {
+        ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+
+    }
     ANeonPlayerController* PC = Cast<ANeonPlayerController>(AI->GetWorld()->GetFirstPlayerController());
     ANeonCharacter* player = PC->NeonCharacter;
     float range = 350;
