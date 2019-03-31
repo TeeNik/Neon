@@ -51,7 +51,7 @@ void ADBQuestActor::OnClicked(UPrimitiveComponent* TouchedComponent, FKey Button
 {
     if (isInRange) {
         ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
-
+        //Add event to level manager
     }
 }
 
