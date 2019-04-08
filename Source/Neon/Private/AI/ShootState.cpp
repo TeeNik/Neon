@@ -18,6 +18,7 @@ void UShootState::Execute()
 	UWeaponComponent* WeaponComp = UUtilsLibrary::GetRelativeComponent<UWeaponComponent>(AI);
 	UAbilityComponent* AbilityComp = UUtilsLibrary::GetRelativeComponent<UAbilityComponent>(AI);
 	FString name = TEXT("Shoot");
+    TargetTag = "Player";
 	AbilityComp->SetActiveAction(name);
 	TArray<FHitResult> actors = AbilityComp->GetActorsInRange(AbilityComp->ActiveAction->Data->Range);
 	for (auto It = actors.CreateIterator(); It; It++)

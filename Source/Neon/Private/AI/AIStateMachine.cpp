@@ -26,12 +26,12 @@ void UAIStateMachine::StartTurn()
 	GetWorld()->GetTimerManager().ClearTimer(Timer);
 	UAIState* state;
 	FString stateName;
-	if (isAwake) {
+	/*if (isAwake) {
 		state = NewObject<UMovementState>(this, UMovementState::StaticClass());
 	}
-	else {
+	else {*/
 		state = NewObject<UIdleState>(this, UIdleState::StaticClass());
-	}
+	//}
 	state->Init(this);
 	NextState(state);
 }
