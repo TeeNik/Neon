@@ -9,6 +9,9 @@
 ADBQuestActor::ADBQuestActor()
 {
     BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+    RootComponent = BoxComponent;
+    SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
+    SelectionCircle->SetupAttachment(RootComponent);
 }
 
 void ADBQuestActor::BeginPlay()
