@@ -8,6 +8,8 @@
 
 struct Direction;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeath);
+
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UHealthComponent : public UActorComponent
 {
@@ -30,6 +32,9 @@ public:
 	FORCEINLINE	int32 GetCurrentShield() { return CurrentShield; }
 
 	Direction GetDefenceValue();
+
+    UPROPERTY(BlueprintAssignable)
+    FOnDeath Death;
 	
 protected:
 	virtual void BeginPlay() override;
@@ -41,5 +46,5 @@ protected:
 	int32 MaxShield;
 	int32 CurrentShield;
 
-	void Death();
+	//void Death();
 };

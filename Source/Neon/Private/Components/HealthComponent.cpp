@@ -32,10 +32,10 @@ void UHealthComponent::BeginPlay()
 	CurrentShield = MaxShield;
 }
 
-void UHealthComponent::Death()
+/*void UHealthComponent::Death()
 {
 	GetOwner()->Destroy();
-}
+}*/
 
 void UHealthComponent::TakeDamage(int& damage)
 {
@@ -49,7 +49,7 @@ void UHealthComponent::TakeDamage(int& damage)
 	}
 
 	CurrentHealth -= damage;
-	if (CurrentHealth <= 0) Death();
+	if (CurrentHealth <= 0) Death.Broadcast();
 }
 
 void UHealthComponent::AddShield(int& value)
