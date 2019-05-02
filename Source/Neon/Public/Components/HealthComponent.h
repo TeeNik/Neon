@@ -45,6 +45,4 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Health")
 	int32 MaxShield;
 	int32 CurrentShield;
-
-	//void Death();
 };

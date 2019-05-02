@@ -32,11 +32,6 @@ void UHealthComponent::BeginPlay()
 	CurrentShield = MaxShield;
 }
 
-/*void UHealthComponent::Death()
-{
-	GetOwner()->Destroy();
-}*/
-
 void UHealthComponent::TakeDamage(int& damage)
 {
 	if (damage > CurrentShield) {
