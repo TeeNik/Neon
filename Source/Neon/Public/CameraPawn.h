@@ -33,6 +33,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UCameraComponent* CameraComp;
 
+    UPROPERTY(EditDefaultsOnly, Category = "CameraBounds")
+    FVector BoundX;
+
+    UPROPERTY(EditDefaultsOnly, Category = "CameraBounds")
+    FVector BoundY;
+
 	APlayerController* PC;
 	FVector GetCameraPanDirection();
 	void PanMoveCamera();

@@ -1,8 +1,8 @@
 #include "CameraPawn.h"
-#include "Public/CameraPawn.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "NeonPlayerController.h"
+#include "Engine/World.h"
 
 ACameraPawn::ACameraPawn()
 {
@@ -19,7 +19,7 @@ ACameraPawn::ACameraPawn()
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	CameraComp->SetupAttachment(SpringArm);
 
-	Margin = 15;
+	Margin = 2;
 	CamSpeed = 10;
 }
 
@@ -76,6 +76,10 @@ void ACameraPawn::PanMoveCamera()
 {
 	const FVector dir = GetCameraPanDirection();
 	if (dir == FVector::ZeroVector || NeonPC && NeonPC->ClickedActor != NULL) return;
-	//AddActorWorldOffset(dir * CamSpeed);
+
+    FVector location = GetActorLocation();
+    if (dir.Y < 0 && location.Y < BoundY.X || dir.Y > 0 && location.Y > BoundY.Y || dir.X > 0 && location.X > BoundX.X || dir.X < 0 && location.X < BoundX.Y) return;
+
+	AddActorWorldOffset(dir * CamSpeed);
 }
 

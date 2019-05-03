@@ -70,6 +70,7 @@ void UActionWidget::InitEnergy(int32& num, OnSpendEnergyDelegate& onSpendEnergy,
 		});
 		onEndTurn.AddLambda([&]()
 		{
+            GLog->Log("Widget End");
 			//SetVisibility(ESlateVisibility::Hidden);
 		});
 	}

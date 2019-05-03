@@ -43,4 +43,6 @@ protected:
 
 private:
 	bool IsTop(int i, int j);
+
+    void GenerateMap();
 };
