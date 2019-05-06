@@ -81,7 +81,23 @@ void ULocationManager::GenerateMap()
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j)
             {
-                int block = data[k]->AsNumber();
+                MapElements block = data[k]->AsNumber();
+
+                switch (block)
+                {
+                case Wall:
+                    break;
+                default:
+                    break;
+                case Cover:
+                    break;
+                case Floor:
+                    break;
+                case Enemy:
+                    break;
+                case Turret:
+                    break;
+                }
 
                 if (block == 1) {
                     FVector location(-320 - size * i, -440 + size * j, 350);
@@ -90,7 +106,14 @@ void ULocationManager::GenerateMap()
                     gridBase->Column = j;
                     GridArray[i].Array.Add(gridBase);
                 }
-                else {
+                else if (block == 2) {
+                    FVector location(-320 - size * i, -440 + size * j, 300);
+                    auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
+                    gridBase->Row = i;
+                    gridBase->Column = j;
+                    GridArray[i].Array.Add(gridBase);
+                }
+                else if (block == 3) {
                     FVector location(-320 - size * i, -440 + size * j, 200);
                     auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
                     gridBase->Row = i;
@@ -112,6 +135,25 @@ void ULocationManager::GenerateMap()
     {
         GLog->Log("couldn't deserialize");
     }
+}
+
+void ULocationManager::CreateGridBase(FVector& location)
+{
+
+}
+
+void ULocationManager::CreateWall(int & i, int & j)
+{
+}
+
+void ULocationManager::CreateCover(int& i, int& j)
+{
+
+}
+
+void ULocationManager::CreateFloor(int& i, int& j)
+{
+
 }
 
 Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
