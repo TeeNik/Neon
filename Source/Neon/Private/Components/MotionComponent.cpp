@@ -4,7 +4,6 @@
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "NeonGameMode.h"
 #include "WorldActors/GridBase.h"
-#include "System/LocationManager.h"
 #include "Engine/World.h"
 
 UMotionComponent::UMotionComponent()
@@ -19,14 +18,10 @@ void UMotionComponent::BeginPlay()
 
 	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	ULocationManager* LocationManager = GM->GetLocationManager();
-	LocationManager->OnSceneLoaded.AddUFunction(this, "SetupInitialPosition");
 }
 
-void UMotionComponent::SetupInitialPosition()
+void UMotionComponent::SetupInitialPosition(AGridBase* gridBase)
 {
-	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
-	ULocationManager* LocationManager = GM->GetLocationManager();
-	AGridBase* gridBase = LocationManager->GridArray[Row].Array[Column];
 	FVector gridLocation = gridBase->GetActorLocation();
 	gridLocation.Z += 70;
 	GetOwner()->SetActorLocation(gridLocation);

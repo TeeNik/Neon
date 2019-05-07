@@ -9,6 +9,8 @@ DECLARE_MULTICAST_DELEGATE(OnSceneLoadedDelegate)
 class AGridBase;
 class UWeaponComponent;
 struct Direction;
+class AEnemyCharacter;
+class ATurret;
 
 USTRUCT()
 struct FGridBaseArray
@@ -31,6 +33,12 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
 	TSubclassOf<AGridBase> GridBaseClass;
+
+    UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+    TSubclassOf<AEnemyCharacter> EnemyClass;
+
+    UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+    TSubclassOf<ATurret> TurretClass;
 
 	Direction GetCoverInfo(const AGridBase* gridBase);
 	OnSceneLoadedDelegate OnSceneLoaded;
@@ -55,11 +63,13 @@ private:
 
     void GenerateMap();
 
-    void CreateGridBase(FVector& location);
+    void CreateGridBase(FVector& location, int& i, int& j);
     void CreateWall(int& i, int& j);
     void CreateCover(int& i, int& j);
     void CreateFloor(int& i, int& j);
     void CreateTurret(int& i, int& j);
     void CreateEnemy(int& i, int& j);
+
+    const int BLOCK_SIZE = 125;
 
 };

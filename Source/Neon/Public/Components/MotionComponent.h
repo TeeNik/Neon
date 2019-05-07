@@ -16,6 +16,7 @@ public:
 
 	AGridBase* GetPosition() { return Position; }
 	void MoveToGrid(AActor* gridBase);
+    void SetupInitialPosition(AGridBase* gridBase);
 
 protected:
 	virtual void BeginPlay() override;	
@@ -28,6 +29,5 @@ protected:
 private:
 	AGridBase * Position;
 
-	UFUNCTION()
-	void SetupInitialPosition();
+	
 };

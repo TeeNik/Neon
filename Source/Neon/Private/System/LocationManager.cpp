@@ -1,10 +1,15 @@
 #include "LocationManager.h"
 #include "InputCoreTypes.h"
 #include "WorldActors/GridBase.h"
+#include "Enemy/Turret.h"
+#include "Enemy/EnemyCharacter.h"
+#include "WorldActors/GridBase.h"
 #include "Components/WeaponComponent.h"
 #include "Components/GridLocationComponent.h"
+#include "Components/MotionComponent.h"
 #include "Engine/Public/TimerManager.h"
 #include "Engine/World.h"
+#include "UtilsLibrary.h"
 #include "JsonUtilities.h"
 
 ULocationManager::ULocationManager()
@@ -17,20 +22,6 @@ void ULocationManager::BeginPlay()
 	Super::BeginPlay();
 
 	FActorSpawnParameters spawnParams;
-	int size = 125;
-
-	/*GridArray.SetNum(8);
-	for (int i = 0; i < 8; ++i) {
-		for (int j = 0; j < 10; ++j)
-		{
-			FVector location(-320-size*i,-440+size*j,200);
-			auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0,0,0), spawnParams);
-			gridBase->Row = i;
-			gridBase->Column = j;
-			GridArray[i].Array.Add(gridBase);
-		}
-	}*/
-
 	FTimerHandle timer;
 	GetWorld()->GetTimerManager().SetTimer(timer, this, &ULocationManager::SceneLoaded, 1, false);
 
@@ -81,44 +72,27 @@ void ULocationManager::GenerateMap()
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j)
             {
-                MapElements block = data[k]->AsNumber();
+                int block = data[k]->AsNumber();
 
                 switch (block)
                 {
                 case Wall:
+                    CreateWall(i, j);
+                    break;
+                case Cover:
+                    CreateCover(i, j);
+                    break;
+                case Floor:
+                    CreateFloor(i, j);
+                    break;
+                case Enemy:
+                    CreateEnemy(i, j);
+                    break;
+                case Turret:
+                    CreateTurret(i, j);
                     break;
                 default:
                     break;
-                case Cover:
-                    break;
-                case Floor:
-                    break;
-                case Enemy:
-                    break;
-                case Turret:
-                    break;
-                }
-
-                if (block == 1) {
-                    FVector location(-320 - size * i, -440 + size * j, 350);
-                    auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
-                    gridBase->Row = i;
-                    gridBase->Column = j;
-                    GridArray[i].Array.Add(gridBase);
-                }
-                else if (block == 2) {
-                    FVector location(-320 - size * i, -440 + size * j, 300);
-                    auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
-                    gridBase->Row = i;
-                    gridBase->Column = j;
-                    GridArray[i].Array.Add(gridBase);
-                }
-                else if (block == 3) {
-                    FVector location(-320 - size * i, -440 + size * j, 200);
-                    auto gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
-                    gridBase->Row = i;
-                    gridBase->Column = j;
-                    GridArray[i].Array.Add(gridBase);
                 }
 
                 ++k;
@@ -137,23 +111,49 @@ void ULocationManager::GenerateMap()
     }
 }
 
-void ULocationManager::CreateGridBase(FVector& location)
+void ULocationManager::CreateGridBase(FVector& location, int& i, int& j)
 {
-
+    FActorSpawnParameters spawnParams;
+    AGridBase* gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
+    gridBase->Row = i;
+    gridBase->Column = j;
+    GridArray[i].Array.Add(gridBase);
 }
 
 void ULocationManager::CreateWall(int & i, int & j)
 {
+    FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 350);
+    CreateGridBase(location, i, j);
 }
 
 void ULocationManager::CreateCover(int& i, int& j)
 {
-
+    FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 300);
+    CreateGridBase(location, i, j);
 }
 
 void ULocationManager::CreateFloor(int& i, int& j)
 {
+    FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 200);
+    CreateGridBase(location, i, j);
+}
 
+void ULocationManager::CreateTurret(int& i, int& j)
+{
+    CreateFloor(i, j);
+    FActorSpawnParameters spawnParams;
+    ATurret* turret = GetWorld()->SpawnActor<ATurret>(TurretClass);
+    UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(turret);
+    motion->SetupInitialPosition(GridArray[i].Array[j]);
+}
+
+void ULocationManager::CreateEnemy(int& i, int& j)
+{
+    CreateFloor(i, j);
+    FActorSpawnParameters spawnParams;
+    AEnemyCharacter* enemy = GetWorld()->SpawnActor<AEnemyCharacter>(EnemyClass);
+    UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(enemy);
+    motion->SetupInitialPosition(GridArray[i].Array[j]);
 }
 
 Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
