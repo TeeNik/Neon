@@ -42,7 +42,24 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
+
+    enum MapElements {
+        Wall = 1,
+        Cover,
+        Floor,
+        Enemy,
+        Turret,
+    };
+
 	bool IsTop(int i, int j);
 
     void GenerateMap();
+
+    void CreateGridBase(FVector& location);
+    void CreateWall(int& i, int& j);
+    void CreateCover(int& i, int& j);
+    void CreateFloor(int& i, int& j);
+    void CreateTurret(int& i, int& j);
+    void CreateEnemy(int& i, int& j);
+
 };
