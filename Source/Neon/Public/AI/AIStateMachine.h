@@ -19,12 +19,16 @@ public:
 	void EndTurn();
 	void StartTurn();
 	void SetAwake(bool value);
+
+	UPROPERTY()
 	FTimerHandle Timer;
 
 protected:
 	virtual void BeginPlay() override;
 
 private:
+
+	UPROPERTY()
 	UAIState* CurrentState = NULL;
 	bool isAwake;
 	UFUNCTION()
