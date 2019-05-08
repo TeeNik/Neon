@@ -40,6 +40,8 @@ public:
     UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
     TSubclassOf<ATurret> TurretClass;
 
+	AActor* GridParent = nullptr;
+
 	Direction GetCoverInfo(const AGridBase* gridBase);
 	OnSceneLoadedDelegate OnSceneLoaded;
 

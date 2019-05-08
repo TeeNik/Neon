@@ -36,24 +36,20 @@ bool ULocationManager::IsTop(int i, int j)
 void ULocationManager::GenerateMap()
 {
     const FString JsonFilePath = FPaths::ProjectContentDir() + "TopDownCPP/Data/map.json";
-    FString JsonString; //Json converted to FString
+    FString JsonString;
 
     GLog->Log("Path: " + JsonFilePath);
 
     FFileHelper::LoadFileToString(JsonString, *JsonFilePath);
 
-    //Displaying the json in a string format inside the output log
     GLog->Log("Json String:");
     GLog->Log(JsonString);
 
-    //Create a json object to store the information from the json string
-    //The json reader is used to deserialize the json object later on
     TSharedPtr<FJsonObject> JsonObject = MakeShareable(new FJsonObject());
     TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(JsonString);
 
     if (FJsonSerializer::Deserialize(JsonReader, JsonObject) && JsonObject.IsValid())
     {
-        //The person "object" that is retrieved from the given json file
         TSharedPtr<FJsonObject> MapObject = JsonObject->GetObjectField("Map");
         int width = MapObject->GetIntegerField("width");
         int height = MapObject->GetIntegerField("height");
@@ -61,7 +57,6 @@ void ULocationManager::GenerateMap()
         GLog->Log("width:" + FString::FromInt(MapObject->GetIntegerField("width")));
         GLog->Log("height:" + FString::FromInt(MapObject->GetIntegerField("height")));
 
-        //Retrieving an array property and printing each field
         TArray<TSharedPtr<FJsonValue>> data = MapObject->GetArrayField("data");
         GLog->Log("printing family names...");
 
@@ -118,6 +113,14 @@ void ULocationManager::CreateGridBase(FVector& location, int& i, int& j)
     gridBase->Row = i;
     gridBase->Column = j;
     GridArray[i].Array.Add(gridBase);
+
+	if (GridParent == nullptr) {
+		GridParent = gridBase;
+	}
+	else {
+		FAttachmentTransformRules rules(EAttachmentRule::KeepWorld, false);
+		gridBase->AttachToActor(GridParent, rules);
+	}
 }
 
 void ULocationManager::CreateWall(int & i, int & j)

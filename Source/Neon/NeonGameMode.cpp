@@ -18,9 +18,10 @@ ANeonGameMode::ANeonGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 
+	AbilityManager = CreateDefaultSubobject<UAbilityManager>(TEXT("AbilityManager"));
+	RootComponent = AbilityManager;
 	LocationManager = CreateDefaultSubobject<ULocationManager>(TEXT("LocationManager"));
 	TurnManager = CreateDefaultSubobject<UTurnManager>(TEXT("TurnManager"));
-	AbilityManager = CreateDefaultSubobject<UAbilityManager>(TEXT("AbilityManager"));
 }
 
 void ANeonGameMode::BeginPlay()
