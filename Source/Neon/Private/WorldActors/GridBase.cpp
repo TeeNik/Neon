@@ -88,8 +88,15 @@ void AGridBase::Deactivate() {
 
 bool AGridBase::Highlight(FString& abilityName)
 {
-	if (abilityName == TopAbility && GridLocationComp->State == Top || abilityName == DownAbility && GridLocationComp->State == Down)
-	return false;
+    if (abilityName == TopAbility && GridLocationComp->State == Top || abilityName == DownAbility && GridLocationComp->State == Down)
+    {
+        return false;
+    }
+
+    if (abilityName == MoveAbility && GridLocationComp->State == Top)
+    {
+        return false;
+    }
 
 	PlaneComp->SetVisibility(true);
     PlaneComp->SetMaterial(0, ActiveMaterial);
