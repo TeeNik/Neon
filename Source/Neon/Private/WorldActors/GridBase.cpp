@@ -98,6 +98,9 @@ bool AGridBase::Highlight(FString& abilityName)
         return false;
     }
 
+    if ()
+    {
+    }
 	PlaneComp->SetVisibility(true);
     PlaneComp->SetMaterial(0, ActiveMaterial);
 
