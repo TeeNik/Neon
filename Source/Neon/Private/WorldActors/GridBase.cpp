@@ -98,9 +98,11 @@ bool AGridBase::Highlight(FString& abilityName)
         return false;
     }
 
-    if ()
+    if (GridLocationComp->GetStatus() != GridLocationStatus::Empty)
     {
+        return false;
     }
+
 	PlaneComp->SetVisibility(true);
     PlaneComp->SetMaterial(0, ActiveMaterial);
 
