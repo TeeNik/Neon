@@ -60,10 +60,14 @@ void ULocationManager::GenerateMap()
         TArray<TSharedPtr<FJsonValue>> data = MapObject->GetArrayField("data");
         GLog->Log("printing family names...");
 
+
         int k = 0;
         int size = 125;
         FActorSpawnParameters spawnParams;
         GridArray.SetNum(height);
+
+        GridParent = GetWorld()->SpawnActor<AActor>(AActor::StaticClass(), FVector(0, 0, 0), FRotator(0, 0, 0), spawnParams);
+
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j)
             {
@@ -93,12 +97,6 @@ void ULocationManager::GenerateMap()
                 ++k;
             }
         }
-
-        for (int32 index = 0; index < data.Num(); index++)
-        {
-
-            GLog->Log("name:" + data[index]->AsString());
-        }
     }
     else
     {
@@ -114,13 +112,8 @@ void ULocationManager::CreateGridBase(FVector& location, int& i, int& j)
     gridBase->Column = j;
     GridArray[i].Array.Add(gridBase);
 
-	if (GridParent == nullptr) {
-		GridParent = gridBase;
-	}
-	else {
-		FAttachmentTransformRules rules(EAttachmentRule::KeepWorld, false);
-		gridBase->AttachToActor(GridParent, rules);
-	}
+    FAttachmentTransformRules rules(EAttachmentRule::KeepWorld, false);
+    gridBase->AttachToActor(GridParent, rules);
 }
 
 void ULocationManager::CreateWall(int & i, int & j)
