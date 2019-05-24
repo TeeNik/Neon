@@ -35,7 +35,7 @@ bool ULocationManager::IsTop(int i, int j)
 
 void ULocationManager::GenerateMap()
 {
-    const FString JsonFilePath = FPaths::ProjectContentDir() + "TopDownCPP/Data/map.json";
+    const FString JsonFilePath = FPaths::ConvertRelativePathToFull(FPaths::GameContentDir()) + "TopDownCPP/Data/map.json";
     FString JsonString;
 
     GLog->Log("Path: " + JsonFilePath);
