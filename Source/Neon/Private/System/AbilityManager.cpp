@@ -24,6 +24,7 @@ void UAbilityManager::BeginPlay()
 	dataTable->GetAllRows<FActionTableData>(TEXT(""), abilityDatas);
 }
 
+
 UAbility * UAbilityManager::GetAbility(FString name)
 {
 	UAbility* ability = NULL;
