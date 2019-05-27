@@ -11,6 +11,7 @@ class UWeaponComponent;
 struct Direction;
 class AEnemyCharacter;
 class ATurret;
+class ANeonCharacter;
 
 USTRUCT()
 struct FGridBaseArray
@@ -40,6 +41,9 @@ public:
     UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
     TSubclassOf<ATurret> TurretClass;
 
+    UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+    TSubclassOf<ANeonCharacter> PlayerClass;
+
 	AActor* GridParent = nullptr;
 
 	Direction GetCoverInfo(const AGridBase* gridBase);
@@ -59,6 +63,7 @@ private:
         Floor,
         Enemy,
         Turret,
+        Player,
     };
 
 	bool IsTop(int i, int j);
@@ -71,6 +76,7 @@ private:
     void CreateFloor(int& i, int& j);
     void CreateTurret(int& i, int& j);
     void CreateEnemy(int& i, int& j);
+    void CreatePlayer(int& i, int& j);
 
     const int BLOCK_SIZE = 125;
 

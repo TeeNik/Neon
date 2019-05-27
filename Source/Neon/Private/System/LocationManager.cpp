@@ -3,6 +3,7 @@
 #include "WorldActors/GridBase.h"
 #include "Enemy/Turret.h"
 #include "Enemy/EnemyCharacter.h"
+#include "NeonCharacter.h"
 #include "WorldActors/GridBase.h"
 #include "Components/WeaponComponent.h"
 #include "Components/GridLocationComponent.h"
@@ -90,6 +91,8 @@ void ULocationManager::GenerateMap()
                 case Turret:
                     CreateTurret(i, j);
                     break;
+                case Player:
+                    CreatePlayer(i, j);
                 default:
                     break;
                 }
@@ -149,6 +152,15 @@ void ULocationManager::CreateEnemy(int& i, int& j)
     FActorSpawnParameters spawnParams;
     AEnemyCharacter* enemy = GetWorld()->SpawnActor<AEnemyCharacter>(EnemyClass);
     UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(enemy);
+    motion->SetupInitialPosition(GridArray[i].Array[j]);
+}
+
+void ULocationManager::CreatePlayer(int& i, int& j)
+{
+    CreateFloor(i, j);
+    FActorSpawnParameters spawnParams;
+    ANeonCharacter* player = GetWorld()->SpawnActor<ANeonCharacter>(PlayerClass);
+    UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(player);
     motion->SetupInitialPosition(GridArray[i].Array[j]);
 }
 
