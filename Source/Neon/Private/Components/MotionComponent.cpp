@@ -3,7 +3,9 @@
 #include "AIController.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "NeonGameMode.h"
+#include "NeonCharacter.h"
 #include "WorldActors/GridBase.h"
+#include "GridLocationComponent.h"
 #include "Engine/World.h"
 
 UMotionComponent::UMotionComponent()
@@ -35,7 +37,12 @@ void UMotionComponent::MoveToGrid(AActor* gridBase)
 	//UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
 	AAIController* aiController = Cast<AAIController>(character->GetController());
 	aiController->MoveToLocation(gridBase->GetActorLocation(), -1, false);
+    Position->GetLocationComponent()->SetStatus(GridLocationStatus::Empty);
 	Position = grid;
+
+    bool isPlayer = character->IsA(ANeonCharacter::StaticClass());
+    GridLocationStatus newStatus = isPlayer ? GridLocationStatus::Player : GridLocationStatus::Enemy;
+    Position->GetLocationComponent()->SetStatus(newStatus);
 	//UAIBlueprintHelperLibrary::SimpleMoveToLocation(aiController, gridBase->GetActorLocation());
 }
 
