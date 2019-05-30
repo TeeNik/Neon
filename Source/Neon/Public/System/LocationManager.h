@@ -9,6 +9,7 @@ DECLARE_MULTICAST_DELEGATE(OnSceneLoadedDelegate)
 class AGridBase;
 class UWeaponComponent;
 struct Direction;
+enum GridBaseState;
 class AEnemyCharacter;
 class ATurret;
 class ANeonCharacter;
@@ -70,7 +71,7 @@ private:
 
     void GenerateMap();
 
-    void CreateGridBase(FVector& location, int& i, int& j);
+    void CreateGridBase(FVector& location, int& i, int& j, GridBaseState& state);
     void CreateWall(int& i, int& j);
     void CreateCover(int& i, int& j);
     void CreateFloor(int& i, int& j);

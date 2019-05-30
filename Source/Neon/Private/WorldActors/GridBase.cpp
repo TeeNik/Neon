@@ -93,7 +93,7 @@ bool AGridBase::Highlight(FString& abilityName)
         return false;
     }
 
-    if (abilityName == MoveAbility && GridLocationComp->State == Top)
+    if (abilityName == MoveAbility && GridLocationComp->State != Down)
     {
         return false;
     }
