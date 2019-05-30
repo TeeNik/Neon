@@ -107,12 +107,13 @@ void ULocationManager::GenerateMap()
     }
 }
 
-void ULocationManager::CreateGridBase(FVector& location, int& i, int& j)
+void ULocationManager::CreateGridBase(FVector& location, int& i, int& j, GridBaseState& state)
 {
     FActorSpawnParameters spawnParams;
     AGridBase* gridBase = GetWorld()->SpawnActor<AGridBase>(GridBaseClass, location, FRotator(0, 0, 0), spawnParams);
     gridBase->Row = i;
     gridBase->Column = j;
+    gridBase->GetLocationComponent()->State = state;
     GridArray[i].Array.Add(gridBase);
 
     FAttachmentTransformRules rules(EAttachmentRule::KeepWorld, false);
@@ -122,19 +123,22 @@ void ULocationManager::CreateGridBase(FVector& location, int& i, int& j)
 void ULocationManager::CreateWall(int & i, int & j)
 {
     FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 350);
-    CreateGridBase(location, i, j);
+    GridBaseState state = GridBaseState::Top;
+    CreateGridBase(location, i, j, state);
 }
 
 void ULocationManager::CreateCover(int& i, int& j)
 {
     FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 300);
-    CreateGridBase(location, i, j);
+    GridBaseState state = GridBaseState::Middle;
+    CreateGridBase(location, i, j, state);
 }
 
 void ULocationManager::CreateFloor(int& i, int& j)
 {
     FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 200);
-    CreateGridBase(location, i, j);
+    GridBaseState state = GridBaseState::Down;
+    CreateGridBase(location, i, j, state);
 }
 
 void ULocationManager::CreateTurret(int& i, int& j)

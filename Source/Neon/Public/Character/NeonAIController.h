@@ -11,6 +11,6 @@ class NEON_API ANeonAIController : public AAIController
 
 public:
 
-    void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result) override;
+    void OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result) override;
 	
 };
