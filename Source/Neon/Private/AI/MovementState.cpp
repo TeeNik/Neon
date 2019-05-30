@@ -39,7 +39,7 @@ void UMovementState::Execute()
             AActor* actor = It->GetActor();
             if (actor->ActorHasTag(moveAbility->Data->ObjectTag)) {
                 AGridBase* grid = Cast<AGridBase>(actor);
-                if (grid != NULL && grid->GetLocationComponent()->GetStatus() == GridLocationStatus::Empty) {
+                if (grid != NULL && grid->GetLocationComponent()->GetStatus() == GridLocationStatus::Empty && grid->GetLocationComponent()->State == GridBaseState::Down) {
                     motionComp->MoveToGrid(actor);
                     break;
                 }

@@ -45,6 +45,14 @@ public:
     UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
     TSubclassOf<ANeonCharacter> PlayerClass;
 
+	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+	float OriginX;
+
+	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+	float OriginY;
+
+
+	UPROPERTY()
 	AActor* GridParent = nullptr;
 
 	Direction GetCoverInfo(const AGridBase* gridBase);

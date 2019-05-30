@@ -122,21 +122,21 @@ void ULocationManager::CreateGridBase(FVector& location, int& i, int& j, GridBas
 
 void ULocationManager::CreateWall(int & i, int & j)
 {
-    FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 350);
+    FVector location(OriginX - BLOCK_SIZE * i, OriginY + BLOCK_SIZE * j, 350);
     GridBaseState state = GridBaseState::Top;
     CreateGridBase(location, i, j, state);
 }
 
 void ULocationManager::CreateCover(int& i, int& j)
 {
-    FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 300);
+    FVector location(OriginX - BLOCK_SIZE * i, OriginY + BLOCK_SIZE * j, 300);
     GridBaseState state = GridBaseState::Middle;
     CreateGridBase(location, i, j, state);
 }
 
 void ULocationManager::CreateFloor(int& i, int& j)
 {
-    FVector location(-320 - BLOCK_SIZE * i, -440 + BLOCK_SIZE * j, 200);
+    FVector location(OriginX - BLOCK_SIZE * i, OriginY + BLOCK_SIZE * j, 200);
     GridBaseState state = GridBaseState::Down;
     CreateGridBase(location, i, j, state);
 }

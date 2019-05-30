@@ -5,6 +5,7 @@
 #include "NeonPlayerController.h"
 #include "NeonGameMode.h"
 #include "Materials/Material.h"
+#include "Character/NeonAIController.h"
 #include "Engine/World.h"
 #include "Ability/Ability.h"
 #include "GameStrings.h"
@@ -45,6 +46,10 @@ ANeonCharacter::ANeonCharacter()
 void ANeonCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AIControllerClass = ANeonAIController::StaticClass();
+	SpawnDefaultController();
+
 	ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
 	if (PC) {
 		PC->NeonCharacter = this;

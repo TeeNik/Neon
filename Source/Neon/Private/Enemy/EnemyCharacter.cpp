@@ -14,6 +14,7 @@
 #include "AI/AIStateMachine.h"
 #include "Components/AbilityComponent.h"
 #include "WorldActors/GridBase.h"
+#include "Character/NeonAIController.h"
 #include "Action/ActionTableData.h"
 #include "Engine/World.h"
 #include "System/TurnManager.h"
@@ -34,6 +35,10 @@ AEnemyCharacter::AEnemyCharacter()
 void AEnemyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AIControllerClass = ANeonAIController::StaticClass();
+	SpawnDefaultController();
+
 	UCapsuleComponent* capsule = GetCapsuleComponent();
 	capsule->OnBeginCursorOver.AddDynamic(this, &AEnemyCharacter::OnBeginCursorOver);
 	capsule->OnEndCursorOver.AddDynamic(this, &AEnemyCharacter::OnEndCursorOver);
