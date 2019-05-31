@@ -33,12 +33,10 @@ void UIdleState::Execute()
 		AI->SetAwake(true);
 		FName tag = TEXT("Player");
 		UAIState* state = NewObject<UShootState>(this, UShootState::StaticClass());
-		state->Init(AI);
 		AI->NextState(state);
 	}
 	else {
 		UAIState* state = NewObject<UMovementState>(this, UMovementState::StaticClass());
-		state->Init(AI);
 		AI->NextState(state);
 	}
 }

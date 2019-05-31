@@ -32,7 +32,6 @@ void UAIStateMachine::StartTurn()
 	else {*/
 		state = NewObject<UIdleState>(this, UIdleState::StaticClass());
 	//}
-	state->Init(this);
 	NextState(state);
 }
 
@@ -41,6 +40,7 @@ void UAIStateMachine::NextState(UAIState* state)
 	if (CurrentState != NULL) {
 		delete CurrentState;
 	}
+	state->Init(this);
 	CurrentState = state;
 	GLog->Log(state->Name);
 	CurrentState->Execute();
