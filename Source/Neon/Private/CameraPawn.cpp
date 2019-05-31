@@ -54,19 +54,22 @@ FVector ACameraPawn::GetCameraPanDirection()
 	if(MousePosX <= Margin)
 	{
 		CamDirectionY = -1;
+		CamDirectionX = 1;
 	} 
 	else if(MousePosX >= ScreenSizeX-Margin)
 	{
 		CamDirectionY = 1;
+		CamDirectionX = -1;
 	}
-
-	if(MousePosY <= Margin)
+	else if(MousePosY <= Margin)
 	{
 		CamDirectionX = 1;
+		CamDirectionY = 1;
 	}
 	else if (MousePosY >= ScreenSizeY - Margin)
 	{
 		CamDirectionX = -1;
+		CamDirectionY = -1;
 	}
 
 	return FVector(CamDirectionX, CamDirectionY, 0);
@@ -78,7 +81,7 @@ void ACameraPawn::PanMoveCamera()
 	if (dir == FVector::ZeroVector || NeonPC && NeonPC->ClickedActor != NULL) return;
 
     FVector location = GetActorLocation();
-    //if (dir.Y < 0 && location.Y < BoundY.X || dir.Y > 0 && location.Y > BoundY.Y || dir.X > 0 && location.X > BoundX.X || dir.X < 0 && location.X < BoundX.Y) return;
+    if (dir.Y < 0 && location.Y < BoundY.X || dir.Y > 0 && location.Y > BoundY.Y || dir.X > 0 && location.X > BoundX.X || dir.X < 0 && location.X < BoundX.Y) return;
 
 	//AddActorWorldOffset(dir * CamSpeed);
 }
