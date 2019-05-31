@@ -3,6 +3,9 @@
 #include "AIState.h"
 #include "MovementState.generated.h"
 
+class AGridBase;
+class UAbilityComponent;
+
 UCLASS()
 class NEON_API UMovementState : public UAIState
 {
@@ -12,5 +15,6 @@ public:
 	UMovementState();
 	virtual void Execute() override;
 
-
+private:
+	TSet<AGridBase*> GetGridAround(UAbilityComponent* abilityComp);
 };

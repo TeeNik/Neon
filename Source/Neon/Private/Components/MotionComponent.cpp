@@ -32,6 +32,12 @@ void UMotionComponent::SetupInitialPosition(AGridBase* gridBase)
 
 void UMotionComponent::MoveToGrid(AActor* gridBase)
 {
+	GLog->Log("MoveToGrid");
+	if (!IsValid(gridBase)) {
+		GLog->Log("TEELOG: !IsValid(gridBase)");
+		return;
+	}
+
 	ACharacter* character = Cast<ACharacter>(GetOwner());
 	AGridBase* grid = Cast<AGridBase>(gridBase);
 	//UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();

@@ -29,12 +29,30 @@ void UIdleState::Execute()
 	float dist = FVector::Dist(player->GetActorLocation(), AI->GetOwner()->GetActorLocation());
 	float shootRange = shootAbility->Data->Range;
 
-	if (dist < shootRange) {
+	TArray<FHitResult> actors = abilityComp->GetActorsInRange(shootAbility->Data->Range);
+	bool hasPlayerInRange = false;
+	for (auto It = actors.CreateIterator(); It; It++)
+	{
+		auto actor = It->Actor;
+		if (actor->ActorHasTag(TEXT("Player"))) {
+			hasPlayerInRange = true;
+			break;
+		}
+	}
+	if (hasPlayerInRange) {
+		AI->SetAwake(true);
+		FName tag = TEXT("Player");
+		UAIState* state = NewObject<UShootState>(this, UShootState::StaticClass());
+		state->Init(AI);
+		AI->NextState(state);
+	}
+
+	/*if (dist < shootRange) {
 		AI->SetAwake(true);
 		FName tag = TEXT("Player");
 		UAIState* state = NewObject<UShootState>(this, UShootState::StaticClass());
 		AI->NextState(state);
-	}
+	}*/
 	else {
 		UAIState* state = NewObject<UMovementState>(this, UMovementState::StaticClass());
 		AI->NextState(state);
