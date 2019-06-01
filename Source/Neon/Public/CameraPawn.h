@@ -49,6 +49,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "CameraPawn")
 	float CamSpeed;
 
+    UPROPERTY(EditDefaultsOnly, Category = "CameraPawn")
+    bool IsMovementEnable;
+
 	int32 ScreenSizeX;
 	int32 ScreenSizeY;
 	ANeonPlayerController* NeonPC;
