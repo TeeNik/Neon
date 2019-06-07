@@ -27,7 +27,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Components")
 	USceneComponent* RootScene;
 	
-	UPROPERTY(EditDefaultsOnly, Category = "Components")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components")
 	USpringArmComponent* SpringArm;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
