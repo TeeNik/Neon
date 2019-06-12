@@ -55,7 +55,8 @@ public:
 	UPROPERTY()
 	AActor* GridParent = nullptr;
 
-	Direction GetCoverInfo(const AGridBase* gridBase);
+	const Direction GetCoverInfo(const AGridBase* gridBase) ;
+    bool IsCover(const AGridBase* gridBase);
 	OnSceneLoadedDelegate OnSceneLoaded;
 
 	UFUNCTION()

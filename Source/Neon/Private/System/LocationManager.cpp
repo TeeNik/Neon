@@ -168,7 +168,7 @@ void ULocationManager::CreatePlayer(int& i, int& j)
     motion->SetupInitialPosition(GridArray[i].Array[j]);
 }
 
-Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
+const Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
 {
 	Direction dir;
 	int i = gridBase->Row;
@@ -185,6 +185,12 @@ Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
 	if (i + 1 < GridArray.Num() && IsTop(i + 1, j)) { dir.Down = true; GLog->Log("D"); }
 
 	return dir;
+}
+
+bool ULocationManager::IsCover(const AGridBase* gridBase)
+{
+    Direction dir = GetCoverInfo(gridBase);
+    return dir.Down || dir.Left || dir.Right || dir.Up;
 }
 
 void ULocationManager::SceneLoaded()
