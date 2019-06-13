@@ -6,6 +6,7 @@
 #include "Ability/OverloadAbility.h"
 #include "Ability/LiftGridAbility.h"
 #include "Ability/LowerGridAbility.h"
+#include "Ability/CoverInfoAbility.h"
 #include "Ability/ActivateTurretAbility.h"
 #include "System/ResourceManagerLibrary.h"
 #include "System/ResourceManager.h"
@@ -46,6 +47,9 @@ UAbility * UAbilityManager::GetAbility(FString name)
     }
     else if (name.Equals("Lower")) {
         ability = NewObject<ULowerGridAbility>(this, ULowerGridAbility::StaticClass());
+    }
+    else if (name.Equals("CoverInfo")) {
+        ability = NewObject<UCoverInfoAbility>(this, UCoverInfoAbility::StaticClass());
     }
 	if (ability == NULL) return nullptr;
 	InitAbility(ability, name);
