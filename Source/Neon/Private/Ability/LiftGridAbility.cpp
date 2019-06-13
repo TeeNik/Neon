@@ -5,4 +5,5 @@ void ULiftGridAbility::Execute(AActor* owner, AActor* target)
 {
     AGridBase* grid = Cast<AGridBase>(target);
     grid->MoveToTop();
+    Super::Execute(owner, target);
 }
