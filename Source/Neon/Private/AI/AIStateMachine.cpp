@@ -12,12 +12,15 @@
 
 UAIStateMachine::UAIStateMachine()
 {
-	isAwake = false;
 }
 
 void UAIStateMachine::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (FirstState == NULL) {
+		GLog->Log("FirstState == NULL");
+	}
 }
 
 void UAIStateMachine::StartTurn()
@@ -25,13 +28,7 @@ void UAIStateMachine::StartTurn()
 	GLog->Log("AI Start");
 	GetWorld()->GetTimerManager().ClearTimer(Timer);
 	UAIState* state;
-	FString stateName;
-	/*if (isAwake) {
-		state = NewObject<UMovementState>(this, UMovementState::StaticClass());
-	}
-	else {*/
-		state = NewObject<UIdleState>(this, UIdleState::StaticClass());
-	//}
+	state = NewObject<FirstState>(this, FirstState::StaticClass());
 	NextState(state);
 }
 
@@ -59,10 +56,4 @@ void UAIStateMachine::EndTurnImpl()
 		delete CurrentState;
 		CurrentState = NULL;
 	}
-}
-
-
-void UAIStateMachine::SetAwake(bool value)
-{
-	isAwake = value;
 }

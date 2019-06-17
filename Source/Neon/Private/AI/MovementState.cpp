@@ -43,7 +43,7 @@ void UMovementState::Execute()
 
 	if (intersection.Num() > 0) {
 		TArray<AGridBase*> array = intersection.Array();
-		AGridBase* grid = array[0];
+		AGridBase* grid = array[intersection.Num()/2];
 		motionComp->MoveToGrid(grid);
 	}
 	//State ending is in the ANeonAIController

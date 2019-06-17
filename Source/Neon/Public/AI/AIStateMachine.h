@@ -18,10 +18,12 @@ public:
 	void NextState(UAIState* state);
 	void EndTurn();
 	void StartTurn();
-	void SetAwake(bool value);
 
 	UPROPERTY()
 	FTimerHandle Timer;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UAIState*> FirstState;
 
 protected:
 	virtual void BeginPlay() override;
@@ -30,7 +32,6 @@ private:
 
 	UPROPERTY()
 	UAIState* CurrentState = NULL;
-	bool isAwake;
 	UFUNCTION()
 	void EndTurnImpl();
 };

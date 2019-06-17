@@ -31,7 +31,8 @@ void ULocationManager::BeginPlay()
 
 bool ULocationManager::IsTop(int i, int j)
 {
-	return GridArray[i].Array[j]->GetLocationComponent()->State == Top;
+	GridBaseState state = GridArray[i].Array[j]->GetLocationComponent()->State;
+	return state == Top || state == Middle;
 }
 
 void ULocationManager::GenerateMap()

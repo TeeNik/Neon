@@ -13,7 +13,6 @@ UMotionComponent::UMotionComponent()
 
 }
 
-
 void UMotionComponent::BeginPlay()
 {
 	Super::BeginPlay();
@@ -39,6 +38,10 @@ void UMotionComponent::MoveToGrid(AActor* gridBase)
 	}
 
 	ACharacter* character = Cast<ACharacter>(GetOwner());
+	if (character->bIsCrouched) {
+		character->UnCrouch();
+	}
+
 	AGridBase* grid = Cast<AGridBase>(gridBase);
 	//UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
 	AAIController* aiController = Cast<AAIController>(character->GetController());
