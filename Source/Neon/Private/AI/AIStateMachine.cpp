@@ -28,7 +28,7 @@ void UAIStateMachine::StartTurn()
 	GLog->Log("AI Start");
 	GetWorld()->GetTimerManager().ClearTimer(Timer);
 	UAIState* state;
-	state = NewObject<FirstState>(this, FirstState::StaticClass());
+	state = NewObject<UAIState>(this, FirstState);
 	NextState(state);
 }
 

@@ -23,7 +23,7 @@ public:
 	FTimerHandle Timer;
 
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UAIState*> FirstState;
+	TSubclassOf<UAIState> FirstState;
 
 protected:
 	virtual void BeginPlay() override;

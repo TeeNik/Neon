@@ -18,6 +18,7 @@
 #include "Action/ActionTableData.h"
 #include "Engine/World.h"
 #include "System/TurnManager.h"
+#include "AI/IdleState.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
@@ -27,6 +28,7 @@ AEnemyCharacter::AEnemyCharacter()
 	WeaponComp = CreateDefaultSubobject<UWeaponComponent>(TEXT("WeaponComponent"));
 	AbilityComp = CreateDefaultSubobject<UAbilityComponent>(TEXT("AbilityComponent"));
 	AI = CreateDefaultSubobject<UAIStateMachine>(TEXT("AIStateMachine"));
+    AI->FirstState = UIdleState::StaticClass();
 	EnergyComp->Initiative = 3;
 	SelectionCircle = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("SelectionCircle"));
 	SelectionCircle->SetupAttachment(RootComponent);
