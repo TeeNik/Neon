@@ -4,7 +4,6 @@
 #include "Enemy/Turret.h"
 #include "Enemy/EnemyCharacter.h"
 #include "NeonCharacter.h"
-#include "WorldActors/GridBase.h"
 #include "Components/WeaponComponent.h"
 #include "Components/GridLocationComponent.h"
 #include "Components/MotionComponent.h"
