@@ -31,19 +31,12 @@ void UMotionComponent::SetupInitialPosition(AGridBase* gridBase)
 
 void UMotionComponent::MoveToGrid(AActor* gridBase)
 {
-	GLog->Log("MoveToGrid");
-	if (!IsValid(gridBase)) {
-		GLog->Log("TEELOG: !IsValid(gridBase)");
-		return;
-	}
-
 	ACharacter* character = Cast<ACharacter>(GetOwner());
 	if (character->bIsCrouched) {
 		character->UnCrouch();
 	}
 
 	AGridBase* grid = Cast<AGridBase>(gridBase);
-	//UNavigationSystem* const NavSys = GetWorld()->GetNavigationSystem();
 	AAIController* aiController = Cast<AAIController>(character->GetController());
 	aiController->MoveToLocation(gridBase->GetActorLocation(), -1, false);
     Position->GetLocationComponent()->SetStatus(GridLocationStatus::Empty);
@@ -52,6 +45,5 @@ void UMotionComponent::MoveToGrid(AActor* gridBase)
     bool isPlayer = character->IsA(ANeonCharacter::StaticClass());
     GridLocationStatus newStatus = isPlayer ? GridLocationStatus::Player : GridLocationStatus::Enemy;
     Position->GetLocationComponent()->SetStatus(newStatus);
-	//UAIBlueprintHelperLibrary::SimpleMoveToLocation(aiController, gridBase->GetActorLocation());
 }
 
