@@ -99,4 +99,3 @@ void UAbilityComponent::SetActiveAction(FString& name)
 {
 	ActiveAction = FindAbilityByName(name);
 }
-
