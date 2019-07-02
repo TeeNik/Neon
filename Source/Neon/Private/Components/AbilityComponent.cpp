@@ -91,7 +91,6 @@ TArray<FHitResult> UAbilityComponent::GetActorsInRange(float radius)
 	CollisionShape.ShapeType = ECollisionShape::Sphere;
 	CollisionShape.SetSphere(radius);
 	GetWorld()->SweepMultiByChannel(HitResults, StartLocation, EndLocation, FQuat::FQuat(), ECC, CollisionShape);
-	DrawDebugSphere(GetWorld(), StartLocation, radius, 50, FColor::Purple, true, 2);
 	return HitResults;
 }
 
