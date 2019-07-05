@@ -12,8 +12,6 @@
 void ANeonAIController::OnMoveCompleted(FAIRequestID RequestID, const FPathFollowingResult& Result) {
     Super::OnMoveCompleted(RequestID, Result);
 
-    GLog->Log("MoveCompleted");
-
 	APawn* pawn = GetPawn();
     AActor* actor = Cast<AActor>(pawn);
     ACharacter* character = Cast<ACharacter>(actor);
