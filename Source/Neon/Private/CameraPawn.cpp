@@ -81,9 +81,11 @@ void ACameraPawn::PanMoveCamera()
 	if (dir == FVector::ZeroVector || NeonPC && NeonPC->ClickedActor != NULL) return;
 
     FVector location = GetActorLocation();
-    if (dir.Y < 0 && location.Y < BoundY.X || dir.Y > 0 && location.Y > BoundY.Y || dir.X > 0 && location.X > BoundX.X || dir.X < 0 && location.X < BoundX.Y) 
-    {
-        return;
+    if (!IsIgnoreBounds) {
+        if (dir.Y < 0 && location.Y < BoundY.X || dir.Y > 0 && location.Y > BoundY.Y || dir.X > 0 && location.X > BoundX.X || dir.X < 0 && location.X < BoundX.Y)
+        {
+            return;
+        }
     }
 
     if (IsMovementEnable)

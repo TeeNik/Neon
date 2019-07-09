@@ -52,6 +52,9 @@ public:
     UPROPERTY(EditDefaultsOnly, Category = "CameraPawn")
     bool IsMovementEnable;
 
+    UPROPERTY(EditDefaultsOnly, Category = "CameraPawn")
+    bool IsIgnoreBounds;
+
 	int32 ScreenSizeX;
 	int32 ScreenSizeY;
 	ANeonPlayerController* NeonPC;
