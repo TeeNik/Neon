@@ -7,29 +7,38 @@
 #include "System/LocationManager.h"
 #include "NeonGameMode.h"
 #include "Engine/World.h"
+#include "System/InfoWidgetManager.h"
 
 UHealthComponent::UHealthComponent()
 {
 
 }
 
-Direction UHealthComponent::GetDefenceValue()
-{
-	UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(this);
-	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
-	if(motion && GM)
-	{
-		auto pos = motion->GetPosition();
-		return GM->GetLocationManager()->GetCoverInfo(pos);
-	}
-	return Direction();
-}
+
 
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	CurrentHealth = MaxHealth-40;
 	CurrentShield = MaxShield;
+
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	if (GM)
+	{
+		GM->GetInfoWidgetManager()->RegisterEvent(this);
+	}
+}
+
+Direction UHealthComponent::GetDefenceValue()
+{
+	UMotionComponent* motion = UUtilsLibrary::GetRelativeComponent<UMotionComponent>(this);
+	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	if (motion && GM)
+	{
+		auto pos = motion->GetPosition();
+		return GM->GetLocationManager()->GetCoverInfo(pos);
+	}
+	return Direction();
 }
 
 void UHealthComponent::TakeDamage(int& damage)
@@ -44,7 +53,13 @@ void UHealthComponent::TakeDamage(int& damage)
 	}
 
 	CurrentHealth -= damage;
-	if (CurrentHealth <= 0) Death.Broadcast();
+	if (CurrentHealth <= 0)
+	{
+		Death.Broadcast();
+	}
+	else {
+		OnDataUpdate.Broadcast(this);
+	}
 }
 
 void UHealthComponent::AddShield(int& value)

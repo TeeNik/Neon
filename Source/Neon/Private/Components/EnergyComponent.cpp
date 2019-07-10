@@ -5,6 +5,7 @@
 #include "NeonPlayerController.h"
 #include "System/UtilsLibrary.h"
 #include "System/TurnManager.h"
+#include "Engine/World.h"
 
 UEnergyComponent::UEnergyComponent()
 {
@@ -14,7 +15,7 @@ void UEnergyComponent::BeginPlay()
 {
 	Super::BeginPlay();
 	CurrentEnergy = MaxEnergy;
-	auto GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
+	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	if(GM)
 	{
 		GM->GetTurnManager()->AddToQueue(this);

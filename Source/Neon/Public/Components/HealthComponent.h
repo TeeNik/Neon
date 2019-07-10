@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -7,8 +5,10 @@
 #include "HealthComponent.generated.h"
 
 struct Direction;
+class UHealthComponent;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeath);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnDataUpdate, UHealthComponent*);
 
 UCLASS(Blueprintable, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class NEON_API UHealthComponent : public UActorComponent
@@ -35,6 +35,8 @@ public:
 
     UPROPERTY(BlueprintAssignable)
     FOnDeath Death;
+
+	FOnDataUpdate OnDataUpdate;
 	
 protected:
 	virtual void BeginPlay() override;

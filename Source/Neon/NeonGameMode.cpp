@@ -4,6 +4,7 @@
 #include "System/LocationManager.h"
 #include "System/TurnManager.h"
 #include "System/AbilityManager.h"
+#include "System/InfoWidgetManager.h"
 #include "UObject/ConstructorHelpers.h"
 
 ANeonGameMode::ANeonGameMode()
@@ -22,6 +23,7 @@ ANeonGameMode::ANeonGameMode()
 	RootComponent = AbilityManager;
 	LocationManager = CreateDefaultSubobject<ULocationManager>(TEXT("LocationManager"));
 	TurnManager = CreateDefaultSubobject<UTurnManager>(TEXT("TurnManager"));
+	InfoWidgetManager = CreateDefaultSubobject<UInfoWidgetManager>(TEXT("InfoWidgetManager"));
 }
 
 void ANeonGameMode::BeginPlay()
