@@ -27,8 +27,8 @@ void UActionWidget::InitButtons(TArray<UAbility*> actionDatas)
 		GLog->Log("Init Buttons Error!!! ActionButtonBP is null");
 		return;
 	}
-	const auto spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
-	const auto spacer2 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
+	const USpacer* spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
+	const USpacer* spacer2 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
 	const FSlateChildSize size(ESlateSizeRule::Fill);
 	const FMargin padding(0, 0, 15, 0);
 
@@ -98,6 +98,11 @@ void UActionWidget::HideEnergyCost(const int32& current)
 	for (int i = 0; i < current; ++i) {
 		EnergyImages[i]->SetActive();
 	}
+}
+
+UHealthInfoWidget* UActionWidget::AddInfoWidget()
+{
+
 }
 
 void UActionWidget::DisableEnergyImages(int current, int value)

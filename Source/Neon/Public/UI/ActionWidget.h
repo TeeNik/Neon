@@ -23,6 +23,7 @@ class UEnergyImage;
 class UAbility;
 class UActionTooltip;
 class UHorizontalBox;
+class UHealthInfoWidget;
 
 UCLASS()
 class NEON_API UActionWidget : public UUserWidget
@@ -36,6 +37,7 @@ public:
 	void InitToolTip();
 
 	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
+    FORCEINLINE TArray<UHealthInfoWidget*> GetInfoWidgets() { return InfoWidgets; }
 
 	void ShowEnergyCost(const int32& current, const int32& cost);
 	void HideEnergyCost(const int32& current);
@@ -55,6 +57,12 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, BlueprintReadWrite, Category = "UI")
 	UHorizontalBox* ActionBox;
+
+    UPROPERTY(meta = (BindWidget))
+    UHorizontalBox* InfoWidgetBox;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "UI")
+    TArray<UHealthInfoWidget*> InfoWidgets;
 
 	UPROPERTY(BlueprintReadWrite, BlueprintReadWrite, Category = "UI")
 	UButton* SkipButton;
