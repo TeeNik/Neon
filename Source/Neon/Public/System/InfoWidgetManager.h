@@ -5,6 +5,7 @@
 #include "InfoWidgetManager.generated.h"
 
 class UHealthInfoWidget;
+class UActionWidget;
 class UHealthComponent;
 
 
@@ -29,5 +30,8 @@ protected:
 
 	UFUNCTION()
 	void OnHealthChanged(UHealthComponent* comp);
+
+    UPROPERTY()
+    UActionWidget* ActionWidgetRef;
 
 };

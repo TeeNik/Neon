@@ -41,6 +41,7 @@ public:
 
 	void ShowEnergyCost(const int32& current, const int32& cost);
 	void HideEnergyCost(const int32& current);
+    UHealthInfoWidget* AddInfoWidget();
 
 protected:
 	UPROPERTY(BlueprintReadWrite)
@@ -75,6 +76,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "UI")
 	TSubclassOf<UActionTooltip> ActionTooltipBP;
+
+    UPROPERTY(EditDefaultsOnly, Category = "UI")
+    TSubclassOf<UActionTooltip> InfoWidgetBP;
 
 private:
 	UFUNCTION()
