@@ -12,6 +12,7 @@
 #include "System/TurnManager.h"
 #include "Components/HorizontalBox.h"
 #include "Components/EnergyComponent.h"
+#include "HealthInfoWidget.h"
 
 void UActionWidget::ClearButtons()
 {
@@ -102,7 +103,11 @@ void UActionWidget::HideEnergyCost(const int32& current)
 
 UHealthInfoWidget* UActionWidget::AddInfoWidget()
 {
-
+    const USpacer* spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
+    UHealthInfoWidget* widget = WidgetTree->ConstructWidget<UHealthInfoWidget>(InfoWidgetBP);
+    InfoWidgetBox->AddChildToHorizontalBox(widget);
+    InfoWidgets.Add(widget);
+    return widget;
 }
 
 void UActionWidget::DisableEnergyImages(int current, int value)
