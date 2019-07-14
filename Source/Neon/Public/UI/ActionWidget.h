@@ -37,11 +37,11 @@ public:
 	void InitToolTip();
 
 	FORCEINLINE UActionTooltip* GetActionTooltip() { return ActionTooltip; }
-    FORCEINLINE TArray<UHealthInfoWidget*> GetInfoWidgets() { return InfoWidgets; }
+    FORCEINLINE TArray<UHealthInfoWidget*>& GetInfoWidgets() { return InfoWidgets; }
 
 	void ShowEnergyCost(const int32& current, const int32& cost);
 	void HideEnergyCost(const int32& current);
-    UHealthInfoWidget* AddInfoWidget();
+    UHealthInfoWidget* AddInfoWidget(uint32& id);
 
 protected:
 	UPROPERTY(BlueprintReadWrite)

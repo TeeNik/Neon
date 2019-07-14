@@ -28,12 +28,12 @@ void UActionWidget::InitButtons(TArray<UAbility*> actionDatas)
 		GLog->Log("Init Buttons Error!!! ActionButtonBP is null");
 		return;
 	}
-	const USpacer* spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
-	const USpacer* spacer2 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
+	USpacer* spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
+	USpacer* spacer2 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
 	const FSlateChildSize size(ESlateSizeRule::Fill);
 	const FMargin padding(0, 0, 15, 0);
 
-	auto child = ActionBox->AddChildToHorizontalBox(spacer1);
+	UHorizontalBoxSlot* child = ActionBox->AddChildToHorizontalBox(spacer1);
 	child->SetSize(size);
 	for(int i = 0; i < actionDatas.Num(); ++i)
 	{
@@ -101,12 +101,13 @@ void UActionWidget::HideEnergyCost(const int32& current)
 	}
 }
 
-UHealthInfoWidget* UActionWidget::AddInfoWidget()
+UHealthInfoWidget* UActionWidget::AddInfoWidget(uint32& id)
 {
     const USpacer* spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
     UHealthInfoWidget* widget = WidgetTree->ConstructWidget<UHealthInfoWidget>(InfoWidgetBP);
     InfoWidgetBox->AddChildToHorizontalBox(widget);
     InfoWidgets.Add(widget);
+    widget->SetID(id);
     return widget;
 }
 

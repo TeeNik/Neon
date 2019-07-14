@@ -14,8 +14,6 @@ UHealthComponent::UHealthComponent()
 
 }
 
-
-
 void UHealthComponent::BeginPlay()
 {
 	Super::BeginPlay();
@@ -25,7 +23,7 @@ void UHealthComponent::BeginPlay()
 	ANeonGameMode* GM = Cast<ANeonGameMode>(GetWorld()->GetAuthGameMode());
 	if (GM)
 	{
-		GM->GetInfoWidgetManager()->RegisterEvent(this);
+		//GM->GetInfoWidgetManager()->RegisterEvent(this);
 	}
 }
 

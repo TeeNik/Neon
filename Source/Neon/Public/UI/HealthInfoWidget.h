@@ -12,6 +12,11 @@ class NEON_API UHealthInfoWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
+public:
+
+    FORCEINLINE uint32 GetID() { return ID; }
+    FORCEINLINE void SetID(uint32& id) { ID = id; }
+
 protected:
 
 	UPROPERTY(meta = (BindWidget))
@@ -23,4 +28,8 @@ protected:
 	UPROPERTY(meta = (BindWidget))
 	UTextBlock* Name;
 	
+private:
+
+    UPROPERTY()
+    uint32 ID;
 };

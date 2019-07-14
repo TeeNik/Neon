@@ -9,7 +9,6 @@ UInfoWidgetManager::UInfoWidgetManager()
 
 }
 
-
 void UInfoWidgetManager::BeginPlay()
 {
 	Super::BeginPlay();
@@ -19,13 +18,21 @@ void UInfoWidgetManager::BeginPlay()
     }
 }
 
-
 void UInfoWidgetManager::RegisterEvent(UHealthComponent* comp)
 {
     comp->OnDataUpdate.AddUFunction(this, "OnHealthChanged");
-    ActionWidgetRef->AddInfoWidget();
+    uint32 id = comp->GetOwner()->GetUniqueID();
+    ActionWidgetRef->AddInfoWidget(id);
 }
 
 void UInfoWidgetManager::OnHealthChanged(UHealthComponent * comp)
 {
+    uint32 id = comp->GetOwner()->GetUniqueID();
+    TArray<UHealthInfoWidget*> widgets = ActionWidgetRef->GetInfoWidgets();
+    for (int i = 0; i < widgets.Num(); ++i)
+    {
+        if (widgets[i]->GetID() == id) {
+
+        }
+    }
 }
