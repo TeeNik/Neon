@@ -101,16 +101,6 @@ void UActionWidget::HideEnergyCost(const int32& current)
 	}
 }
 
-UHealthInfoWidget* UActionWidget::AddInfoWidget(uint32& id)
-{
-    const USpacer* spacer1 = WidgetTree->ConstructWidget<USpacer>(USpacer::StaticClass());
-    UHealthInfoWidget* widget = WidgetTree->ConstructWidget<UHealthInfoWidget>(InfoWidgetBP);
-    InfoWidgetBox->AddChildToHorizontalBox(widget);
-    InfoWidgets.Add(widget);
-    widget->SetID(id);
-    return widget;
-}
-
 void UActionWidget::DisableEnergyImages(int current, int value)
 {
 	int count = 0;
