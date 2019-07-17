@@ -6,6 +6,8 @@
 #include "System/AbilityManager.h"
 #include "System/InfoWidgetManager.h"
 #include "UObject/ConstructorHelpers.h"
+#include "LevelInfoWidget.h"
+#include "Engine/World.h"
 
 ANeonGameMode::ANeonGameMode()
 {
@@ -19,11 +21,15 @@ ANeonGameMode::ANeonGameMode()
 		DefaultPawnClass = PlayerPawnBPClass.Class;
 	}
 
+	LevelWidget = CreateWidget<ULevelInfoWidget>(GetWorld(), LevelWidgetBP);
+
 	AbilityManager = CreateDefaultSubobject<UAbilityManager>(TEXT("AbilityManager"));
 	RootComponent = AbilityManager;
 	LocationManager = CreateDefaultSubobject<ULocationManager>(TEXT("LocationManager"));
-	TurnManager = CreateDefaultSubobject<UTurnManager>(TEXT("TurnManager"));
 	InfoWidgetManager = CreateDefaultSubobject<UInfoWidgetManager>(TEXT("InfoWidgetManager"));
+
+	//last
+	TurnManager = CreateDefaultSubobject<UTurnManager>(TEXT("TurnManager"));
 }
 
 void ANeonGameMode::BeginPlay()

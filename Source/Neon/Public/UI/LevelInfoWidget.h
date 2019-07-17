@@ -14,7 +14,7 @@ class NEON_API ULevelInfoWidget : public UUserWidget
 
 public:
 
-	FORCEINLINE TArray<UHealthInfoWidget*>& GetHeealthWidgets() { return HealthWidgets; }
+	FORCEINLINE TArray<UHealthInfoWidget*>& GetHealthWidgets() { return HealthWidgets; }
 
 	UHealthInfoWidget* AddHealthWidget(uint32& id);
 

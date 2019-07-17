@@ -7,6 +7,7 @@
 class ULocationManager;
 class UTurnManager;
 class UAbilityManager;
+class ULevelInfoWidget;
 class UInfoWidgetManager;
 
 DECLARE_MULTICAST_DELEGATE_OneParam(OnPlayerAbilityDelegate, AActor*);
@@ -25,6 +26,7 @@ public:
 	FORCEINLINE class UTurnManager* GetTurnManager() { return TurnManager; }
 	FORCEINLINE class UAbilityManager* GetAbilityManager() { return AbilityManager; }
 	FORCEINLINE class UInfoWidgetManager* GetInfoWidgetManager() { return InfoWidgetManager; }
+	FORCEINLINE class ULevelInfoWidget* GetLevelWidget() { return LevelWidget; }
 
 	OnPlayerAbilityDelegate OnPlayerAbilityCall;
 
@@ -40,6 +42,12 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Managers")
 	UInfoWidgetManager* InfoWidgetManager;
+
+	UPROPERTY()
+	ULevelInfoWidget* LevelWidget;
+
+	UPROPERTY(EditDefaultsOnly, Category = "UI")
+	TSubclassOf<UUserWidget> LevelWidgetBP;
 
 };
 
