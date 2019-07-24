@@ -12,7 +12,7 @@
 #include "GameFramework/Actor.h"
 #include "GridLocationComponent.h"
 #include "ActionTableData.h"
-#include "AI/IdleState.h"
+#include "IdleState.h"
 #include "Engine/World.h"
 #include "Runtime/Engine/Public/TimerManager.h"
 

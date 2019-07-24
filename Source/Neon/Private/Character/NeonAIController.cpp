@@ -1,7 +1,7 @@
 #include "NeonAIController.h"
 #include "System/UtilsLibrary.h"
 #include "AI/AIStateMachine.h"
-#include "AI/IdleState.h"
+#include "AI/Bot/IdleState.h"
 #include "GameFramework/Character.h"
 #include "Engine/World.h"
 #include "NeonGameMode.h"

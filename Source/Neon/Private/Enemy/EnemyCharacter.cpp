@@ -18,7 +18,7 @@
 #include "Action/ActionTableData.h"
 #include "Engine/World.h"
 #include "System/TurnManager.h"
-#include "AI/IdleState.h"
+#include "AI/Bot/IdleState.h"
 
 AEnemyCharacter::AEnemyCharacter()
 {
