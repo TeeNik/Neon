@@ -13,6 +13,7 @@ enum GridBaseState;
 class AEnemyCharacter;
 class ATurret;
 class ANeonCharacter;
+class ACoreEnemy;
 
 USTRUCT()
 struct FGridBaseArray
@@ -44,6 +45,9 @@ public:
 
     UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
     TSubclassOf<ANeonCharacter> PlayerClass;
+
+	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
+	TSubclassOf<ACoreEnemy> BossClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "LocationManager")
 	float OriginX;
@@ -87,6 +91,7 @@ private:
     void CreateTurret(int& i, int& j);
     void CreateEnemy(int& i, int& j);
     void CreatePlayer(int& i, int& j);
+	void CreateBoss(int& i, int& j);
 
     const int BLOCK_SIZE = 125;
 

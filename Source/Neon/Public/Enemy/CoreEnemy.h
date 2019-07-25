@@ -6,7 +6,6 @@
 #include "CoreEnemy.generated.h"
 
 class UMaterialInstance;
-class UStaticMeshComponent;
 
 UCLASS()
 class NEON_API ACoreEnemy : public APawn, public IAction
@@ -37,13 +36,15 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UHealthComponent* HealthComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	class UMotionComponent* MotionComp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UEnergyComponent* EnergyComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UAIStateMachine* AI;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
 	class UAbilityComponent* AbilityComp;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
-	UStaticMeshComponent* SelectionCircle;
+	class UStaticMeshComponent* SelectionCircle;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UMaterialInstance* DefaultMaterial;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")

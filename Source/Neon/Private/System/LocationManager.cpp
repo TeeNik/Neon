@@ -168,6 +168,15 @@ void ULocationManager::CreatePlayer(int& i, int& j)
     motion->SetupInitialPosition(GridArray[i].Array[j]);
 }
 
+void ULocationManager::CreateBoss(int & i, int & j)
+{
+	CreateFloor(i, j);
+	FActorSpawnParameters spawnParams;
+	ACoreEnemy* core = GetWorld()->SpawnActor<ACoreEnemy>(BossClass);
+	UMotionComponent* motion = UUtilsLibrary::GetComponentByClass<UMotionComponent>(core);
+	motion->SetupInitialPosition(GridArray[i].Array[j]);
+}
+
 const Direction ULocationManager::GetCoverInfo(const AGridBase* gridBase)
 {
 	Direction dir;
