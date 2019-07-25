@@ -6,6 +6,7 @@
 #include "CoreEnemy.generated.h"
 
 class UMaterialInstance;
+class UStaticMeshComponent;
 
 UCLASS()
 class NEON_API ACoreEnemy : public APawn, public IAction
@@ -47,9 +48,7 @@ protected:
 	UMaterialInstance* DefaultMaterial;
 	UPROPERTY(EditDefaultsOnly, Category = "Components")
 	UMaterialInstance* HighlightMaterial;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
-	class UStaticMeshComponent* Mesh;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NeonComponent", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	class UCapsuleComponent* Capsule;
 
 

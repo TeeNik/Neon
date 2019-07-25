@@ -10,11 +10,8 @@
 
 ACoreEnemy::ACoreEnemy()
 {
-	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Nesh"));
-	RootComponent = Mesh;
-
 	Capsule = CreateDefaultSubobject<UCapsuleComponent>("Capsule");
-	Capsule->SetupAttachment(RootComponent);
+	RootComponent = Capsule;
 
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
