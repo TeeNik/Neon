@@ -16,6 +16,7 @@ ACoreEnemy::ACoreEnemy()
 	HealthComp = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	EnergyComp = CreateDefaultSubobject<UEnergyComponent>(TEXT("EnergyComponent"));
 	AbilityComp = CreateDefaultSubobject<UAbilityComponent>(TEXT("AbilityComponent"));
+	MotionComp = CreateDefaultSubobject<UMotionComponent>(TEXT("MotionComponent"));
 	AI = CreateDefaultSubobject<UAIStateMachine>(TEXT("AIStateMachine"));
 	AI->FirstState = UCoreIdleState::StaticClass();
 	EnergyComp->Initiative = 3;

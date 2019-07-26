@@ -75,9 +75,10 @@ private:
         Wall = 1,
         Cover,
         Floor,
-        Enemy,
+        Core,
         Turret,
         Player,
+		Enemy,
     };
 
 	bool IsTop(int i, int j);
@@ -91,7 +92,7 @@ private:
     void CreateTurret(int& i, int& j);
     void CreateEnemy(int& i, int& j);
     void CreatePlayer(int& i, int& j);
-	void CreateBoss(int& i, int& j);
+	void CreateCore(int& i, int& j);
 
     const int BLOCK_SIZE = 125;
 

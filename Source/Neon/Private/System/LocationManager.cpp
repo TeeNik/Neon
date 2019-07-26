@@ -93,6 +93,10 @@ void ULocationManager::GenerateMap()
                     break;
                 case Player:
                     CreatePlayer(i, j);
+					break;
+				case Core:
+					CreateCore(i, j);
+					break;
                 default:
                     break;
                 }
@@ -168,7 +172,7 @@ void ULocationManager::CreatePlayer(int& i, int& j)
     motion->SetupInitialPosition(GridArray[i].Array[j]);
 }
 
-void ULocationManager::CreateBoss(int & i, int & j)
+void ULocationManager::CreateCore(int & i, int & j)
 {
 	CreateFloor(i, j);
 	FActorSpawnParameters spawnParams;
