@@ -5,5 +5,5 @@ UCoreIdleState::UCoreIdleState() {
 }
 
 void UCoreIdleState::Execute() {
-
+    AI->EndTurn();
 }
