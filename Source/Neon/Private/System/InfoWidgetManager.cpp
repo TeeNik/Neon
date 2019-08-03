@@ -1,8 +1,9 @@
 #include "InfoWidgetManager.h"
 #include "HealthComponent.h"
-#include "ActionWidget.h"
+#include "LevelInfoWidget.h"
 #include "NeonPlayerController.h"
 #include "HealthInfoWidget.h"
+#include "Engine/World.h"
 
 UInfoWidgetManager::UInfoWidgetManager()
 {
@@ -12,9 +13,9 @@ UInfoWidgetManager::UInfoWidgetManager()
 void UInfoWidgetManager::BeginPlay()
 {
 	Super::BeginPlay();
-    ANeonPlayerController* PC = Cast<ANeonPlayerController>(GetWorld()->GetFirstPlayerController());
-    if (IsValid(PC)) {
-        ActionWidgetRef = PC->ActionWidget;
+    if (LevelInfoClass) {
+        LevelWidget = CreateWidget<ULevelInfoWidget>(GetOwner()->GetWorld(), LevelInfoClass);
+        LevelWidget->AddToViewport();
     }
 }
 

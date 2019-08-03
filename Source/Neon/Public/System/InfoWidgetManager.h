@@ -7,6 +7,7 @@
 class UHealthInfoWidget;
 class UActionWidget;
 class UHealthComponent;
+class ULevelInfoWidget;
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -18,7 +19,7 @@ public:
 	UInfoWidgetManager();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Manager")
-	TSubclassOf<UHealthInfoWidget> InfoWidgetClass;
+	TSubclassOf<ULevelInfoWidget> LevelInfoClass;
 
 	void RegisterEvent(UHealthComponent*);
 
@@ -32,6 +33,6 @@ protected:
 	void OnHealthChanged(UHealthComponent* comp);
 
     UPROPERTY()
-    UActionWidget* ActionWidgetRef;
+    ULevelInfoWidget* LevelWidget;
 
 };
