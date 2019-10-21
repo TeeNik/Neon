@@ -23,7 +23,7 @@ void UInfoWidgetManager::RegisterEvent(UHealthComponent* comp)
 {
     comp->OnDataUpdate.AddUFunction(this, "OnHealthChanged");
     uint32 id = comp->GetOwner()->GetUniqueID();
-	LevelWidget->AddInfoWidget(id);
+	//LevelWidget->AddInfoWidget(id);
 }
 
 void UInfoWidgetManager::OnHealthChanged(UHealthComponent * comp)
